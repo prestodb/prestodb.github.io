@@ -60,13 +60,22 @@ class HomeSplash extends React.Component {
 
     return (
       <SplashContainer>
-        <Logo img_src={`${baseUrl}img/docusaurus.svg`} />
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
+          <div>
+            <h2>What is Presto?</h2>
+            <p>Presto is an open source distributed SQL query engine for running interactive analytic queries against data sources of all sizes ranging from gigabytes to petabytes.
+
+Presto was designed and written from the ground up for interactive analytics and approaches the speed of commercial data warehouses while scaling to the size of organizations like Facebook.</p>
+          </div>
+          <div>
+            <h2>What can it do?</h2>
+            <p>Presto allows querying data where it lives, including Hive, Cassandra, relational databases or even proprietary data stores. A single Presto query can combine data from multiple sources, allowing for analytics across your entire organization.
+
+Presto is targeted at analysts who expect response times ranging from sub-second to minutes. Presto breaks the false choice between having fast analytics using an expensive commercial solution or using a slow "free" solution that requires excessive hardware.</p>
+          </div>
           <PromoSection>
             <Button href="#try">Try It Out</Button>
-            <Button href={docUrl('doc1.html')}>Example Link</Button>
-            <Button href={docUrl('doc2.html')}>Example Link 2</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -96,65 +105,25 @@ class Index extends React.Component {
       <div
         className="productShowcaseSection paddingBottom"
         style={{textAlign: 'center'}}>
-        <h2>Feature Callout</h2>
-        <MarkdownBlock>These are features of this project</MarkdownBlock>
+        <h2>Backend Connectors</h2>
+        <MarkdownBlock>Hive, PostgreSQL, MySQL, Kafka, MongoDB, and more</MarkdownBlock>
       </div>
-    );
-
-    const TryOut = () => (
-      <Block id="try">
-        {[
-          {
-            content: 'Talk about trying this out',
-            image: `${baseUrl}img/docusaurus.svg`,
-            imageAlign: 'left',
-            title: 'Try it Out',
-          },
-        ]}
-      </Block>
-    );
-
-    const Description = () => (
-      <Block background="dark">
-        {[
-          {
-            content:
-              'This is another description of how this project is useful',
-            image: `${baseUrl}img/docusaurus.svg`,
-            imageAlign: 'right',
-            title: 'Description',
-          },
-        ]}
-      </Block>
-    );
-
-    const LearnHow = () => (
-      <Block background="light">
-        {[
-          {
-            content: 'Talk about learning how to use this',
-            image: `${baseUrl}img/docusaurus.svg`,
-            imageAlign: 'right',
-            title: 'Learn How',
-          },
-        ]}
-      </Block>
     );
 
     const Features = () => (
       <Block layout="fourColumn">
         {[
           {
-            content: 'This is the content of my feature',
-            image: `${baseUrl}img/docusaurus.svg`,
+            content: 'One language to query multiple backends',
+            image: `${baseUrl}img/presto-logo.png`,
             imageAlign: 'top',
-            title: 'Feature One',
+            title: 'ANSI SQL',
           },
           {
-            content: 'The content of my second feature',
-            image: `${baseUrl}img/docusaurus.svg`,
+            content: 'Pipelined streaming architecture',
+            image: `${baseUrl}img/presto-logo.png`,
             imageAlign: 'top',
-            title: 'Feature Two',
+            title: 'Blazing fast',
           },
         ]}
       </Block>
@@ -178,7 +147,6 @@ class Index extends React.Component {
       return (
         <div className="productShowcaseSection paddingBottom">
           <h2>Who is Using This?</h2>
-          <p>This project is used by all these people</p>
           <div className="logos">{showcase}</div>
           <div className="more-users">
             <a className="button" href={pageUrl('users.html')}>
@@ -195,9 +163,6 @@ class Index extends React.Component {
         <div className="mainContainer">
           <Features />
           <FeatureCallout />
-          <LearnHow />
-          <TryOut />
-          <Description />
           <Showcase />
         </div>
       </div>
