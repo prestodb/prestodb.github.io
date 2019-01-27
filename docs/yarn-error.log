@@ -1,0 +1,31 @@
+Arguments: 
+  /usr/local/Cellar/node/11.0.0/bin/node /opt/facebook/fb-kpm/bin/yarn.js start
+
+PATH: 
+  /usr/local/opt/sphinx-doc/bin:/opt/facebook/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/facebook/nuclide/latest/nuclide/pkg/fb-biggrep-cli/bin:/opt/facebook/nuclide/latest/nuclide/pkg/fb-on-demand-cli/bin:/opt/facebook/ops/scripts/chef:/opt/homebrew/bin:/usr/local/munki:/opt/facebook/hg/bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  11.0.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: Couldn't find a package.json file in "/Users/ggreg/src/facebook/prestodb.github.io/docs"
+      at new MessageError (/opt/facebook/fb-kpm/lib/cli.js:186:110)
+      at /opt/facebook/fb-kpm/lib/cli.js:40048:15
+      at Generator.next (<anonymous>)
+      at step (/opt/facebook/fb-kpm/lib/cli.js:98:30)
+      at /opt/facebook/fb-kpm/lib/cli.js:109:13
