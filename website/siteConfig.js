@@ -60,7 +60,7 @@ const siteConfig = {
   headerLinks: [
     {href: 'overview.html', label: 'OVERVIEW'},
     {href: 'docs/current', label: 'DOCS'},
-    {href: 'blog/index.html', label: 'BLOG'},
+    {href: 'index.html', label: 'BLOG'},
     {href: 'faq.html', label: 'FAQ'},
     {href: 'community.html', label: 'COMMUNITY'},
     {href: 'resources.html', label: 'RESOURCES'},
