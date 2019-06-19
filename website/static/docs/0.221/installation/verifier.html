@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.4. Presto Verifier &#8212; Presto 0.221 Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.221',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="top" title="Presto 0.221 Documentation" href="../index.html" />
+    <link rel="up" title="2. Installation" href="../installation.html" />
+    <link rel="next" title="2.5. Benchmark Driver" href="benchmark-driver.html" />
+    <link rel="prev" title="2.3. JDBC Driver" href="jdbc.html" /> 
+  </head>
+  <body role="document">
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.221 Documentation</span></a></h1>
+    <h2 class="heading"><span>2.4. Presto Verifier</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="jdbc.html">2.3. JDBC Driver</a>
+    </span>
+    <span class="right">
+        <a href="benchmark-driver.html">2.5. Benchmark Driver</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="presto-verifier">
+<h1>2.4. Presto Verifier</h1>
+<p>The Presto Verifier can be used to test Presto against another database (such as MySQL),
+or to test two Presto clusters against each other. We use it to continuously test trunk
+against the previous release while developing Presto.</p>
+<div class="section" id="running-verifier">
+<h2>Running Verifier</h2>
+<p>Create a MySQL database with the following table and load it with the queries you would like to run:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">verifier_queries</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+    <span class="n">suite</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">control_catalog</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">control_schema</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">control_query</span> <span class="nb">text</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">test_catalog</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">test_schema</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">test_query</span> <span class="nb">text</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">control_username</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;verifier-test&#39;</span><span class="p">,</span>
+    <span class="n">control_password</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">test_username</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;verifier-test&#39;</span><span class="p">,</span>
+    <span class="n">test_password</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">session_properties_json</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, create a properties file to configure the verifier:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>source-query.suite=my_suite
+source-query.database=jdbc:mysql://localhost:3306/my_database?user=my_username&amp;password=my_password
+control.gateway=jdbc:presto://localhost:8080
+test.gateway=jdbc:presto://localhost:8081
+test-id=1
+</pre></div>
+</div>
+<p>Lastly, download <a class="reference external" href="https://repo1.maven.org/maven2/com/facebook/presto/presto-verifier/0.221/presto-verifier-0.221-executable.jar">presto-verifier-0.221-executable.jar</a>, rename it to <code class="docutils literal"><span class="pre">verifier</span></code>,
+make it executable with <code class="docutils literal"><span class="pre">chmod</span> <span class="pre">+x</span></code>, then run it:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>./verifier verify config.properties
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration-reference">
+<h2>Configuration Reference</h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">control.timeout</span></code></td>
+<td>The maximum execution time of the control queries.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">test.timeout</span></code></td>
+<td>The maximum execution time of the test queries.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">metadata.timeout</span></code></td>
+<td>The maximum execution time of the queries that are required for
+obtaining table metadata or rewriting queries.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">checksum.timeout</span></code></td>
+<td>The maximum execution time of the queries that computes checksum for
+the control and the test results.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">whitelist</span></code></td>
+<td>A comma-separated list that specifies names of the queries within the
+suite to verify.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">blacklist</span></code></td>
+<td>A comma-separated list that specifies names of the queries to be
+excluded from suite. <code class="docutils literal"><span class="pre">blacklist</span></code> is applied after <code class="docutils literal"><span class="pre">whitelist</span></code>.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">source-query.table-name</span></code></td>
+<td>Specifies the MySQL table from which to read the source queries for
+verification.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">event-clients</span></code></td>
+<td>A comma-separated list that specifies where the output events should be
+emitted. Valid individual values are <code class="docutils literal"><span class="pre">json</span></code> and <code class="docutils literal"><span class="pre">human-readable</span></code>.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">json.log-file</span></code></td>
+<td>Specifies the output files for JSON events. If <code class="docutils literal"><span class="pre">json</span></code> is specified in
+<code class="docutils literal"><span class="pre">event-clients</span></code> but this property is not set, JSON events are emitted
+to <code class="docutils literal"><span class="pre">stdout</span></code>.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">human-readable.log-file</span></code></td>
+<td>Specifies the output files for human readable events. If
+<code class="docutils literal"><span class="pre">human-readable</span></code> is specified in <code class="docutils literal"><span class="pre">event-clients</span></code> but this property
+is not set, human readable events are emitted to <code class="docutils literal"><span class="pre">stdout</span></code>.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">max-concurrency</span></code></td>
+<td>Specifies the maximum concurrent verification. Alternatively speaking,
+the maximum concurrent queries that will be submitted to control and
+test clusters combined.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">relative-error-margin</span></code></td>
+<td>Specified the maximum tolerable relative error between control and test
+queries for floating point columns.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="jdbc.html">2.3. JDBC Driver</a>
+    </span>
+    <span class="right">
+        <a href="benchmark-driver.html">2.5. Benchmark Driver</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
