@@ -31,4 +31,8 @@ ln -sfh $VERSION $CURRENT
 
 git add $TARGET $CURRENT
 
+#Update the version number in javascript for rendering across the site
+echo "const latest_presto_version = '$VERSION';" > website/static/static/js/version.js
+git add website/static/static/js/version.js
+
 git commit -m "Add $VERSION docs"

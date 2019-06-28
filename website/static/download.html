@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Presto | Download</title>
+    <link rel="stylesheet" href="static/presto.css" type="text/css"/>
+    <link rel="canonical" href="http://prestodb.github.io/"/>
+
+    <meta name="viewport" content="width=device-width">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Presto | Download">
+    <meta property="og:description" content="Distributed SQL Query Engine for Big Data">
+    <meta property="og:image" content="static/presto-og.png">
+</head>
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script src="static/js/version.js"></script>
+
+
+<header class="topbar clearfix">
+    <nav class="width">
+        <a href="."><h1>Presto</h1></a>
+        <ul class="nav">
+            <li><a href="overview.html">Overview</a></li>
+            <li><a href="docs/current/">Docs</a></li>
+            <li><a href="blog/index.html">Blog</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="https://github.com/facebook/presto">GitHub</a>
+        </ul>
+    </nav>
+</header>
+
+<div class="content homecontent width clearfix">
+  <div>
+    <h2>Current version</h2>
+    <p>The current Presto release version is <b id="presto_version_text">unset</b>.
+       <a id="presto_release_notes" href="broken">Release notes.</a>
+    </p>
+    <script>
+      document.getElementById('presto_version_text').innerHTML = latest_presto_version;
+      document.getElementById('presto_release_notes').href = 'docs/current/release/release-' + latest_presto_version + '.html';
+    </script>
+  </div>
+  <div>
+    <h2>Server</h2>
+
+    <p>Visit <a href="docs/current/installation/deployment.html">Deploying Presto</a> for deployment instructions.</p>
+    <a class="downloadbutton" id="server_download_button" href="broken">unset</a>
+    <script>
+      button = document.getElementById('server_download_button');
+      button.href = 'https://repo1.maven.org/maven2/com/facebook/presto/presto-server/' + latest_presto_version + '/presto-server-' + latest_presto_version + '.tar.gz';
+      button.innerHTML = 'presto-server-' + latest_presto_version + '.tar.gz';
+    </script>
+  </div>
+
+  <div>
+    <h2>Command Line Interface</h2>
+
+    <p>A CLI for running queries is available see <a href="docs/current/installation/cli.html">Command Line Interface</a>.</p>
+    <a class="downloadbutton" id="cli_download_button" href="broken">unset</a>
+    <script>
+      button = document.getElementById('cli_download_button');
+      button.href = 'https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/' + latest_presto_version + '/presto-cli-' + latest_presto_version + '-executable.jar';
+      button.innerHTML = 'presto-cli-' + latest_presto_version + '-executable.jar';
+    </script>
+  </div>
+
+  <div>
+    <h2>JDBC Driver</h2>
+
+    <p>A JDBC driver for connecting from Java is available see <a href="docs/current/installation/jdbc.html">JDBC Driver</a>.</p>
+    <a class="downloadbutton" id="jdbc_download_button" href="broken">unset</a>
+    <script>
+      button = document.getElementById('jdbc_download_button');
+      button.href = 'https://repo1.maven.org/maven2/com/facebook/presto/presto-jdbc/' + latest_presto_version + '/presto-jdbc-' + latest_presto_version + '.jar';
+      button.innerHTML = 'presto-jdbc-' + latest_presto_version + '.jar';
+    </script>
+  </div>
+</div>
+
+<div class="footer">&copy; Copyright 2013-2019, Facebook</div>
+
+</body>
+</html>

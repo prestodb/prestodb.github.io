@@ -88,6 +88,17 @@ div.content ul > li {
     border-radius: 5px;
 }
 
+a.downloadbutton {
+    text-transform: none;
+    background: #102747;
+    color: #fff;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
 .nav .right {
     float: right;
     text-align: right;
@@ -280,7 +291,7 @@ code {
 
     .leftcol, .rightcol {
         display: inline-block;
-        width: 30%;
+        width: 32%;
     }
 
     .leftcol {
