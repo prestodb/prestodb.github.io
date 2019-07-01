@@ -42,23 +42,27 @@
 <div class="content homecontent width clearfix">
   <div>
     <h2>Current version</h2>
-    <p>The current Presto release version is <b id="presto_version_text">unset</b>.
-       <a id="presto_release_notes" href="broken">Release notes.</a>
+    <p id="presto_version_description">The current Presto release version is <b>0.220</b>.
+       See the <a id="presto_release_notes" href="broken">Release Notes</a> for more information. <br/>
+       This release features <b>120</b> commits from <b>22</b> contributors and <b>18</b> committers.
     </p>
     <script>
-      document.getElementById('presto_version_text').innerHTML = latest_presto_version;
-      document.getElementById('presto_release_notes').href = 'docs/current/release/release-' + latest_presto_version + '.html';
+      description = "The current Presto release version is <b>" + presto_latest_presto_version + "</b>. See the <a href='" +
+        'docs/current/release/release-' + presto_latest_presto_version + ".html'>Release Notes</a> for more information. <br/>"+
+        "This release features <b>" + presto_latest_num_commits + "</b> commits from <b>" + presto_latest_num_contributors +
+        "</b> contributors and <b>" + presto_latest_num_committers + "</b> committers.";
+        document.getElementById('presto_version_description').innerHTML = description;
     </script>
   </div>
   <div>
     <h2>Server</h2>
 
     <p>Visit <a href="docs/current/installation/deployment.html">Deploying Presto</a> for deployment instructions.</p>
-    <a class="downloadbutton" id="server_download_button" href="broken">unset</a>
+    <a class="downloadbutton" id="server_download_button" href="broken">presto-server-0.221.tar.gz</a>
     <script>
       button = document.getElementById('server_download_button');
-      button.href = 'https://repo1.maven.org/maven2/com/facebook/presto/presto-server/' + latest_presto_version + '/presto-server-' + latest_presto_version + '.tar.gz';
-      button.innerHTML = 'presto-server-' + latest_presto_version + '.tar.gz';
+      button.href = 'https://repo1.maven.org/maven2/com/facebook/presto/presto-server/' + presto_latest_presto_version + '/presto-server-' + presto_latest_presto_version + '.tar.gz';
+      button.innerHTML = 'presto-server-' + presto_latest_presto_version + '.tar.gz';
     </script>
   </div>
 
@@ -66,11 +70,11 @@
     <h2>Command Line Interface</h2>
 
     <p>A CLI for running queries is available see <a href="docs/current/installation/cli.html">Command Line Interface</a>.</p>
-    <a class="downloadbutton" id="cli_download_button" href="broken">unset</a>
+    <a class="downloadbutton" id="cli_download_button" href="broken">presto-cli-0.221-executable.jar</a>
     <script>
       button = document.getElementById('cli_download_button');
-      button.href = 'https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/' + latest_presto_version + '/presto-cli-' + latest_presto_version + '-executable.jar';
-      button.innerHTML = 'presto-cli-' + latest_presto_version + '-executable.jar';
+      button.href = 'https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/' + presto_latest_presto_version + '/presto-cli-' + presto_latest_presto_version + '-executable.jar';
+      button.innerHTML = 'presto-cli-' + presto_latest_presto_version + '-executable.jar';
     </script>
   </div>
 
@@ -78,11 +82,11 @@
     <h2>JDBC Driver</h2>
 
     <p>A JDBC driver for connecting from Java is available see <a href="docs/current/installation/jdbc.html">JDBC Driver</a>.</p>
-    <a class="downloadbutton" id="jdbc_download_button" href="broken">unset</a>
+    <a class="downloadbutton" id="jdbc_download_button" href="broken">presto-jdbc-0.221.jar</a>
     <script>
       button = document.getElementById('jdbc_download_button');
-      button.href = 'https://repo1.maven.org/maven2/com/facebook/presto/presto-jdbc/' + latest_presto_version + '/presto-jdbc-' + latest_presto_version + '.jar';
-      button.innerHTML = 'presto-jdbc-' + latest_presto_version + '.jar';
+      button.href = 'https://repo1.maven.org/maven2/com/facebook/presto/presto-jdbc/' + presto_latest_presto_version + '/presto-jdbc-' + presto_latest_presto_version + '.jar';
+      button.innerHTML = 'presto-jdbc-' + presto_latest_presto_version + '.jar';
     </script>
   </div>
 </div>

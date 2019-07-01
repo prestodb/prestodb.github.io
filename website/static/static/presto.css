@@ -33,6 +33,19 @@ body {
     min-width: inherit;
 }
 
+table {
+  border-radius: 5px;
+}
+
+table, th, td {
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+  border: 0.3em solid #374665;
+}
+
+td {
+  padding: 8px;
+}
+
 div.content ul > li {
     list-style-type: disc;
     list-style-position: inside;

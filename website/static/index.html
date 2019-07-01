@@ -21,7 +21,7 @@
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
+<script src="static/js/version.js"></script>
 
 <header class="topbar clearfix">
     <nav class="width">
@@ -124,7 +124,37 @@
     </div>
 
     <div class="rightcol">
-        <h3>Community</h3>
+      <h3>Release Stats</h3>
+      <table cellspacing="0">
+        <tr>
+          <td><b>Current Version</b></td>
+          <td id="presto_current_version">0.222</td>
+        </tr>
+        <tr>
+          <td><b>Date</b></td>
+          <td id="presto_current_date">July 02, 2019</td>
+        </tr>
+        <tr>
+          <td><b>Commits</b></td>
+          <td id="presto_current_commits">250</td>
+        </tr>
+        <tr>
+          <td><b>Contributors</b></td>
+          <td id="presto_current_contributors">25</td>
+        </tr>
+        <tr>
+          <td><b>Committers</b></td>
+          <td id="presto_current_committers">18</td>
+        </tr>
+      </table>
+      <script>
+        document.getElementById('presto_current_version').innerHTML = presto_latest_presto_version;
+        document.getElementById('presto_current_date').innerHTML = presto_latest_date;
+        document.getElementById('presto_current_commits').innerHTML = presto_latest_num_commits;
+        document.getElementById('presto_current_contributors').innerHTML = presto_latest_num_contributors;
+        document.getElementById('presto_current_committers').innerHTML = presto_latest_num_committers;
+      </script>
+      <h3>Community</h3>
         <ul>
             <li><a href="https://groups.google.com/group/presto-users">presto-users group</a></li>
             <li><a href="https://github.com/facebook/presto/issues">Report an issue</a></li>
