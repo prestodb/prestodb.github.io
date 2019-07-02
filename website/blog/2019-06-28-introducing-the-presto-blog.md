@@ -1,7 +1,7 @@
 ---
 title: Introducing the Presto blog
 author: Orri Erling
-authorURL: http://code.fb.com/
+authorURL: https://www.linkedin.com/in/orrierling/
 authorFBID: 100026224749124
 ---
 
