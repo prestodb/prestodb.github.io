@@ -44,8 +44,6 @@
             <dl>
                 <dt>Project</dt>
                 <dd><a href="https://github.com/prestodb/presto-admin">Presto-Admin</a></dd>
-                <dt>Maintained by</dt>
-                <dd><a href="https://www.starburstdata.com/">Starburst, The Presto company</a></dd>
                 <dt>Description</dt>
                 <dd>
                     Presto-Admin is a tool for installing and managing the Presto
@@ -57,10 +55,6 @@
                         <li>Start and stop the Presto servers</li>
                         <li>Gather status and log information from your Presto cluster</li>
                     </ul>
-                    If you need any assistance with your Presto cluster management
-                    reach out to <a href="https://www.starburstdata.com">Starburst</a>
-                    for their <a href="https://www.starburstdata.com/presto-enterprise/">Presto enterprise support</a>
-                    offering and other Presto related services.
                 </dd>
                 <dt>Examples</dt>
 <pre>
@@ -189,12 +183,6 @@ presto-admin connector add connector-name
 
         <h2 id="odbc">Presto ODBC</h2>
 
-        <p>
-            There are drivers available from:
-            <a href="#prestogres">Prestogres</a>,
-            <a href="#starburst">Starburst Data</a>
-        </p>
-
         <h3 id="prestogres">Prestogres</h3>
 
         <div class="item">
@@ -209,31 +197,6 @@ presto-admin connector add connector-name
                     Prestogres is a gateway server that allows clients
                     to use PostgreSQL protocol and thus the
                     PostgreSQL ODBC driver to run queries on Presto.
-                </dd>
-            </dl>
-        </div>
-
-        <h3 id="starburst">Starburst</h3>
-
-        <div class="item">
-            <h4>Starburst ODBC Driver</h4>
-            <dl>
-                <dt>Project</dt>
-                <dd><a href="https://www.starburstdata.com/our-offerings/#drivers-block">Starburst Enterprise ODBC/JDBC Presto Drivers</a></dd>
-                <dt>Maintained by</dt>
-                <dd><a href="https://www.starburstdata.com/">Starburst, The Presto company</a></dd>
-                <dt>Description</dt>
-                <dd>
-                    The Starburst Enterprise Client Drivers for Presto include
-                    enterprise grade ODBC and JDBC drivers enabling you to
-                    use your preferred Business Intelligence tools with Presto.
-                    The drivers fully implement the ODBC and JDBC specifications
-                    and are compatible with the
-                    <a href="https://www.starburstdata.com/our-offerings/">Enterprise Starburst Presto release</a>
-                    which is available for download.
-                    There are ODBC drivers for Windows, Mac, and Linux platforms.
-                    Starburst additionally provides
-                    <a href="https://www.starburstdata.com/presto-enterprise/">enterprise Presto support and services</a>
                 </dd>
             </dl>
         </div>
@@ -418,23 +381,6 @@ try (Connection connection =
             </dl>
         </div>
 
-        <h2 id="hosting">Presto Hosting</h2>
-
-        <div class="item">
-            <h4>Qubole</h4>
-            <dl>
-                <dt>Product</dt>
-                <dd><a href="http://www.qubole.com/presto-as-a-service/">Presto as a Service</a></dd>
-                <dt>Description</dt>
-                <dd>
-                    Presto is integrated with the Qubole Data Service (QDS)
-                    platform. QDS is a web-based interface for launching
-                    Presto clusters and running queries across Presto clusters
-                    on Amazon's EC2.
-                </dd>
-            </dl>
-        </div>
-
         <h2 id="connectors">Presto Connectors / Plugins</h2>
 
         <div class="item">
@@ -455,71 +401,13 @@ try (Connection connection =
             </dl>
         </div>
 
-        <h2 id="support">Enterprise Support for Presto</h2>
-
-        <div class="item">
-            <h4>Starburst Data</h4>
-            <dl>
-                <dt>Website</dt>
-                <dd><a href="https://www.starburstdata.com/">Starburst, The Presto company</a></dd>
-                <dt>Scope</dt>
-                <dd>Enterprise 24/7 Support, Installation, Configuration, Training,
-                    Custom Development, Tuning</dd>
-                <dt>Description</dt>
-                <dd>
-                  <p>
-                    At Starburst, our team is a major contributor to the open source Presto project.
-                    We consist of many of the <b>experts and committers</b> who have been contributing to
-                    and advancing the Presto product over the last few years. Starburst provides an
-                    <a href="https://www.starburstdata.com/our-offerings/">enterprise ready Presto distribution</a>
-                    and <a href="https://www.starburstdata.com/presto-enterprise/">Presto support</a>.
-                    Starburst's distribution of Presto consists of additional tooling and
-                    configurations to make it work well in the enterprise. Further, it is
-                    rigorously tested at scale and patched as needed. And with our wide range
-                    of services, support, and training we will help you be successful in this
-                    new world of open source technologies in the enterprise.
-                  <p/>
-                  <p>
-                    In addition to implementing Presto internals to make it the most reliable,
-                    robust, and performant open source distributed query engine, our team at
-                    Starburst is dedicated to continually improve and add the needed features
-                    for the enterprise. Our major enterprise focus areas are ease-of-use, security,
-                    robustness, wide range of integrations, and reliable support SLAs.
-                  </p>
-                </dd>
-            </dl>
-        </div>
-
         <h2 id="cloud">Presto Cloud</h2>
 
         <p>
-            Presto is also readily available in <a href="#aws">AWS</a> and <a href="#azure">Azure</a> cloud environments.
+            Presto is also readily available in <a href="#aws">AWS</a>.
         </p>
 
         <h3 id="aws">AWS</h3>
-
-        <div class="item">
-            <h4>Starburst Presto</h4>
-            <dl>
-                <dt>Website</dt>
-                <dd><a href="https://www.starburstdata.com/presto-aws-cloud/">Presto on AWS</a></dd>
-                <dt>Maintainer</dt>
-                <dd><a href="https://www.starburstdata.com/">Starburst, The Presto company</a></dd>
-                <dd>
-                    <p>
-                        Starburst Presto on AWS combines the reliable, scalable, and cost-effective
-                        cloud computing services provided by Amazon Web Services (AWS) with the power of Presto,
-                        the fastest growing distributed SQL query engine within the industry.
-                    <p/>
-                    <p>
-                        Through the use of Starburst’s CloudFormation template and Starburst Presto AMI,
-                        Starburst Presto on AWS enables you to run analytic SQL queries across
-                        a wide variety of data sources with elastic scaling and usage-based pricing.
-                        Read more how to use Presto on AWS on our <a href="https://docs.starburstdata.com/latest/aws.html">AWS Documentation site</a>.
-                    </p>
-                </dd>
-            </dl>
-        </div>
 
         <div class="item">
             <h4>Amazon Athena</h4>
@@ -570,40 +458,6 @@ try (Connection connection =
                </dd>
            </dl>
        </div>
-
-        <h3 id="azure">Azure</h3>
-
-        <div class="item">
-            <h4>Starburst Presto</h4>
-            <dl>
-                <dt>Website</dt>
-                <dd><a href="https://www.starburstdata.com/presto-azure/">Presto on Azure</a></dd>
-                <dt>Maintainer</dt>
-                <dd><a href="https://www.starburstdata.com/">Starburst, The Presto company</a></dd>
-                <dd>
-                    <p>
-                        Starburst Presto for HDInsight is a distributed SQL query engine that is integrated
-                        into Azure HDInsight Platform and available via the Azure Marketplace.
-                    <p/>
-                    <p>
-                        Azure HDInsight is a fully-managed cloud service that makes it easy, fast,
-                        and cost-effective to process massive amounts of data. Presto and HDInsight were
-                        both designed for the separation of storage and compute which allows for flexible
-                        performance and cost. You pay only for what you use by creating clusters on demand
-                        scaling them up and down.
-                        Read more how to use Presto on Azure on our <a href="https://docs.starburstdata.com/latest/azure.html">Azure Documentation site</a>.
-                    <p/>
-                    <p>
-                        Integrating Presto with HDInsight provides Azure users with two new capabilities:
-                        <ul>
-                            <li>A fast, scalable, interactive SQL interface to data in Azure Blob and Azure Data Lake Storage</li>
-                            <li>An easy way to integrate data with HDInsight by leveraging Presto’s vast portfolio of data connectors.</li>
-                        </ul>
-                    </p>
-                </dd>
-            </dl>
-        </div>
-
     </div>
 
     <div class="rightcol">
@@ -613,10 +467,8 @@ try (Connection connection =
         <li><a href="#clients">Presto Clients</a></li>
         <li><a href="#odbc">Presto ODBC</a></li>
         <li><a href="#libraries">Presto Libraries</a></li>
-        <li><a href="#hosting">Presto Hosting</a></li>
         <li><a href="#connectors">Presto Connectors</a></li>
-        <li><a href="#support">Enterprise Support for Presto</a></li>
-        <li><a href="#cloud">Presto Cloud (AWS/Azure)</a></li>
+        <li><a href="#cloud">Presto Cloud (AWS)</a></li>
     </ul>
 </div>
 </div>
