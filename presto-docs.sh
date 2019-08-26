@@ -74,10 +74,10 @@ VERSION_JS=website/static/static/js/version.js
 
 #Update the version number and stats in javascript for rendering across the site
 echo "const presto_latest_presto_version = '$VERSION';" > $VERSION_JS
-GIT_LOG="git -C ${PRESTO_GIT_REPO} log ${LAST_VERSION}.."
-NUM_COMMITS=`${GIT_LOG} --format='%ae' | wc -l | awk '{$1=$1;print}'`
-NUM_CONTRIBUTORS=`${GIT_LOG} --format='%ae' | sort | uniq | wc -l | awk '{$1=$1;print}'`
-NUM_COMMITTERS=`${GIT_LOG} --format='%ce' | sort | uniq | wc -l | awk '{$1=$1;print}'`
+GIT_LOG="git -C ${PRESTO_GIT_REPO} log --use-mailmap ${LAST_VERSION}..${VERSION}"
+NUM_COMMITS=`${GIT_LOG} --format='%aE' | wc -l | awk '{$1=$1;print}'`
+NUM_CONTRIBUTORS=`${GIT_LOG} --format='%aE' | sort | uniq | wc -l | awk '{$1=$1;print}'`
+NUM_COMMITTERS=`${GIT_LOG} --format='%cE' | sort | uniq | wc -l | awk '{$1=$1;print}'`
 echo "const presto_latest_num_commits = ${NUM_COMMITS};" >> $VERSION_JS
 echo "const presto_latest_num_contributors = ${NUM_CONTRIBUTORS};" >> $VERSION_JS
 echo "const presto_latest_num_committers = ${NUM_COMMITTERS};" >> $VERSION_JS
