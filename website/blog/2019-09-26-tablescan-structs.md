@@ -46,7 +46,7 @@ WITH (
 );
 ```
 
-The `shipment` struct has the non-null top-level columns we all have come to know and love. The `export` struct is null if the customer` and supplier nations are the same and present otherwise. A fraction of the rows have an additional nested export `license` struct.
+The `shipment` struct has the non-null top-level columns we all have come to know and love. The `export` struct is null if the customer and supplier nations are the same and present otherwise. A fraction of the rows have an additional nested export `license` struct.
 
 ```sql
 CREATE TABLE lineitem_map (
