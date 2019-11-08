@@ -61,12 +61,12 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     {href: prestoBaseUrl + 'overview.html', label: 'OVERVIEW'},
-    {href: prestoBaseUrl + 'docs/current', label: 'DOCS'},
+    {href: 'https://prestodb.github.io/docs/current', label: 'DOCS'},
     {href: prestoBaseUrl + 'index.html', label: 'BLOG'},
     {href: prestoBaseUrl + 'faq.html', label: 'FAQ'},
     {href: prestoBaseUrl + 'community.html', label: 'COMMUNITY'},
     {href: prestoBaseUrl + 'resources.html', label: 'RESOURCES'},
-    {href: 'https://github.com/facebook/presto', label: 'GITHUB'},
+    {href: 'https://github.com/prestodb/presto', label: 'GITHUB'},
   ],
   // headerLinks: [
   //   {doc: 'overview', label: 'Overview'},
