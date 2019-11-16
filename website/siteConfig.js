@@ -49,6 +49,7 @@ const siteConfig = {
   title: '',
   tagline: 'Faster big data with SQL on everything',
   url: 'https://prestodb.io', // Your website URL
+  cname: 'prestodb.io',
   baseUrl: prestoBaseUrl, // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
