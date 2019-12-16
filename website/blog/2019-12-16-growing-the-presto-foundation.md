@@ -15,7 +15,7 @@ Our guiding [principles](https://github.com/prestodb/foundation/pull/16) reflect
 
 ### One open, neutral and united Presto community
 
-One of the main reasons the founding members came together and created the Presto Foundation was to unite the Presto community. The Presto community and it’s contributors have been working on many great capabilities and connectors, and many of these haven’t made their way back into the repo, and we truly believe that these can benefit many other users. We invite all Presto community members to embrace [PrestoDB](https://github.com/prestodb/presto) and contribute back to move the project faster, reduce duplication of efforts and create wider impact for the entire community.
+One of the main reasons the founding members came together and created the Presto Foundation was to unite the Presto community. The Presto community and its contributors have been working on many great capabilities and connectors, and many of these haven’t made their way back into the repo, and we truly believe that these can benefit many other users. We invite all Presto community members to embrace [PrestoDB](https://github.com/prestodb/presto) and contribute back to move the project faster, reduce duplication of efforts and create wider impact for the entire community.
 
 ### Open, transparent technical leadership and direction
 
@@ -55,7 +55,7 @@ In 2020, we intend to host neutral events that support discussion and open colla
 
 ## Moving forward: PrestoCon 2020
 
-The journey to make PrestoDB into a successful project is just beginning. As Chairperson of the Governing Board, it gives me great pleasure to announce a key milestone in this journey that brings together our five core goals and principles: in early 2020, the Presto Foundation will be hosting the first-ever PrestoCon. The details are still in the works and a date will be announced shortly. We look forward to new contributions, new memberships, and new milestones.
+The journey to make PrestoDB into a successful project is just beginning. As Chairperson of the Governing Board, it gives me great pleasure to announce a key milestone in this journey that brings together our core principles and strategic goals: in early 2020, the Presto Foundation will be hosting the first-ever PrestoCon. The details are still in the works and a date will be announced shortly. We look forward to new contributions, new memberships, and new milestones.
 
 We invite everyone who has built upon Presto to[join our community](https://prestodb.io/join.html). We truly believe that having all users and contributors working together under one neutral organization will accelerate the growth of the [Presto ecosystem](https://prestodb.io/).
 
