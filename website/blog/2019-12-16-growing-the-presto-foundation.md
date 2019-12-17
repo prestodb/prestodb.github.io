@@ -2,7 +2,6 @@
 title: Join Us! Growing the Presto Foundation in 2020 and Beyond
 author: Brian Hsieh
 authorURL: https://www.linkedin.com/in/briankhsieh/
-authorFBID: 100006183888902
 ---
 
 The Presto Foundation (PF) was [established in September 2019](https://www.linuxfoundation.org/press-release/2019/09/facebook-uber-twitter-and-alibaba-form-presto-foundation-to-tackle-distributed-data-processing-at-scale/) as an openly governed and vendor-neutral body dedicated to scaling and diversifying the [Presto](https://prestodb.io/) community. Hosted by the Linux Foundation, PF and its Governing Board are in a unique position to make Presto the fastest and the most reliable SQL engine for massively distributed data processing.
