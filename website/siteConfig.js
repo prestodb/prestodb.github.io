@@ -63,7 +63,7 @@ const siteConfig = {
   headerLinks: [
     {href: prestoBaseUrl + 'overview.html', label: 'OVERVIEW'},
     {href: 'https://prestodb.github.io/docs/current', label: 'DOCS'},
-    {href: prestoBaseUrl + 'index.html', label: 'BLOG'},
+    {href: prestoBaseUrl + 'blog/index.html', label: 'BLOG'},
     {href: prestoBaseUrl + 'faq.html', label: 'FAQ'},
     {href: prestoBaseUrl + 'community.html', label: 'COMMUNITY'},
     {href: prestoBaseUrl + 'resources.html', label: 'RESOURCES'},
