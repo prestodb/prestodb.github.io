@@ -336,3 +336,48 @@ code {
        height: 288px;
     }
 }
+
+/* CSS FOR HOME PAGE BANNER SECTION */
+.banner-wrap {
+  background: #ec7d31;
+}
+
+.banner-content {
+  display: block;
+  text-align: center;
+  color: #fff;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+@media(min-width:768px) {
+  .banner-content {
+    display: flex;
+    text-align: left;
+    align-items: center;
+  }
+}
+
+.banner-content .button {
+  background: #374665;
+  color: #fff;
+  display: inline-block;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.banner-logo {
+  width: 200px;
+  height: auto;
+  margin-right: 0.5em;
+}
+
+.banner-info {
+  font-size: 1.25em;
+  padding: 0 1em;
+}
