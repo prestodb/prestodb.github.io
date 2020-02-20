@@ -6,7 +6,7 @@ authorURL: https://www.linkedin.com/in/haibowangcmu/
 
 The article,  [Engineering SQL Support on Apache Pinot at Uber](https://eng.uber.com/engineering-sql-support-on-apache-pinot/), was originally published by Uber on the Uber Engineering Blog on January 15, 2020. Check out [eng.uber.com](https://eng.uber.com/) for more articles about Uber's engineering work and follow Uber Engineering at [@UberEng](https://twitter.com/UberEng) and Uber Open Source at [@UberOpenSouce](https://twitter.com/UberOpenSource) on Twitter for updates from our teams.
 
-![](/img/blog/2020-03-01-uber-pinot/shiny-thing.png)
+![](/img/blog/2020-03-18-uber-pinot/shiny-thing.png)
 
 Uber leverages real-time analytics on aggregate data to improve the user experience across our products, from [fighting fraudulent behavior](https://eng.uber.com/uber-eats-risk-team/) on Uber Eats to [forecasting demand](https://eng.uber.com/forecasting-introduction/) on our platform.
 
@@ -26,7 +26,6 @@ Presto, which is widely used at Uber, is a distributed query engine that allows 
 
 Teams across Uber use Pinot to answer analytical queries with low query latency. However, the Pinot Query Language (PQL) lacks key functionalities, including nested queries, joins, and versatile UDF (e.g., regular expressions and geospatial functions). If users wanted to do anything more complicated, they had to spend time (upwards of several hours to a week) modeling data. Through our experience using these technologies separately, we realized that they actually complement each other quite well for conducting and storing ad-hoc data analytics. While Presto supports SQL, users cannot use it to access fresh aggregated data, and though Pinot can provide second-level data freshness, it lacks flexible query support. These discoveries are outlined in Figure 1, below:
 
-  
 | Query Engine   | **Presto**                                                    | **Pinot**                      |
 | -------------- | ------------------------------------------------------------- | ------------------------------ |
 | Query latency  | Seconds to minutes                                            | **Millisec to seconds**        |
@@ -45,7 +44,7 @@ This solution enabled greater analytical capabilities for operations teams acros
 
 While designing our new system, we first had to consider how we would modify Presto’s engine. A Presto cluster has two types of components: a coordinator and its workers. The coordinator is in charge of query parsing, planning, task scheduling, and distributing tasks to its group of workers. When the coordinator gives its workers an assignment, the workers fetch data from data sources through connectors and return the final result to the client.
 
-![](/img/blog/2020-03-01-uber-pinot/figure-2.jpg)
+![](/img/blog/2020-03-18-uber-pinot/figure-2.jpg)
 
 **Figure 2.** *Uber’s Presto architecture incorporates one coordinator node and several worker nodes. After the coordinator receives and processes the query, it generates a query plan and distributes the tasks to its workers. Each worker scans a table scan from the underlying storage and sends the aggregated insights back to the user.*
 
@@ -53,7 +52,7 @@ As shown in Figure 2, above, Presto supports plugging in different storage engin
 
 Before building the Pinot connector, it’s important to understand how Pinot works. A Pinot cluster has three main components: controllers, brokers, and servers. While controllers are in charge of node and task management, servers store and serve data. Each server contains a list of segments (in other words, shards) and each segment is a set of rows. Brokers receive queries, fetch data from servers, and return the final results to clients. Pinot servers can ingest data from Apache Kafka, a distributed real-time streaming platform, and the data can be queried as it is ingested, so the data freshness can be on the order of seconds.
 
-![](/img/blog/2020-03-01-uber-pinot/figure-3.jpg)
+![](/img/blog/2020-03-18-uber-pinot/figure-3.jpg)
 
 **Figure 3.** *The Pinot architecture incorporates controllers, brokers, and servers. When the broker receives the query from the user, it receives a routing table from the controller. The routing table informs the broker where different segments are stored. The broker then fetches data from different servers in a scatter-gather manner, and finally returns the merged result.*
 
@@ -63,7 +62,7 @@ As shown in Figure 3, above, Pinot servers store different partitions of the dat
 
 To merge the intuitive interface of Presto with the swift power of Pinot, we built a novel Pinot connector in Presto that allows Presto to query data with minimal latency, facilitating the complex queries of Presto's SQL support.
 
-![](/img/blog/2020-03-01-uber-pinot/figure-4.jpg)
+![](/img/blog/2020-03-18-uber-pinot/figure-4.jpg)
 
 **Figure 4.** *Architecture of Presto-Pinot Connector. After the Coordinator receives the query from the user, it gets the routing table from the Pinot broker to find where each Pinot segment is stored. Then, it generates splits for each Presto worker to fetch Pinot data from the corresponding Pinot segments. Another Presto worker would aggregate the fetched data and return the final result to the user.*
 
@@ -96,11 +95,11 @@ The queries that users send to Presto coordinators already include aggregation r
 Due to aggregate pushdown, our current system can:
 
 -   Utilize the functionality of Pinot to support aggregational queries with low query latency using Star-Tree.
-    
+
 -   Reduce the number of rows needed from thousands to just one when passing aggregated results like COUNT and SUM from the Pinot server to Presto workers as one entry, greatly reducing query latency.
-    
+
 -   Dramatically improve query performance by more than 10x, due to the reduction of the amount of data transferred between Presto workers and Pinot servers.
-    
+
 With the benefits of aggregate pushdown to reduce query latency fresh in our minds, let’s take a deeper look at how we engineered our system to enable aggregate pushdown for common aggregate functions.
 
 ##### Pushing down MIN/MAX/SUM
@@ -111,11 +110,11 @@ For example, imagine the Presto worker queries a Pinot segment with three record
 
 In Figure 5, below, we depict the workflow of the original Pinot connector, and in Figure 6, below, we compare it to our updated version of the tool:
 
-![](/img/blog/2020-03-01-uber-pinot/figure-5.png)
+![](/img/blog/2020-03-18-uber-pinot/figure-5.png)
 
 **Figure 5.** *The original Pinot connector without aggregate pushdown received the query with aggregate functions (MAX and SUM). Each Presto worker fetches data from Pinot and constructs a page with all matching rows. The Presto aggregation worker then returns the aggregated results to the user.*
 
-![](/img/blog/2020-03-01-uber-pinot/figure-6.png)
+![](/img/blog/2020-03-18-uber-pinot/figure-6.png)
 
 **Figure 6.** *The Pinot connector that supports aggregate pushdown (MIN, MAX, and SUM) passes the query with aggregate functions (MAX and SUM) to workers regarding which columns to aggregate on. Each worker will directly fetch the aggregated values (MAX and SUM) from Pinot, and construct a page with one value per aggregated column. The Presto aggregation worker then aggregates the returned rows and returns the final result to the user.*
 
@@ -127,7 +126,7 @@ Pushing down COUNT was not as simple as pushing down MIN, MAX, and SUM queries. 
 
 In order to solve this problem, we refactored the Presto page so that it can represent an aggregated page, and then refactored the page construction and processing flow accordingly. The refactored architecture not only gave Presto workers the flexibility to directly construct an aggregated page, but also enabled us to push down COUNT aggregation and support other more complex aggregations (like GROUP BY) in Presto as well.
 
-![](/img/blog/2020-03-01-uber-pinot/figure-7.png)
+![](/img/blog/2020-03-18-uber-pinot/figure-7.png)
 
 **Figure 7.** *When the Presto connector receives the query with aggregate functions (COUNT/SUM), it will pass the information to workers on which columns to aggregate on. Each worker will directly fetch the aggregated values (COUNT/SUM) from Pinot, and construct a page with the one value per aggregated column, indicating the value is aggregated and should be directly used. The Presto aggregation worker would then directly merge each page and return the final result to the user.*
 
@@ -141,15 +140,13 @@ We set up Presto and Pinot clusters on the same SSD box (32 core Intel Xeon CPU 
 
 Querying Pinot directly achieved the best query latency, as we expected. When querying through Presto, we found no significant performance differences between different data sources. We saw sporadic latency spikes when querying Parquet files, and other than that, querying Pinot had similar query latencies compared with querying Parquet and ORC files through the Hive connector.
 
-![](/img/blog/2020-03-01-uber-pinot/figure-8.png)
+![](/img/blog/2020-03-18-uber-pinot/figure-8.png)
 
-**Figure 8.** *Query performance of querying Pinot directly vs.*
-
-using Presto to query local Parquet/ORC files and Pinot segments. Querying Pinot directly achieved the lowest query latency. We observed no significant differences between querying Pinot through the Pinot connector and querying local Parquet and ORC files through the Presto connector. Note that the Pinot connector benchmarked here did not enable any pushdown optimization.
+**Figure 8.** *Query performance of querying Pinot directly vs. using Presto to query local Parquet/ORC files and Pinot segments. Querying Pinot directly achieved the lowest query latency. We observed no significant differences between querying Pinot through the Pinot connector and querying local Parquet and ORC files through the Presto connector. Note that the Pinot connector benchmarked here did not enable any pushdown optimization.*
 
 We also benchmarked how aggregate pushdown performance improved by sending aggregation queries on several Pinot tables with different sizes. As shown in Figure 9, below, our efficiency gains from aggregate pushdown grow as the total number of documents increases in the Pinot table.
 
-![](/img/blog/2020-03-01-uber-pinot/figure-9.png)
+![](/img/blog/2020-03-18-uber-pinot/figure-9.png)
 
 **Figure 9.** *Query performance of Presto-Pinot connector, before and after enabling aggregate pushdown. As the total number of documents increased in the Pinot table, our efficiency gains from aggregate pushdown grew.*
 
@@ -167,9 +164,9 @@ We’d like to give a special thanks to Xiang Fu, Zhenxiao Luo and Chinmay Soman
 Learn more about how we engineer real-time analytics at Uber:
 
 -   [Building a Better Big Data Architecture: Meet Uber’s Presto Team](https://eng.uber.com/presto-team-profile/)
-    
+
 -   [Introducing AresDB: Uber’s GPU-Powered Open Source, Real-time Analytics Engine](https://eng.uber.com/aresdb/)
-    
+
 -   [Turbocharging Analytics at Uber with our Data Science Workbench](https://eng.uber.com/dsw/)
-    
+
 -   [Engineering Data Analytics with Presto and Apache Parquet at Uber](https://eng.uber.com/presto/)
