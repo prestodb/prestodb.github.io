@@ -107,7 +107,8 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © 2013-${new Date().getFullYear()} Presto Foundation`,
+//    copyright: ``
+//  copyright: `Copyright © 2013-${new Date().getFullYear()} Presto Foundation`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
@@ -126,7 +127,7 @@ const siteConfig = {
   ogImage: 'img/docusaurus.png',
   twitterImage: 'img/docusaurus.png',
 
-  separateCss: ['static/basic.css', 'static/haiku.css', 'static/presto.css']
+  separateCss: ['static/basic.css', 'static/haiku.css', 'static/presto.css'],
   // Show documentation's last contributor's name.
   // enableUpdateBy: true,
 
@@ -136,6 +137,7 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
+  stylesheets: ['css/footer.css']
 };
 
 module.exports = siteConfig;

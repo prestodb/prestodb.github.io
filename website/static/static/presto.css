@@ -33,6 +33,11 @@ body {
     min-width: inherit;
 }
 
+div.footer {
+    border-top: 1px solid #222;
+    padding: 20px !important;
+}
+
 table {
   border-radius: 5px;
 }
