@@ -363,6 +363,12 @@ code {
     align-items: center;
     justify-content: center;
   }
+
+ .banner-content .button {
+    font-size: 90%;
+    white-space: normal;
+    text-align:center;
+  }
 }
 
 .banner-content .button {
@@ -374,7 +380,6 @@ code {
   margin-top: 15px;
   margin-bottom: 20px;
   border-radius: 5px;
-  white-space: nowrap;
 }
 
 .banner-logo {
