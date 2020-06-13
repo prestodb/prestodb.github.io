@@ -1,0 +1,126 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.17. Release 0.222 &#8212; Presto 0.235 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.235',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.18. Release 0.221" href="release-0.221.html" />
+    <link rel="prev" title="13.16. Release 0.223" href="release-0.223.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.235 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.17. Release 0.222</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.223.html">13.16. Release 0.223</a>
+    </span>
+    <span class="right">
+        <a href="release-0.221.html">13.18. Release 0.221</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-222">
+<h1>13.17. Release 0.222</h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This release contains a regression which may cause Presto to incorrectly
+remove certain <code class="docutils literal"><span class="pre">CAST</span></code> operations.</p>
+</div>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix incorrect results when dividing certain decimal numbers (<a class="reference external" href="https://github.com/prestodb/presto/pull/12930">#12930</a>).</li>
+<li>Fix planning failure for certain join queries caused by invalid distribution
+type (<a class="reference external" href="https://github.com/prestodb/presto/pull/12354">#12354</a>).</li>
+<li>Add support for automatically retrying failed buckets when using grouped
+execution. Currently this is supported for certain <code class="docutils literal"><span class="pre">INSERT</span></code> queries using
+the Hive connector. This can be enabled with the
+<code class="docutils literal"><span class="pre">recoverable_grouped_execution</span></code> session property or the
+<code class="docutils literal"><span class="pre">recoverable-grouped-execution-enabled</span></code> configuration property (<a class="reference external" href="https://github.com/prestodb/presto/issues/12124">#12124</a>).</li>
+<li>Add support for grouped execution for queries with no joins or aggregations.
+This can be enabled with the <code class="docutils literal"><span class="pre">grouped_execution_for_eligible_table_scans</span></code>
+session property or the
+<code class="docutils literal"><span class="pre">experimental.grouped-execution-for-eligible-table-scans-enabled</span></code>
+configuration property (<a class="reference external" href="https://github.com/prestodb/presto/pull/12934">#12934</a>).</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">max-concurrent-materializations</span></code> and session
+property <code class="docutils literal"><span class="pre">max_concurrent_materializations</span></code> to limit the number of plan
+sections that will run concurrently when using materialized exchanges.</li>
+<li>Add support for computing <a class="reference internal" href="../functions/aggregate.html#approx_distinct" title="approx_distinct"><code class="xref py py-func docutils literal"><span class="pre">approx_distinct()</span></code></a> over BingTile values.</li>
+<li>Add <a class="reference internal" href="../functions/hyperloglog.html#merge_hll" title="merge_hll"><code class="xref py py-func docutils literal"><span class="pre">merge_hll()</span></code></a> to merge an array of HyperLogLogs.</li>
+<li>Add bitwise shift operations, <a class="reference internal" href="../functions/bitwise.html#bitwise_arithmetic_shift_right" title="bitwise_arithmetic_shift_right"><code class="xref py py-func docutils literal"><span class="pre">bitwise_arithmetic_shift_right()</span></code></a>,
+<a class="reference internal" href="../functions/bitwise.html#bitwise_logical_shift_right" title="bitwise_logical_shift_right"><code class="xref py py-func docutils literal"><span class="pre">bitwise_logical_shift_right()</span></code></a> and <a class="reference internal" href="../functions/bitwise.html#bitwise_shift_left" title="bitwise_shift_left"><code class="xref py py-func docutils literal"><span class="pre">bitwise_shift_left()</span></code></a>.</li>
+</ul>
+</div>
+<div class="section" id="web-ui-changes">
+<h2>Web UI Changes</h2>
+<ul class="simple">
+<li>Add completed and total lifespans to the Presto Coordinator UI.</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes</h2>
+<ul class="simple">
+<li>Fix failures for <code class="docutils literal"><span class="pre">information_schema</span></code> queries when a table has an invalid storage format.</li>
+<li>Improve query execution time over bucketed table with large buckets.</li>
+<li>Add config property <code class="docutils literal"><span class="pre">hive.metastore.glue.catalogid</span></code> to configure the Glue catalog ID.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Add experimental interface <code class="docutils literal"><span class="pre">ConnectorPlanOptimizer</span></code> to allow connectors to
+participate in query plan optimization (e.g., filter pushdown) (<a class="reference external" href="https://github.com/prestodb/presto/issues/13102">#13102</a>).</li>
+<li>Rename <code class="docutils literal"><span class="pre">LogicalRowExpressions::TRUE</span></code> and <code class="docutils literal"><span class="pre">LogicalRowExpressions::FALSE</span></code> to
+<code class="docutils literal"><span class="pre">LogicalRowExpressions::TRUE_CONSTANT</span></code> and <code class="docutils literal"><span class="pre">LogicalRowExpressions::FALSE_CONSTANT</span></code>
+respectively to avoid collision with <code class="docutils literal"><span class="pre">java.lang.Boolean</span></code>.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.223.html">13.16. Release 0.223</a>
+    </span>
+    <span class="right">
+        <a href="release-0.221.html">13.18. Release 0.221</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

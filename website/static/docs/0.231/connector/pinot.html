@@ -1,0 +1,158 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>6.15. Pinot Connector &#8212; Presto 0.231 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.231',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.16. PostgreSQL Connector" href="postgresql.html" />
+    <link rel="prev" title="6.14. MySQL Connector" href="mysql.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.231 Documentation</span></a></h1>
+    <h2 class="heading"><span>6.15. Pinot Connector</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="mysql.html">6.14. MySQL Connector</a>
+    </span>
+    <span class="right">
+        <a href="postgresql.html">6.16. PostgreSQL Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="pinot-connector">
+<h1>6.15. Pinot Connector</h1>
+<p>The Pinot connector allows querying and creating tables in an external Pinot
+database. This can be used to query pinot data or join pinot data with
+something else.</p>
+<div class="section" id="configuration">
+<h2>Configuration</h2>
+<p>To configure the Pinot connector, create a catalog properties file
+in <code class="docutils literal"><span class="pre">etc/catalog</span></code> named, for example, <code class="docutils literal"><span class="pre">pinot.properties</span></code>, to
+mount the Pinot connector as the <code class="docutils literal"><span class="pre">pinot</span></code> catalog.
+Create the file with the following contents, replacing the
+connection properties as appropriate for your setup:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>connector.name=pinot
+pinot.controller-urls=controller_host1:9000,controller_host2:9000
+</pre></div>
+</div>
+<p>Where the <code class="docutils literal"><span class="pre">pinot.controller-urls</span></code> property allows you to specify a
+comma separated list of the pinot controller host/port pairs.</p>
+<div class="section" id="multiple-pinot-servers">
+<h3>Multiple Pinot Servers</h3>
+<p>You can have as many catalogs as you need, so if you have additional
+Pinot clusters, simply add another properties file to <code class="docutils literal"><span class="pre">etc/catalog</span></code>
+with a different name (making sure it ends in <code class="docutils literal"><span class="pre">.properties</span></code>). For
+example, if you name the property file <code class="docutils literal"><span class="pre">sales.properties</span></code>, Presto
+will create a catalog named <code class="docutils literal"><span class="pre">sales</span></code> using the configured connector.</p>
+</div>
+</div>
+<div class="section" id="querying-pinot">
+<h2>Querying Pinot</h2>
+<p>The Pinot catalog exposes all pinot tables inside a flat schema. The
+schema name is immaterial when querying but running <code class="docutils literal"><span class="pre">SHOW</span> <span class="pre">SCHEMAS</span></code>,
+will show just one schema entry of <code class="docutils literal"><span class="pre">default</span></code>.</p>
+<p>The name of the pinot catalog is the catalog file you created above
+without the <code class="docutils literal"><span class="pre">.properties</span></code> extension.</p>
+<p>For example, if you created a
+file called <code class="docutils literal"><span class="pre">mypinotcluster.properties</span></code>, you can see all the tables
+in it using the command:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SHOW</span> <span class="n">TABLES</span> <span class="k">from</span> <span class="n">mypinotcluster</span><span class="p">.</span><span class="k">default</span>
+</pre></div>
+</div>
+<p>OR:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SHOW</span> <span class="n">TABLES</span> <span class="k">from</span> <span class="n">mypinotcluster</span><span class="p">.</span><span class="n">foo</span>
+</pre></div>
+</div>
+<p>Both of these commands will list all the tables in your pinot cluster.
+This is because Pinot does not have a notion of schemas.</p>
+<p>Consider you have a table called <code class="docutils literal"><span class="pre">clicks</span></code> in the <code class="docutils literal"><span class="pre">mypinotcluster</span></code>.
+You can see a list of the columns in the <code class="docutils literal"><span class="pre">clicks</span></code> table using either
+of the following:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">DESCRIBE</span> <span class="n">mypinotcluster</span><span class="p">.</span><span class="n">dontcare</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="n">COLUMNS</span> <span class="k">FROM</span> <span class="n">mypinotcluster</span><span class="p">.</span><span class="n">dontcare</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Finally, you can access the <code class="docutils literal"><span class="pre">clicks</span></code> table:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">mypinotcluster</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-the-pinot-connector-works">
+<h2>How the Pinot connector works</h2>
+<p>The connector tries to push the maximal subquery inferred from the
+presto query into pinot. It can push down everything Pinot supports
+including aggregations, group by, all UDFs etc. It generates the
+correct Pinot PQL keeping Pinot’s quirks in mind.</p>
+<p>By default, it sends aggregation and limit queries to the Pinot broker
+and does a parallel scan for non-aggregation/non-limit queries. The
+pinot broker queries create a single split that lets the Pinot broker
+do the scatter gather. Whereas, in the parallel scan mode, there is
+one split created for one-or-more Pinot segments and the Pinot servers
+are directly contacted by the Presto servers (ie., the Pinot broker is
+not involved in the parallel scan mode)</p>
+<p>There are a few configurations that control this behavior:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">pinot.prefer-broker-queries</span></code>: This config is true by default.
+Setting it to false will also create parallel plans for
+aggregation and limit queries.</li>
+<li><code class="docutils literal"><span class="pre">pinot.forbid-segment-queries</span></code>: This config is false by default.
+Setting it to true will forbid parallel querying and force all
+querying to happen via the broker.</li>
+<li><code class="docutils literal"><span class="pre">pinot.non-aggregate-limit-for-broker-queries</span></code>: To prevent
+overwhelming the broker, the connector only allows querying the
+pinot broker for <code class="docutils literal"><span class="pre">short</span></code> queries. We define a <code class="docutils literal"><span class="pre">short</span></code> query to
+be either an aggregation (or group-by) query or a query with a limit
+less than the value configured for
+<code class="docutils literal"><span class="pre">pinot.non-aggregate-limit-for-broker-queries</span></code>. The default value
+for this limit is 25K rows.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="mysql.html">6.14. MySQL Connector</a>
+    </span>
+    <span class="right">
+        <a href="postgresql.html">6.16. PostgreSQL Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

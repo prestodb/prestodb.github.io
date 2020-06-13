@@ -1,0 +1,572 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>4.9. Presto Verifier &#8212; Presto 0.233.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.233.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Query Optimizer" href="../optimizer.html" />
+    <link rel="prev" title="4.8. Distributed sort" href="dist-sort.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.233.1 Documentation</span></a></h1>
+    <h2 class="heading"><span>4.9. Presto Verifier</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="dist-sort.html">4.8. Distributed sort</a>
+    </span>
+    <span class="right">
+        <a href="../optimizer.html">5. Query Optimizer</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="presto-verifier">
+<h1>4.9. Presto Verifier</h1>
+<p>Presto Verifier is a tool to run queries and verify correctness. It can be used to test whether a
+new Presto version produces the correct query results, or to test if pairs of Presto queries have
+the same semantics.</p>
+<p>During each Presto release, Verifier is run to ensure that there is no correctness regression.</p>
+<div class="section" id="using-verifier">
+<h2>Using Verifier</h2>
+<p>In a MySQL database, create the following table and load it with the queries you would like to run:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">verifier_queries</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+    <span class="n">suite</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">control_catalog</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">control_schema</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">control_query</span> <span class="nb">text</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">control_username</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">control_password</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">control_session_properties</span> <span class="nb">text</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">test_catalog</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">test_schema</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">test_query</span> <span class="nb">text</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">test_username</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">test_password</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">test_session_properties</span> <span class="nb">text</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, create a <code class="docutils literal"><span class="pre">config.properties</span></code> file:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>source-query.suite=my_suite
+source-query.database=jdbc:mysql://localhost:3306/my_database?user=my_username&amp;password=my_password
+control.gateway=jdbc:presto://localhost:8080
+test.gateway=jdbc:presto://localhost:8081
+test-id=1
+</pre></div>
+</div>
+<p>Download <a class="reference external" href="https://repo1.maven.org/maven2/com/facebook/presto/presto-verifier/0.233.1/presto-verifier-0.233.1-executable.jar">presto-verifier-0.233.1-executable.jar</a> and rename it to <code class="docutils literal"><span class="pre">verifier</span></code>. To run the Verifier:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>chmod +x verifier
+./verifier verify config.properties
+</pre></div>
+</div>
+</div>
+<div class="section" id="verifier-procedures">
+<h2>Verifier Procedures</h2>
+<p>The following steps summarize the workflow of Verifier.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><strong>Importing Source Queries</strong></dt>
+<dd><ul class="first last">
+<li>Reads the list of source queries (query pairs with configuration) from the MySQL table.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Query Pre-processing and Filtering</strong></dt>
+<dd><ul class="first last">
+<li>Applies overrides to the catalog, schema, username, and password of each query.</li>
+<li>Filters queries according to whitelist and blacklist. Whitelist is applied before blacklist.</li>
+<li>Filters out queries with invalid syntax.</li>
+<li>Filters out queries not supported for validation. <code class="docutils literal"><span class="pre">Select</span></code>, <code class="docutils literal"><span class="pre">Insert</span></code>, and
+<code class="docutils literal"><span class="pre">CreateTableAsSelect</span></code> are supported.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Query rewriting</strong></dt>
+<dd><ul class="first last">
+<li>Rewrites queries before execution to ensure that production data is not modified.</li>
+<li><dl class="first docutils">
+<dt>Rewrites <code class="docutils literal"><span class="pre">Select</span></code> queries to <code class="docutils literal"><span class="pre">CreateTableAsSelect</span></code></dt>
+<dd><ul class="first last">
+<li>Column names are determined by running the <code class="docutils literal"><span class="pre">Select</span></code> query with <code class="docutils literal"><span class="pre">LIMIT</span> <span class="pre">0</span></code>.</li>
+<li>Artificial names are used for unnamed columns.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Rewrites <code class="docutils literal"><span class="pre">Insert</span></code> and <code class="docutils literal"><span class="pre">CreateTableAsSelect</span></code> queries to have their table names replaced.</dt>
+<dd><ul class="first last">
+<li>Constructs a setup query to create the table necessary for an <code class="docutils literal"><span class="pre">Insert</span></code> query.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Query Execution</strong></dt>
+<dd><ul class="first last">
+<li>Conceptually, Verifier is configured with a control cluster and a test cluster. However, they
+may be pointed to the same Presto cluster for certain tests.</li>
+<li><dl class="first docutils">
+<dt>For each source query, executes the following queries in order.</dt>
+<dd><ul class="first last">
+<li>Control setup queries</li>
+<li>Control query</li>
+<li>Test setup queries</li>
+<li>Test query</li>
+<li>Control and test teardown queries</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Queries are subject to timeouts and retries.</dt>
+<dd><ul class="first last">
+<li>Cluster connection failures and transient Presto failures are retried.</li>
+<li>Query retries may conceal reliability issues, and therefore Verifier records all
+occurred Presto query failures, including the retries.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Certain query failures are automatically submitted for re-validation, such as partition
+dropped or table dropped during query.</li>
+<li>See <a class="reference internal" href="#failure-resolution">Failure Resolution</a> for auto-resolving of query failures.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Results Comparison</strong></dt>
+<dd><ul class="first last">
+<li>For <code class="docutils literal"><span class="pre">Select</span></code>, <code class="docutils literal"><span class="pre">Insert</span></code>, and <code class="docutils literal"><span class="pre">CreateTableAsSelect</span></code> queries, results are written into
+temporary tables.</li>
+<li>Constructs and runs the checksum queries for both control and test.</li>
+<li>Verifies table schema and row count are the same for the control and the test result table.</li>
+<li>Verifies checksums are matching for each column. See <a class="reference internal" href="#column-checksums">Column Checksums</a> for special handling
+of different column types.</li>
+<li>See <a class="reference internal" href="#determinism">Determinism</a> for handling of non-deterministic queries.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Emitting Results</strong></dt>
+<dd><ul class="first last">
+<li>Verification results can be exported as <code class="docutils literal"><span class="pre">JSON</span></code>, or human readable text.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="column-checksums">
+<h2>Column Checksums</h2>
+<p>For each column in the control/test query, one or more columns are generated in the checksum
+queries.</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><strong>Floating Point Columns</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>For <code class="docutils literal"><span class="pre">DOUBLE</span></code> and <code class="docutils literal"><span class="pre">REAL</span></code> columns, 4 columns are generated for verification:</dt>
+<dd><ul class="first last">
+<li>Sum of the finite values of the column</li>
+<li><code class="docutils literal"><span class="pre">NAN</span></code> count of the column</li>
+<li>Positive infinity count of the column</li>
+<li>Negative infinity count of the column</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Checks if <code class="docutils literal"><span class="pre">NAN</span></code> count, positive and negative infinity count matches.</li>
+<li>Checks the nullity of control sum and test sum.</li>
+<li>If either control mean or test mean very close 0, checks if both are close to 0.</li>
+<li>Checks the relative error between control sum and test sum.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Array Columns</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>2 columns are generated for verification:</dt>
+<dd><ul class="first last">
+<li>Sum of the cardinality</li>
+<li>Array checksum</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>For an array column <code class="docutils literal"><span class="pre">arr</span></code> of type <code class="docutils literal"><span class="pre">array(E)</span></code>:</dt>
+<dd><ul class="first last">
+<li>If <code class="docutils literal"><span class="pre">E</span></code> is not orderable, array checksum is <code class="docutils literal"><span class="pre">checksum(arr)</span></code>.</li>
+<li>If <code class="docutils literal"><span class="pre">E</span></code> is orderable, array checksum <code class="docutils literal"><span class="pre">coalesce(checksum(try(array_sort(arr))),</span> <span class="pre">checksum(arr))</span></code>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Map Columns</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>4 columns are generated for verification:</dt>
+<dd><ul class="first last">
+<li>Sum of the cardinality</li>
+<li>Checksum of the map</li>
+<li>Array checksum of the key set</li>
+<li>Array checksum of the value set</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><strong>Row Columns</strong></dt>
+<dd><ul class="first last">
+<li>Checksums row fields recursively according to the type of the fields.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>For all other column types, generates a simple checksum using the <a class="reference internal" href="../functions/aggregate.html#checksum" title="checksum"><code class="xref py py-func docutils literal"><span class="pre">checksum()</span></code></a> function.</li>
+</ul>
+</div>
+<div class="section" id="determinism">
+<h2>Determinism</h2>
+<p>A result mismatch, either a row count mismatch or a column mismatch, can be caused by
+non-deterministic query features. To avoid false alerts, we perform determinism analysis
+for the control query. If a query is found non-deterministic, we skip the verification as it
+does not provide insights.</p>
+<p>Determinism analysis follows the following steps. If a query is found non-deterministic at any
+point, the analysis will conclude.</p>
+<ul class="simple">
+<li>Non-deterministic catalogs can be specified with <code class="docutils literal"><span class="pre">determinism.non-deterministic-catalog</span></code>.
+If a query references any table from those catalogs, the query is considered non-deterministic.</li>
+<li>Runs the control query again and compares the results with the initial control query run.</li>
+<li><dl class="first docutils">
+<dt>If a query has a <code class="docutils literal"><span class="pre">LIMIT</span> <span class="pre">n</span></code> clause but no <code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause at the top level:</dt>
+<dd><ul class="first last">
+<li>Runs a query to count the number of rows produced by the control query without the <code class="docutils literal"><span class="pre">LIMIT</span></code>
+clause.</li>
+<li>If the resulting row count is greater than <code class="docutils literal"><span class="pre">n</span></code>, treats the control query as
+non-deterministic.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="failure-resolution">
+<h2>Failure Resolution</h2>
+<p>The differences in configuration, including cluster size, can cause a query to succeed on the
+control cluster but fail on the test cluster. A checksum query can also fail, which may be due to
+limitation of Presto or Presto Verifier. Thus, we allow Verifier to automatically resolve certain
+query failures.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">EXCEEDED_GLOBAL_MEMORY_LIMIT</span></code>: Resolves if the control query uses more memory than the test
+query.</li>
+<li><code class="docutils literal"><span class="pre">EXCEEDED_TIME_LIMIT</span></code>: Resolves unconditionally.</li>
+<li><code class="docutils literal"><span class="pre">TOO_MANY_HIVE_PARTITIONS</span></code>: Resolves if the test cluster does not have enough workers to make
+sure the number of partitions assigned to each worker stays within the limit.</li>
+<li><code class="docutils literal"><span class="pre">COMPILER_ERROR</span></code>: Resolves if checksum fails with this error. If a control query has too many
+columns, generated checksum query might be too large in certain cases.</li>
+</ul>
+</div>
+<div class="section" id="extending-verifier">
+<h2>Extending Verifier</h2>
+<p>Verifier can be extended for further behavioral changes in addition to configuration properties.</p>
+<p><a class="reference external" href="https://github.com/prestodb/presto/blob/master/presto-verifier/src/main/java/com/facebook/presto/verifier/framework/AbstractVerifyCommand.java">AbstractVerifyCommand</a>
+shows the components that be extended. Implement the abstract class and create a command line wrapper similar to
+<a class="reference external" href="https://github.com/prestodb/presto/blob/master/presto-verifier/src/main/java/com/facebook/presto/verifier/PrestoVerifier.java">PrestoVerifier</a>.</p>
+</div>
+<div class="section" id="configuration-reference">
+<h2>Configuration Reference</h2>
+<div class="section" id="general-configuration">
+<h3>General Configuration</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">whitelist</span></code></td>
+<td>A comma-separated list specifying the names of the queries within the suite
+to verify.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">blacklist</span></code></td>
+<td>A comma-separated list specifying the names of the queries to be excluded
+from the suite. <code class="docutils literal"><span class="pre">blacklist</span></code> is applied after <code class="docutils literal"><span class="pre">whitelist</span></code>.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">source-query-supplier</span></code></td>
+<td>The name of the source query supplier. Supports <code class="docutils literal"><span class="pre">mysql</span></code>.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">source-query.table-name</span></code></td>
+<td>The name of the table that holds verifier queries. Available only when
+<code class="docutils literal"><span class="pre">source-query-supplier</span></code> is <code class="docutils literal"><span class="pre">mysql</span></code>.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">event-clients</span></code></td>
+<td>A comma-separated list specifying where the output events should be emitted.
+Supports <code class="docutils literal"><span class="pre">json</span></code> and <code class="docutils literal"><span class="pre">human-readable</span></code>.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">json.log-file</span></code></td>
+<td>The output files of <code class="docutils literal"><span class="pre">JSON</span></code> events. If not set, <code class="docutils literal"><span class="pre">JSON</span></code> events are emitted to
+<code class="docutils literal"><span class="pre">stdout</span></code>.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">human-readable.log-file</span></code></td>
+<td>The output files for human-readable events. If not set, human-readable events
+are emitted to <code class="docutils literal"><span class="pre">stdout</span></code>.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">control.table-prefix</span></code></td>
+<td>The table prefix to be appended to the control target table.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">test.table-prefix</span></code></td>
+<td>The table prefix to be appended to the test target table.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">test-id</span></code></td>
+<td>A string to be attached to output events.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">max-concurrency</span></code></td>
+<td>Maximum number of concurrent verifications.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">suite-repetition</span></code></td>
+<td>How many times a suite is verified.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">query-repetition</span></code></td>
+<td>How many times a source query is verified.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">relative-error-margin</span></code></td>
+<td>Maximum tolerable relative error between control sum and test sum of a
+floating point column.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">absolute-error-margin</span></code></td>
+<td>Floating point averages that are below this threshold are treated as <code class="docutils literal"><span class="pre">0</span></code>.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">run-teardown-on-result-mismatch</span></code></td>
+<td>Whether to run teardown query in case of result mismatch.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">verification-resubmission.limit</span></code></td>
+<td>A limit on how many times a source query can be re-submitted for verification.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="query-override-configuration">
+<h3>Query Override Configuration</h3>
+<p>The following configurations control the behavior of query metadata modification before verification starts.
+Counterparts are also available for test queries with prefix <code class="docutils literal"><span class="pre">control</span></code> being replaced with <code class="docutils literal"><span class="pre">test</span></code>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">control.catalog-override</span></code></td>
+<td>The catalog to be applied to all queries if specified.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">control.schema-override</span></code></td>
+<td>The schema to be applied to all queries if specified.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">control.username-override</span></code></td>
+<td>The username to be applied to all queries if specified.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">control.password-override</span></code></td>
+<td>The password to be applied to all queries if specified.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">control.session-properties-override-strategy</span></code></td>
+<td>Supports 3 values. <code class="docutils literal"><span class="pre">NO_ACTION</span></code>: Use the session properties as specified for
+each query. <code class="docutils literal"><span class="pre">OVERRIDE</span></code>: Merge the session properties of each query with the
+override, with override being the dominant. <code class="docutils literal"><span class="pre">SUBSTITUTE</span></code>, The session
+properties of each query is replaced with the override.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">control.session-properties-override</span></code></td>
+<td>The session property to be applied to all queries.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="query-execution-configuration">
+<h3>Query Execution Configuration</h3>
+<p>The following configurations control the behavior of query execution on the control cluster.
+Counterparts are also available for test clusters with prefix <code class="docutils literal"><span class="pre">control</span></code> being replaced with <code class="docutils literal"><span class="pre">test</span></code>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">control.host</span></code></td>
+<td>Host of the control cluster.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">control.jdbc-port</span></code></td>
+<td>JDBC port of the control cluster.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">control.http-host</span></code></td>
+<td>HTTP port of the control cluster.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">control.jdbc-url-parameters</span></code></td>
+<td>A <code class="docutils literal"><span class="pre">JSON</span></code> map representing the additional URL parameters for control JDBC.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">control.query-timeout</span></code></td>
+<td>The execution time limit of the control and the test queries.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">control.metadata-timeout</span></code></td>
+<td>The execution time limit of <code class="docutils literal"><span class="pre">DESC</span></code> queries and <code class="docutils literal"><span class="pre">LIMIT</span> <span class="pre">0</span></code> queries.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">control.checksum-timeout</span></code></td>
+<td>The execution time limit of checksum queries.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="determinism-analyzer-configuration">
+<h3>Determinism Analyzer Configuration</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">determinism.run-teardown</span></code></td>
+<td>Whether to run teardown queries for tables produced in determinism analysis.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">determinism.max-analysis-runs</span></code></td>
+<td>Maximum number of additional control runs to check for the determinism of the
+control query.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">determinism.handle-limit-query</span></code></td>
+<td>Whether to enable the special handling for queries with a top level <code class="docutils literal"><span class="pre">LIMIT</span></code>
+clause.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">determinism.non-deterministic-catalogs</span></code></td>
+<td>A comma-separated list of non-deterministic catalogs. Queries referencing table
+from those catalogs are treated as non-deterministic.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="failure-resolution-configuration">
+<h3>Failure Resolution Configuration</h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="45%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">exceeded-global-memory-limit.failure-resolver.enabled</span></code></td>
+<td>Whether to enable the failure resolver for test query failures with
+<code class="docutils literal"><span class="pre">EXCEEDED_GLOBAL_MEMORY_LIMIT</span></code>.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">exceeded-time-limit.failure-resolver.enabled</span></code></td>
+<td>Whether to enable the failure resolver for test query failures with
+<code class="docutils literal"><span class="pre">EXCEEDED_TIME_LIMIT</span></code>.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">verifier-limitation.failure-resolver.enabled</span></code></td>
+<td>Whether to enable the failure resolver for failures due to Verifier
+limitations.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">too-many-open-partitions.failure-resolver.enabled</span></code></td>
+<td>Whether to enable the failure resolver for test query failures with
+<code class="docutils literal"><span class="pre">HIVE_TOO_MANY_OPEN_PARTITIONS</span></code>.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">too-many-open-partitions.max-buckets-per-writer</span></code></td>
+<td>The maximum buckets count per writer configured on the control and the
+test cluster.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">too-many-open-partitions.cluster-size-expiration</span></code></td>
+<td>The time limit of the test cluster size being cached.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="dist-sort.html">4.8. Distributed sort</a>
+    </span>
+    <span class="right">
+        <a href="../optimizer.html">5. Query Optimizer</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

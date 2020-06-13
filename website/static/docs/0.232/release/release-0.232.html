@@ -1,0 +1,137 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>12.1. Release 0.232 &#8212; Presto 0.232 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.232',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.2. Release 0.231" href="release-0.231.html" />
+    <link rel="prev" title="12. Release Notes" href="../release.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.232 Documentation</span></a></h1>
+    <h2 class="heading"><span>12.1. Release 0.232</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../release.html">12. Release Notes</a>
+    </span>
+    <span class="right">
+        <a href="release-0.231.html">12.2. Release 0.231</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-232">
+<h1>12.1. Release 0.232</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix an issue where <code class="docutils literal"><span class="pre">DATE_TRUNC</span></code> may produce incorrect results at certain timestamp in <code class="docutils literal"><span class="pre">America/Sao_Paulo</span></code>.</li>
+<li>Improve built-in function resolution performance by caching function resolution results.</li>
+<li>Add a MySQL-based function namespace manager implementation that supports creating, altering, and dropping SQL functions (<a class="reference internal" href="../admin/function-namespace-managers.html"><span class="doc">Function Namespace Managers</span></a>).</li>
+<li>Add support for retrying failed stages from a materialized point instead of failing the entire query. The number of retries allowed can be configured using the configuration property <code class="docutils literal"><span class="pre">max-stage-retries</span></code> and session property <code class="docutils literal"><span class="pre">max_stage_retries</span></code>. The default value is zero. To take advantage of this feature, exchange_materialization_strategy must be set to <code class="docutils literal"><span class="pre">ALL</span></code>.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">use-legacy-scheduler</span></code> and session property <code class="docutils literal"><span class="pre">use_legacy_scheduler</span></code> to use a version of the query scheduler before refactorings to enable full stage retries. The default value is false. This is a temporary property to provide an easy way to roll back in case of bugs in the new scheduler. This property will be removed in a couple releases once we have confidence in the stability of the new scheduler.</li>
+<li>Add <code class="docutils literal"><span class="pre">query_max_total_memory_per_node</span></code> and <code class="docutils literal"><span class="pre">query_max_memory_per_node</span></code> session properties.</li>
+<li>Add support to show whether functions have variable arity in <code class="docutils literal"><span class="pre">SHOW</span> <span class="pre">FUNCTIONS</span></code>.</li>
+<li>Add support to show whether functions are built-in in <code class="docutils literal"><span class="pre">SHOW</span> <span class="pre">FUNCTIONS</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">use_exact_partitioning</span></code> session property that forces repartitioning if repartitioning is possible.</li>
+<li>Add support for <code class="docutils literal"><span class="pre">ALTER</span> <span class="pre">FUNCTION</span></code>.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">resource-groups.reload-refresh-interval</span></code> to control the frequency of reloading resource group information from the database. The default value is 10 seconds.</li>
+<li>Add support for using the Thrift protocol to shuffle data. This can be configured using the configuration property <code class="docutils literal"><span class="pre">internal-communication.task-communication-protocol</span></code>. Possible values are HTTP or Thrift.</li>
+<li>Add support for using the Thrift protocol to announce node state. This can be configured using the configuration property <code class="docutils literal"><span class="pre">internal-communication.server-info-communication-protocol</span></code>. Possible values are HTTP or Thrift.</li>
+<li>Add session property <code class="docutils literal"><span class="pre">list_built_in_functions_only</span></code> to support hiding user-defined SQL functions in <code class="docutils literal"><span class="pre">SHOW</span> <span class="pre">FUNCTIONS</span></code>.</li>
+<li>Add experimental functions <code class="docutils literal"><span class="pre">tdigest_agg</span></code>, <code class="docutils literal"><span class="pre">merge(tdigest)</span></code>, <code class="docutils literal"><span class="pre">value_at_quantile(tdigest,</span> <span class="pre">quantile)</span></code>, <code class="docutils literal"><span class="pre">values_at_quantiles(tdigest,</span> <span class="pre">quantiles)</span></code>, <code class="docutils literal"><span class="pre">quantile_at_value(tdigest,</span> <span class="pre">quantile)</span></code>, <code class="docutils literal"><span class="pre">quantiles_at_values(tdigest,</span> <span class="pre">quantile)</span></code> for creating, merging, and querying t-digests.
+These can be enabled by using the session property <code class="docutils literal"><span class="pre">experimental_functions_enabled</span></code> and the configuration property <code class="docutils literal"><span class="pre">experimental-functions-enabled</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="hive-changes">
+<h2>Hive Changes</h2>
+<ul class="simple">
+<li>Fix an issue where queries could fail with buffer overflow when writing ORC files.</li>
+<li>Add support for handling statistics to the Alluxio metastore.</li>
+<li>Add Alluxio metastore which connects to the Alluxio catalog service &lt;<a class="reference external" href="https://docs.alluxio.io/os/user/2.1/en/core-services/Catalog.html">https://docs.alluxio.io/os/user/2.1/en/core-services/Catalog.html</a>&gt;.</li>
+<li>Add session property <code class="docutils literal"><span class="pre">shuffle_partitioned_columns_for_table_write</span></code> to make Presto shuffle data on the partition columns before writing to partitioned unbucketed Hive tables.
+This increases the maximum number of partitions that can be written in a single query by a factor of the total number of writing workers.
+The property is <code class="docutils literal"><span class="pre">false</span></code> by default. (<a class="reference external" href="https://github.com/prestodb/presto/pull/14010">#14010</a>).</li>
+<li>Expose Hive table properties via system table$properties table.</li>
+<li>Change error code from <code class="docutils literal"><span class="pre">HIVE_METASTORE_ERROR</span></code> to <code class="docutils literal"><span class="pre">HIVE_TABLE_DROPPED_DURING_QUERY</span></code> when a <code class="docutils literal"><span class="pre">DROP</span> <span class="pre">TABLE</span></code> query fails due to another query dropping the table before this query has finished.</li>
+<li>Upgrade Alluxio version from 2.1.1 to 2.1.2.</li>
+</ul>
+</div>
+<div class="section" id="kudu-changes">
+<h2>Kudu Changes</h2>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">Kerberos</span></code> authentication.</li>
+</ul>
+</div>
+<div class="section" id="kafka-changes">
+<h2>Kafka Changes</h2>
+<ul class="simple">
+<li>Update <code class="docutils literal"><span class="pre">Kafka</span></code> connector to 2.3.1, which improves implementation and performance (<a class="reference external" href="https://github.com/prestodb/presto/pull/13709">#13709</a>).</li>
+</ul>
+</div>
+<div class="section" id="pinot-changes">
+<h2>Pinot Changes</h2>
+<ul class="simple">
+<li>Replace config <code class="docutils literal"><span class="pre">pinot.prefer-broker-queries</span></code> with the inverse config <code class="docutils literal"><span class="pre">pinot.forbid-broker-queries</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h2>Verifier Changes</h2>
+<ul class="simple">
+<li>Add specific validation checks for the individual fields when validating a row column.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Replace <code class="docutils literal"><span class="pre">IsHidden</span></code> attribute on AggregationFunction and ScalarFunction with <code class="docutils literal"><span class="pre">visibility</span></code> which can be of the following values <code class="docutils literal"><span class="pre">PUBLIC</span></code>, <code class="docutils literal"><span class="pre">EXPERIMENTAL</span></code>, <code class="docutils literal"><span class="pre">HIDDEN</span></code>.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../release.html">12. Release Notes</a>
+    </span>
+    <span class="right">
+        <a href="release-0.231.html">12.2. Release 0.231</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

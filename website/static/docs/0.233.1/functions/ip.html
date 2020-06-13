@@ -1,0 +1,138 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>7.19. IP Functions &#8212; Presto 0.233.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.233.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7.20. Geospatial Functions" href="geospatial.html" />
+    <link rel="prev" title="7.18. URL Functions" href="url.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.233.1 Documentation</span></a></h1>
+    <h2 class="heading"><span>7.19. IP Functions</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="url.html">7.18. URL Functions</a>
+    </span>
+    <span class="right">
+        <a href="geospatial.html">7.20. Geospatial Functions</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="ip-functions">
+<h1>7.19. IP Functions</h1>
+<dl class="function">
+<dt id="ip_prefix">
+<code class="descname">ip_prefix</code><span class="sig-paren">(</span><em>ip_address</em>, <em>prefix_bits</em><span class="sig-paren">)</span> &#x2192; ipprefix</dt>
+<dd><p>Returns the IP prefix of a given <code class="docutils literal"><span class="pre">ip_address</span></code> with subnet size of <code class="docutils literal"><span class="pre">prefix_bits</span></code>.
+<code class="docutils literal"><span class="pre">ip_address</span></code> can be either of type <code class="docutils literal"><span class="pre">VARCHAR</span></code> or type <code class="docutils literal"><span class="pre">IPADDRESS</span></code>.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">ip_prefix</span><span class="p">(</span><span class="k">CAST</span><span class="p">(</span><span class="s1">&#39;192.168.255.255&#39;</span> <span class="k">AS</span> <span class="n">IPADDRESS</span><span class="p">),</span> <span class="mi">9</span><span class="p">);</span> <span class="c1">-- {192.128.0.0/9}</span>
+<span class="k">SELECT</span> <span class="n">ip_prefix</span><span class="p">(</span><span class="s1">&#39;2001:0db8:85a3:0001:0001:8a2e:0370:7334&#39;</span><span class="p">,</span> <span class="mi">48</span><span class="p">);</span> <span class="c1">-- {2001:db8:85a3::/48}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="ip_subnet_min">
+<code class="descname">ip_subnet_min</code><span class="sig-paren">(</span><em>ip_prefix</em><span class="sig-paren">)</span> &#x2192; ip_address</dt>
+<dd><p>Returns the smallest IP address of type <code class="docutils literal"><span class="pre">IPADDRESS</span></code> in the subnet
+specified by <code class="docutils literal"><span class="pre">ip_prefix</span></code>.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">ip_subnet_min</span><span class="p">(</span><span class="n">IPPREFIX</span> <span class="s1">&#39;192.168.255.255/9&#39;</span><span class="p">);</span> <span class="c1">-- {192.128.0.0}</span>
+<span class="k">SELECT</span> <span class="n">ip_subnet_min</span><span class="p">(</span><span class="n">IPPREFIX</span> <span class="s1">&#39;2001:0db8:85a3:0001:0001:8a2e:0370:7334/48&#39;</span><span class="p">);</span> <span class="c1">-- {2001:db8:85a3::}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="ip_subnet_max">
+<code class="descname">ip_subnet_max</code><span class="sig-paren">(</span><em>ip_prefix</em><span class="sig-paren">)</span> &#x2192; ip_address</dt>
+<dd><p>Returns the largest IP address of type <code class="docutils literal"><span class="pre">IPADDRESS</span></code> in the subnet
+specified by <code class="docutils literal"><span class="pre">ip_prefix</span></code>.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">ip_subnet_max</span><span class="p">(</span><span class="n">IPPREFIX</span> <span class="s1">&#39;192.64.0.0/9&#39;</span><span class="p">);</span> <span class="c1">-- {192.127.255.255}</span>
+<span class="k">SELECT</span> <span class="n">ip_subnet_max</span><span class="p">(</span><span class="n">IPPREFIX</span> <span class="s1">&#39;2001:0db8:85a3:0001:0001:8a2e:0370:7334/48&#39;</span><span class="p">);</span> <span class="c1">-- {2001:db8:85a3:ffff:ffff:ffff:ffff:ffff}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="ip_subnet_range">
+<code class="descname">ip_subnet_range</code><span class="sig-paren">(</span><em>ip_prefix) -&gt; array(ip_address</em><span class="sig-paren">)</span></dt>
+<dd><p>Return an array of 2 IP addresses.
+The array contains the smallest and the largest IP address
+in the subnet specified by <code class="docutils literal"><span class="pre">ip_prefix</span></code>.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">ip_subnet_range</span><span class="p">(</span><span class="n">IPPREFIX</span> <span class="s1">&#39;1.2.3.160/24&#39;</span><span class="p">);</span> <span class="c1">-- [{1.2.3.0}, {1.2.3.255}]</span>
+<span class="k">SELECT</span> <span class="n">ip_subnet_range</span><span class="p">(</span><span class="n">IPPREFIX</span> <span class="s1">&#39;64:ff9b::52f4/120&#39;</span><span class="p">);</span> <span class="c1">-- [{64:ff9b::5200}, {64:ff9b::52ff}]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="is_subnet_of">
+<code class="descname">is_subnet_of</code><span class="sig-paren">(</span><em>ip_prefix</em>, <em>ip_address</em><span class="sig-paren">)</span> &#x2192; boolean</dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if the <code class="docutils literal"><span class="pre">ip_address</span></code> is in the subnet of <code class="docutils literal"><span class="pre">ip_prefix</span></code>.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">is_subnet_of</span><span class="p">(</span><span class="n">IPPREFIX</span> <span class="s1">&#39;1.2.3.128/26&#39;</span><span class="p">,</span> <span class="n">IPADDRESS</span> <span class="s1">&#39;1.2.3.129&#39;</span><span class="p">);</span> <span class="c1">-- true</span>
+<span class="k">SELECT</span> <span class="n">is_subnet_of</span><span class="p">(</span><span class="n">IPPREFIX</span> <span class="s1">&#39;64:fa9b::17/64&#39;</span><span class="p">,</span> <span class="n">IPADDRESS</span> <span class="s1">&#39;64:ffff::17&#39;</span><span class="p">);</span> <span class="c1">-- false</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">is_subnet_of</code><span class="sig-paren">(</span><em>ip_prefix1</em>, <em>ip_prefix2</em><span class="sig-paren">)</span> &#x2192; boolean</dt>
+<dd><p>Returns <code class="docutils literal"><span class="pre">true</span></code> if <code class="docutils literal"><span class="pre">ip_prefix2</span></code> is a subnet of <code class="docutils literal"><span class="pre">ip_prefix1</span></code>.</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">is_subnet_of</span><span class="p">(</span><span class="n">IPPREFIX</span> <span class="s1">&#39;192.168.3.131/26&#39;</span><span class="p">,</span> <span class="n">IPPREFIX</span> <span class="s1">&#39;192.168.3.144/30&#39;</span><span class="p">);</span> <span class="c1">-- true</span>
+<span class="k">SELECT</span> <span class="n">is_subnet_of</span><span class="p">(</span><span class="n">IPPREFIX</span> <span class="s1">&#39;64:ff9b::17/64&#39;</span><span class="p">,</span> <span class="n">IPPREFIX</span> <span class="s1">&#39;64:ffff::17/64&#39;</span><span class="p">);</span> <span class="c1">-- false</span>
+<span class="k">SELECT</span> <span class="n">is_subnet_of</span><span class="p">(</span><span class="n">IPPREFIX</span> <span class="s1">&#39;192.168.3.131/26&#39;</span><span class="p">,</span> <span class="n">IPPREFIX</span> <span class="s1">&#39;192.168.3.131/26&#39;</span><span class="p">);</span> <span class="c1">-- true</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="url.html">7.18. URL Functions</a>
+    </span>
+    <span class="right">
+        <a href="geospatial.html">7.20. Geospatial Functions</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

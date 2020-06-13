@@ -1,0 +1,129 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.9. Release 0.231 &#8212; Presto 0.235.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.235.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.10. Release 0.230" href="release-0.230.html" />
+    <link rel="prev" title="13.8. Release 0.232" href="release-0.232.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.235.1 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.9. Release 0.231</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.232.html">13.8. Release 0.232</a>
+    </span>
+    <span class="right">
+        <a href="release-0.230.html">13.10. Release 0.230</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-231">
+<h1>13.9. Release 0.231</h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">There is a bug in this release that will cause queries with the predicate <code class="docutils literal"><span class="pre">IS</span> <span class="pre">NULL</span></code> on
+bucketed columns to produce incorrect results.</p>
+</div>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix failures caused by invalid plans for queries with repeated lambda expressions in the order by clause.</li>
+<li>Fix accounting of raw input bytes in ScanFilterAndProjectOperator.</li>
+<li>Fix an issue where server fails to start when two function namespace managers of the same type are specified.</li>
+<li>Fix SQL function compilation error when input parameters contain lambda.</li>
+<li>Fix <code class="docutils literal"><span class="pre">IS</span> <span class="pre">DISTINCT</span> <span class="pre">FROM</span></code> for long decimals.</li>
+<li>Improve error handling for geometry deserialization edge cases.</li>
+<li>Improve performance of <a class="reference internal" href="../functions/array.html#array_join" title="array_join"><code class="xref py py-func docutils literal"><span class="pre">array_join()</span></code></a>.</li>
+<li>Improve efficiency of <a class="reference internal" href="../functions/geospatial.html#ST_Buffer" title="ST_Buffer"><code class="xref py py-func docutils literal"><span class="pre">ST_Buffer()</span></code></a>. The new implementation produces fewer buffer points on rounded corners, which will produce very similar but different results. It also better handles buffering with small (&lt;1e-9) distances.</li>
+<li>Improve OOM killer log output to put memory heavy nodes and queries first.</li>
+<li>Improve efficiency by using JTS instead of Esri for many geometrical operations and fix incorrect calculation of extreme points in certain cases (<a class="reference external" href="https://github.com/prestodb/presto/issues/14031">#14031</a>).</li>
+<li>Add forms of <a class="reference internal" href="../functions/aggregate.html#approx_percentile" title="approx_percentile"><code class="xref py py-func docutils literal"><span class="pre">approx_percentile()</span></code></a> accepting an accuracy parameter.</li>
+<li>Add a new session property <code class="docutils literal"><span class="pre">aggregation_partitioning_merging_strategy</span></code> to configure partition merging strategy when adding exchange around aggregation node (<a class="reference external" href="https://github.com/prestodb/presto/pull/11262">#11262</a>).</li>
+<li>Add <code class="docutils literal"><span class="pre">IGNORE</span> <span class="pre">NULLS</span></code> clause to various <a class="reference internal" href="../functions/window.html"><span class="doc">Window Functions</span></a>.</li>
+</ul>
+</div>
+<div class="section" id="hive-changes">
+<h2>Hive Changes</h2>
+<ul class="simple">
+<li>Fix schema mismatch with Parquet <code class="docutils literal"><span class="pre">INT64</span></code> &amp; <code class="docutils literal"><span class="pre">Timestamp</span></code>.</li>
+<li>Improve string column stats by including the sum of all strings’ lengths when the individual min/max of the string is too long in ORC writer.</li>
+<li>Allow reading data from HDFS while caching the fetched data on local storage. Turn on the feature by specifying the cache directory config <code class="docutils literal"><span class="pre">cache.base-directory</span></code>.</li>
+<li>Add support for parallel partition fetching for the Glue metastore.</li>
+<li>Add support for the AWS Default Credentials Provider for S3.</li>
+</ul>
+</div>
+<div class="section" id="raptor-changes">
+<h2>Raptor Changes</h2>
+<ul class="simple">
+<li>Add the ability to read and write with delta deletes.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h2>Verifier Changes</h2>
+<ul class="simple">
+<li>Fix an issue where checksum query text and ID are not recorded if the checksum query fails.</li>
+<li>Improve verifier to skip verification when checksum query fails to compile.</li>
+<li>Add checks for the cardinalities sum when validating an array column.</li>
+<li>Add new columns <code class="docutils literal"><span class="pre">control_session_properties</span></code> and <code class="docutils literal"><span class="pre">test_session_properties</span></code> to <code class="docutils literal"><span class="pre">verifier_queries</span></code>, and remove column <code class="docutils literal"><span class="pre">session_properties_json</span></code>. The value of the removed column can be copied to the two new columns for the schema change.</li>
+<li>Add details of determinism analysis runs to the output.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">max-determinism-analysis-runs</span></code> to control maximum number of determinism analysis runs in case of column mismatch.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">run-teardown-for-determinism-analysis</span></code> to allow disabling teardown for determinism analysis runs.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Add API to check if the query is unexpectedly modified using the credentials passed in the identity.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.232.html">13.8. Release 0.232</a>
+    </span>
+    <span class="right">
+        <a href="release-0.230.html">13.10. Release 0.230</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

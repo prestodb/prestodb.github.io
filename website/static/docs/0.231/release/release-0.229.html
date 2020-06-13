@@ -1,0 +1,115 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>12.3. Release 0.229 &#8212; Presto 0.231 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.231',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.4. Release 0.228" href="release-0.228.html" />
+    <link rel="prev" title="12.2. Release 0.230" href="release-0.230.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.231 Documentation</span></a></h1>
+    <h2 class="heading"><span>12.3. Release 0.229</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.230.html">12.2. Release 0.230</a>
+    </span>
+    <span class="right">
+        <a href="release-0.228.html">12.4. Release 0.228</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-229">
+<h1>12.3. Release 0.229</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix an issue that would cause query failure when calling <a class="reference internal" href="../functions/geospatial.html#geometry_to_bing_tiles" title="geometry_to_bing_tiles"><code class="xref py py-func docutils literal"><span class="pre">geometry_to_bing_tiles()</span></code></a> on certain degenerate geometries.</li>
+<li>Add geospatial function <a class="reference internal" href="../functions/geospatial.html#line_interpolate_point" title="line_interpolate_point"><code class="xref py py-func docutils literal"><span class="pre">line_interpolate_point()</span></code></a>.</li>
+<li>Add support for <code class="docutils literal"><span class="pre">CREATE</span> <span class="pre">FUNCTION</span></code></li>
+<li>Add support for passing <code class="docutils literal"><span class="pre">X_Forwarded_For</span></code> header from Proxy to coordinator.</li>
+<li>Add support to respect configuration property <code class="docutils literal"><span class="pre">stage.max-tasks-per-stage</span></code> for limiting the number of tasks per scan.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">experimental.internal-communication.max-task-update-size</span></code> to limit the size of the <code class="docutils literal"><span class="pre">TaskUpdate</span></code>.</li>
+<li>Add configuration properties <code class="docutils literal"><span class="pre">internal-communication.https.trust-store-path</span></code>, <code class="docutils literal"><span class="pre">internal-communication.https.included-cipher</span></code>,
+and <code class="docutils literal"><span class="pre">internal-communication.https.excluded-cipher</span></code> to easily set common https configurations for all internal communications at one place.</li>
+<li>Add peak task memory distribution of each stage to <code class="docutils literal"><span class="pre">QueryStatistics</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="pinot-connector-changes">
+<h2>Pinot Connector Changes</h2>
+<ul class="simple">
+<li>Add Pinot connector.</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes</h2>
+<ul class="simple">
+<li>Fix parquet predicate pushdown on dictionaries to consider more than just the first predicate column.</li>
+<li>Improve parquet predicate pushdown on dictionaries to avoid reading additional data after successfully eliminating a block.</li>
+</ul>
+</div>
+<div class="section" id="raptor-connector-changes">
+<h2>Raptor Connector Changes</h2>
+<ul class="simple">
+<li>Add support for using remote HDFS as the storage in Raptor. Configuration property <code class="docutils literal"><span class="pre">storage.data-directory</span></code> is changed from a <code class="docutils literal"><span class="pre">File</span></code> to a <code class="docutils literal"><span class="pre">URI</span></code>.
+For deployment on local flash, scheme <code class="docutils literal"><span class="pre">file:/</span></code> must be prepended.</li>
+<li>Rename error code <code class="docutils literal"><span class="pre">RAPTOR_LOCAL_FILE_SYSTEM_ERROR</span></code> to <code class="docutils literal"><span class="pre">RAPTOR_FILE_SYSTEM_ERROR</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Add support for connectors to alter query plans involving <code class="docutils literal"><span class="pre">UNION</span></code>, <code class="docutils literal"><span class="pre">INTERSECT</span></code>, and <code class="docutils literal"><span class="pre">EXCEPT</span></code>, by moving <code class="docutils literal"><span class="pre">SetOperationNode</span></code> to SPI.</li>
+<li>Improve interface <code class="docutils literal"><span class="pre">ConnectorPlanOptimizerProvider</span></code> to allow connectors to participate in query optimization in two phases, <code class="docutils literal"><span class="pre">LOGICAL</span></code> and <code class="docutils literal"><span class="pre">PHYSICAL</span></code>.
+The two phases correspond to post-shuffle and post-shuffle optimization, respectively.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.230.html">12.2. Release 0.230</a>
+    </span>
+    <span class="right">
+        <a href="release-0.228.html">12.4. Release 0.228</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

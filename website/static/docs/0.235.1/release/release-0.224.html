@@ -1,0 +1,120 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.16. Release 0.224 &#8212; Presto 0.235.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.235.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.17. Release 0.223" href="release-0.223.html" />
+    <link rel="prev" title="13.15. Release 0.225" href="release-0.225.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.235.1 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.16. Release 0.224</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.225.html">13.15. Release 0.225</a>
+    </span>
+    <span class="right">
+        <a href="release-0.223.html">13.17. Release 0.223</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-224">
+<h1>13.16. Release 0.224</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix an issue where CPU time and scheduled time are swapped in query plans.</li>
+<li>Fix a correctness issue for queries containing nested coercible type casts.</li>
+<li>Add support for recoverable grouped execution when writing unpartitioned table.</li>
+<li>Add support for index-based access to fields of type <code class="docutils literal"><span class="pre">ROW</span></code> with subscript.</li>
+</ul>
+</div>
+<div class="section" id="security-changes">
+<h2>Security Changes</h2>
+<ul class="simple">
+<li>Fix a security issue in the client protocol.</li>
+</ul>
+</div>
+<div class="section" id="web-ui-changes">
+<h2>Web UI Changes</h2>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">Planning</span> <span class="pre">Time</span></code> in <code class="docutils literal"><span class="pre">Query</span> <span class="pre">Details</span></code> page.</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes</h2>
+<ul class="simple">
+<li>Improve performance for bucketed table insertion when some buckets are empty.</li>
+<li>Add config property <code class="docutils literal"><span class="pre">hive.max-buckets-for-grouped-execution</span></code> and session
+property <code class="docutils literal"><span class="pre">max_buckets_for_grouped_execution</span></code> to limit the number of buckets
+a query can access while still taking the advantage of grouped execution.
+If more than the configured number of buckets are queried, the query will
+run without grouped execution.</li>
+<li>Add session property <code class="docutils literal"><span class="pre">hive.virtual_bucket_count</span></code> to support grouped
+execution for queries that read unbucketed tables and have no joins or
+aggregations. This session property controls the number of virtual buckets
+that the connector will create for unbucketed tables.</li>
+</ul>
+</div>
+<div class="section" id="raptor-connector-changes">
+<h2>Raptor Connector Changes</h2>
+<ul class="simple">
+<li>Fix query failures on colocated joins when one table has empty data.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h2>Verifier Changes</h2>
+<ul class="simple">
+<li>Add the reason that a test case is skipped to the output event.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.225.html">13.15. Release 0.225</a>
+    </span>
+    <span class="right">
+        <a href="release-0.223.html">13.17. Release 0.223</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

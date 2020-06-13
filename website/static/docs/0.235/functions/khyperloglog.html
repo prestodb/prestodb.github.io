@@ -1,0 +1,156 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>8.22. KHyperLogLog Functions &#8212; Presto 0.235 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.235',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8.23. Quantile Digest Functions" href="qdigest.html" />
+    <link rel="prev" title="8.21. HyperLogLog Functions" href="hyperloglog.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.235 Documentation</span></a></h1>
+    <h2 class="heading"><span>8.22. KHyperLogLog Functions</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="hyperloglog.html">8.21. HyperLogLog Functions</a>
+    </span>
+    <span class="right">
+        <a href="qdigest.html">8.23. Quantile Digest Functions</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="khyperloglog-functions">
+<h1>8.22. KHyperLogLog Functions</h1>
+<p>Presto implements the <a class="reference external" href="https://research.google/pubs/pub47664/">KHyperLogLog</a>
+algorithm and data structure. <code class="docutils literal"><span class="pre">KHyperLogLog</span></code> data structure can be created
+through <a class="reference internal" href="#khyperloglog_agg" title="khyperloglog_agg"><code class="xref py py-func docutils literal"><span class="pre">khyperloglog_agg()</span></code></a>.</p>
+<div class="section" id="data-structures">
+<h2>Data Structures</h2>
+<p>KHyperLogLog is a data sketch that compactly represents the association of two
+columns. It is implemented in Presto as a two-level data structure composed of
+a MinHash structure whose entries map to <code class="docutils literal"><span class="pre">HyperLogLog</span></code>.</p>
+</div>
+<div class="section" id="serialization">
+<h2>Serialization</h2>
+<p>KHyperLogLog sketches can be cast to and from <code class="docutils literal"><span class="pre">varbinary</span></code>. This allows them to
+be stored for later use.</p>
+</div>
+<div class="section" id="functions">
+<h2>Functions</h2>
+<dl class="function">
+<dt id="khyperloglog_agg">
+<code class="descname">khyperloglog_agg</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span> &#x2192; KHyperLogLog</dt>
+<dd><p>Returns the <code class="docutils literal"><span class="pre">KHyperLogLog</span></code> sketch that represents the relationship between
+columns <code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code>. The MinHash structure summarizes <code class="docutils literal"><span class="pre">x</span></code> and the HyperLogLog
+sketches represent <code class="docutils literal"><span class="pre">y</span></code> values linked to <code class="docutils literal"><span class="pre">x</span></code> values.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">cardinality</code><span class="sig-paren">(</span><em>khll</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<dd><p>This calculates the cardinality of the MinHash sketch, i.e. <code class="docutils literal"><span class="pre">x</span></code>’s cardinality.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="intersection_cardinality">
+<code class="descname">intersection_cardinality</code><span class="sig-paren">(</span><em>khll1</em>, <em>khll2</em><span class="sig-paren">)</span> &#x2192; bigint</dt>
+<dd><p>Returns the set intersection cardinality of the data represented by the MinHash
+structures of <code class="docutils literal"><span class="pre">khll1</span></code> and <code class="docutils literal"><span class="pre">khll2</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="jaccard_index">
+<code class="descname">jaccard_index</code><span class="sig-paren">(</span><em>khll1</em>, <em>khll2</em><span class="sig-paren">)</span> &#x2192; double</dt>
+<dd><p>Returns the Jaccard index of the data represented by the MinHash structures of
+<code class="docutils literal"><span class="pre">khll1</span></code> and <code class="docutils literal"><span class="pre">khll2</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uniqueness_distribution">
+<code class="descname">uniqueness_distribution</code><span class="sig-paren">(</span><em>khll</em><span class="sig-paren">)</span> &#x2192; map&lt;bigint,double&gt;</dt>
+<dd><p>For a certain value <code class="docutils literal"><span class="pre">x'</span></code>, uniqueness is understood as how many <code class="docutils literal"><span class="pre">y'</span></code> values are
+associated with it in the source dataset. This is obtained with the cardinality
+of the HyperLogLog that is mapped from the MinHash bucket that corresponds to
+<code class="docutils literal"><span class="pre">x'</span></code>. This function returns a histogram that represents the uniqueness
+distribution, the X-axis being the <code class="docutils literal"><span class="pre">uniqueness</span></code> and the Y-axis being the relative
+frequency of <code class="docutils literal"><span class="pre">x</span></code> values.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">uniqueness_distribution</code><span class="sig-paren">(</span><em>khll</em>, <em>histogramSize</em><span class="sig-paren">)</span> &#x2192; map&lt;bigint,double&gt;</dt>
+<dd><p>Returns the uniqueness histogram with the given amount of buckets. If omitted,
+the value defaults to 256. All <code class="docutils literal"><span class="pre">uniqueness</span></code> values greater than <code class="docutils literal"><span class="pre">histogramSize</span></code> are
+accumulated in the last bucket.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="reidentification_potential">
+<code class="descname">reidentification_potential</code><span class="sig-paren">(</span><em>khll</em>, <em>threshold</em><span class="sig-paren">)</span> &#x2192; double</dt>
+<dd><p>The reidentification potential is the ratio of <code class="docutils literal"><span class="pre">x</span></code> values that have a
+<code class="docutils literal"><span class="pre">uniqueness</span></code> under the given <code class="docutils literal"><span class="pre">threshold</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="descname">merge</code><span class="sig-paren">(</span><em>khll</em><span class="sig-paren">)</span> &#x2192; KHyperLogLog</dt>
+<dd><p>Returns the <code class="docutils literal"><span class="pre">KHyperLogLog</span></code> of the aggregate union of the individual <code class="docutils literal"><span class="pre">KHyperLogLog</span></code>
+structures.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="merge_khll">
+<code class="descname">merge_khll</code><span class="sig-paren">(</span><em>array(khll)</em><span class="sig-paren">)</span> &#x2192; KHyperLogLog</dt>
+<dd><p>Returns the <code class="docutils literal"><span class="pre">KHyperLogLog</span></code> of the union of an array of KHyperLogLog structures.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="hyperloglog.html">8.21. HyperLogLog Functions</a>
+    </span>
+    <span class="right">
+        <a href="qdigest.html">8.23. Quantile Digest Functions</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

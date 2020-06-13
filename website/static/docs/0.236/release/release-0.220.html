@@ -1,0 +1,136 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.22. Release 0.220 &#8212; Presto 0.236 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.236',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.23. Release 0.219" href="release-0.219.html" />
+    <link rel="prev" title="13.21. Release 0.221" href="release-0.221.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.236 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.22. Release 0.220</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.221.html">13.21. Release 0.221</a>
+    </span>
+    <span class="right">
+        <a href="release-0.219.html">13.23. Release 0.219</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-220">
+<h1>13.22. Release 0.220</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix an issue where spatial joins executed after right outer joins would fail in certain cases. See <a class="reference external" href="https://github.com/prestodb/presto/issues/12672">#12672</a>.</li>
+<li>Fix an issue where <code class="docutils literal"><span class="pre">TRY</span></code> cannot catch the failures in <code class="docutils literal"><span class="pre">ROW</span></code> comparisons with <code class="docutils literal"><span class="pre">NULL</span></code> fields and <code class="docutils literal"><span class="pre">ARRAY</span></code> comparisons with <code class="docutils literal"><span class="pre">NULL</span></code> elements.</li>
+<li>Improve scan performance for queries that read map columns but do not access individual keys.</li>
+</ul>
+</div>
+<div class="section" id="raptor-changes">
+<h2>Raptor Changes</h2>
+<ul class="simple">
+<li>Add support for writing files with <code class="docutils literal"><span class="pre">ZSTD</span></code> compression. Add configuration property <code class="docutils literal"><span class="pre">storage.orc.compression-kind</span></code> to switch between <code class="docutils literal"><span class="pre">SNAPPY</span></code> and <code class="docutils literal"><span class="pre">ZSTD</span></code>.
+This is only applied when optimized ORC writer is turned on.</li>
+<li>Improve performance of the ORC writer in Raptor. Add configuration property <code class="docutils literal"><span class="pre">storage.orc.optimized-writer-stage</span></code> to enable the performance enhancement.
+The optimized ORC writer is backward compatible with the Hadoop ORC writer, but the Hadoop ORC writer is not forward compatible with it.
+Turning on the optimized ORC writer should work on an existing Raptor server. However, switching back to the Hadoop ORC writer may fail Raptor background job.</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes</h2>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">compression_codec</span></code> session property to set the compression codec when writing files. Possible values are <code class="docutils literal"><span class="pre">NONE</span></code>, <code class="docutils literal"><span class="pre">SNAPPY</span></code>, and <code class="docutils literal"><span class="pre">GZIP</span></code>.</li>
+<li>Add experimental support for partial merge pushdown, which optimizes plans for queries joining over two tables with mismatched but compatible bucket counts.
+This feature can be enabled by session property <code class="docutils literal"><span class="pre">experimental.optimizer.partial-merge-pushdown-strategy</span></code>, and is aiming to supersede <code class="docutils literal"><span class="pre">hive.optimize-mismatched-bucket-count</span></code>.
+See <a class="reference external" href="https://github.com/prestodb/presto/issues/12611">#12611</a>.</li>
+<li>Improve query performance when writing bucketed tables.</li>
+</ul>
+</div>
+<div class="section" id="mongodb-connector-changes">
+<h2>MongoDB Connector Changes</h2>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">mongodb.read-preference-tags</span></code> configuration property to configure mongodb read preference tags.
+Tag sets are separated by an ampersand, and each tag set is specified as a comma-separated list of colon-separated key-value pairs.
+For example, <code class="docutils literal"><span class="pre">mongodb.read-preference-tags=dc:east,use:reporting&amp;use:reporting</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="jdbc-driver-changes">
+<h2>JDBC Driver Changes</h2>
+<ul class="simple">
+<li>Fix incorrect precision and column display size in <code class="docutils literal"><span class="pre">ResultSetMetaData</span></code> for <code class="docutils literal"><span class="pre">CHAR</span></code> and <code class="docutils literal"><span class="pre">VARCHAR</span></code> columns.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h2>Verifier Changes</h2>
+<ul class="simple">
+<li>Fix an issue where Verifier would always mark floating point columns as mismatched if either the control checksum or test checksum was 0 while the other was close to 0.
+Add configuration property <code class="docutils literal"><span class="pre">absolute-error-margin</span></code> to configure this threshold.</li>
+<li>Fix error messages for floating point column mismatches.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">failure-resolver.enabled</span></code> to allow automatic failure resolution be disabled.</li>
+<li>Add control and test checksum query IDs to Verifier output event.</li>
+<li>Improve Presto query retries by allowing Verifier to recognize <code class="docutils literal"><span class="pre">JdbcErrorCode</span></code> and <code class="docutils literal"><span class="pre">ThriftErrorCode</span></code>,
+and by marking <code class="docutils literal"><span class="pre">ABANDONED_TASK</span></code>, <code class="docutils literal"><span class="pre">HIVE_WRITER_OPEN_ERROR</span></code>, <code class="docutils literal"><span class="pre">JDBC_ERROR</span></code>, and <code class="docutils literal"><span class="pre">THRIFT_SERVICE_CONNECTION_ERROR</span></code> as retryable errors.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Move <code class="docutils literal"><span class="pre">FunctionMetadata</span></code> to SPI.</li>
+<li>Add <code class="docutils literal"><span class="pre">FunctionMetadataManager</span></code> and <code class="docutils literal"><span class="pre">StandardFunctionResolution</span></code> in <code class="docutils literal"><span class="pre">ConnectorContext</span></code>.
+The two interfaces allow connectors to obtain the metadata of a Presto system function as well as to resolve standard functions, such as add, minus, and, or, etc.</li>
+<li>Remove <code class="docutils literal"><span class="pre">distributedPlanningTime</span></code> from <code class="docutils literal"><span class="pre">QueryStatistics</span></code></li>
+<li>Remove redundant offset parameter in <code class="docutils literal"><span class="pre">Block#getByte</span></code>, <code class="docutils literal"><span class="pre">Block#getShort</span></code>, and <code class="docutils literal"><span class="pre">Block#getInt</span></code>.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.221.html">13.21. Release 0.221</a>
+    </span>
+    <span class="right">
+        <a href="release-0.219.html">13.23. Release 0.219</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

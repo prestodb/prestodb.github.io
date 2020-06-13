@@ -1,0 +1,135 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.17. Release 0.225 &#8212; Presto 0.236 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.236',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.18. Release 0.224" href="release-0.224.html" />
+    <link rel="prev" title="13.16. Release 0.226" href="release-0.226.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.236 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.17. Release 0.225</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.226.html">13.16. Release 0.226</a>
+    </span>
+    <span class="right">
+        <a href="release-0.224.html">13.18. Release 0.224</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-225">
+<h1>13.17. Release 0.225</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix under-reporting of output data size from a fragment. (<a class="reference external" href="https://github.com/prestodb/presto/issues/11770">#11770</a>)</li>
+<li>Fix a bug where spatial joins would cause workers to run out of memory and crash. (<a class="reference external" href="https://github.com/prestodb/presto/pull/13251">#13251</a>)</li>
+<li>Fix leak in operator peak memory computations. (<a class="reference external" href="https://github.com/prestodb/presto/issues/13210">#13210</a>)</li>
+<li>Allow overriding session zone sent by clients. (<a class="reference external" href="https://github.com/prestodb/presto/issues/13140">#13140</a>)</li>
+<li>Throw an exception when a spatial partition is made with 0 rows.</li>
+<li>Add <code class="docutils literal"><span class="pre">TableStatistics</span></code> field containing statistics estimates for input tables to the <code class="docutils literal"><span class="pre">QueryInputMetadata</span></code> in <code class="docutils literal"><span class="pre">QueryCompletedEvent</span></code> for join queries. (<a class="reference external" href="https://github.com/prestodb/presto/pull/12808">#12808</a>)</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">experimental.max-total-running-task-count</span></code> and <code class="docutils literal"><span class="pre">experimental.max-query-running-task-count</span></code>
+to limit number of running tasks for all queries and a single query, respectively. Query will be killed only if both conditions are violated. (<a class="reference external" href="https://github.com/prestodb/presto/pull/13228">#13228</a>)</li>
+</ul>
+</div>
+<div class="section" id="jdbc-changes">
+<h2>JDBC Changes</h2>
+<ul class="simple">
+<li>Match schema and table names case insensitively. This behavior can be enabled by setting the <code class="docutils literal"><span class="pre">case-insensitive-name-matching</span></code> catalog configuration option to true.</li>
+</ul>
+</div>
+<div class="section" id="web-ui-changes">
+<h2>Web UI Changes</h2>
+<ul class="simple">
+<li>Display tasks per stage on the query page.</li>
+</ul>
+</div>
+<div class="section" id="elasticsearch-connector-changes">
+<h2>Elasticsearch Connector Changes</h2>
+<ul class="simple">
+<li>Fix and support nested fields in Elasticsearch Connector. (<a class="reference external" href="https://github.com/prestodb/presto/issues/12642">#12642</a>)</li>
+</ul>
+</div>
+<div class="section" id="hive-changes">
+<h2>Hive Changes</h2>
+<ul class="simple">
+<li>Improve performance of file reads on S3. (<a class="reference external" href="https://github.com/prestodb/presto/pull/13222">#13222</a>)</li>
+<li>Add ability to use JSON key file to access Google Cloud Storage. The file path can be specified using the configuration property <code class="docutils literal"><span class="pre">hive.gcs.json-key-file-path=/path/to/gcs_keyfile.json</span></code>.</li>
+<li>Add ability to use client-provided OAuth token to access Google Cloud Storage. This can be configured using the configuration property <code class="docutils literal"><span class="pre">hive.gcs.use-access-token=false</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="raptor-changes">
+<h2>Raptor Changes</h2>
+<ul class="simple">
+<li>Return an error when creating tables with unsupported types like ROW type. (<a class="reference external" href="https://github.com/prestodb/presto/pull/13209">#13209</a>)</li>
+<li>Remove legacy ORC writer. Configuration property <code class="docutils literal"><span class="pre">storage.orc.optimized-writer-stage</span></code> is enabled by default. Option <code class="docutils literal"><span class="pre">DISABLED</span></code> is removed.</li>
+<li>Add a new procedure <code class="docutils literal"><span class="pre">trigger_bucket_balancer</span></code> to trigger bucket balancing job.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">TableHandle</span></code> parameter to <code class="docutils literal"><span class="pre">ConnectorPageSourceProvider#createPageSource</span></code> method. This gives connector access to <code class="docutils literal"><span class="pre">ConnectorTableLayoutHandle</span></code> during execution.</li>
+<li>Add <code class="docutils literal"><span class="pre">columnHandles</span></code> parameter to <code class="docutils literal"><span class="pre">ConnectorMetadata.getTableStatistics</span></code> method. The new parameter allows connectors to prune statistics to the
+desired list of columns and subfields and fixes compatibility issue between subfield pruning and CBO. (<a class="reference external" href="https://github.com/prestodb/presto/issues/13082">#13082</a>)</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h2>Verifier Changes</h2>
+<ul class="simple">
+<li>Add support for overriding session properties for all queries in a suite.</li>
+<li>Add cluster type and retryable information for <code class="docutils literal"><span class="pre">QueryFailure</span></code>.</li>
+<li>Add final query failure information to Verifier output event.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.226.html">13.16. Release 0.226</a>
+    </span>
+    <span class="right">
+        <a href="release-0.224.html">13.18. Release 0.224</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

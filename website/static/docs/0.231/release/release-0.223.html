@@ -1,0 +1,97 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>12.9. Release 0.223 &#8212; Presto 0.231 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.231',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.10. Release 0.222" href="release-0.222.html" />
+    <link rel="prev" title="12.8. Release 0.224" href="release-0.224.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.231 Documentation</span></a></h1>
+    <h2 class="heading"><span>12.9. Release 0.223</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.224.html">12.8. Release 0.224</a>
+    </span>
+    <span class="right">
+        <a href="release-0.222.html">12.10. Release 0.222</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-223">
+<h1>12.9. Release 0.223</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix a bug where a connector may not optimize query plan if the corresponding
+plugin is installed after the server is started.</li>
+<li>Fix incorrect optimizations that might remove necessary CAST (<a class="reference external" href="https://github.com/prestodb/presto/pull/13117">#13117</a>).</li>
+<li>Improve coordinator CPU utilization by introducing an option to use long
+polling for task information update.
+<code class="docutils literal"><span class="pre">experimental.task.info-update-refresh-max-wait</span></code> is the configuration
+property to enable this.</li>
+<li>Add support for multibyte characters in <a class="reference internal" href="../functions/datetime.html#date_format" title="date_format"><code class="xref py py-func docutils literal"><span class="pre">date_format()</span></code></a>.</li>
+</ul>
+</div>
+<div class="section" id="web-ui-changes">
+<h2>Web UI Changes</h2>
+<ul class="simple">
+<li>Fix splits timeline view.</li>
+</ul>
+</div>
+<div class="section" id="kafka-changes">
+<h2>Kafka Changes</h2>
+<ul class="simple">
+<li>Update Kafka version from 0.8.2.2 to 1.1.1.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.224.html">12.8. Release 0.224</a>
+    </span>
+    <span class="right">
+        <a href="release-0.222.html">12.10. Release 0.222</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

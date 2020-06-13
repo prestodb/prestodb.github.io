@@ -1,0 +1,152 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>12.20. Release 0.218 &#8212; Presto 0.234.2 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.234.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="12.21. Release 0.217" href="release-0.217.html" />
+    <link rel="prev" title="12.19. Release 0.219" href="release-0.219.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.234.2 Documentation</span></a></h1>
+    <h2 class="heading"><span>12.20. Release 0.218</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.219.html">12.19. Release 0.219</a>
+    </span>
+    <span class="right">
+        <a href="release-0.217.html">12.21. Release 0.217</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-218">
+<h1>12.20. Release 0.218</h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This release has the potential to produce incorrect results for three way joins where one of the joins is a <code class="docutils literal"><span class="pre">FULL</span> <span class="pre">OUTER</span> <span class="pre">JOIN</span></code> and one subquery
+of the <code class="docutils literal"><span class="pre">FULL</span> <span class="pre">OUTER</span> <span class="pre">JOIN</span></code> has a <code class="docutils literal"><span class="pre">GROUP</span> <span class="pre">BY</span></code> on the join key and some expression that could be evaluated to a constant. For details, please
+refer to <a class="reference external" href="https://github.com/prestodb/presto/issues/12577">#12577</a>.</p>
+</div>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix failures in regular expression functions for certain inputs where the pattern contains word boundaries (e.g. <code class="docutils literal"><span class="pre">\b</span></code>).</li>
+<li>Fix an issue that may cause a crash when using plugins that provide an event listener. (<a class="reference external" href="https://github.com/prestodb/presto/issues/11951">#11951</a>)</li>
+<li>Fix a memory leak that occurs when a query fails with a semantic or permission error.</li>
+<li>Improve performance for queries with <code class="docutils literal"><span class="pre">FULL</span> <span class="pre">OUTER</span> <span class="pre">JOIN</span></code> where join keys have the :func:<code class="docutils literal"><span class="pre">COALESCE</span></code> function applied.</li>
+<li>Improve cost based optimizer to make decisions based on estimated query peak memory.</li>
+<li>Improve cost based optimizer for certain queries using <code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code>.</li>
+<li>Improve performance for queries with an <code class="docutils literal"><span class="pre">OUTER</span> <span class="pre">JOIN</span></code> followed by <code class="docutils literal"><span class="pre">LIMIT</span></code>.</li>
+<li>Improve the error message for <code class="docutils literal"><span class="pre">INSERT</span></code> queries where columns do not match the target table.</li>
+<li>Add support for using binary encoding for coordinator-to-worker communication.
+This feature is experimental, and it can be enabled with the <code class="docutils literal"><span class="pre">experimental.internal-communication.binary-transport-enabled</span></code> configuration property.
+Enabling this feature may help with coordinator scalability and reduces network, CPU, and memory usage on the coordinator.</li>
+<li>Add <a class="reference internal" href="../functions/geospatial.html#ST_Area" title="ST_Area"><code class="xref py py-func docutils literal"><span class="pre">ST_Area()</span></code></a> for the <code class="docutils literal"><span class="pre">SphericalGeography</span></code> type.</li>
+<li>Add a system table <code class="docutils literal"><span class="pre">system.metadata.analyze_properties</span></code> that shows the properties supported by the <code class="docutils literal"><span class="pre">ANALYZE</span></code> statement.</li>
+<li>Add support for resolving key conflicts when using <a class="reference internal" href="../functions/string.html#split_to_map" title="split_to_map"><code class="xref py py-func docutils literal"><span class="pre">split_to_map()</span></code></a>.</li>
+<li>Add support for role management (see <a class="reference internal" href="../sql/create-role.html"><span class="doc">CREATE ROLE</span></a>). Client library version 0.218 is required to use <a class="reference internal" href="../sql/set-role.html"><span class="doc">SET ROLE</span></a>. (<a class="reference external" href="https://github.com/prestodb/presto/issues/11645">#11645</a>)</li>
+<li>Add support for processing JSON protocol messages by generating bytecode on the coordinator.
+This feature is experimental, and it can be enabled with the <code class="docutils literal"><span class="pre">experimental.json-serde-codegen-enabled</span></code> configuration property.</li>
+</ul>
+</div>
+<div class="section" id="security-changes">
+<h2>Security Changes</h2>
+<ul class="simple">
+<li>Change principal hostname to be configurable in Kerberos authenticator.</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes</h2>
+<ul class="simple">
+<li>Improve Parquet reader performance by reducing redundant footer reads.</li>
+<li>Add support for skipping Glacier files in Amazon S3. This feature can be enabled by setting the <code class="docutils literal"><span class="pre">hive.s3.skip-glacier-objects</span></code> configuration property.</li>
+<li>Add support for Parquet files written with Parquet v1.9+ that use <code class="docutils literal"><span class="pre">DELTA_BINARY_PACKED</span></code> encoding with the <code class="docutils literal"><span class="pre">INT64</span></code> type.</li>
+<li>Add support for dictionary filtering for Parquet v2 files that use <code class="docutils literal"><span class="pre">RLE_DICTIONARY</span></code> encoding.</li>
+</ul>
+</div>
+<div class="section" id="elasticsearch-connector-changes">
+<h2>Elasticsearch Connector Changes</h2>
+<ul class="simple">
+<li>Add support for Search Guard in Elasticsearch connector. Please refer to <a class="reference internal" href="../connector/elasticsearch.html"><span class="doc">Elasticsearch Connector</span></a> for
+the relevant configuration properties.</li>
+</ul>
+</div>
+<div class="section" id="mysql-connector-changes">
+<h2>MySQL Connector Changes</h2>
+<ul class="simple">
+<li>Allow creating or renaming tables, and adding, renaming, or dropping columns.</li>
+</ul>
+</div>
+<div class="section" id="postgresql-connector-changes">
+<h2>PostgreSQL Connector Changes</h2>
+<ul class="simple">
+<li>Allow creating or renaming tables, and adding, renaming, or dropping columns.</li>
+</ul>
+</div>
+<div class="section" id="redshift-connector-changes">
+<h2>Redshift Connector Changes</h2>
+<ul class="simple">
+<li>Allow creating or renaming tables, and adding, renaming, or dropping columns.</li>
+</ul>
+</div>
+<div class="section" id="sql-server-connector-changes">
+<h2>SQL Server Connector Changes</h2>
+<ul class="simple">
+<li>Allow creating or renaming tables, and adding, renaming, or dropping columns.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">Connector.getCapabilities()</span></code> to allow connectors to individually opt-in to connector-specific functionality.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.219.html">12.19. Release 0.219</a>
+    </span>
+    <span class="right">
+        <a href="release-0.217.html">12.21. Release 0.217</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
