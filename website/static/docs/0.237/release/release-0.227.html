@@ -1,0 +1,136 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.16. Release 0.227 &#8212; Presto 0.237 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.237',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.17. Release 0.226" href="release-0.226.html" />
+    <link rel="prev" title="13.15. Release 0.228" href="release-0.228.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.237 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.16. Release 0.227</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.228.html">13.15. Release 0.228</a>
+    </span>
+    <span class="right">
+        <a href="release-0.226.html">13.17. Release 0.226</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-227">
+<h1>13.16. Release 0.227</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix a bug where index joins would fail with the error <code class="docutils literal"><span class="pre">driver</span> <span class="pre">should</span> <span class="pre">never</span> <span class="pre">block</span></code>.
+Queries will now fail if the index is unable to load within the time specified by
+the <code class="docutils literal"><span class="pre">index-loader-timeout</span></code> configuration property and the <code class="docutils literal"><span class="pre">index_loader_timeout</span></code>
+session property.</li>
+<li>Fix a bug that could cause <code class="docutils literal"><span class="pre">NullPointerException</span></code> in spatial join with geometry
+collections on the build side.</li>
+<li>Improve performance for queries with <code class="docutils literal"><span class="pre">FULL</span> <span class="pre">OUTER</span> <span class="pre">JOIN</span></code> where join keys have the
+<code class="docutils literal"><span class="pre">COALESCE</span></code> function applied.</li>
+<li>Improve performance for <code class="docutils literal"><span class="pre">UNNEST</span></code> queries.</li>
+<li>Improve performance of repartitioning data between stages.  The optimization can be
+enabled by the <code class="docutils literal"><span class="pre">optimized_repartitioning</span></code> session property or the
+<code class="docutils literal"><span class="pre">experimental.optimized-repartitioning</span></code> configuration property.</li>
+<li>Add spatial join (broadcast and partitioned) support for <a class="reference internal" href="../functions/geospatial.html#ST_Equals" title="ST_Equals"><code class="xref py py-func docutils literal"><span class="pre">ST_Equals()</span></code></a>,
+<a class="reference internal" href="../functions/geospatial.html#ST_Overlaps" title="ST_Overlaps"><code class="xref py py-func docutils literal"><span class="pre">ST_Overlaps()</span></code></a>, <a class="reference internal" href="../functions/geospatial.html#ST_Crosses" title="ST_Crosses"><code class="xref py py-func docutils literal"><span class="pre">ST_Crosses()</span></code></a>, and <a class="reference internal" href="../functions/geospatial.html#ST_Touches" title="ST_Touches"><code class="xref py py-func docutils literal"><span class="pre">ST_Touches()</span></code></a>.</li>
+<li>Add <code class="docutils literal"><span class="pre">task_partitioned_writer_count</span></code> session property to allow setting the number
+of concurrent writers for partitioned (bucketed) writes.</li>
+<li>Add <code class="docutils literal"><span class="pre">IPPREFIX</span></code> type and <a class="reference internal" href="../functions/ip.html#ip_prefix" title="ip_prefix"><code class="xref py py-func docutils literal"><span class="pre">ip_prefix()</span></code></a> function.</li>
+<li>Add <a class="reference internal" href="../functions/aggregate.html#differential_entropy" title="differential_entropy"><code class="xref py py-func docutils literal"><span class="pre">differential_entropy()</span></code></a> functions to compute differential entropy.</li>
+<li>Remove syntax support for <code class="docutils literal"><span class="pre">SET</span> <span class="pre">PATH</span></code> and <code class="docutils literal"><span class="pre">CURRENT_PATH</span></code>. The path information was
+never used by Presto.</li>
+</ul>
+</div>
+<div class="section" id="hive-changes">
+<h2>Hive Changes</h2>
+<ul class="simple">
+<li>Fix a bug that might lead to corruption when writing sorted table in the recoverable
+grouped execution mode.</li>
+<li>Fix ORC stripe skipping when using bloom filter.</li>
+<li>Improve the CPU load on coordinator by reducing the cost of serializing <code class="docutils literal"><span class="pre">HiveSplit</span></code>.</li>
+<li>Improve GC pressure from Parquet reader by constraining the maximum column read size.
+This can be configured by the <code class="docutils literal"><span class="pre">parquet_max_read_block_size</span></code> session property or the
+<code class="docutils literal"><span class="pre">hive.parquet.max-read-block-size</span></code> configuration property.</li>
+<li>Add support for sub-field pruning when reading Parquet files, so that only necessary
+sub-fields are extracted from struct columns.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">hive.s3-file-system-type=HADOOP_DEFAULT</span></code> to allow
+users to switch different Hadoop file system implementations for <code class="docutils literal"><span class="pre">s3://</span></code> addresses.
+The corresponding Hadoop File system implementation should be specified in <code class="docutils literal"><span class="pre">core-site.xml</span></code></li>
+</ul>
+</div>
+<div class="section" id="raptor-changes">
+<h2>Raptor Changes</h2>
+<ul class="simple">
+<li>Fix memory leak in file descriptor during shard compaction. The regression was introduced in 0.219.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h2>Verifier Changes</h2>
+<ul class="simple">
+<li>Add support for auto-resolving query failures with <code class="docutils literal"><span class="pre">HIVE_TOO_MANY_OPEN_PARTITIONS</span></code> error.</li>
+<li>Add support to perform additional determinism analysis for queries with <code class="docutils literal"><span class="pre">LIMIT</span></code> clause.</li>
+<li>Add detailed determinism analysis result to <code class="docutils literal"><span class="pre">VerifierOutputEvent</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Move <code class="docutils literal"><span class="pre">AggregationNode</span></code> to SPI. Connectors can now push down aggregation to table scan.</li>
+<li>Move <code class="docutils literal"><span class="pre">ProjectNode</span></code> to SPI. Connectors can now push down projection to table scan.</li>
+<li>Rename <code class="docutils literal"><span class="pre">Block#getObject</span></code> to <code class="docutils literal"><span class="pre">Block#getBlock</span></code> and remove unnecessary <code class="docutils literal"><span class="pre">clazz</span></code> parameter.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.228.html">13.15. Release 0.228</a>
+    </span>
+    <span class="right">
+        <a href="release-0.226.html">13.17. Release 0.226</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

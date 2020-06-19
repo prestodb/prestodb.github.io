@@ -1,0 +1,135 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.4. Release 0.235 &#8212; Presto 0.237 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.237',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.5. Release 0.234.3" href="release-0.234.3.html" />
+    <link rel="prev" title="13.3. Release 0.235.1" href="release-0.235.1.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.237 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.4. Release 0.235</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.235.1.html">13.3. Release 0.235.1</a>
+    </span>
+    <span class="right">
+        <a href="release-0.234.3.html">13.5. Release 0.234.3</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-235">
+<h1>13.4. Release 0.235</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix named queries where its output does not match its column list (<a class="reference external" href="https://github.com/prestodb/presto/issues/14333">#14333</a>).</li>
+<li>Fix issue where queries with large filters in the where clause would cause excessive memory usage.  Now such queries will fail quickly with <code class="docutils literal"><span class="pre">GENERATED_BYTECODE_TOO_LARGE</span></code>.</li>
+<li>Improve performance of <code class="docutils literal"><span class="pre">UNNEST</span></code>.</li>
+<li>Improve <code class="docutils literal"><span class="pre">CREATE</span> <span class="pre">FUNCTION</span></code> to allow parameter type list and return type to have a length up to 30k characters.</li>
+<li>Add optimization for filters and projections to extract common subexpressions and evaluate them only once.  This optimization can be turned off by the session property <code class="docutils literal"><span class="pre">optimize_common_sub_expressions</span></code>.</li>
+<li>Add support for <code class="docutils literal"><span class="pre">SHOW</span> <span class="pre">CREATE</span> <span class="pre">FUNCTION</span></code>.</li>
+<li>Add soft memory limit configuration properties. Soft memory limits are default memory limits given to each query that can be overridden using session properties up to the hard limit set by the existing configuration properties. Available soft memory limit configuration properties are <code class="docutils literal"><span class="pre">query.soft-max-memory-per-node</span></code>, <code class="docutils literal"><span class="pre">query.soft-max-total-memory-per-node</span></code>, <code class="docutils literal"><span class="pre">query.soft-max-total-memory</span></code>, and <code class="docutils literal"><span class="pre">query.soft-max-memory</span></code>.</li>
+<li>Add check to disallow invoking SQL functions in SQL function body.</li>
+<li>Add support for limiting the total number of buffers per optimized repartitioning operator. The limit can be set by the configuration property <code class="docutils literal"><span class="pre">driver.max-page-partitioning-buffer-count</span></code>.</li>
+<li>Add peak task total memory to query stats.</li>
+<li>Add <a class="reference internal" href="../functions/qdigest.html#scale_qdigest" title="scale_qdigest"><code class="xref py py-func docutils literal"><span class="pre">scale_qdigest()</span></code></a> function to scale a <code class="docutils literal"><span class="pre">qdigest</span></code> to a new weight.</li>
+<li>Add <a class="reference internal" href="../functions/internationalization.html#myanmar_font_encoding" title="myanmar_font_encoding"><code class="xref py py-func docutils literal"><span class="pre">myanmar_font_encoding()</span></code></a> and <a class="reference internal" href="../functions/internationalization.html#myanmar_normalize_unicode" title="myanmar_normalize_unicode"><code class="xref py py-func docutils literal"><span class="pre">myanmar_normalize_unicode()</span></code></a> to support working with Burmese text</li>
+<li>Add support for <a class="reference internal" href="../functions/geospatial.html#ST_AsText" title="ST_AsText"><code class="xref py py-func docutils literal"><span class="pre">ST_AsText()</span></code></a> to accept Spherical Geographies.</li>
+<li>Add support for <a class="reference internal" href="../functions/geospatial.html#ST_Centroid" title="ST_Centroid"><code class="xref py py-func docutils literal"><span class="pre">ST_Centroid()</span></code></a> to accept Spherical Geography Points and MultiPoints.</li>
+</ul>
+</div>
+<div class="section" id="pinot-connector-changes">
+<h2>Pinot Connector Changes</h2>
+<ul class="simple">
+<li>Add support for mapping Pinot <code class="docutils literal"><span class="pre">BYTES</span></code> data type to Presto <code class="docutils literal"><span class="pre">VARBINARY</span></code> type.</li>
+<li>Add support for mapping Pinot time fields with days since epoch value to Presto <code class="docutils literal"><span class="pre">DATE</span></code> type via the system property <code class="docutils literal"><span class="pre">pinot.infer-date-type-in-schema</span></code>.</li>
+<li>Add support for mapping Pinot time fields with milliseconds since epoch value to Presto <code class="docutils literal"><span class="pre">TIMESTAMP</span></code> type via the system prpoerty <code class="docutils literal"><span class="pre">pinot.infer-timestamp-type-in-schema</span></code>.</li>
+<li>Add Pinot Field type in to column comment field shown as <code class="docutils literal"><span class="pre">DIMENSION</span></code>, <code class="docutils literal"><span class="pre">METRIC</span></code>, <code class="docutils literal"><span class="pre">TIME</span></code>, <code class="docutils literal"><span class="pre">DATETIME</span></code>, to provide more information.</li>
+<li>Add support for pushing down distinct count query to Pinot on a best-effort basis.</li>
+<li>Add support for new Pinot Routing Table APIs.</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes</h2>
+<ul class="simple">
+<li>Fix a bug in Hive split calculation which affects Parquet reader in few corner cases.</li>
+<li>Fix ZSTD compression issue with zero row file for missing buckets.</li>
+<li>Fix AWS client metric reporting when using S3 select.</li>
+<li>Add AWS client retry pause time metrics to <code class="docutils literal"><span class="pre">PrestoS3FileSystemStats</span></code>.</li>
+<li>Add table property <code class="docutils literal"><span class="pre">preferred_ordering_columns</span></code> to support writing sorted files for unbucketed table.</li>
+<li>Add native Parquet Writer for Presto.</li>
+<li>Add support for impersonation access by using HMS delegation token.</li>
+<li>Add support for multi-HMS instances load balancing and breakdown metrics by HMS hosts.</li>
+<li>Add support in file status cache to cache all tables. This could be enabled by setting the configuration property <code class="docutils literal"><span class="pre">hive.file-status-cache-tables</span></code> to <code class="docutils literal"><span class="pre">*</span></code>.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">hive.orc-compression-codec</span></code> to override <code class="docutils literal"><span class="pre">hive.compression-codec</span></code> for ORC and DWRF formats. If specified, ORC and DWRF files are compressed using this codec. RC, Parquet, and other files are compressed using hive.compression-codec.</li>
+</ul>
+</div>
+<div class="section" id="druid-connector-changes">
+<h2>Druid Connector Changes</h2>
+<ul class="simple">
+<li>Fix druid connector segment scan.</li>
+<li>Fix an issue where distinct is not respected in count aggregation.</li>
+<li>Add support for query processing pushdown via the <code class="docutils literal"><span class="pre">druid.compute-pushdown-enabled</span></code> configuration property.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h2>Verifier Changes</h2>
+<ul class="simple">
+<li>Fix an issue where resubmitted queries always fail.</li>
+<li>Add support for verifying <code class="docutils literal"><span class="pre">SELECT</span></code> queries that produce columns of <code class="docutils literal"><span class="pre">TIME</span></code>, <code class="docutils literal"><span class="pre">TIMESTAMP</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code>, or <code class="docutils literal"><span class="pre">DECIMAL</span></code> types, or columns of structured types with those types.</li>
+<li>Add support for specifying table properties override for temporary Verifier tables, through configuration property <code class="docutils literal"><span class="pre">control.table-properties</span></code> and <code class="docutils literal"><span class="pre">test.table-properties</span></code>.</li>
+<li>Add support to output verification results for failures due to Verifier internal errors.</li>
+<li>Add support to skip teardown queries in case control and test queries succeeds but verification fails. This can be enabled by configuration property <code class="docutils literal"><span class="pre">smart-teardown</span></code>, which replaces <code class="docutils literal"><span class="pre">run-teardown-on-result-mismatch</span></code>.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.235.1.html">13.3. Release 0.235.1</a>
+    </span>
+    <span class="right">
+        <a href="release-0.234.3.html">13.5. Release 0.234.3</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
