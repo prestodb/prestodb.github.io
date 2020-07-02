@@ -1,0 +1,145 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.23. Release 0.219 &#8212; Presto 0.236 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.236',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.24. Release 0.218" href="release-0.218.html" />
+    <link rel="prev" title="13.22. Release 0.220" href="release-0.220.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.236 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.23. Release 0.219</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.220.html">13.22. Release 0.220</a>
+    </span>
+    <span class="right">
+        <a href="release-0.218.html">13.24. Release 0.218</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-219">
+<h1>13.23. Release 0.219</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix a correctness bug for queries with a <code class="docutils literal"><span class="pre">LIMIT</span></code> on top of a <code class="docutils literal"><span class="pre">FULL</span> <span class="pre">OUTER</span> <span class="pre">JOIN</span></code>.</li>
+<li>Fix a correctness bug in how word boundaries are handled for regular expression functions when using the Joni regex engine.</li>
+<li>Fix query failures caused by Parquet predicate pushdown for <code class="docutils literal"><span class="pre">SMALLINT</span></code> and <code class="docutils literal"><span class="pre">TINYINT</span></code> types.</li>
+<li>Fix query failures when view columns were fully qualified with catalog and/or schema.</li>
+<li>Fix query failures when creating and reading an unpartitioned Hive table within the same transaction.</li>
+<li>Fix an issue that would disable a performance optimization if two tables with mismatching
+but compatible bucket counts are joined and one of the tables has a <code class="docutils literal"><span class="pre">$bucket</span></code> filter.</li>
+<li>Fix an issue that may cause procedure calls to fail if no queries were run after the server started up.</li>
+<li>Fix an issue where the properties supported by the <code class="docutils literal"><span class="pre">ANALYZE</span></code> statement for a given connector would remain in the <code class="docutils literal"><span class="pre">system.metadata.analyze_properties</span></code> table
+even after the connector was removed.</li>
+<li>Add <a class="reference internal" href="../functions/geospatial.html#ST_Length" title="ST_Length"><code class="xref py py-func docutils literal"><span class="pre">ST_Length()</span></code></a> for <code class="docutils literal"><span class="pre">SphericalGeography</span></code> type..</li>
+<li>Add <code class="docutils literal"><span class="pre">view_owner</span></code> column to the <code class="docutils literal"><span class="pre">information_schema.views</span></code> system table.</li>
+<li>Add a <code class="docutils literal"><span class="pre">JSON</span></code> version of the query plan to <code class="docutils literal"><span class="pre">QueryCompletedEvent</span></code>.</li>
+<li>Add support for creating warnings during parsing.</li>
+<li>Add a warning for using the <code class="docutils literal"><span class="pre">current_role</span></code> reserved word as an identifier.</li>
+<li>Add support for using the empty string as a delimiter for the <a class="reference internal" href="../functions/string.html#split" title="split"><code class="xref py py-func docutils literal"><span class="pre">split()</span></code></a> function.
+When an empty string is used as the delimiter, the string will be split into individual characters.</li>
+</ul>
+</div>
+<div class="section" id="raptor-changes">
+<h2>Raptor Changes</h2>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">raptor.minimum-node-count</span></code> configuration property. If the number of nodes in a cluster is less than the configured value,
+data recovery and reassignment will not run.</li>
+<li>Add <code class="docutils literal"><span class="pre">raptor.startup-grace-period</span></code> configuration property to specify the delay for the initial bucket balancer run after the coordinator startup.</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes</h2>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">hive.ignore-table-bucketing</span></code> configuration property and <code class="docutils literal"><span class="pre">ignore_table_bucketing</span></code> session property.
+When set to true, these properties enable reading from partitions whose bucketing scheme does not match the table bucketing scheme.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h2>Verifier Changes</h2>
+<ul class="simple">
+<li>Fix an issue where the determinism check for <code class="docutils literal"><span class="pre">INSERT</span></code> queries were not run when there was a result mismatch.</li>
+<li>Fix an issue where the checksum query was treated as the main query, and the main query was treated as part of the setup queries
+for <code class="docutils literal"><span class="pre">INSERT</span></code> query verification.</li>
+<li>Fix query timeout enforcement by replacing local timer with the <code class="docutils literal"><span class="pre">query_max_execution_time</span></code> session property.</li>
+<li>Improve result comparison for floating point columns by using relative errors.
+Replace configuration property <code class="docutils literal"><span class="pre">expected-double-precision</span></code> with <code class="docutils literal"><span class="pre">relative-error-margin</span></code>.</li>
+<li>Improve result comparison for orderable array columns by applying <a class="reference internal" href="../functions/array.html#array_sort" title="array_sort"><code class="xref py py-func docutils literal"><span class="pre">array_sort()</span></code></a> before <a class="reference internal" href="../functions/aggregate.html#checksum" title="checksum"><code class="xref py py-func docutils literal"><span class="pre">checksum()</span></code></a>.</li>
+<li>Improve result comparison for <code class="docutils literal"><span class="pre">SELECT</span></code> queries by rewriting <code class="docutils literal"><span class="pre">SELECT</span></code> queries as <code class="docutils literal"><span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">AS</span></code> and using checksum queries to verify the results.
+This eliminates the row count limit for <code class="docutils literal"><span class="pre">SELECT</span></code> queries.</li>
+<li>Reuse initial control query results for the determinism check. This reduces the maximum number of control query runs and eliminates the test query reruns.</li>
+<li>Add support for retrying transient query failures using configuration properties <code class="docutils literal"><span class="pre">presto.max-attempts</span></code>, <code class="docutils literal"><span class="pre">presto.min-backoff-delay</span></code>,
+<code class="docutils literal"><span class="pre">presto.max-backoff-delay</span></code>, <code class="docutils literal"><span class="pre">presto.backoff-scale-factor</span></code>. Similar configurations prefixed with <code class="docutils literal"><span class="pre">cluster-connection</span></code> instead of <code class="docutils literal"><span class="pre">presto</span></code>
+are introduced for retrying transient network failures when communicating with the coordinator. Intermediate failures are recorded and emitted in the output.</li>
+<li>Add support for automatically resolving certain kinds of failures including exceeding the global memory limit and exceeding time limit.</li>
+<li>Add configuration properties <code class="docutils literal"><span class="pre">metadata-timeout</span></code> and <code class="docutils literal"><span class="pre">checksum-timeout</span></code> to set the timeouts for metadata queries
+(i.e., describe queries that read table schema) and checksum queries.</li>
+<li>Add <code class="docutils literal"><span class="pre">source-query.table-name</span></code> configuration property to specify the name of the MySQL table from which the verifier queries will loaded.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">human-readable.log-file</span></code> to allow human-readable verification results to be logged into the specified file instead of <code class="docutils literal"><span class="pre">stdout</span></code>.</li>
+<li>Rename configuration properties <code class="docutils literal"><span class="pre">query-database</span></code> to <code class="docutils literal"><span class="pre">source-query.database</span></code>, <code class="docutils literal"><span class="pre">suites</span></code> to <code class="docutils literal"><span class="pre">source-query.suites</span></code>,
+<code class="docutils literal"><span class="pre">max_queries</span></code> to <code class="docutils literal"><span class="pre">source-query.max-queries-per-suite</span></code>, <code class="docutils literal"><span class="pre">event-client</span></code> to <code class="docutils literal"><span class="pre">event-clients</span></code>, <code class="docutils literal"><span class="pre">event-log-file</span></code> to <code class="docutils literal"><span class="pre">json.log-file</span></code>,
+<code class="docutils literal"><span class="pre">run-id</span></code> to <code class="docutils literal"><span class="pre">test-id</span></code>, <code class="docutils literal"><span class="pre">thread-count</span></code> to <code class="docutils literal"><span class="pre">max-concurrency</span></code>, <code class="docutils literal"><span class="pre">control-gateway</span></code> to <code class="docutils literal"><span class="pre">control.jdbc_url</span></code>, <code class="docutils literal"><span class="pre">test-gateway</span></code> to <code class="docutils literal"><span class="pre">test.jdbc_url</span></code>,
+<code class="docutils literal"><span class="pre">shadow-writes.control-table-prefix</span></code> to <code class="docutils literal"><span class="pre">control.table-prefix</span></code>, and <code class="docutils literal"><span class="pre">shadow-writes.test-table-prefix</span></code> to <code class="docutils literal"><span class="pre">test.table-prefix</span></code>.</li>
+<li>Remove configuration properties <code class="docutils literal"><span class="pre">control.query-types</span></code>, <code class="docutils literal"><span class="pre">test.query-types</span></code>, <code class="docutils literal"><span class="pre">source</span></code>, <code class="docutils literal"><span class="pre">max-row-count</span></code>, <code class="docutils literal"><span class="pre">always-report</span></code>,
+<code class="docutils literal"><span class="pre">skip-correctness-regex</span></code>, <code class="docutils literal"><span class="pre">check-correctness</span></code>, <code class="docutils literal"><span class="pre">skip-cpu-check-regex</span></code>, <code class="docutils literal"><span class="pre">check-cpu</span></code>, <code class="docutils literal"><span class="pre">explain-only</span></code>, <code class="docutils literal"><span class="pre">verbose-results-comparison</span></code>,
+<code class="docutils literal"><span class="pre">quiet</span></code>, <code class="docutils literal"><span class="pre">control-teardown-retries</span></code>, <code class="docutils literal"><span class="pre">test-teardown-retries</span></code>, and <code class="docutils literal"><span class="pre">shadow-writes</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Expose <code class="docutils literal"><span class="pre">RowExpression</span></code> to SPI, to allow passing resolved expressions to connectors.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.220.html">13.22. Release 0.220</a>
+    </span>
+    <span class="right">
+        <a href="release-0.218.html">13.24. Release 0.218</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

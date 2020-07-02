@@ -1,0 +1,176 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>7.4. Druid Connector &#8212; Presto 0.237.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.237.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7.5. Elasticsearch Connector" href="elasticsearch.html" />
+    <link rel="prev" title="7.3. Cassandra Connector" href="cassandra.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.237.1 Documentation</span></a></h1>
+    <h2 class="heading"><span>7.4. Druid Connector</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="cassandra.html">7.3. Cassandra Connector</a>
+    </span>
+    <span class="right">
+        <a href="elasticsearch.html">7.5. Elasticsearch Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="druid-connector">
+<h1>7.4. Druid Connector</h1>
+<div class="section" id="overview">
+<h2>Overview</h2>
+<p>The Druid Connector allows access to Druid data from Presto.
+This document describes how to setup the Druid Connector to run SQL queries against Druid.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is highly recommended to use Druid 0.17.0 or later.</p>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration</h2>
+<p>To configure the Druid connector, create a catalog properties file
+<code class="docutils literal"><span class="pre">etc/catalog/druid.properties</span></code> with the following contents,
+replacing the properties as appropriate:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>connector.name=druid
+druid.coordinator-url=hostname:port
+druid.broker-url=hostname:port
+druid.schema-name=schema
+druid.compute-pushdown-enabled=true
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration-properties">
+<h2>Configuration Properties</h2>
+<p>The following configuration properties are available:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Property Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">druid.coordinator-url</span></code></td>
+<td>Druid coordinator url.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">druid.broker-url</span></code></td>
+<td>Druid broker url.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">druid.schema-name</span></code></td>
+<td>Druid schema name.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">druid.compute-pushdown-enabled</span></code></td>
+<td>Whether to pushdown all query processing to Druid.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="druid-coordinator-url">
+<h3><code class="docutils literal"><span class="pre">druid.coordinator-url</span></code></h3>
+<p>Druid coordinator url, e.g. localhost:8081.</p>
+</div>
+<div class="section" id="druid-broker-url">
+<h3><code class="docutils literal"><span class="pre">druid.broker-url</span></code></h3>
+<p>Druid broker url, e.g. localhost:8082.</p>
+</div>
+<div class="section" id="druid-schema-name">
+<h3><code class="docutils literal"><span class="pre">druid.schema-name</span></code></h3>
+<p>Druid schema name.</p>
+<p>This property is optional; the default is <code class="docutils literal"><span class="pre">druid</span></code>.</p>
+</div>
+<div class="section" id="druid-compute-pushdown-enabled">
+<h3><code class="docutils literal"><span class="pre">druid.compute-pushdown-enabled</span></code></h3>
+<p>Whether to pushdown all query processing to Druid.</p>
+<p>the default is <code class="docutils literal"><span class="pre">false</span></code>.</p>
+</div>
+</div>
+<div class="section" id="data-types">
+<h2>Data Types</h2>
+<p>The data type mappings are as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="54%" />
+<col width="46%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Druid</th>
+<th class="head">Presto</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">VARCHAR</span></code></td>
+<td><code class="docutils literal"><span class="pre">VARCHAR</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">BIGINT</span></code></td>
+<td><code class="docutils literal"><span class="pre">BIGINT</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">DOUBLE</span></code></td>
+<td><code class="docutils literal"><span class="pre">DOUBLE</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">FLOAT</span></code></td>
+<td><code class="docutils literal"><span class="pre">REAL</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">TIMESTAMP</span></code></td>
+<td><code class="docutils literal"><span class="pre">TIMESTAMP</span></code></td>
+</tr>
+<tr class="row-odd"><td>(others)</td>
+<td>(unsupported)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="cassandra.html">7.3. Cassandra Connector</a>
+    </span>
+    <span class="right">
+        <a href="elasticsearch.html">7.5. Elasticsearch Connector</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

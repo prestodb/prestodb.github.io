@@ -1,0 +1,156 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.10. Release 0.233 &#8212; Presto 0.237.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.237.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.11. Release 0.232" href="release-0.232.html" />
+    <link rel="prev" title="13.9. Release 0.233.1" href="release-0.233.1.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.237.1 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.10. Release 0.233</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.233.1.html">13.9. Release 0.233.1</a>
+    </span>
+    <span class="right">
+        <a href="release-0.232.html">13.11. Release 0.232</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-233">
+<h1>13.10. Release 0.233</h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">There is a bug in this release that will cause queries with the predicate <code class="docutils literal"><span class="pre">IS</span> <span class="pre">NULL</span></code> on
+bucketed columns to produce incorrect results.</p>
+</div>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix an optimizer failure introduced in <code class="docutils literal"><span class="pre">0.229</span></code>, where a <code class="docutils literal"><span class="pre">LIKE</span></code> pattern is deduced into a constant, e.g., <code class="docutils literal"><span class="pre">col</span> <span class="pre">LIKE</span> <span class="pre">'a'</span> <span class="pre">and</span> <span class="pre">col</span> <span class="pre">=</span> <span class="pre">'b'</span></code>.</li>
+<li>Fix correctness issue in queries with joins over <code class="docutils literal"><span class="pre">UNNEST</span></code>. (<a class="reference external" href="https://github.com/prestodb/presto/issues/14257">#14257</a>).</li>
+<li>Fix <code class="docutils literal"><span class="pre">ArbitraryOutputBuffer</span></code> to avoid skewing output data distribution. (<a class="reference external" href="https://github.com/prestodb/presto/pull/14083">#14083</a>).</li>
+<li>Fix an issue where <a class="reference internal" href="../functions/aggregate.html#classification_fall_out" title="classification_fall_out"><code class="xref py py-func docutils literal"><span class="pre">classification_fall_out()</span></code></a> cannot be found.</li>
+<li>Add support for async page transport with non-blocking IO. This can be enabled by the <code class="docutils literal"><span class="pre">exchange.async-page-transport-enabled</span></code> configuration property.</li>
+<li>Add support to handle http request timeouts using multiple thread pools. This can be controlled by the <code class="docutils literal"><span class="pre">task.http-timeout-concurrency</span></code> configuration property.</li>
+<li>Add support for soft affinity scheduling, which makes the best effort to fetch the same piece of data from the same worker,
+while allowing fallback to random workers if the preferred workers are too busy to handle additional splits. (See <a class="reference internal" href="../develop/connectors.html"><span class="doc">Connectors</span></a>).</li>
+<li>Add hash functions <code class="docutils literal"><span class="pre">fnv1_32</span></code>, <code class="docutils literal"><span class="pre">fnv1_64</span></code>, <code class="docutils literal"><span class="pre">fnv1a_32</span></code>, and <code class="docutils literal"><span class="pre">fnv1a_64</span></code>.</li>
+<li>Add IP address functions <a class="reference internal" href="../functions/ip.html#ip_subnet_min" title="ip_subnet_min"><code class="xref py py-func docutils literal"><span class="pre">ip_subnet_min()</span></code></a>, <a class="reference internal" href="../functions/ip.html#ip_subnet_max" title="ip_subnet_max"><code class="xref py py-func docutils literal"><span class="pre">ip_subnet_max()</span></code></a>, <a class="reference internal" href="../functions/ip.html#ip_subnet_range" title="ip_subnet_range"><code class="xref py py-func docutils literal"><span class="pre">ip_subnet_range()</span></code></a>, and <a class="reference internal" href="../functions/ip.html#is_subnet_of" title="is_subnet_of"><code class="xref py py-func docutils literal"><span class="pre">is_subnet_of()</span></code></a>.</li>
+<li>Improve performance of <code class="docutils literal"><span class="pre">StreamingAggregationOperator</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="hive-changes">
+<h2>Hive Changes</h2>
+<ul class="simple">
+<li>Fix an issue where Presto fail to start when configuration property  <code class="docutils literal"><span class="pre">hive.s3-file-system-type</span></code> is set to <code class="docutils literal"><span class="pre">HADOOP_DEFAULT</span></code>.</li>
+<li>Add directory listing cache for Hive Connector. This can be enabled by setting configuration property <code class="docutils literal"><span class="pre">hive.file-status-cache-tables</span></code>.</li>
+<li>Add support for storing column names and types for views in the Hive metastore. Views in the Hive connector can now only use types supported by Hive.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">hive.insert-overwrite-immutable-partitions-enabled</span></code> to allow admin to set insert overwrite
+as the default insertion behavior for Hive connector.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">hive.node-selection-strategy</span></code> to choose <code class="docutils literal"><span class="pre">NodeSelectionStrategy</span></code>. When <code class="docutils literal"><span class="pre">SOFT_AFFINITY</span></code> is selected,
+scheduler will make the best effort to request the same worker to fetch the same file.</li>
+<li>Remove configuration property <code class="docutils literal"><span class="pre">hive.force-local-scheduling</span></code>. The same functionality can be achieved by setting
+<code class="docutils literal"><span class="pre">hive.node-selection-strategy</span></code> to <code class="docutils literal"><span class="pre">HARD_AFFINITY</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h2>Verifier Changes</h2>
+<ul class="simple">
+<li>Fix an issue where invalid checksum queries can be generated for certain queries containing columns of <code class="docutils literal"><span class="pre">RowType</span></code>.</li>
+<li>Fix an issue where checksum query would fail for queries containing map columns whose key or value types are arrays or rows.</li>
+<li>Fix incorrect decision for determinism analysis of queries with top-level <code class="docutils literal"><span class="pre">LIMIT</span></code> clause. (<a class="reference external" href="https://github.com/prestodb/presto/pull/14176">#14176</a>).</li>
+<li>Add checks for keys, values, and cardinality sum when validating a map column.</li>
+<li>Add support to disable individual failure resolvers (<a class="reference external" href="https://github.com/prestodb/presto/pull/14148">#14148</a>).</li>
+<li>Add support to auto-resolve control checksum query failures with <code class="docutils literal"><span class="pre">COMPILER_ERROR</span></code>, instead of skipping the verification.</li>
+<li>Add support for specifying non-deterministic catalogs by the <code class="docutils literal"><span class="pre">determinism.non-determinism-catalogs</span></code> configuration property.
+Queries explicitly referencing tables from those catalogs are treated as non-deterministic.</li>
+<li>Improve query performance during determinism analysis of queries with top-level <code class="docutils literal"><span class="pre">LIMIT</span></code> clause.</li>
+<li>Improve correctness check for floating point columns whose mean values of either the control query or the test query is closed to 0.</li>
+</ul>
+</div>
+<div class="section" id="druid-changes">
+<h2>Druid Changes</h2>
+<ul class="simple">
+<li>Add Druid Connector.</li>
+</ul>
+</div>
+<div class="section" id="geospatial-changes">
+<h2>Geospatial Changes</h2>
+<ul class="simple">
+<li>Improve <a class="reference internal" href="../functions/geospatial.html#ST_Points" title="ST_Points"><code class="xref py py-func docutils literal"><span class="pre">ST_Points()</span></code></a> to add support for major well-known spatial objects.
+<a class="reference internal" href="../functions/geospatial.html#ST_Points" title="ST_Points"><code class="xref py py-func docutils literal"><span class="pre">ST_Points()</span></code></a> now supports <code class="docutils literal"><span class="pre">POINT</span></code>, <code class="docutils literal"><span class="pre">LINESTRING</span></code>, <code class="docutils literal"><span class="pre">POLYGON</span></code>, <code class="docutils literal"><span class="pre">MULTIPOINT</span></code>, <code class="docutils literal"><span class="pre">MULTILINESTRING</span></code>, <code class="docutils literal"><span class="pre">MULTIPOLYGON</span></code> and <code class="docutils literal"><span class="pre">GEOMETRYCOLLECTION</span></code>.</li>
+<li>Improve <a class="reference internal" href="../functions/geospatial.html#ST_IsValid" title="ST_IsValid"><code class="xref py py-func docutils literal"><span class="pre">ST_IsValid()</span></code></a> and <a class="reference internal" href="../functions/geospatial.html#ST_IsSimple" title="ST_IsSimple"><code class="xref py py-func docutils literal"><span class="pre">ST_IsSimple()</span></code></a> to adhere to the ISO/OGC standards more closely.
+The two functions used to return the same result but may now be different. Users should check both functions to be sure their geometries are well-behaved.
+<a class="reference internal" href="../functions/geospatial.html#geometry_invalid_reason" title="geometry_invalid_reason"><code class="xref py py-func docutils literal"><span class="pre">geometry_invalid_reason()</span></code></a> will return different but semantically similar strings.</li>
+<li>Improve performance of <a class="reference internal" href="../functions/geospatial.html#ST_Intersection" title="ST_Intersection"><code class="xref py py-func docutils literal"><span class="pre">ST_Intersection()</span></code></a> by simply returning the geometry if it has an enclosing envelope.
+This can reduce CPU cost by up to <code class="docutils literal"><span class="pre">10^5x</span></code> for complex polygons.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Add parameter <code class="docutils literal"><span class="pre">NodeSelectionStrategy</span> <span class="pre">nodeSelectionStrategy</span></code> in method <code class="docutils literal"><span class="pre">ConnectorBucketNodeMap#createBucketNodeMap</span></code> to indicate
+which affinity strategy to use when creating a bucket node map.</li>
+<li>Add parameter <code class="docutils literal"><span class="pre">List&lt;Node&gt;</span> <span class="pre">sortedNodes</span></code> in method <code class="docutils literal"><span class="pre">ConnectorNodePartitioningProvider#getBucketNodeMap</span></code> to provide
+a sorted list of nodes from which a connector can choose to perform affinity scheduling.</li>
+<li>Add enum <code class="docutils literal"><span class="pre">NodeSelectionStrategy</span></code>. <code class="docutils literal"><span class="pre">NO_PREFERENCE</span></code> indicates data is remotely accessible from workers,
+<code class="docutils literal"><span class="pre">HARD_AFFINITY</span></code> to indicate data and workers are collocated, and <code class="docutils literal"><span class="pre">SOFT_AFFINITY</span></code> to indicate data is remotely accessible
+but scheduler will make the best effort to fetch the same piece of data from the same worker.</li>
+<li>Replace <code class="docutils literal"><span class="pre">ConnectorSplit#isRemoteAccessible</span></code> with <code class="docutils literal"><span class="pre">getNodeSelectionStrategy</span></code>.</li>
+<li>Replace <code class="docutils literal"><span class="pre">ConnectorSplit#getAddresses</span></code> with <code class="docutils literal"><span class="pre">getPreferredNodes</span></code>, to provide hints to the scheduler where to schedule splits.</li>
+<li>Replace the <code class="docutils literal"><span class="pre">SchemaTableName</span></code> parameter in <code class="docutils literal"><span class="pre">ConnectorMetadata#createView</span></code> with a <code class="docutils literal"><span class="pre">ConnectorTableMetadata</span></code>.</li>
+<li>Move <code class="docutils literal"><span class="pre">JsonType</span></code> to SPI.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.233.1.html">13.9. Release 0.233.1</a>
+    </span>
+    <span class="right">
+        <a href="release-0.232.html">13.11. Release 0.232</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

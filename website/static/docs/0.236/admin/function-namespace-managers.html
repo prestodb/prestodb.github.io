@@ -1,0 +1,164 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>4.7. Function Namespace Managers &#8212; Presto 0.236 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.236',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.8. Distributed sort" href="dist-sort.html" />
+    <link rel="prev" title="4.6. Session Property Managers" href="session-property-managers.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.236 Documentation</span></a></h1>
+    <h2 class="heading"><span>4.7. Function Namespace Managers</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="session-property-managers.html">4.6. Session Property Managers</a>
+    </span>
+    <span class="right">
+        <a href="dist-sort.html">4.8. Distributed sort</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="function-namespace-managers">
+<h1>4.7. Function Namespace Managers</h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This is an experimental feature being actively developed. The way
+Function Namespace Managers are configured might be changed.</p>
+</div>
+<p>Function namespace managers support storing and retrieving SQL
+functions, allowing the Presto engine to perform actions such as
+creating, altering, deleting functions.</p>
+<p>A function namespace is in the format of <code class="docutils literal"><span class="pre">catalog.schema</span></code> (e.g.
+<code class="docutils literal"><span class="pre">example.test</span></code>). It can be thought of as a schema for storing
+functions. However, it is not a full fledged schema as it does not
+support storing tables and views, but only functions.</p>
+<p>Each Presto function, whether built-in or user-defined, resides in
+a function namespace. All built-in functions reside in the
+<code class="docutils literal"><span class="pre">presto.default</span></code> function namespace. The qualified function name of
+a function is the function namespace in which it reside followed by
+its function name (e.g. <code class="docutils literal"><span class="pre">example.test.func</span></code>). Built-in functions can
+be referenced in queries with their function namespaces omitted, while
+user-defined functions needs to be referenced by its qualified function
+name. A function is uniquely identified by its qualified function name
+and parameter type list.</p>
+<p>Each function namespace manager binds to a catalog name and manages all
+functions within that catalog. Using the catalog name of an existing
+connector is discouraged, as the behavior is not defined nor tested,
+and will be disallowed in the future.</p>
+<p>Currently, those catalog names do not correspond to real catalogs.
+They cannot be specified as the catalog in a session, nor do they
+support <a class="reference internal" href="../sql/create-schema.html"><span class="doc">CREATE SCHEMA</span></a>, <a class="reference internal" href="../sql/alter-schema.html"><span class="doc">ALTER SCHEMA</span></a>,
+<a class="reference internal" href="../sql/drop-schema.html"><span class="doc">DROP SCHEMA</span></a>, or <a class="reference internal" href="../sql/show-schemas.html"><span class="doc">SHOW SCHEMAS</span></a>. Instead,
+namespaces can be added using the methods described below.</p>
+<div class="section" id="configuration">
+<h2>Configuration</h2>
+<p>Presto currently stores all function namespace manager related
+information in MySQL.</p>
+<p>To instantiate a MySQL-based function namespace manager that manages
+catalog <code class="docutils literal"><span class="pre">example</span></code>, administrator needs to first have a running MySQL
+server. Suppose the MySQL server can be reached at <code class="docutils literal"><span class="pre">localhost:1080</span></code>,
+add a file <code class="docutils literal"><span class="pre">etc/function-namespace/example.properties</span></code> with the
+following contents:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">function</span><span class="o">-</span><span class="n">namespace</span><span class="o">-</span><span class="n">manager</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="n">mysql</span>
+<span class="k">database</span><span class="o">-</span><span class="n">url</span><span class="o">=</span><span class="n">localhost</span><span class="p">:</span><span class="mi">1080</span>
+<span class="k">function</span><span class="o">-</span><span class="n">namespaces</span><span class="o">-</span><span class="k">table</span><span class="o">-</span><span class="n">name</span><span class="o">=</span><span class="n">example_function_namespaces</span>
+<span class="n">functions</span><span class="o">-</span><span class="k">table</span><span class="o">-</span><span class="n">name</span><span class="o">=</span><span class="n">example_sql_functions</span>
+</pre></div>
+</div>
+<p>When Presto first starts with the above MySQL function namespace
+manager configuration, two MySQL tables will be created if they do
+not exist.</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">example_function_namespaces</span></code> stores function namespaces of
+the catalog <code class="docutils literal"><span class="pre">example</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">example_sql_functions</span></code> stores SQL-invoked functions of the
+catalog <code class="docutils literal"><span class="pre">example</span></code>.</li>
+</ul>
+<p>Multiple function namespace managers can be instantiated by placing
+multiple properties files under <code class="docutils literal"><span class="pre">etc/function-namespace</span></code>. They
+may be configured to use the same tables. If so, each manager will
+only create and interact with entries of the catalog to which it binds.</p>
+<p>To create a new function namespace, insert into the
+<code class="docutils literal"><span class="pre">example_function_namespaces</span></code> table:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">example_function_namespaces</span> <span class="p">(</span><span class="k">catalog_name</span><span class="p">,</span> <span class="k">schema_name</span><span class="p">)</span>
+<span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration-reference">
+<h2>Configuration Reference</h2>
+<p><code class="docutils literal"><span class="pre">function-namespace-manager.name</span></code> is the type of the function namespace manager to instantiate. Currently, only <code class="docutils literal"><span class="pre">mysql</span></code> is supported.</p>
+<p>The following table lists all configuration properties supported by the MySQL function namespace manager.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">database-url</span></code></td>
+<td>The URL of the MySQL database used by the MySQL function namespace manager.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">function-namespaces-table-name</span></code></td>
+<td>The name of the table that stores all the function namespaces managed by this manager.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">functions-table-name</span></code></td>
+<td>The name of the table that stores all the functions managed by this manager.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="session-property-managers.html">4.6. Session Property Managers</a>
+    </span>
+    <span class="right">
+        <a href="dist-sort.html">4.8. Distributed sort</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
