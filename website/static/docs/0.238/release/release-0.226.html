@@ -1,0 +1,93 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.18. Release 0.226 &#8212; Presto 0.238 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.238',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.19. Release 0.225" href="release-0.225.html" />
+    <link rel="prev" title="13.17. Release 0.227" href="release-0.227.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.238 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.18. Release 0.226</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.227.html">13.17. Release 0.227</a>
+    </span>
+    <span class="right">
+        <a href="release-0.225.html">13.19. Release 0.225</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-226">
+<h1>13.18. Release 0.226</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix ST_Buffer for tiny geometries (<a class="reference external" href="https://github.com/prestodb/presto/issues/13194">#13194</a>)</li>
+<li>Fix ST_Centroid for tiny geometries (<a class="reference external" href="https://github.com/prestodb/presto/issues/10629">#10629</a>)</li>
+<li>Fix failure when reading unpartitioned table from some connectors with session property <code class="docutils literal"><span class="pre">grouped_execution_for_eligible_table_scans</span></code> turned on.</li>
+<li>Improve memory tracking for geospatial query indexing and prevent worker node from crashing due to out of memory.</li>
+<li>Improve memory usage of spatial joins.</li>
+<li>Add peak running task count to statistics field of QueryCompletedEvent.</li>
+</ul>
+</div>
+<div class="section" id="hive-changes">
+<h2>Hive Changes</h2>
+<ul class="simple">
+<li>Fix computation for number of buckets accessed for <code class="docutils literal"><span class="pre">max_buckets_for_grouped_execution</span></code>.</li>
+<li>Fix a bug where the bucket column was not available if <code class="docutils literal"><span class="pre">max_buckets_for_grouped_execution</span></code> was exceeded.</li>
+<li>Fix high CPU usage when writing ORC files with too many row groups.</li>
+<li>Improve parallelism of writes to hive bucketed tables by respecting the <code class="docutils literal"><span class="pre">task.writer-count</span></code> configuration property.</li>
+<li>Add debug mode that allows reading from offline table and partition. This is controlled by session property <code class="docutils literal"><span class="pre">offline_data_debug_mode_enabled</span></code>.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.227.html">13.17. Release 0.227</a>
+    </span>
+    <span class="right">
+        <a href="release-0.225.html">13.19. Release 0.225</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>10.1. ALTER FUNCTION &#8212; Presto 0.238 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.238',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.2. ALTER SCHEMA" href="alter-schema.html" />
+    <link rel="prev" title="10. SQL Statement Syntax" href="../sql.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.238 Documentation</span></a></h1>
+    <h2 class="heading"><span>10.1. ALTER FUNCTION</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../sql.html">10. SQL Statement Syntax</a>
+    </span>
+    <span class="right">
+        <a href="alter-schema.html">10.2. ALTER SCHEMA</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="alter-function">
+<h1>10.1. ALTER FUNCTION</h1>
+<div class="section" id="synopsis">
+<h2>Synopsis</h2>
+<div class="highlight-none"><div class="highlight"><pre><span></span>ALTER FUNCTION qualified_function_name [ ( parameter_type[, ...] ) ]
+RETURNS NULL ON NULL INPUT | CALLED ON NULL INPUT
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description</h2>
+<p>Alter the definition of an existing function.</p>
+<p>Parameter type list must be specified if multiple signatures exist
+for the specified function name. If exactly one signature exists for
+the specified function name, parameter type list can be omitted.</p>
+<p>Currently, only modifying the null-call clause is supported.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples</h2>
+<p>Change the null-call clause of a function <code class="docutils literal"><span class="pre">example.default.tan(double)</span></code>:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">FUNCTION</span> <span class="n">prod</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">tan</span><span class="p">(</span><span class="n">double</span><span class="p">)</span>
+<span class="k">CALLED</span> <span class="k">ON</span> <span class="k">NULL</span> <span class="k">INPUT</span>
+</pre></div>
+</div>
+<p>If only one function exists for <code class="docutils literal"><span class="pre">example.default.tan</span></code>, parameter type list may be omitted:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">FUNCTION</span> <span class="n">prod</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">tan</span>
+<span class="k">CALLED</span> <span class="k">ON</span> <span class="k">NULL</span> <span class="k">INPUT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="see-also">
+<h2>See Also</h2>
+<p><a class="reference internal" href="create-function.html"><span class="doc">CREATE FUNCTION</span></a>, <a class="reference internal" href="drop-function.html"><span class="doc">DROP FUNCTION</span></a>, <a class="reference internal" href="show-functions.html"><span class="doc">SHOW FUNCTIONS</span></a></p>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../sql.html">10. SQL Statement Syntax</a>
+    </span>
+    <span class="right">
+        <a href="alter-schema.html">10.2. ALTER SCHEMA</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
