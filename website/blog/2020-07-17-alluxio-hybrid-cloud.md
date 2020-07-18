@@ -14,13 +14,13 @@ This crucial bottleneck severely limits performance of any workload since a sign
 
 In the following architecture diagram, both Presto and Alluxio processes are co-located in the cloud cluster. As far as Presto is concerned, it is querying for and writing data to Alluxio as if it were a co-located HDFS cluster. When Alluxio receives a request for data, it fetches the data from the remote HDFS cluster initially, but subsequent requests will be served directly from its cache. When Presto sends data to be persisted into storage, Alluxio asynchronously writes data to HDFS, freeing the Presto workload from needing to wait for the remote write to complete. In both read and write scenarios, with the exception of the initial read, a Presto workload is able to run at the same, if not faster, performance as if it were in the same network as the HDFS cluster. Note that besides the deployment and configuration of Alluxio and establishing the connection between Presto and Alluxio, there is no additional configuration or other manual efforts needed to maintain the hybrid environment.
 
-![](/img/blog/2020-06-15-alluxio-hybrid-cloud/PrestoAlluxioHadoop.png)
+![](/img/blog/2020-07-17-alluxio-hybrid-cloud/PrestoAlluxioHadoop.png)
 
 ## Benchmarking Performance
 
 For benchmarking, we run SQL queries on data in a geographically separated Hive and HDFS cluster.
 
-![](/img/blog/2020-06-15-alluxio-hybrid-cloud/VPCPeering.png)
+![](/img/blog/2020-07-17-alluxio-hybrid-cloud/VPCPeering.png)
 
 The hybrid cloud environment used for experimentation in this section includes two Amazon EMR clusters in different AWS regions. Because the two clusters are geographically dispersed, there is noticeable network latency between the clusters. [VPC peering](https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html) is used to create VPC connections to allow traffic between the two VPCs over the global AWS backbone with no bandwidth bottleneck. Readers can follow the [tutorial in the whitepaper](https://www.alluxio.io/resources/whitepapers/zero-copy-hybrid-cloud-for-data-analytics-strategy-architecture-and-benchmark-report/) to reproduce the benchmark results if using AWS as the cloud provider.
 
@@ -48,7 +48,7 @@ With HDFS, we collected two numbers as well; **Local** and **Remote**.
 
 We compared the performance of Presto with Alluxio (Cold and Warm) with Presto directly on HDFS (Local and Remote). Benchmarking shows an average of **3x improvement** in performance with Alluxio when the cache is warm over accessing HDFS data remotely.
 
-![](/img/blog/2020-06-15-alluxio-hybrid-cloud/AlluxioWarmVsHdfsRemote.png)
+![](/img/blog/2020-07-17-alluxio-hybrid-cloud/AlluxioWarmVsHdfsRemote.png)
 
 The following table summarizes the results by class. Overall the maximum improvement seen with Alluxio was for q9 (7.1x) and the minimum was for q39a (1x - no difference).
 
@@ -56,26 +56,26 @@ Query Class: Reporting
 Max Improvement: q27 (3.1x)
 Min Improvement:  q43 (2.7x)
 
-![](/img/blog/2020-06-15-alluxio-hybrid-cloud/TpcdsReporting.png)
+![](/img/blog/2020-07-17-alluxio-hybrid-cloud/TpcdsReporting.png)
 
 Query Class: Interactive
 Max Improvement: q73 (3.9x)
 Min Improvement:  q98 (2.2x)
 
-![](/img/blog/2020-06-15-alluxio-hybrid-cloud/TpcdsInteractive.png)
+![](/img/blog/2020-07-17-alluxio-hybrid-cloud/TpcdsInteractive.png)
 
 Query Class: Deep Analytics
 Max Improvement: q34 (4.2x)
 Min Improvement:  q59 (1.9x)
 
-![](/img/blog/2020-06-15-alluxio-hybrid-cloud/TpcdsDeepAnalytics.png)
+![](/img/blog/2020-07-17-alluxio-hybrid-cloud/TpcdsDeepAnalytics.png)
 
 With a 10 node compute cluster, the peak bandwidth utilization throughout running all the queries remained under 2Gbps when accessing data from the geographically separated cluster. Bandwidth was not the bottleneck with the AWS backbone network. As the utilization scales with the size of the compute cluster, a bandwidth bottleneck could be expected for larger clusters when not using Alluxio since the bandwidth available with Direct Connect may be limited.
 
 Most of the performance gain seen with Alluxio is explained by the latency difference for both metadata and data, when cached seamlessly into the localized Alluxio cluster.
 
 
-![](/img/blog/2020-06-15-alluxio-hybrid-cloud/TpcdsAll.png)
+![](/img/blog/2020-07-17-alluxio-hybrid-cloud/TpcdsAll.png)
 
 ## Conclusion
 
