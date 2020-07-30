@@ -1,0 +1,130 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.28. Release 0.217 &#8212; Presto 0.238.2 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.238.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.29. Release 0.216" href="release-0.216.html" />
+    <link rel="prev" title="13.27. Release 0.218" href="release-0.218.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.238.2 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.28. Release 0.217</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.218.html">13.27. Release 0.218</a>
+    </span>
+    <span class="right">
+        <a href="release-0.216.html">13.29. Release 0.216</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-217">
+<h1>13.28. Release 0.217</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix poor query planning performance for queries submitted when the cluster does not have the minimum required number of workers available.</li>
+<li>Fix a bug that caused a union of a table with a <code class="docutils literal"><span class="pre">VALUES</span></code> statement to execute on a single machine, which may result in out of memory errors.</li>
+<li>Improve performance of some queries that use window functions by eliminating redundant shuffles.</li>
+<li>Add grouped execution support for window functions.</li>
+<li>Add support for the <code class="docutils literal"><span class="pre">BOOLEAN</span></code> type for <code class="docutils literal"><span class="pre">EXPLAIN</span> <span class="pre">IO</span></code> statements.</li>
+<li>Add support for choosing distribution type for semi joins based on estimated cost when the session property <code class="docutils literal"><span class="pre">join_distribution_type='AUTOMATIC'</span></code> is set.</li>
+<li>Add support for collecting table statistics on demand with the <code class="docutils literal"><span class="pre">ANALYZE</span></code> statement.</li>
+<li>Add a config option (<code class="docutils literal"><span class="pre">query.stage-count-warning-threshold</span></code>) to specify a per-query threshold for the number of stages.
+When this threshold is exceeded, a <code class="docutils literal"><span class="pre">TOO_MANY_STAGES</span></code> warning is raised.</li>
+<li>Add per-task peak user memory usage to query statistics.</li>
+<li>Add CLI support for showing the amount of data spilled during query execution.</li>
+<li>Add <a class="reference internal" href="../functions/geospatial.html#ST_Points" title="ST_Points"><code class="xref py py-func docutils literal"><span class="pre">ST_Points()</span></code></a> function.</li>
+<li>Add <a class="reference internal" href="../connector/elasticsearch.html"><span class="doc">Elasticsearch Connector</span></a>.</li>
+<li>Remove the system memory pool and related configuration properties (<code class="docutils literal"><span class="pre">resources.reserved-system-memory</span></code>, <code class="docutils literal"><span class="pre">deprecated.legacy-system-pool-enabled</span></code>) entirely.
+System memory pool was deprecated in 0.201, and it was unused by default since that release. All memory allocations will now be served from the general/user memory pool.</li>
+</ul>
+</div>
+<div class="section" id="web-ui">
+<h2>Web UI</h2>
+<ul class="simple">
+<li>Improve live plan to show data transfer statistics as edge labels.</li>
+<li>Improve live plan to contain more information about each node. For example, table scan nodes now show the name of the tables that are being scanned.</li>
+<li>Add the ability to zoom when viewing plans for completed queries.</li>
+<li>Add support for showing the amount of data spilled during query execution.</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes</h2>
+<ul class="simple">
+<li>Fix an issue where a partially successful rollback of a write could cause data loss and corrupt the metastore.
+The <code class="docutils literal"><span class="pre">hive.skip-target-cleanup-on-rollback</span></code> configuration property can be used to skip deleting target directories when partition creation is rolled back.</li>
+<li>Fix an issue where creating a table on S3 could fail for S3 prefixes without any associated objects (e.g., empty S3 directories).</li>
+<li>Add support for <code class="docutils literal"><span class="pre">ANALYZE</span></code> statement in the Hive connector.
+It’s possible to specify a list of partitions to collect statistics for using the <code class="docutils literal"><span class="pre">WITH</span></code> properties of the <code class="docutils literal"><span class="pre">ANALYZE</span></code> statement.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">hive.temporary-staging-directory-enabled</span></code> and session property <code class="docutils literal"><span class="pre">temporary_staging_directory_enabled</span></code>
+to control whether a temporary staging directory should be used for write operations.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">hive.temporary-staging-directory-path</span></code> and session property <code class="docutils literal"><span class="pre">temporary_staging_directory_path</span></code>
+to control the location of temporary staging directory that is used for write operations.
+The <code class="docutils literal"><span class="pre">${USER}</span></code> placeholder can be used to use a different location for each user (e.g., <code class="docutils literal"><span class="pre">/tmp/${USER}</span></code>).</li>
+</ul>
+</div>
+<div class="section" id="jdbc-connector-changes">
+<h2>JDBC Connector Changes</h2>
+<ul class="simple">
+<li>Add support for defining procedures.</li>
+<li>Add support for providing table statistics.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Add new SPIs for the <code class="docutils literal"><span class="pre">ANALYZE</span></code> statement. By default, running the <code class="docutils literal"><span class="pre">ANALYZE</span></code> statement for a connector that does not implement these SPIs results in
+an error o``USER_ERROR`` with error code <code class="docutils literal"><span class="pre">NOT_SUPPORTED</span></code>.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.218.html">13.27. Release 0.218</a>
+    </span>
+    <span class="right">
+        <a href="release-0.216.html">13.29. Release 0.216</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
