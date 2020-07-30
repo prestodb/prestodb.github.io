@@ -1,0 +1,118 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>5.1. Alluxio Cache Service &#8212; Presto 0.238.2 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.238.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Query Optimizer" href="../optimizer.html" />
+    <link rel="prev" title="5. Cache" href="../cache.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.238.2 Documentation</span></a></h1>
+    <h2 class="heading"><span>5.1. Alluxio Cache Service</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../cache.html">5. Cache</a>
+    </span>
+    <span class="right">
+        <a href="../optimizer.html">6. Query Optimizer</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="alluxio-cache-service">
+<h1>5.1. Alluxio Cache Service</h1>
+<p>A common optimization to improve Presto query latency is to cache
+the working set to avoid unnecessary I/O from remote data sources
+or through a slow network. This section describes different options
+to leverage Alluxio as a caching layer for Presto.</p>
+<div class="section" id="using-alluxio-file-system">
+<h2>Using Alluxio File System</h2>
+<p>Presto can easily use
+<a class="reference external" href="https://www.alluxio.io/?utm_source=prestodb&amp;utm_medium=prestodocs">Alluxio</a>
+as a distributed caching file system on top of persistent storages, including file systems
+like HDFS or object stores like AWS S3, GCP, Azure blob store.
+Users may either preload data into Alluxio using Alluxio command-lines before running
+Presto queries, or simply rely on Alluxio to transparently cache the most recently or frequently
+accessed data based on the data access pattern.</p>
+<p>To connect Presto to an Alluxio file system, Hive connector is used to query a Hive metastore
+where its tables pointing to <code class="docutils literal"><span class="pre">alluxio://</span></code> address. Refer to the <a class="reference internal" href="../connector/hive.html"><span class="doc">Hive Connector</span></a> documentation
+to learn how to configure Alluxio file system in Presto.</p>
+</div>
+<div class="section" id="using-alluxio-structured-data-service">
+<h2>Using Alluxio Structured Data Service</h2>
+<p>In addition to caching data as a file system, Alluxio can further provide data
+abstracted as tables and via the Alluxio Structured Data Service. The <a class="reference external" href="https://docs.alluxio.io/os/user/stable/en/core-services/Catalog.html?utm_source=prestodb&amp;utm_medium=prestodocs">Alluxio
+catalog</a>
+is the main component responsible for managing the structured data metadata, and
+caching that information from the underlying table metastore (such as Hive
+Metastore). After an existing table metastore is
+<a class="reference external" href="https://docs.alluxio.io/os/user/stable/en/operation/User-CLI.html#attachdb">attached</a>
+to the Alluxio catalog, the catalog will cache the table metadata from the
+underlying metastore, and serve that information to Presto. When Presto accesses
+the Alluxio catalog for table metadata, the Alluxio catalog will automatically
+use the Alluxio locations of the files, which removes the need to modify any
+locations in the existing Hive Metastore. Therefore, when Presto is using the
+Alluxio catalog, the table metadata is cached in the catalog, and the file
+contents are cached with Alluxio’s file system caching.</p>
+<p>For example, a user can attach an existing Hive Metastore to the Alluxio catalog:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>./bin/alluxio table attachdb hive thrift://METASTORE_HOSTNAME:9083 hive_db_name
+</pre></div>
+</div>
+<p>Then configure a Presto catalog to connect to the Alluxio catalog:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>connector.name=hive-hadoop2
+hive.metastore=alluxio
+hive.metastore.alluxio.master.address=ALLUXIO_HOSTNAME:19998
+</pre></div>
+</div>
+<p>Now, Presto queries can utilize both the file caching and structured data caching
+provided by Alluxio. Please read <a class="reference internal" href="../connector/hive.html"><span class="doc">Hive Connector</span></a> for more details.</p>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../cache.html">5. Cache</a>
+    </span>
+    <span class="right">
+        <a href="../optimizer.html">6. Query Optimizer</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
