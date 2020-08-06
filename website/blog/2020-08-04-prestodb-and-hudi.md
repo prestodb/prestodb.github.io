@@ -1,7 +1,7 @@
 ---
 author: Bhavani Sudha Saktheeswaran
 authorURL: https://www.linkedin.com/in/bhasudha
-title: PrestoDB and Hudi
+title: PrestoDB and Apache Hudi
 ---
 **Co-author:** [Brandon Scheller](https://www.linkedin.com/in/brandon-scheller-a00851ab)
 
@@ -12,7 +12,7 @@ In this blog we are going to discuss how the Presto-Hudi integration has evolved
 <!--truncate-->
 
 
-## Hudi overview
+## Apache Hudi overview
 Apache Hudi (Hudi for short, here on) enables storing vast amounts of data on top of existing DFS compatible storage while also enabling stream processing in addition to typical batch-processing. This is made possible by providing two new primitives.
 Specifically,
 - **Update/Delete Records**: Hudi provides support for updating/deleting records, using fine grained file/record level indexes, while providing transactional guarantees for the write operation. Queries process the last such committed snapshot, to produce results.
