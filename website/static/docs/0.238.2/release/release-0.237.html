@@ -1,0 +1,155 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.3. Release 0.237 &#8212; Presto 0.238.2 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.238.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.4. Release 0.236" href="release-0.236.html" />
+    <link rel="prev" title="13.2. Release 0.238" href="release-0.238.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.238.2 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.3. Release 0.237</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.238.html">13.2. Release 0.238</a>
+    </span>
+    <span class="right">
+        <a href="release-0.236.html">13.4. Release 0.236</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-237">
+<h1>13.3. Release 0.237</h1>
+<div class="section" id="highlights">
+<h2><strong>Highlights</strong></h2>
+<ul class="simple">
+<li>Add JSON format for <code class="docutils literal"><span class="pre">EXPLAIN</span></code> with type <code class="docutils literal"><span class="pre">LOGICAL</span></code> and <code class="docutils literal"><span class="pre">DISTRIBUTED</span></code>.</li>
+<li>Add functions <a class="reference internal" href="../functions/array.html#array_sum" title="array_sum"><code class="xref py py-func docutils literal"><span class="pre">array_sum()</span></code></a>, <a class="reference internal" href="../functions/array.html#array_average" title="array_average"><code class="xref py py-func docutils literal"><span class="pre">array_average()</span></code></a>, <a class="reference internal" href="../functions/map.html#map_normalize" title="map_normalize"><code class="xref py py-func docutils literal"><span class="pre">map_normalize()</span></code></a>, <a class="reference internal" href="../functions/aggregate.html#set_agg" title="set_agg"><code class="xref py py-func docutils literal"><span class="pre">set_agg()</span></code></a> and <a class="reference internal" href="../functions/geospatial.html#flatten_geometry_collections" title="flatten_geometry_collections"><code class="xref py py-func docutils literal"><span class="pre">flatten_geometry_collections()</span></code></a>.</li>
+<li>Support authentication for Druid connector.</li>
+<li>Support for AWS IAM authorization to Elasticsearch connector.</li>
+<li>Improve Elasticsearch query capabilities.</li>
+<li>Improve Elasticsearch connector performance.</li>
+<li>Improve Coordinator RPC performance.</li>
+</ul>
+</div>
+<div class="section" id="notes">
+<h2><strong>Notes</strong></h2>
+<div class="section" id="general-changes">
+<h3>General Changes</h3>
+<ul class="simple">
+<li>Fix NPE in common sub-expression optimization triggered by <code class="docutils literal"><span class="pre">CASE-WHEN</span></code> expression.</li>
+<li>Fix compiler failure with function type when common sub-expression optimization is enabled.</li>
+<li>Improve coordinator RPC performance by removing unused entries from <code class="docutils literal"><span class="pre">TaskStatus</span></code>.</li>
+<li>Add JSON format for <code class="docutils literal"><span class="pre">EXPLAIN</span></code> with type <code class="docutils literal"><span class="pre">LOGICAL</span></code> and <code class="docutils literal"><span class="pre">DISTRIBUTED</span></code>.</li>
+<li>Add functions <a class="reference internal" href="../functions/array.html#array_sum" title="array_sum"><code class="xref py py-func docutils literal"><span class="pre">array_sum()</span></code></a>, <a class="reference internal" href="../functions/array.html#array_average" title="array_average"><code class="xref py py-func docutils literal"><span class="pre">array_average()</span></code></a>, <a class="reference internal" href="../functions/map.html#map_normalize" title="map_normalize"><code class="xref py py-func docutils literal"><span class="pre">map_normalize()</span></code></a> and <a class="reference internal" href="../functions/aggregate.html#set_agg" title="set_agg"><code class="xref py py-func docutils literal"><span class="pre">set_agg()</span></code></a>.</li>
+<li>Add session property <code class="docutils literal"><span class="pre">warning_handling</span></code> to control how warnings are handled. The options are <code class="docutils literal"><span class="pre">SUPPRESS</span></code>, <code class="docutils literal"><span class="pre">NORMAL</span></code> and <code class="docutils literal"><span class="pre">AS_ERROR</span></code>. The default value is <code class="docutils literal"><span class="pre">NORMAL</span></code>.</li>
+<li>Add support for defining SQL-invoked functions in plugins.</li>
+<li>Add support to control which worker can receive tasks by implementing the <code class="docutils literal"><span class="pre">NodeStatusService</span></code> interface. See <a class="reference external" href="https://github.com/prestodb/presto/pull/14535">#14535</a>.</li>
+<li>Add warning to use <a class="reference internal" href="../functions/aggregate.html#approx_distinct" title="approx_distinct"><code class="xref py py-func docutils literal"><span class="pre">approx_distinct()</span></code></a> when using <code class="docutils literal"><span class="pre">COUNT(DISTINCT</span> <span class="pre">x)</span></code>.</li>
+<li>Add support for listing functions whose names match a specified pattern using the <code class="docutils literal"><span class="pre">SHOW</span> <span class="pre">FUNCTION</span> <span class="pre">LIKE</span></code> syntax.</li>
+<li>Add <a class="reference internal" href="../functions/geospatial.html#flatten_geometry_collections" title="flatten_geometry_collections"><code class="xref py py-func docutils literal"><span class="pre">flatten_geometry_collections()</span></code></a> function to recursively flatten GeometryCollections.</li>
+</ul>
+</div>
+<div class="section" id="cassandra-connector-changes">
+<h3>Cassandra Connector Changes</h3>
+<ul class="simple">
+<li>Fix missing Netty library introduced in version 0.229 that causes the Cassandra connector to fail to load and queries to fail.</li>
+</ul>
+</div>
+<div class="section" id="druid-connector-changes">
+<h3>Druid Connector Changes</h3>
+<ul class="simple">
+<li>Add support for Druid’s basic and kerberos authentication.</li>
+</ul>
+</div>
+<div class="section" id="elasticsearch-connector-changes">
+<h3>Elasticsearch Connector Changes</h3>
+<ul class="simple">
+<li>Fix predicate pushdown for Elasticsearch.</li>
+<li>Improve Elasticsearch (save an extra hop) by using shard primary host in Elasticsearch connector.</li>
+<li>Add Elasticsearch array support using definitions in the _meta field.</li>
+<li>Add support for AWS IAM authorization to Elasticsearch connector.</li>
+<li>Add support for Elasticsearch query string syntax.</li>
+<li>Add support for nested types in Elasticsearch.</li>
+<li>Add support for querying Elasticsearch aliases.</li>
+<li>Add system.nodes table to Elasticsearch.</li>
+<li>Add handling for mixed-case columns in Elasticsearch.</li>
+<li>Add support to load tables dynamically in Elasticsearch.</li>
+<li>Add support to refresh Elasticsearch nodes periodically.</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h3>Hive Connector Changes</h3>
+<ul class="simple">
+<li>Add functionality to specify cache quota with respect to a scope. A scope could be at global, schema, table, or partition level. Cache quota prevents queries scanning too much
+data to disrupt cache locality. Such queries can only use the cache within their own scopes. Cache quota now only works with <code class="docutils literal"><span class="pre">FILE_MERGE</span></code> cache. Turn it on with config
+<code class="docutils literal"><span class="pre">cache.cache-quota-scope</span></code> and <code class="docutils literal"><span class="pre">cache.default-cache-quota</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h3>Verifier Changes</h3>
+<ul class="simple">
+<li>Fix an internal error when session properties of a control or a test query contains <code class="docutils literal"><span class="pre">query_max_execution_time</span></code>.</li>
+<li>Fix auto-resolution of checksum query failure due to query complexity.</li>
+<li>Add control query IDs, test query IDs, and peak total memory to verification outputs.</li>
+<li>Add support to resubmit verification for <code class="docutils literal"><span class="pre">CLUSTER_OUT_OF_MEMORY</span></code> and <code class="docutils literal"><span class="pre">ADMINISTRATIVELY_PREEMPTED</span></code> errors.</li>
+<li>Add support to retry <code class="docutils literal"><span class="pre">DESCRIBE</span></code> queries failed with <code class="docutils literal"><span class="pre">TIME_LIMIT_EXCEEDED</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="resource-groups-changes">
+<h3>Resource Groups Changes</h3>
+<ul class="simple">
+<li>Fix existing resource group to handle transition of leaf resource group to internal and vice versa.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.238.html">13.2. Release 0.238</a>
+    </span>
+    <span class="right">
+        <a href="release-0.236.html">13.4. Release 0.236</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

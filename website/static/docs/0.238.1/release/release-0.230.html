@@ -1,0 +1,117 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.14. Release 0.230 &#8212; Presto 0.238.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.238.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.15. Release 0.229" href="release-0.229.html" />
+    <link rel="prev" title="13.13. Release 0.231" href="release-0.231.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.238.1 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.14. Release 0.230</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.231.html">13.13. Release 0.231</a>
+    </span>
+    <span class="right">
+        <a href="release-0.229.html">13.15. Release 0.229</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-230">
+<h1>13.14. Release 0.230</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix an issue where a SQL function fails to compile when the function implementation contains constants.</li>
+<li>Fix an issue where a SQL function fails to compile when some function parameters are not referenced in the function body.</li>
+<li>Fix an issue where SQL functions do not respect behavior specification for null arguments during execution.</li>
+<li>Fix compilation errors for expressions over types containing an extremely large number of nested types (<a class="reference external" href="https://github.com/prestodb/presto/pull/13405">#13405</a>).</li>
+<li>Fix a regression in lambda evaluation (<a class="reference external" href="https://github.com/prestodb/presto/issues/13648">#13648</a>).</li>
+<li>Fix <a class="reference internal" href="../functions/geospatial.html#geometry_to_bing_tiles" title="geometry_to_bing_tiles"><code class="xref py py-func docutils literal"><span class="pre">geometry_to_bing_tiles()</span></code></a> function for geometries at -180 longitude or 85.05112878 latitude.</li>
+<li>Improve <code class="docutils literal"><span class="pre">PRESTO_EXTRA_CREDENTIAL</span></code> header parsing to allow for values contain multiple <code class="docutils literal"><span class="pre">=</span></code> characters and url-encoded characters.</li>
+<li>Add support to list non-builtin functions in SHOW FUNCTIONS. The feature can be turned on by the configuration property <code class="docutils literal"><span class="pre">list-non-built-in-functions</span></code>.</li>
+<li>Add support for <code class="docutils literal"><span class="pre">DROP</span> <span class="pre">FUNCTION</span></code>.</li>
+<li>Add <a class="reference internal" href="../functions/array.html#combinations" title="combinations"><code class="xref py py-func docutils literal"><span class="pre">combinations()</span></code></a> function, which returns <code class="docutils literal"><span class="pre">n</span></code> combinations of values in an array, up to <code class="docutils literal"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">5</span></code>.</li>
+<li>Add <a class="reference internal" href="../functions/array.html#all_match" title="all_match"><code class="xref py py-func docutils literal"><span class="pre">all_match()</span></code></a>, <a class="reference internal" href="../functions/array.html#any_match" title="any_match"><code class="xref py py-func docutils literal"><span class="pre">any_match()</span></code></a>, and <a class="reference internal" href="../functions/array.html#none_match" title="none_match"><code class="xref py py-func docutils literal"><span class="pre">none_match()</span></code></a> functions.</li>
+<li>Add <a class="reference internal" href="../functions/geospatial.html#expand_envelope" title="expand_envelope"><code class="xref py py-func docutils literal"><span class="pre">expand_envelope()</span></code></a> function to return a geometry’s envelope expanded by a distance.</li>
+</ul>
+</div>
+<div class="section" id="hive-changes">
+<h2>Hive Changes</h2>
+<ul class="simple">
+<li>Add Alluxio client jar to <code class="docutils literal"><span class="pre">plugin/hive-hadoop2/</span></code> as a runtime dependency to avoid having to copy the jar file to all Presto servers manually when connecting to Alluxio.</li>
+<li>Improve ORC reader performance.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">hive.zstd-jni-decompression-enabled</span></code> to enable JNI ZSTD decompressor for ORC files.</li>
+</ul>
+</div>
+<div class="section" id="raptor-changes">
+<h2>Raptor Changes</h2>
+<ul class="simple">
+<li>Fix an issue where the organizer does not run scheduled jobs.</li>
+<li>Add support for caching data read from HDFS on a local disk.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">storage.zstd-jni-decompression-enabled</span></code> to enable JNI ZSTD decompressor for ORC files.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h2>Verifier Changes</h2>
+<ul class="simple">
+<li>Add support to always output verification results for queries being skipped for verification.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Replace <code class="docutils literal"><span class="pre">ConnectorMetadata#commitPartition</span></code> with async operation <code class="docutils literal"><span class="pre">ConnectorMetadata#commitPartitionAsync</span></code>.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.231.html">13.13. Release 0.231</a>
+    </span>
+    <span class="right">
+        <a href="release-0.229.html">13.15. Release 0.229</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

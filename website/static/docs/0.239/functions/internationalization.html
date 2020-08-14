@@ -1,0 +1,95 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>8.27. Internationalization Functions &#8212; Presto 0.239 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.239',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. SQL Language" href="../language.html" />
+    <link rel="prev" title="8.26. Teradata Functions" href="teradata.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.239 Documentation</span></a></h1>
+    <h2 class="heading"><span>8.27. Internationalization Functions</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="teradata.html">8.26. Teradata Functions</a>
+    </span>
+    <span class="right">
+        <a href="../language.html">9. SQL Language</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="internationalization-functions">
+<h1>8.27. Internationalization Functions</h1>
+<div class="section" id="myanmar-functions">
+<h2>Myanmar Functions</h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Text written in Myanmar uses primarily the Zawgyi font encoding,
+which is not compatible with Unicode. These functions provide
+some utilities for comparing content in Myanmar despite the font
+encoding.</p>
+<p class="last">See <a class="reference external" href="http://www.unicode.org/faq/myanmar.html">http://www.unicode.org/faq/myanmar.html</a> for more information.</p>
+</div>
+<dl class="function">
+<dt id="myanmar_font_encoding">
+<code class="descname">myanmar_font_encoding</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<dd><p>Returns the font encoding of the text. Returns <code class="docutils literal"><span class="pre">zawgyi</span></code> if the content is Zawgyi encoded and <code class="docutils literal"><span class="pre">unicode</span></code> otherwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="myanmar_normalize_unicode">
+<code class="descname">myanmar_normalize_unicode</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span> &#x2192; varchar</dt>
+<dd><p>Returns the text normalized as Unicode. Zawgyi text is converted to Unicode and Unicode text is left unchanged.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="teradata.html">8.26. Teradata Functions</a>
+    </span>
+    <span class="right">
+        <a href="../language.html">9. SQL Language</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

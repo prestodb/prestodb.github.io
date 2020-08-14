@@ -40,6 +40,11 @@ const users = [
     caption: 'Lyft',
     image: '/img/lyft.svg',
     pinned: true,
+   },
+   {
+    caption: "Alibaba Group",
+    image: '/img/alibaba-logo.png',
+    pinned: true,
    }
 ];
 
