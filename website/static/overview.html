@@ -52,14 +52,14 @@
         <p>
             Presto is a distributed system that runs on a cluster of machines. It enables 
 	analytics on large amounts of data. With Presto, access and query data in place on
-	many data different data sources (see image below). Presto supports ANSI SQL.
+	many data different data sources using ANSI SQL (see image below).
         </p>
 
    <!--suppress CheckImageSize -- larger file for retina -->
         <img src="static/presto-overview-2.png" width="80%" alt="Presto System Overview">
 
 	<p>
-         A full installation includes a coordinator and multiple workers.
+         A full deployment includes a coordinator and multiple workers.
             Queries are submitted from a client such as the Presto CLI to the
             coordinator. The coordinator parses, analyzes and plans the query
             execution, then distributes the processing to the workers.
