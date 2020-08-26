@@ -1,0 +1,217 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>5.1. Alluxio Cache Service &#8212; Presto 0.239.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.239.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Query Optimizer" href="../optimizer.html" />
+    <link rel="prev" title="5. Cache" href="../cache.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.239.1 Documentation</span></a></h1>
+    <h2 class="heading"><span>5.1. Alluxio Cache Service</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../cache.html">5. Cache</a>
+    </span>
+    <span class="right">
+        <a href="../optimizer.html">6. Query Optimizer</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="alluxio-cache-service">
+<h1>5.1. Alluxio Cache Service</h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#overview" id="id1">Overview</a></li>
+<li><a class="reference internal" href="#option1-alluxio-file-system" id="id2">Option1: Alluxio File System</a></li>
+<li><a class="reference internal" href="#option2-alluxio-structured-data-service" id="id3">Option2: Alluxio Structured Data Service</a></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2>Overview</h2>
+<p>A common optimization to improve Presto query latency is to cache the working set to avoid
+unnecessary I/O from remote data sources or through a slow network.
+This section describes following options to leverage Alluxio as a caching layer for Presto.</p>
+<p><a class="reference external" href="#option1-alluxio-file-system">Alluxio File System</a> serves Presto Hive Connector as an independent distributed caching file system on top of HDFS or object stores like AWS S3, GCP, Azure blob store.
+Users can understand the cache usage and control cache explicitly through a file system interface.
+For example, one can preload all files in an Alluxio directory to warm the cache for Presto queries,
+and set the TTL (time-to-live) for cached data to reclaim cache capacity.</p>
+<p><a class="reference external" href="#option2-alluxio-structured-data-service">Alluixo Structured Data Service</a> interacts with Presto with both a catalog
+and a caching file system based on Option1.
+This option provides additional benefits on top of option 1 in terms of
+seamless access to existing Hive tables without modifying table locations on Hive Metastore and
+further performance optimization by consolidating many small files or transforming formats of input files.</p>
+</div>
+<div class="section" id="option1-alluxio-file-system">
+<h2>Option1: Alluxio File System</h2>
+<p>Presto Hive connector can connect to
+<a class="reference external" href="https://docs.alluxio.io/os/user/stable/en/core-services/Caching.html?utm_source=prestodb&amp;utm_medium=prestodocs">AlluxioFileSystem</a> as a Hadoop-compatible file system,
+on top of other persistent storage systems.</p>
+<div class="section" id="setup">
+<h3>Setup</h3>
+<p>First, configure <code class="docutils literal"><span class="pre">${PRESTO_HOME}/etc/catalog/hive.properties</span></code> to use the Hive connector.</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>connector.name=hive-hadoop2
+hive.metastore.uri=thrift://localhost:9083
+</pre></div>
+</div>
+<p>Second, ensure the Alluxio client jar is already in
+<code class="docutils literal"><span class="pre">${PRESTO_HOME}/plugin/hive-hadoop2/</span></code> on all Presto servers.
+If this is not the case,
+<a class="reference external" href="https://alluxio.io/download">download Alluxio binary</a>, extract the tarball to
+<code class="docutils literal"><span class="pre">${ALLUXIO_HOME}</span></code> and copy Alluxio client jar
+<code class="docutils literal"><span class="pre">${ALLUXIO_HOME}/client/alluxio-&lt;VERSION&gt;-client.jar</span></code> into this directory. Restart Presto service:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>$ ${PRESTO_HOME}/bin/launcher restart
+</pre></div>
+</div>
+<p>Third, configure Hive Metastore connects to Alluxio File System when serving Presto.
+Edit <code class="docutils literal"><span class="pre">${HIVE_HOME}/conf/hive-env.sh</span></code> to include Alluxio client jar on the Hive classpath:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>export HIVE_AUX_JARS_PATH=${ALLUXIO_HOME}/client/alluxio-&lt;VERSION&gt;-client.jar
+</pre></div>
+</div>
+<p>Then restart Hive Metastore</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>$ ${HIVE_HOME}/hcatalog/sbin/hcat_server.sh start
+</pre></div>
+</div>
+</div>
+<div class="section" id="query">
+<h3>Query</h3>
+<p>After completing the basic configuration, Presto should be able to access Alluxio File System
+with tables pointing to <code class="docutils literal"><span class="pre">alluxio://</span></code> address.
+Refer to the <a class="reference internal" href="../connector/hive.html"><span class="doc">Hive Connector</span></a> documentation
+to learn how to configure Alluxio file system in Presto. Here is a simple example:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>$ cd ${ALLUXIO_HOME}
+$ bin/alluxio-start.sh local -f
+$ bin/alluxio fs mount --readonly /example \
+   s3://apc999/presto-tutorial/example-reason/
+</pre></div>
+</div>
+<p>Start a Prest CLI connecting to the server started in the previous step.</p>
+<p>Download <a class="reference external" href="https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/0.239.1/presto-cli-0.239.1-executable.jar">presto-cli-0.239.1-executable.jar</a>, rename it to <code class="docutils literal"><span class="pre">presto</span></code>,
+make it executable with <code class="docutils literal"><span class="pre">chmod</span> <span class="pre">+x</span></code>, then run it:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>$ ./presto --server localhost:8080 --catalog hive --debug
+presto&gt; use default;
+USE
+</pre></div>
+</div>
+<p>Create a new table based on the file mounted in Alluxio:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>presto:default&gt; DROP TABLE IF EXISTS reason;
+DROP TABLE
+presto:default&gt; CREATE TABLE reason (
+  r_reason_sk integer,
+  r_reason_id varchar,
+  r_reason_desc varchar
+) WITH (
+  external_location = &#39;alluxio://localhost:19998/example&#39;,
+  format = &#39;PARQUET&#39;
+);
+CREATE TABLE
+</pre></div>
+</div>
+<p>Scan the newly created table on Alluxio:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>presto:default&gt; SELECT * FROM reason LIMIT 3;
+ r_reason_sk |   r_reason_id    |                r_reason_desc
+-------------+------------------+---------------------------------------------
+           1 | AAAAAAAABAAAAAAA | Package was damaged
+           4 | AAAAAAAAEAAAAAAA | Not the product that was ordred
+           5 | AAAAAAAAFAAAAAAA | Parts missing
+</pre></div>
+</div>
+</div>
+<div class="section" id="basic-operations">
+<h3>Basic Operations</h3>
+<p>With Alluxio file system this approach supports the following features:</p>
+<ul class="simple">
+<li><strong>Preloading</strong>: Users can proactively load the working set into Alluxio using command-lines like
+<a class="reference external" href="https://docs.alluxio.io/os/user/stable/en/operation/User-CLI.html#distributedload">alluxio fs distributedLoad</a>,
+in addition to caching data transparently based on the data access pattern.</li>
+<li><strong>Read/write Types and Data Policies</strong>: Users can customize read and write modes for Presto when reading from and writing to Alluxio.
+E.g.  tell Presto read to skip caching data when reading from certain locations and avoid cache thrashing, or set TTLs on files in given locations using
+<a class="reference external" href="https://docs.alluxio.io/os/user/stable/en/operation/User-CLI.html#setttl">alluxio fs setTtl</a>.</li>
+<li><strong>Check Working Set</strong>: Users can verify which files are cached to understand and optimize Presto performance. For example, users can check the output from Alluxio command line
+<a class="reference external" href="https://docs.alluxio.io/os/user/stable/en/operation/User-CLI.html#ls">alluxio fs ls</a>,
+or browse the corresponding files on
+<a class="reference external" href="https://docs.alluxio.io/os/user/stable/en/operation/Web-Interface.html">Alluxio WebUI</a>.</li>
+<li><strong>Check Resource Utilization</strong>: System admins can monitor how much of the cache capacity on each node is used using
+<a class="reference external" href="https://docs.alluxio.io/os/user/stable/en/operation/Admin-CLI.html#report">alluxio fsadmin report</a> and plan the resource accordingly.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="option2-alluxio-structured-data-service">
+<h2>Option2: Alluxio Structured Data Service</h2>
+<p>In addition to caching data as a file system, Alluxio can further provide data
+abstracted as tables and via the Alluxio Structured Data Service. The <a class="reference external" href="https://docs.alluxio.io/os/user/stable/en/core-services/Catalog.html?utm_source=prestodb&amp;utm_medium=prestodocs">Alluxio
+catalog</a>
+is the main component responsible for managing the structured data metadata, and
+caching that information from the underlying table metastore (such as Hive
+Metastore). After an existing table metastore is
+<a class="reference external" href="https://docs.alluxio.io/os/user/stable/en/operation/User-CLI.html#attachdb">attached</a>
+to the Alluxio catalog, the catalog will cache the table metadata from the
+underlying metastore, and serve that information to Presto. When Presto accesses
+the Alluxio catalog for table metadata, the Alluxio catalog will automatically
+use the Alluxio locations of the files, which removes the need to modify any
+locations in the existing Hive Metastore. Therefore, when Presto is using the
+Alluxio catalog, the table metadata is cached in the catalog, and the file
+contents are cached with Alluxio’s file system caching.</p>
+<p>For example, a user can attach an existing Hive Metastore to the Alluxio catalog:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>./bin/alluxio table attachdb hive thrift://METASTORE_HOSTNAME:9083 hive_db_name
+</pre></div>
+</div>
+<p>Then configure a Presto catalog to connect to the Alluxio catalog:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>connector.name=hive-hadoop2
+hive.metastore=alluxio
+hive.metastore.alluxio.master.address=ALLUXIO_HOSTNAME:19998
+</pre></div>
+</div>
+<p>Now, Presto queries can utilize both the file caching and structured data caching
+provided by Alluxio. Please read <a class="reference internal" href="../connector/hive.html"><span class="doc">Hive Connector</span></a> for more details.</p>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../cache.html">5. Cache</a>
+    </span>
+    <span class="right">
+        <a href="../optimizer.html">6. Query Optimizer</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

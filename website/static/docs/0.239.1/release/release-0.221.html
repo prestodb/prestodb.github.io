@@ -1,0 +1,133 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.27. Release 0.221 &#8212; Presto 0.239.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.239.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.28. Release 0.220" href="release-0.220.html" />
+    <link rel="prev" title="13.26. Release 0.222" href="release-0.222.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.239.1 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.27. Release 0.221</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.222.html">13.26. Release 0.222</a>
+    </span>
+    <span class="right">
+        <a href="release-0.220.html">13.28. Release 0.220</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-221">
+<h1>13.27. Release 0.221</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix error during stats collection phase of query planning.</li>
+<li>Fix a performance regression for some outer joins without equality predicates when
+<code class="docutils literal"><span class="pre">join_distribution_type</span></code> is set to <code class="docutils literal"><span class="pre">AUTOMATIC</span></code>.</li>
+<li>Improve performance for queries that have constant <code class="docutils literal"><span class="pre">VARCHAR</span></code> predicates on join columns.</li>
+<li>Add a variant of <a class="reference internal" href="../functions/string.html#strpos" title="strpos"><code class="xref py py-func docutils literal"><span class="pre">strpos()</span></code></a> that returns the position of the N-th instance of the substring.</li>
+<li>Add <a class="reference internal" href="../functions/string.html#strrpos" title="strrpos"><code class="xref py py-func docutils literal"><span class="pre">strrpos()</span></code></a> that returns the position of the N-th instance of a substring from the back of a string.</li>
+<li>Add aggregation function <a class="reference internal" href="../functions/aggregate.html#entropy" title="entropy"><code class="xref py py-func docutils literal"><span class="pre">entropy()</span></code></a>.</li>
+<li>Add classification aggregation functions <a class="reference internal" href="../functions/aggregate.html#classification_miss_rate" title="classification_miss_rate"><code class="xref py py-func docutils literal"><span class="pre">classification_miss_rate()</span></code></a>, <a class="reference internal" href="../functions/aggregate.html#classification_precision" title="classification_precision"><code class="xref py py-func docutils literal"><span class="pre">classification_precision()</span></code></a>,
+<a class="reference internal" href="../functions/aggregate.html#classification_recall" title="classification_recall"><code class="xref py py-func docutils literal"><span class="pre">classification_recall()</span></code></a>, <a class="reference internal" href="../functions/aggregate.html#classification_thresholds" title="classification_thresholds"><code class="xref py py-func docutils literal"><span class="pre">classification_thresholds()</span></code></a>.</li>
+<li>Add overload of <a class="reference internal" href="../functions/hyperloglog.html#approx_set" title="approx_set"><code class="xref py py-func docutils literal"><span class="pre">approx_set()</span></code></a> which takes in the maximum standard error.</li>
+<li>Add <code class="docutils literal"><span class="pre">max_tasks_per_stage</span></code> session property and <code class="docutils literal"><span class="pre">stage.max-tasks-per-stage</span></code> config property to
+limit the number of tasks per stage for grouped execution.  Setting this session property allows queries
+running with grouped execution to use a predictable amount of memory independent of the cluster size.</li>
+<li>Add encryption for spill files (see <a class="reference internal" href="../admin/spill.html"><span class="doc">Spill to Disk</span></a>).</li>
+</ul>
+</div>
+<div class="section" id="web-ui-changes">
+<h2>Web UI Changes</h2>
+<ul class="simple">
+<li>Add information about query warnings to the web UI.</li>
+</ul>
+</div>
+<div class="section" id="raptor-changes">
+<h2>Raptor Changes</h2>
+<ul class="simple">
+<li>Revert the change introduced in 0.219 to rebalance bucket assignment after restarting
+the cluster. Automatic rebalancing can cause unexpected downtime when restarting the cluster
+to resolve emergent issues.</li>
+</ul>
+</div>
+<div class="section" id="hive-connector-changes">
+<h2>Hive Connector Changes</h2>
+<ul class="simple">
+<li>Improve coordinator memory utilization for Hive splits.</li>
+<li>Improve performance of writing large ORC files.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">PageSinkProperties</span></code> for <code class="docutils literal"><span class="pre">createPageSink</span></code> in <code class="docutils literal"><span class="pre">PageSinkProvider</span></code> and
+<code class="docutils literal"><span class="pre">ConnectorPageSinkProvider</span></code>. It contains a boolean <code class="docutils literal"><span class="pre">partitionCommitRequired</span></code>, which is
+false by default.  See the note below about <code class="docutils literal"><span class="pre">commitPartition</span></code> for more information.</li>
+<li>Add <code class="docutils literal"><span class="pre">commitPartition</span></code> to <code class="docutils literal"><span class="pre">Metadata</span></code> and <code class="docutils literal"><span class="pre">ConnectorMetadata</span></code>. This SPI is coupled with
+<code class="docutils literal"><span class="pre">PageSinkProperties#partitionCommitRequired</span></code> and is used by the engine to commit a partition of data to the target
+connector. The connector that implements this SPI should ensure that if <code class="docutils literal"><span class="pre">PageSinkProperties#isPartitionCommitRequired</span></code>
+is true in <code class="docutils literal"><span class="pre">ConnectorPageSinkProvider#createPageSink</span></code>, the written data is not published until
+<code class="docutils literal"><span class="pre">ConnectorMetadata#commitPartition</span></code> is called. Also, it is expected for the connector to add <code class="docutils literal"><span class="pre">SUPPORTS_PARTITION_COMMIT</span></code>
+in <code class="docutils literal"><span class="pre">Connector#getCapabilities</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">ExpressionOptimizer</span></code> in <code class="docutils literal"><span class="pre">RowExpressionService</span></code>. <code class="docutils literal"><span class="pre">ExpressionOptimizer</span></code> simplifies a <code class="docutils literal"><span class="pre">RowExpression</span></code>
+and prunes redundant part of it.</li>
+<li>Add <code class="docutils literal"><span class="pre">pushNegationToLeaves</span></code> method to <code class="docutils literal"><span class="pre">LogicalRowExpressions</span></code> to push negation down below conjunction or disjunction
+for a logical expression.</li>
+<li>Replace <code class="docutils literal"><span class="pre">SplitSchedulingStrategy</span></code> with <code class="docutils literal"><span class="pre">SplitSchedulingContext</span></code> in <code class="docutils literal"><span class="pre">ConnectorSplitManager</span></code>.  <code class="docutils literal"><span class="pre">SplitSchedulingContext</span></code>
+contains the <code class="docutils literal"><span class="pre">SplitSchedulingStrategy</span></code> and a boolean <code class="docutils literal"><span class="pre">schedulerUsesHostAddresses</span></code> that indicates whether the network topology
+is used during scheduling.  If false, the connector doesn’t need to provide the host addresses for remotely accessible splits.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.222.html">13.26. Release 0.222</a>
+    </span>
+    <span class="right">
+        <a href="release-0.220.html">13.28. Release 0.220</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
