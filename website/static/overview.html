@@ -47,77 +47,61 @@
 
 <div class="content homecontent width clearfix">
     <div class="">
-        <h1>Introduction</h1>
+        <h1>Introduction to Presto</h1>
 
         <p>
-            Presto is a distributed system that runs on a cluster of machines.
-            A full installation includes a coordinator and multiple workers.
+            Presto is a distributed system that runs on a cluster of machines. It enables 
+    analytics on large amounts of data. With Presto, access and query data in place on
+    many data different data sources using ANSI SQL (see image below).
+        </p>
+
+   <!--suppress CheckImageSize -- larger file for retina -->
+        <img src="img/presto-overview-2.png" width="80%" alt="Presto System Overview">
+
+    <p>
+         A full deployment includes a coordinator and multiple workers.
             Queries are submitted from a client such as the Presto CLI to the
             coordinator. The coordinator parses, analyzes and plans the query
             execution, then distributes the processing to the workers.
         </p>
 
         <!--suppress CheckImageSize -- larger file for retina -->
-        <img src="static/presto-overview.png" width="80%" alt="Presto Installation Overview">
+        <img src="img/presto-architecture.png" width="80%" alt="Presto Installation Overview">
 
-        <h1>Requirements</h1>
-
-        <p>
-            Presto has a few basic requirements:
+    <p>
+    Presto supports pluggable connectors that provide data for queries. The 
+    requirements vary by connector. Connector examples include: Hive for HDFS or Object Stores (S3), MySQL, ElasticSearch, Cassandra, Kafka and more. In addition for benchmarking you can use the TPC-H or TPC-DS connectors. For a list of supported  connectors see <a href="https://prestodb.io/docs/current/connector.html">the        docs.</a>
         </p>
 
-        <ul>
-            <li>Linux or Mac OS X</li>
-            <li>Java 8, 64-bit</li>
-            <li>Python 2.4+</li>
-        </ul>
 
-        <h1>Connectors</h1>
+        <h1>Use Cases</h1>
 
         <p>
-            Presto supports pluggable connectors that provide data for queries.
-            The requirements vary by connector.
-        </p>
-
-        <h2>Hadoop / Hive</h2>
-
-        <p>
-            Presto supports reading Hive data from the following versions of Hadoop:
-        </p>
-
-        <ul>
-            <li>Apache Hadoop 1.x</li>
-            <li>Apache Hadoop 2.x</li>
-            <li>Cloudera CDH 4</li>
-            <li>Cloudera CDH 5</li>
-        </ul>
-
-        <p>
-            The following file formats are supported: Text, SequenceFile,
-            RCFile, ORC and Parquet.
+           <b>Interactive analytics</b><br>
+    Quickly analyze data and execute queries in seconds or minutes using    
+    visualizations, dashboards, notebooks, and BI tools.
         </p>
 
         <p>
-            Additionally, a remote Hive metastore is required.
-            Local or embedded mode is not supported.
-            Presto does not use MapReduce and thus only requires HDFS.
+           <b>Batch ETL</b><br>
+    Populate and process data in the warehouse for better throughput and efficiency. 
         </p>
-
-        <h2>Cassandra</h2>
 
         <p>
-            Cassandra 2.x is required. This connector is completely
-            independent of the Hive connector and only requires an
-            existing Cassandra installation.
+           <b>A/B testing</b><br>
+    Choose which data to slice and dice and evaluate product changes via hypothesis
+    testing, with results in hours (not days). 
         </p>
-
-        <h2>TPC-H</h2>
 
         <p>
-            The TPC-H connector dynamically generates data that can be used
-            for experimenting with and testing Presto. This connector has
-            no external requirements.
+           <b>App Analytics</b><br>
+    Build external-facing custom reporting tools with low latency and hundreds of
+    highly available concurrent queries.
         </p>
+
+        
+
+     
 
         <h1>Deployment</h1>
 

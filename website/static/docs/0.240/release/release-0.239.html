@@ -1,0 +1,173 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.4. Release 0.239 &#8212; Presto 0.240 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.240',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.5. Release 0.238.3" href="release-0.238.3.html" />
+    <link rel="prev" title="13.3. Release 0.239.1" href="release-0.239.1.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.240 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.4. Release 0.239</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.239.1.html">13.3. Release 0.239.1</a>
+    </span>
+    <span class="right">
+        <a href="release-0.238.3.html">13.5. Release 0.238.3</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-239">
+<h1>13.4. Release 0.239</h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">There is a reliability issue in ZSTD compression that causes frequent excessive GC events in this release.
+classification_precision function returns wrong results, fixed in 0.239.2 release.</p>
+</div>
+<div class="section" id="highlights">
+<h2><strong>Highlights</strong></h2>
+<ul class="simple">
+<li>Add support for <code class="docutils literal"><span class="pre">DEFINER</span></code> and <code class="docutils literal"><span class="pre">INVOKER</span></code> view security models.</li>
+<li>Add support for caching Glue metastore in Hive connector.</li>
+<li>Add Pinot SQL endpoint support.</li>
+</ul>
+</div>
+<div class="section" id="details">
+<h2><strong>Details</strong></h2>
+<div class="section" id="general-changes">
+<h3>General Changes</h3>
+<ul class="simple">
+<li>Fix incorrect results from <a class="reference internal" href="../functions/aggregate.html#classification_miss_rate" title="classification_miss_rate"><code class="xref py py-func docutils literal"><span class="pre">classification_miss_rate()</span></code></a>, <a class="reference internal" href="../functions/aggregate.html#classification_fall_out" title="classification_fall_out"><code class="xref py py-func docutils literal"><span class="pre">classification_fall_out()</span></code></a> (<a class="reference external" href="https://github.com/prestodb/presto/pull/14740">#14740</a>).</li>
+<li>Fix error in <code class="docutils literal"><span class="pre">/v1/thread</span></code> end point.</li>
+<li>Fix an issue where the property <code class="docutils literal"><span class="pre">ignore_stats_calculator_failures</span></code> would not be honored
+for certain queries.</li>
+<li>Fix missing query completion events for queries which fail prior to executing.</li>
+<li>Fix potential performance regression when setting <code class="docutils literal"><span class="pre">use_legacy_scheduler</span></code> is set to <code class="docutils literal"><span class="pre">false</span></code>.</li>
+<li>Optimize queries with repeated expressions in filters or projections by computing the
+common expressions only once. This can be disabled by the session property
+<code class="docutils literal"><span class="pre">optimize_common_sub_expressions</span></code>.</li>
+<li>Optimize queries containing only <a class="reference internal" href="../functions/aggregate.html#min" title="min"><code class="xref py py-func docutils literal"><span class="pre">min()</span></code></a> and <a class="reference internal" href="../functions/aggregate.html#max" title="max"><code class="xref py py-func docutils literal"><span class="pre">max()</span></code></a> on columns that can be
+evaluated using metadata (e.g., Hive partitions). This is controlled by configuration property
+<code class="docutils literal"><span class="pre">optimizer.optimize-metadata-queries</span></code> and session property <code class="docutils literal"><span class="pre">optimize_metadata_queries</span></code>.
+Note: Enabling this optimization might change query result if there are metadata that refers to
+empty data, see <a class="reference external" href="https://github.com/prestodb/presto/pull/14845">#14845</a> for examples.</li>
+<li>Add aggregation function <a class="reference internal" href="../functions/aggregate.html#set_union" title="set_union"><code class="xref py py-func docutils literal"><span class="pre">set_union()</span></code></a>.</li>
+<li>Add local disk spilling support for queries with <code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span></code> or <code class="docutils literal"><span class="pre">DISTINCT</span></code>.</li>
+<li>Add new unified grouped execution configuration property <code class="docutils literal"><span class="pre">grouped-execution-enabled</span></code> and
+session property <code class="docutils literal"><span class="pre">grouped_execution</span></code> with default set to <code class="docutils literal"><span class="pre">true</span></code>. The property
+<code class="docutils literal"><span class="pre">grouped-execution-for-join-enabled</span></code> will be removed in a future release (<a class="reference external" href="https://github.com/prestodb/presto/pull/14886">#14886</a>).</li>
+<li>Remove experimental feature to perform grouped execution for eligible table scans and its
+associated configuration property <code class="docutils literal"><span class="pre">experimental.grouped-execution-for-eligible-table-scans</span></code>
+and session property <code class="docutils literal"><span class="pre">grouped_execution_for_eligible_table_scans</span></code>.</li>
+<li>Enable <code class="docutils literal"><span class="pre">dynamic-schedule-for-grouped-execution</span></code> by default.  This property will be removed
+in a future release.</li>
+<li>Enable <code class="docutils literal"><span class="pre">grouped-execution-for-aggregation-enabled</span></code> by default. This property will be removed in
+a future release.</li>
+<li>Enable async page transport with non-blocking IO for exchange by default. This can be disabled by
+setting the configuration property <code class="docutils literal"><span class="pre">exchange.async-page-transport-enabled</span></code> to <code class="docutils literal"><span class="pre">false</span></code>.</li>
+</ul>
+<div class="section" id="security-changes">
+<h4>Security Changes</h4>
+<ul class="simple">
+<li>Add support for <code class="docutils literal"><span class="pre">DEFINER</span></code> and <code class="docutils literal"><span class="pre">INVOKER</span></code> view security modes. While querying a view the former
+uses the permissions of the view owner and the latter uses the query runner’s permissions.
+See <a class="reference internal" href="../sql/create-view.html"><span class="doc">CREATE VIEW</span></a>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="jdbc-changes">
+<h3>JDBC Changes</h3>
+<ul class="simple">
+<li>Implemented <code class="docutils literal"><span class="pre">DatabaseMetaData#getClientInfoProperties</span></code> API.</li>
+</ul>
+<div class="section" id="web-ui-changes">
+<h4>Web UI Changes</h4>
+<ul class="simple">
+<li>Fix worker thread snapshot UI to correctly display the stack trace.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="hive-changes">
+<h3>Hive Changes</h3>
+<ul class="simple">
+<li>Add support for caching the Glue metastore.</li>
+<li>Add support for warning on unfiltered partition keys. This can be enabled using the configuration
+property <code class="docutils literal"><span class="pre">partition-keys-to-warn-on-no-filtering</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="elasticsearch-changes">
+<h3>Elasticsearch Changes</h3>
+<ul class="simple">
+<li>Add connector configuration <code class="docutils literal"><span class="pre">elasticsearch.max-http-connections</span></code> to control maximum number of
+persistent connections to Elasticsearch.</li>
+<li>Add connector configuration <code class="docutils literal"><span class="pre">elasticsearch.http-thread-count</span></code> to control the number of threads
+handling HTTP connections to Elasticsearch.</li>
+<li>Add support for numeric keyword.</li>
+<li>Add support for composite <code class="docutils literal"><span class="pre">publish_address</span></code> (<a class="reference external" href="https://github.com/prestodb/presto/pull/14811">#14811</a>).</li>
+</ul>
+</div>
+<div class="section" id="pinot-changes">
+<h3>Pinot Changes</h3>
+<ul class="simple">
+<li>Add Pinot SQL endpoint support.</li>
+<li>Add support to pushdown <code class="docutils literal"><span class="pre">DistinctLimitNode</span></code> to Pinot Query in SQL mode.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h3>SPI Changes</h3>
+<ul class="simple">
+<li>Move <code class="docutils literal"><span class="pre">DistinctLimitNode</span></code> to <code class="docutils literal"><span class="pre">presto-spi</span></code> module for connectors to push down.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.239.1.html">13.3. Release 0.239.1</a>
+    </span>
+    <span class="right">
+        <a href="release-0.238.3.html">13.5. Release 0.238.3</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

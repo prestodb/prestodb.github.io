@@ -1,0 +1,125 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.13. Release 0.234 &#8212; Presto 0.239.3 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.239.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.14. Release 0.233.1" href="release-0.233.1.html" />
+    <link rel="prev" title="13.12. Release 0.234.1" href="release-0.234.1.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.239.3 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.13. Release 0.234</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.234.1.html">13.12. Release 0.234.1</a>
+    </span>
+    <span class="right">
+        <a href="release-0.233.1.html">13.14. Release 0.233.1</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-234">
+<h1>13.13. Release 0.234</h1>
+<div class="section" id="general-changes">
+<h2>General Changes</h2>
+<ul class="simple">
+<li>Fix query failure for cross-joining bucketed tables with <code class="docutils literal"><span class="pre">COALESCE</span></code> when the bucket counts are compatible but mismatched.</li>
+<li>Fix an issue where <code class="docutils literal"><span class="pre">IGNORE</span> <span class="pre">NULLS</span></code> is not respected for window functions.</li>
+<li>Fix scheduling regression by setting the default scheduler to legacy scheduler.</li>
+<li>Improve coordinator reliability by adding support to cap the number of total tasks running in a coordinator by pausing scheduling.
+This can be enabled by the configuration property <code class="docutils literal"><span class="pre">experimental.max-total-running-task-count-to-not-execute-new-query</span></code>.</li>
+<li>Improve the scale writer heuristics by considering overall producer buffer utilization. This can be enabled by the session property
+<code class="docutils literal"><span class="pre">optimized_scale_writer_producer_buffer</span></code> and the configuration property <code class="docutils literal"><span class="pre">optimized-scale-writer-producer-buffer</span></code>.</li>
+<li>Improve end point <code class="docutils literal"><span class="pre">v1/resourceGroupState</span></code> to supporting filtering of resource groups that are dynamically generated.</li>
+<li>Improve connection pooling to avoid running out of sockets.</li>
+<li>Add <a class="reference internal" href="../language/types.html#khyperloglog-type"><span class="std std-ref">KHyperLogLog</span></a> type and related functions.</li>
+<li>Add support for forcing streaming exchange for Mark Distinct even if materialized exchange is enabled.
+This can be enabled by the session property <code class="docutils literal"><span class="pre">use_stream_exchange_for_mark_distinct</span></code>
+and the configuration property <code class="docutils literal"><span class="pre">query.use-streaming-exchange-for-mark-distinct</span></code>. (<a class="reference external" href="https://github.com/prestodb/presto/pull/14216">#14216</a>).</li>
+</ul>
+</div>
+<div class="section" id="geospatial-changes">
+<h2>Geospatial Changes</h2>
+<ul class="simple">
+<li>Improve storage efficiency for Bing tiles by storing Bing tiles as <code class="docutils literal"><span class="pre">BIGINT</span></code>. This also reduces bucket skew in certain cases.</li>
+<li>Add support for spatial joins for join condition <code class="docutils literal"><span class="pre">ST_Distance(p1,</span> <span class="pre">p2)</span> <span class="pre">&lt;</span> <span class="pre">r</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="hive-changes">
+<h2>Hive Changes</h2>
+<ul class="simple">
+<li>Add <code class="docutils literal"><span class="pre">ZSTD</span></code> support for writing <code class="docutils literal"><span class="pre">ORC</span></code> and <code class="docutils literal"><span class="pre">DWRF</span></code> files. This can be enabled by setting session property <code class="docutils literal"><span class="pre">hive.compression_codec</span></code> to <code class="docutils literal"><span class="pre">ZSTD</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h2>Verifier Changes</h2>
+<ul class="simple">
+<li>Add support for verifying <code class="docutils literal"><span class="pre">SELECT</span></code> queries that produce <code class="docutils literal"><span class="pre">DATE</span></code> or <code class="docutils literal"><span class="pre">UNKNOWN</span></code> (null) columns, or structured typed columns with <code class="docutils literal"><span class="pre">DATE</span></code> or <code class="docutils literal"><span class="pre">UNKNOWN</span></code>.</li>
+<li>Add support for auto-resolving control check query failures due to <code class="docutils literal"><span class="pre">EXCEEDED_TIME_LIMIT</span></code>.</li>
+<li>Add determinism analysis support for simple queries with top-level <code class="docutils literal"><span class="pre">ORDER</span> <span class="pre">BY</span> <span class="pre">LIMIT</span></code> clause. (<a class="reference external" href="https://github.com/prestodb/presto/pull/14181">#14181</a>).</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h2>SPI Changes</h2>
+<ul class="simple">
+<li>Add parameter <code class="docutils literal"><span class="pre">AccessControlContext</span></code> to all methods in <code class="docutils literal"><span class="pre">SystemAccessControl</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">firstDynamicSegmentPosition</span></code> to SelectionContext.</li>
+</ul>
+</div>
+<div class="section" id="druid-changes">
+<h2>Druid Changes</h2>
+<ul class="simple">
+<li>Add support for aggregation pushdown.</li>
+<li>Add support for <code class="docutils literal"><span class="pre">LIMIT</span></code> evaluation pushdown.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.234.1.html">13.12. Release 0.234.1</a>
+    </span>
+    <span class="right">
+        <a href="release-0.233.1.html">13.14. Release 0.233.1</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

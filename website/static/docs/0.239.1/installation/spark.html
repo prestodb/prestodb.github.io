@@ -1,0 +1,122 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>2.6. Executing Presto on Spark &#8212; Presto 0.239.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.239.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Security" href="../security.html" />
+    <link rel="prev" title="2.5. Web Connector for Tableau" href="tableau.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.239.1 Documentation</span></a></h1>
+    <h2 class="heading"><span>2.6. Executing Presto on Spark</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="tableau.html">2.5. Web Connector for Tableau</a>
+    </span>
+    <span class="right">
+        <a href="../security.html">3. Security</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="executing-presto-on-spark">
+<h1>2.6. Executing Presto on Spark</h1>
+<p>Presto on Spark makes it possible to leverage Spark as an execution framework
+for Presto queries. This is useful for queries that we want to run on thousands
+of nodes, requires 10s or 100s of terabytes of memory, and consume many CPU years.</p>
+<p>Spark provides several values adds like resource isolation, fine grained resource
+management, and Spark’s scalable materialized exchange mechanism.</p>
+<div class="section" id="steps">
+<h2>Steps</h2>
+<p>Download the Presto Spark package tarball, <a class="reference external" href="https://repo1.maven.org/maven2/com/facebook/presto/presto-spark-package/0.239.1/presto-spark-package-0.239.1.tar.gz">presto-spark-package-0.239.1.tar.gz</a>
+and the Presto Spark laucher, <a class="reference external" href="https://repo1.maven.org/maven2/com/facebook/presto/presto-spark-launcher/0.239.1/presto-spark-launcher-0.239.1.jar">presto-spark-launcher-0.239.1.jar</a>. Keep both the
+files at, say, <em>example</em> directory. We assume here a two node Spark cluster
+with four cores each, thus giving us eight total cores.</p>
+<p>The following is an example <code class="docutils literal"><span class="pre">config.properties</span></code>:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>task.concurrency=4
+task.max-worker-threads=4
+task.writer-count=4
+</pre></div>
+</div>
+<p>The details about properties are available at <a class="reference internal" href="../admin/properties.html"><span class="doc">Properties Reference</span></a>.
+Note that <code class="docutils literal"><span class="pre">task.concurrency</span></code>, <code class="docutils literal"><span class="pre">task.writer-count</span></code> and
+<code class="docutils literal"><span class="pre">task.max-worker-threads</span></code> are set to 4 each, since we have four cores per executor
+and want to synchronize with the relevant Spark submit arguments below.
+These values should be adjusted to keep all executor cores busy and
+synchronize with <strong class="command">spark-submit</strong> parameters.</p>
+<p>To execute Presto on Spark, first start your Spark cluster, which we will
+assume have the URL <em>spark://spark-master:7077</em>. Keep your
+time consuming query in a file called, say, <em>query.sql</em>. Run <strong class="command">spark-submit</strong>
+command from the <em>example</em> directory created earlier:</p>
+<pre class="literal-block">
+/spark/bin/spark-submit \
+--master spark://spark-master:7077 \
+--executor-cores 4 \
+--conf spark.task.cpus=4 \
+--class com.facebook.presto.spark.launcher.PrestoSparkLauncher \
+  presto-spark-launcher-0.239.1.jar \
+--package presto-spark-package-0.239.1.tar.gz \
+--config /presto/etc/config.properties \
+--catalogs /presto/etc/catalogs \
+--catalog hive \
+--schema default \
+--file query.sql
+</pre>
+<p>The details about configuring catalogs are at <a class="reference internal" href="deployment.html#catalog-properties"><span class="std std-ref">Catalog Properties</span></a>. In
+Spark submit arguments, note the values of <em>executor-cores</em> (number of cores per
+executor in Spark) and <em>spark.task.cpus</em> (number of cores to allocate to each task
+in Spark). These are also equal to the number of cores (4 in this case) and are
+same as some of the <code class="docutils literal"><span class="pre">config.properties</span></code> settings discussed above. This is to ensure that
+a single Presto on Spark task is run in a single Spark executor (This limitation may be
+temporary and is introduced to avoid duplicating broadcasted hash tables for every
+task).</p>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="tableau.html">2.5. Web Connector for Tableau</a>
+    </span>
+    <span class="right">
+        <a href="../security.html">3. Security</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

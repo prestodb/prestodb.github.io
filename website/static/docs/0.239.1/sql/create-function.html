@@ -1,0 +1,162 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>10.7. CREATE FUNCTION &#8212; Presto 0.239.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.239.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="10.8. CREATE ROLE" href="create-role.html" />
+    <link rel="prev" title="10.6. COMMIT" href="commit.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.239.1 Documentation</span></a></h1>
+    <h2 class="heading"><span>10.7. CREATE FUNCTION</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="commit.html">10.6. COMMIT</a>
+    </span>
+    <span class="right">
+        <a href="create-role.html">10.8. CREATE ROLE</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="create-function">
+<h1>10.7. CREATE FUNCTION</h1>
+<div class="section" id="synopsis">
+<h2>Synopsis</h2>
+<div class="highlight-none"><div class="highlight"><pre><span></span>CREATE [ OR REPLACE ] FUNCTION
+qualified_function_name (
+  parameter_name parameter_type
+  [, ...]
+)
+RETURNS return_type
+[ COMMENT function_description ]
+[ LANGUAGE [ SQL | identifier] ]
+[ DETERMINISTIC | NOT DETERMINISTIC ]
+[ RETURNS NULL ON NULL INPUT | CALLED ON NULL INPUT ]
+[ RETURN expression | EXTERNAL [ NAME identifier ] ]
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description</h2>
+<p>Create a new function with the specified definition.</p>
+<p>Each function is uniquely identified by its qualified function name
+and its parameter type list. <code class="docutils literal"><span class="pre">qualified_function_name</span></code> needs to be in
+the format of <code class="docutils literal"><span class="pre">catalog.schema.function_name</span></code>.</p>
+<p>In order to create a function, the corresponding function namespace
+(in the format <code class="docutils literal"><span class="pre">catalog.schema</span></code>) must first be managed by a function
+namespace manager (See <a class="reference internal" href="../admin/function-namespace-managers.html"><span class="doc">Function Namespace Managers</span></a>).</p>
+<p>The optional <code class="docutils literal"><span class="pre">OR</span> <span class="pre">REPLACE</span></code> clause causes the query to quietly replace
+the existing function if a function with the identical signature (function
+name with parameter type list) exists.</p>
+<p>The <code class="docutils literal"><span class="pre">return_type</span></code> needs to match the actual type of the routine body
+<code class="docutils literal"><span class="pre">expression</span></code>, without performing type coercion.</p>
+<p>A set of routine characteristics can be specified to decorate the
+function and specify its behavior. Each kind of routine characteristic
+can be specified at most once.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="21%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Routine Characteristic</th>
+<th class="head">Default Value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Language clause</td>
+<td>SQL</td>
+<td>The language in which the function is defined.</td>
+</tr>
+<tr class="row-odd"><td>Deterministic characteristic</td>
+<td>NOT DETERMINISTIC</td>
+<td>Whether the function is deterministic. <code class="docutils literal"><span class="pre">NOT</span> <span class="pre">DETERMINISTIC</span></code>
+means that the function is possibly non-deterministic.</td>
+</tr>
+<tr class="row-even"><td>Null-call clause</td>
+<td>CALLED ON NULL INPUT</td>
+<td>The behavior of the function in which <code class="docutils literal"><span class="pre">null</span></code> is supplied as
+the value of at least one argument.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="examples">
+<h2>Examples</h2>
+<p>Create a new function <code class="docutils literal"><span class="pre">example.default.tan(double)</span></code>:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="n">example</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">tan</span><span class="p">(</span><span class="n">x</span> <span class="n">double</span><span class="p">)</span>
+<span class="k">RETURNS</span> <span class="n">double</span>
+<span class="k">DETERMINISTIC</span>
+<span class="k">RETURNS</span> <span class="k">NULL</span> <span class="k">ON</span> <span class="k">NULL</span> <span class="k">INPUT</span>
+<span class="k">RETURN</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create the table <code class="docutils literal"><span class="pre">example.default.tan(double)</span></code> if it does not already
+exist, adding a function description and explicitly listing all the supported
+routine characteristics:</p>
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="n">example</span><span class="p">.</span><span class="k">default</span><span class="p">.</span><span class="n">tan</span><span class="p">(</span><span class="n">x</span> <span class="n">double</span><span class="p">)</span>
+<span class="k">RETURNS</span> <span class="n">double</span>
+<span class="k">COMMENT</span> <span class="s1">&#39;tangent trigonometric function&#39;</span>
+<span class="k">LANGUAGE</span> <span class="k">SQL</span>
+<span class="k">DETERMINISTIC</span>
+<span class="k">RETURNS</span> <span class="k">NULL</span> <span class="k">ON</span> <span class="k">NULL</span> <span class="k">INPUT</span>
+<span class="k">RETURN</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="see-also">
+<h2>See Also</h2>
+<p><a class="reference internal" href="alter-function.html"><span class="doc">ALTER FUNCTION</span></a>, <a class="reference internal" href="drop-function.html"><span class="doc">DROP FUNCTION</span></a>, <a class="reference internal" href="show-functions.html"><span class="doc">SHOW FUNCTIONS</span></a></p>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="commit.html">10.6. COMMIT</a>
+    </span>
+    <span class="right">
+        <a href="create-role.html">10.8. CREATE ROLE</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

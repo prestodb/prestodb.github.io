@@ -1,0 +1,167 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.1. Release 0.240 &#8212; Presto 0.240 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.240',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.2. Release 0.239.2" href="release-0.239.2.html" />
+    <link rel="prev" title="13. Release Notes" href="../release.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.240 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.1. Release 0.240</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../release.html">13. Release Notes</a>
+    </span>
+    <span class="right">
+        <a href="release-0.239.2.html">13.2. Release 0.239.2</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-240">
+<h1>13.1. Release 0.240</h1>
+<div class="section" id="highlights">
+<h2><strong>Highlights</strong></h2>
+<ul class="simple">
+<li>Add ability to spill window functions to local disk when a worker is out of memory.</li>
+<li>Add support for inlining SQL functions at query planning time.</li>
+<li>Add support for limit pushdown through union.</li>
+<li>Add <a class="reference internal" href="../functions/geospatial.html#geometry_from_geojson" title="geometry_from_geojson"><code class="xref py py-func docutils literal"><span class="pre">geometry_from_geojson()</span></code></a> and <a class="reference internal" href="../functions/geospatial.html#geometry_as_geojson" title="geometry_as_geojson"><code class="xref py py-func docutils literal"><span class="pre">geometry_as_geojson()</span></code></a> to convert geometries from and to GeoJSON format.</li>
+</ul>
+</div>
+<div class="section" id="details">
+<h2><strong>Details</strong></h2>
+<div class="section" id="general-changes">
+<h3>General Changes</h3>
+<ul class="simple">
+<li>Fix compiler error due to incorrect LambdaDefinitionExpression canonicalization.</li>
+<li>Fix compiler error in certain situations where sql functions with same lambda are used multiple times.</li>
+<li>Add <code class="docutils literal"><span class="pre">IF</span> <span class="pre">EXISTS</span></code> and <code class="docutils literal"><span class="pre">IF</span> <span class="pre">NOT</span> <span class="pre">EXISTS</span></code> syntax to <code class="docutils literal"><span class="pre">ALTER</span> <span class="pre">TABLE</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">query.max-scan-physical-bytes</span></code> configuration and <code class="docutils literal"><span class="pre">query_max_scan_physical_bytes</span></code> session properties to limit total number of bytes read from storage during table scan. The default limit is 1PB.</li>
+<li>Add support for inlining SQL functions at query planning time. This feature is enabled by default, and can be disabled with the <code class="docutils literal"><span class="pre">inline_sql_functions</span></code> session property.</li>
+<li>Add <a class="reference internal" href="../functions/geospatial.html#geometry_from_geojson" title="geometry_from_geojson"><code class="xref py py-func docutils literal"><span class="pre">geometry_from_geojson()</span></code></a> and <a class="reference internal" href="../functions/geospatial.html#geometry_as_geojson" title="geometry_as_geojson"><code class="xref py py-func docutils literal"><span class="pre">geometry_as_geojson()</span></code></a> to convert geometries from and to GeoJSON format.</li>
+<li>Add support for pushdown of dereference expressions for querying nested data. This can be enabled with the <code class="docutils literal"><span class="pre">pushdown_dereference_enabled</span></code> session property or the <code class="docutils literal"><span class="pre">experimental.pushdown-dereference-enabled</span></code> configuration property.</li>
+<li>Use local private credentials (json key file) to refresh GCS access token. Usage : presto-cli –extra-credential hive.gcs.credentials.path=”${PRIVATE_KEY_JSON_PATH}”.</li>
+<li>Add ability to spill window functions to local disk when a worker is out of memory.</li>
+<li>Add support for limit pushdown through union.</li>
+</ul>
+</div>
+<div class="section" id="thrift-connector-changes">
+<h3>Thrift Connector Changes</h3>
+<ul class="simple">
+<li>Rename <code class="docutils literal"><span class="pre">presto-thrift-connector-api</span></code> to <code class="docutils literal"><span class="pre">presto-thrift-api</span></code> and have separate packages for datatypes, valuesets and connector.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h3>Verifier Changes</h3>
+<ul class="simple">
+<li>Fix an issue where Verifier fails to start when failure resolver is disabled.</li>
+<li>Add configuration property <code class="docutils literal"><span class="pre">test_name</span></code>, to be passed in to the client info blob.</li>
+<li>Add support to implement customized way of launching Presto queries.</li>
+<li>Add support to populate client info for the queries issued by Verifier.</li>
+<li>Add support to resubmit verification if test query fails with <code class="docutils literal"><span class="pre">HIVE_PARTITION_OFFLINE</span></code>.</li>
+<li>Add support to run helper queries on a separate cluster other than the control cluster.</li>
+<li>Add support to skip running control queries and comparing results. This can be enabled by configuration property <code class="docutils literal"><span class="pre">skip-control</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="cassandra-changes">
+<h3>Cassandra Changes</h3>
+<ul class="simple">
+<li>Add TLS security support.</li>
+</ul>
+</div>
+<div class="section" id="druid-changes">
+<h3>Druid Changes</h3>
+<ul class="simple">
+<li>Add support for union all operation with more than 1 druid source.</li>
+<li>Add support for filter on top of Aggregation.</li>
+<li>Fix unhandled HTTP response error for druid client.</li>
+</ul>
+</div>
+<div class="section" id="elasticserarch-changes">
+<h3>Elasticserarch Changes</h3>
+<ul class="simple">
+<li>Add support for IP data type.</li>
+</ul>
+</div>
+<div class="section" id="geospatial-changes">
+<h3>Geospatial Changes</h3>
+<ul class="simple">
+<li>Improve <a class="reference internal" href="../functions/geospatial.html#geometry_to_bing_tiles" title="geometry_to_bing_tiles"><code class="xref py py-func docutils literal"><span class="pre">geometry_to_bing_tiles()</span></code></a> performance.  It is 50x faster on complex polygons, the limit on polygon complexity is removed, and some correctness bugs have been fixed.</li>
+<li>Add geometry_to_dissolved_bing_tiles function, which dissolves complete sets of child tiles to their parent.</li>
+<li>Introduce <a class="reference internal" href="../functions/geospatial.html#bing_tile_children" title="bing_tile_children"><code class="xref py py-func docutils literal"><span class="pre">bing_tile_children()</span></code></a> and <a class="reference internal" href="../functions/geospatial.html#bing_tile_parent" title="bing_tile_parent"><code class="xref py py-func docutils literal"><span class="pre">bing_tile_parent()</span></code></a> functions to get parents and children of a Bing tile.</li>
+</ul>
+</div>
+<div class="section" id="hive-changes">
+<h3>Hive Changes</h3>
+<ul class="simple">
+<li>Fix parquet statistics when min/max is not set.</li>
+<li>Improve split generation performance.</li>
+<li>Add support for Hudi realtime input format for hudi realtime queries.</li>
+<li>Add support for splitting hive files when skip.header.line.count=1.</li>
+<li>Allow presto-hive to use custom parquet input formats.</li>
+</ul>
+</div>
+<div class="section" id="kafka-changes">
+<h3>Kafka Changes</h3>
+<ul class="simple">
+<li>Support <code class="docutils literal"><span class="pre">INSERT</span></code> in Kafka connector.</li>
+</ul>
+</div>
+<div class="section" id="spi-changes">
+<h3>SPI Changes</h3>
+<ul class="simple">
+<li>Allow procedures to accept optional parameters.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="../release.html">13. Release Notes</a>
+    </span>
+    <span class="right">
+        <a href="release-0.239.2.html">13.2. Release 0.239.2</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>

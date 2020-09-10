@@ -1,0 +1,126 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13.5. Release 0.238 &#8212; Presto 0.239.3 Documentation</title>
+    <link rel="stylesheet" href="../_static/presto.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.239.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13.6. Release 0.237" href="release-0.237.html" />
+    <link rel="prev" title="13.4. Release 0.238.2" href="release-0.238.2.html" /> 
+  </head>
+  <body>
+<div class="header">
+    <h1 class="heading"><a href="../index.html">
+        <span>Presto 0.239.3 Documentation</span></a></h1>
+    <h2 class="heading"><span>13.5. Release 0.238</span></h2>
+</div>
+<div class="topnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.238.2.html">13.4. Release 0.238.2</a>
+    </span>
+    <span class="right">
+        <a href="release-0.237.html">13.6. Release 0.237</a> &raquo;
+    </span>
+</p>
+
+</div>
+<div class="content">
+    
+  <div class="section" id="release-0-238">
+<h1>13.5. Release 0.238</h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">There is a bug in this release that will cause certain queries with lambda expressions to fail.
+There is a reliability issue in ZSTD compression that causes frequent excessive GC events in this release.</p>
+</div>
+<div class="section" id="highlights">
+<h2><strong>Highlights</strong></h2>
+<ul class="simple">
+<li>Fix SQL function parameters to be case-insensitive.</li>
+<li>Add support to create external function. (<a class="reference external" href="https://github.com/prestodb/presto/issues/13254">#13254</a>)</li>
+<li>Add support for exchange materialization of table bucketed by non-hive types. This can be enabled by setting the <code class="docutils literal"><span class="pre">bucket_function_type_for_exchange</span></code> session property or <code class="docutils literal"><span class="pre">hive.bucket-function-type-for-exchange</span> <span class="pre">``</span> <span class="pre">configuration</span> <span class="pre">property</span> <span class="pre">to</span> <span class="pre">``PRESTO_NATIVE</span></code>.</li>
+<li>Add predicate pushdown support for <code class="docutils literal"><span class="pre">DATE</span></code>, <code class="docutils literal"><span class="pre">TIMESTAMP</span></code>, and <code class="docutils literal"><span class="pre">TIMESTAMP_WITH_TIME_ZONE</span></code> literals for Pinot connector.</li>
+</ul>
+<div class="section" id="general-changes">
+<h3>General Changes</h3>
+<ul class="simple">
+<li>Fix SQL function parameters to be case-insensitive.</li>
+<li>Add <code class="docutils literal"><span class="pre">target_result_size</span></code> session property to customize data batch sizes being streamed from coordinator.</li>
+<li>Add optimization to push null filters to the INNER side of equijoins. The optimization can be enabled with <code class="docutils literal"><span class="pre">optimize-nulls-in-joins</span></code>.</li>
+<li>Add <code class="docutils literal"><span class="pre">sessionProperty</span></code> override to Presto JDBC URI.</li>
+<li>Add support to create external function. (<a class="reference external" href="https://github.com/prestodb/presto/issues/13254">#13254</a>)</li>
+<li>Add session property <code class="docutils literal"><span class="pre">query_max_broadcast_memory</span></code> to limit the memory a query can use for broadcast join.</li>
+<li>Remove max buffer count configuration property <code class="docutils literal"><span class="pre">driver.max-page-partitioning-buffer-count</span></code> for optimized repartitioning.</li>
+</ul>
+</div>
+<div class="section" id="geospatial-changes">
+<h3>Geospatial Changes</h3>
+<ul class="simple">
+<li>Fix error in <a class="reference internal" href="../functions/geospatial.html#geometry_invalid_reason" title="geometry_invalid_reason"><code class="xref py py-func docutils literal"><span class="pre">geometry_invalid_reason()</span></code></a>.</li>
+<li>Fix integer overflow in certain cases with Bing Tiles.</li>
+</ul>
+</div>
+<div class="section" id="hive-changes">
+<h3>Hive Changes</h3>
+<ul class="simple">
+<li>Fix a bug in Parquet reader which manifests when there are nested column schema changes.</li>
+<li>Add support for exchange materialization of table bucketed by non-hive types. This can be enabled by setting the <code class="docutils literal"><span class="pre">bucket_function_type_for_exchange</span></code> session property or <code class="docutils literal"><span class="pre">hive.bucket-function-type-for-exchange</span> <span class="pre">``</span> <span class="pre">configuration</span> <span class="pre">property</span> <span class="pre">to</span> <span class="pre">``PRESTO_NATIVE</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="pinot-changes">
+<h3>Pinot Changes</h3>
+<ul class="simple">
+<li>Add support to retry data fetch exception. This can be enabled by setting the configuration property <code class="docutils literal"><span class="pre">pinot.mark-data-fetch-exceptions-as-retriable</span></code>.</li>
+<li>Add predicate pushdown support for <code class="docutils literal"><span class="pre">DATE</span></code>, <code class="docutils literal"><span class="pre">TIMESTAMP</span></code>, and <code class="docutils literal"><span class="pre">TIMESTAMP_WITH_TIME_ZONE</span></code> literals.</li>
+</ul>
+</div>
+<div class="section" id="verifier-changes">
+<h3>Verifier Changes</h3>
+<ul class="simple">
+<li>Fix an issue where session properties of control and test queries also affects checksum queries.</li>
+<li>Add support to report peak task memory usage for control and test queries.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="bottomnav">
+    
+<p class="nav">
+    <span class="left">
+        &laquo; <a href="release-0.238.2.html">13.4. Release 0.238.2</a>
+    </span>
+    <span class="right">
+        <a href="release-0.237.html">13.6. Release 0.237</a> &raquo;
+    </span>
+</p>
+
+</div>
+
+    <div class="footer" role="contentinfo">
+    </div>
+  </body>
+</html>
