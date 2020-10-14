@@ -462,3 +462,48 @@ code {
     margin-top: 3em;
 }
 
+
+/* PrestoCon page */
+
+.prestocon-header {
+  background: url('../img/prestocon-web-banners-05-1-scaled.jpg') center center no-repeat transparent;
+  background-size: cover;
+  text-align: center;
+  padding: 40px;
+}
+
+.prestocon-logos {
+  text-align: center;
+  display: flex;
+  flex-wrap:wrap;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.prestocon-logos>div {
+  width: 25%;
+  max-width: 280px;
+  min-width: 200px;
+  text-align: center;
+  padding: 20px 25px;
+}
+
+
+.prestocon-logos>div img {
+  width: 240px;
+  height: auto;
+  max-height: 55px;
+  object-fit: contain;
+}
+
+ul.hang {
+  padding-left: 20px;
+}
+
+ul.hang li {
+  list-style-position: outside !important;
+  margin-bottom: 10px !important;
+}
+
+
