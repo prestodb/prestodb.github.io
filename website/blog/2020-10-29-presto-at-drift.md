@@ -5,7 +5,7 @@ authorURL: https://github.com/venkaa6
 ---
 
 I’m a Senior Software Engineer in the data group at Drift, a conversational marketing platform that is used for qualifying leads faster, automatically booking meetings and connecting customers to the right business solutions more efficiently. I’ve used Presto quite a bit throughout my career, and I want to first give readers a quick overview of how Presto has enabled my team at Drift to quickly and cost-effectively analyze distributed logs at scale. Then I will share how we used and benefited from Presto at Vistaprint, where I worked previously.
-
+<!--truncate-->
 ## How we use Presto at Drift
 
 To provide data engineers in my group with the ability to mine log files, we use Amazon Athena which has Presto as its distributed SQL query engine for running analytic queries against data of any size.
