@@ -4,9 +4,7 @@ author: Girish Baliga
 authorURL: https://github.com/gbbaliga
 ---
 
-Girish Baliga
-
-Presto Foundation joined the Linux Foundation over a year ago, and has been focused on growing the [Presto open source project](http://prestodb.io) and community. We encourage industry involvement with an [open charter](https://github.com/prestodb/foundation#presto-foundation-related-documents), [clear guiding principles](https://github.com/prestodb/foundation/blob/master/PRINCIPLES.md#presto-foundation-principles), and [community-oriented goals](https://github.com/prestodb/foundation/blob/master/GOALS.md#presto-foundation-pf-strategic-goals). We recently hosted [PrestoCon 2020](https://prestodb.io/prestocon.html), our first annual community conference, which was widely attended and well represented by Presto community members. We also warmly welcomed Intel and Upsolver who recently joined the Presto Foundation. 
+Presto Foundation joined the Linux Foundation over a year ago, and has been focused on growing the [Presto open source project](http://prestodb.io) and community. We encourage industry involvement with an [open charter](https://github.com/prestodb/foundation#presto-foundation-related-documents), [clear guiding principles](https://github.com/prestodb/foundation/blob/master/PRINCIPLES.md#presto-foundation-principles), and [community-oriented goals](https://github.com/prestodb/foundation/blob/master/GOALS.md#presto-foundation-pf-strategic-goals). We recently hosted [PrestoCon 2020](https://prestodb.io/prestocon.html), our first annual community conference, which was widely attended and well represented by Presto community members. We also warmly welcome Intel and Upsolver who recently joined the Presto Foundation. 
 
 <!-- truncate -->
 
