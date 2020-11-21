@@ -27,6 +27,8 @@ I'm excited to welcome two new Premier Members to the Presto Foundation: Intel a
 
 Upsolver is powering cloud lake houses by simplifying and automating data management. The company specializes in Presto data preparation and is the only officially recommended partner for AWS Athena.  **Ori Rafael**, the co-founder and CEO, will be joining as Governing Board member.
 
+![Presto Foundation Members](/img/blog/2020-11-20-prestocon-and-foundation-update/PF-members.png)
+
 We started with four founding members: Facebook, Uber, Twitter, and Alibaba. Now, we have doubled the membership to eight and I'm looking forward to seeing the consortium grow even more over the coming years.
 
 I'm excited about all the plans we have moving forward. Stay tuned for our next big community event in March!
