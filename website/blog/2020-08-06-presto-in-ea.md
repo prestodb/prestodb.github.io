@@ -6,7 +6,7 @@ authorURL: https://www.linkedin.com/in/teng-wang-9b8732194/
 
 **Authors:** Teng Wang, Du Li, Yu Jin and Sundeep Narravula
 
-Electronic Arts (EA) is a leading company in the gaming industry, providing over a thousand games to serve billions of users worldwide.
+Electronic Arts (EA) is a leading company in the gaming industry, providing dozens of games to serve billions of users worldwide each year.
 Making near real-time decisions for EA’s online services is critical for our business.
 This blog describes a data platform on AWS based on Presto and Alluxio to support online services with instantaneous response within the gaming industry.
 
