@@ -76,7 +76,7 @@ div.content ul > li {
     background-size: 155px 55px;
     border-bottom: none;
     float: left;
-    margin: 0 20px 0 0;
+    margin: 0;
     overflow: hidden;
     text-indent: 100%;
     white-space: nowrap;
@@ -247,6 +247,11 @@ code {
     text-transform: uppercase;
 }
 
+.topbar .nav li img {
+  width: 28px;
+  vertical-align: -6px;
+}
+
 .topbar .nav li a {
     color: #fff;
     font-size: 12px;
@@ -354,6 +359,23 @@ code {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1em;
+}
+
+.banner-wrap-signup {
+  background: #000;
+}
+.banner-wrap-signup .banner-content {
+  padding: 10px 0;
+}
+.banner-wrap-signup .banner-content .button {
+  background: #fff;
+  color: #374665;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  padding: 5px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
 }
 
 
