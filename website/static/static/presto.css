@@ -349,9 +349,14 @@ code {
 
 /* CSS FOR HOME PAGE BANNER SECTION */
 .banner-wrap {
-  background: #ec7d31;
+  background: url(../img/prestoconday_bg.png) center center no-repeat #3D9FE5;
+  background-size:cover;
 }
-
+@media screen and (max-width:640px){
+  .banner-wrap {
+    background-size:1200px auto;
+  }
+}
 .banner-content {
   display: block;
   text-align: center;
@@ -360,7 +365,6 @@ code {
   margin: 0 auto;
   padding: 1em;
 }
-
 .banner-wrap-signup {
   background: #000;
 }
@@ -369,7 +373,7 @@ code {
 }
 .banner-wrap-signup .banner-content .button {
   background: #fff;
-  color: #374665;
+  color: #ec7d31;
   display: inline-block;
   text-transform: uppercase;
   font-size: 1.2rem;
@@ -377,8 +381,6 @@ code {
   margin: 0 5px;
   border-radius: 5px;
 }
-
-
 @media(min-width:768px) {
   .banner-content {
     display: flex;
@@ -387,9 +389,8 @@ code {
     justify-content: center;
   }
 }
-
 .banner-content .button {
-  background: #374665;
+  background: #f69205;
   color: #fff;
   display: inline-block;
   text-transform: uppercase;
@@ -398,18 +399,15 @@ code {
   margin-bottom: 20px;
   border-radius: 5px;
 }
-
 .banner-logo {
-  max-width: 280px;
+  max-width: 400px;
   height: auto;
   margin-right: 0.5em;
 }
-
 .banner-info {
   font-size: 1.25em;
   padding: 0 30px;
 }
-
 @media(min-width:768px) {
     .banner-info {
       width: 0;
@@ -428,14 +426,17 @@ code {
         align-items:center;
         justify-content: center;
         margin: auto;
+        min-width:400px;
     }
     .banner-info .btn {
         flex-grow:0;
         margin: 0;
+        display:block;
+    }
+    .banner-info .btn .button {
+        min-width: 250px;
     }
 }
-
-
 .banner-info h2 {
   font-size: 1.4em;
   color: #fff;
@@ -446,20 +447,19 @@ code {
   padding: 0;
   margin:0;
 }
-
 .banner-info h3, .banner-info h4 {
   padding: 0;
   margin:0;
   color: #fff;
+  font-size:1.1em;
 }
-
 .banner-info p {
   padding: 0;
   margin:0;
   color: #fff;
   text-align:center;
+  font-size: 0.9em;
 }
-
 .white-separator {
     height: 1px;
     border-bottom: 3px solid #fff;
@@ -479,11 +479,9 @@ code {
     opacity: 0.5;
   }
 }
-
 .mt-3em  {
     margin-top: 3em;
 }
-
 
 /* PrestoCon page */
 
@@ -527,5 +525,3 @@ ul.hang li {
   list-style-position: outside !important;
   margin-bottom: 10px !important;
 }
-
-
