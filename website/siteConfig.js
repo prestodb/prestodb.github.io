@@ -132,7 +132,9 @@ const siteConfig = {
   ogImage: 'img/docusaurus.png',
   twitterImage: 'img/docusaurus.png',
 
-  separateCss: ['static/basic.css', 'static/haiku.css', 'static/presto.css'],
+  separateCss: ['static/basic.css', 'static/haiku.css', 'static/copybutton.css', 'static/material.css', 'static/presto.css',
+   'static/pygments.css', 'static/fonts/material-icons.css', 'static/fonts/font-awesome.css',
+   'static/stylesheets/application-fixes.css',  'static/stylesheets/application-palette.css', 'static/stylesheets/application.css'],
   // Show documentation's last contributor's name.
   // enableUpdateBy: true,
 
