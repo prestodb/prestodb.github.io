@@ -1,0 +1,33 @@
+name: publish
+
+on:
+  pull_request:
+    branches: [source]
+  push:
+    branches: [source]
+
+jobs:
+  checks:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '8.x'
+      - name: Test Build
+        run: cd website && yarn build
+  gh-release:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '8.x'
+      - name: Git config
+        run: git config --global user.email "presto-oss@users.noreply.github.com" && git config --global user.name "Presto Bot"
+      - name: Fetch credentials
+        run: echo "machine github.com login presto-oss password ${{ secrets.PRESTOOSS_PUBLISH_TOKEN }}" > ~/.netrc
+      - name: Release to GitHub Pages
+        run: cd website && yarn install && GIT_USER="presto-oss" yarn run publish-gh-pages | (head -c 32768; echo "... skipping output ..."; tail -c 32768)
