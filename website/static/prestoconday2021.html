@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Presto&nbsp;|&nbsp;PrestoCon Day 2021</title>
+  <link rel="stylesheet" href="static/presto.css" type="text/css" />
+  <link rel="stylesheet" href="static/presentations.css" type="text/css" />
+  <link rel="stylesheet" href="static/ytlightbox.css" type="text/css" />
+  <meta name="viewport" content="width=device-width">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Presto&nbsp;|&nbsp;Overview">
+  <meta property="og:description" content="Distributed SQL Query Engine for Big Data">
+  <meta property="og:image" content="static/presto-og.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82811140-44"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-82811140-44');
+  </script>
+</head>
+
+<body>
+  <header class="topbar clearfix">
+    <nav class="width">
+      <a href=".">
+        <h1>Presto</h1>
+      </a>
+      <ul class="nav">
+        <li><a href="overview.html">About</a></li>
+        <li><a href="https://prestodb.github.io/docs/current/">Docs</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="join.html">Foundation</a>
+        <li><a href="https://github.com/prestodb/presto"><img height=20 src="./img/github.svg" alt="GitHub Octocat"></a>
+      </ul>
+    </nav>
+  </header>
+  <header class="hero clearfix prestoconday-header">
+    <div class="width">
+      <h1><img src="./img/prestoconday_logo-white.svg" alt="prestocon day" class="banner-logo"></h1>
+    </div>
+  </header>
+  <div class="content homecontent width clearfix">
+    <h2 style="text-align:center;background:transparent">Thanks to all our attendees, sponsors and presenters</h2>
+    <h3 style="text-align:center;">On-Demand Recordings from March&nbsp;24,&nbsp;2021</h3>
+    <div id="presentations"></div>
+  </div>
+<script type="text/javascript">
+const presentationData = [
+
+  {
+    video: "https://youtube.com/watch?v=LDSnud9QEZI&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=20",
+    videothumb: "https://i.ytimg.com/vi/LDSnud9QEZI/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/d4/PrestoCon-Presto-Movement-OpeningSlides-final.pdf",
+    slidesthumb:"opening.jpg",
+    title: "Welcome & Opening&nbsp;Remarks",
+    speakers: "Dipti Borkar, Ahana & Girish Baliga, Uber",
+    logos:["logo-ahana.png","logo-uber.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=mxgPEet_u7Y&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=6",
+    videothumb: "https://i.ytimg.com/vi/mxgPEet_u7Y/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/37/PrestoCon%20talk.pdf",
+    slidesthumb:"today-and-tomorrow.jpg",
+    title: "PrestoDB - Technical Steering Committee&nbsp;Update",
+    speakers: "Tim Meehan, Presto Foundation",
+    logos:["logo-presto.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=odf1Qp6b5W0&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=7",
+    videothumb: "https://i.ytimg.com/vi/odf1Qp6b5W0/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/13/RaptorX-PrestoCon.pdf",
+    slidesthumb:"raptorx.jpg",
+    title: "RaptorX: Building a 10X Faster&nbsp;Presto",
+    speakers: "James Sun, Facebook",
+    logos:["logo-facebook.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=0NwUCvOZuHY&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=8",
+    videothumb: "https://i.ytimg.com/vi/0NwUCvOZuHY/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/64/Prism_%20Presto%20Gateway%20Service%20at%20Uber%20by%20Hitarth%20Trivedi.pdf",
+    slidesthumb:"prism.jpg",
+    title: "Prism: Presto Gateway Service at&nbsp;Uber",
+    speakers: "Hitarth Trivedi, Uber",
+    logos:["logo-uber.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=HxayQLsI_aQ&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=9",
+    videothumb: "https://i.ytimg.com/vi/HxayQLsI_aQ/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/5a/Ahana%20-%20PrestoCon%20v4.pdf",
+    slidesthumb:"tenreasons.jpg",
+    title: "Top 10 Reasons to Use & Contribute to&nbsp;Presto",
+    speakers: "Steven Mih, Ahana",
+    logos:["logo-ahana.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=0VCVfm7Orzw&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=10",
+    videothumb: "https://i.ytimg.com/vi/0VCVfm7Orzw/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/9c/Real-time%20Analytics%20with%20Presto%20and%20Apache%20Pinot%20-%20Xiang%20Fu.pdf",
+    slidesthumb:"pinot.jpg",
+    title: "Realtime Analytics with Presto and Apache&nbsp;Pinot",
+    speakers: "Xiang Fu, Stealth Startup",
+    logos:["logo-stealth.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=bNdeIDGGJlM&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=11",
+    videothumb: "https://i.ytimg.com/vi/bNdeIDGGJlM/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/ab/Petabytes%20scale%20log%20analysis%20at%20Alibaba_YunleiMa.pdf",
+    slidesthumb:"petabyte.jpg",
+    title: "Petabyte Scale Log Analysis at Alibaba :Infrastructure, Challenge and Optimization",
+    speakers: "Yunlei Ma, Alibaba",
+    logos:["logo-alibabacloud.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=-rW5gLmURpE&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=12",
+    videothumb: "https://i.ytimg.com/vi/-rW5gLmURpE/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/69/Why%20is%20Starburst%20a%20Member%20of%20the%20Presto%20Foundation_%20-%20Justin%20Borgman%2C%20Starburst.pdf",
+    slidesthumb:"starburst.jpg",
+    title: "Why is Starburst a Member of the Presto Foundation?",
+    speakers: "Justin Borgman, Starburst",
+    logos:["logo-starburst.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=M8HLX2CivpI&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=14",
+    videothumb: "https://i.ytimg.com/vi/M8HLX2CivpI/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/15/Presto%20Iceberg%20Connector%20-%20prestocon.pdf",
+    slidesthumb:"iceberg.jpg",
+    title: "Presto and Apache Iceberg",
+    speakers: "Chunxu Tang, Twitter",
+    logos:["logo-twitter.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=RbRJ35p9GkU&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=15",
+    videothumb: "https://i.ytimg.com/vi/RbRJ35p9GkU/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/f6/Carbon%20presentation%20-%20PrestoCon%20Day%20March%202021v2.pptx.pdf",
+    slidesthumb:"carbon.jpg",
+    title: "How Carbon uses PrestoDB in the Cloud with Ahana to Power its Real-time Customer Dashboards",
+    speakers: "Jordan Hoggart, Carbon",
+    logos:["logo-carbon.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=1WSg2aiCwDQ&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=16",
+    videothumb: "https://i.ytimg.com/vi/1WSg2aiCwDQ/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/9c/Faster%20Queries%20on%20Presto%20using%20Apache%20Hudi%20Clustering.pdf",
+    slidesthumb:"hudi.jpg",
+    title: "Speeding up Presto Queries Using Apache Hudi Clustering",
+    speakers: "Satish Kotha & Nishith Agarwal, Uber",
+    logos:["logo-uber.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=Vl9wNa7jI08&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=17",
+    videothumb: "https://i.ytimg.com/vi/Vl9wNa7jI08/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/99/PrestoCon2021_bigquery.pdf",
+    slidesthumb:"bigquery.jpg",
+    title: "Using Presto’s BigQuery Connector for Better Performance and Ad-hoc Query in the&nbsp;Cloud",
+    speakers: "George Wang, Ahana Cloud & Roderick Yao, Google",
+    logos:["logo-ahana.png","logo-google.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=Idtc7t93Q00&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=18",
+    videothumb: "https://i.ytimg.com/vi/Idtc7t93Q00/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/14/prestocon-2021-Drag%20and%20Drop%20Query%20Builder-RaviShankar-1.0.pdf",
+    slidesthumb:"dragdrop.jpg",
+    title: "Drag and Drop Query Builder for&nbsp;PrestoDB",
+    speakers: "Ravishankar Nair, PassionBytes",
+    logos:["logo-passionbytes.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=RrpGuV7FhNs&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=19",
+    videothumb: "https://i.ytimg.com/vi/RrpGuV7FhNs/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/93/The%20Data%20Lake%20House_%20Powering%20Open%20Architecture%20in%20the%20Cloud%20-%20Ori%20Rafael%2C%20Upsolver.pdf",
+    slidesthumb:"lakehouse.jpg",
+    title: "The Data Lake House: Powering Open Architecture in the&nbsp;Cloud",
+    speakers: "Ori Rafael, Upsolver",
+    logos:["logo-upsolver.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=9Dsd-igyusM&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=1",
+    videothumb: "https://i.ytimg.com/vi/9Dsd-igyusM/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/3b/Intel%20Prestocon%20Day%20Presentation%20%20%281%29.pdf",
+    slidesthumb:"intel.jpg",
+    title: "Intel & Presto: Better Together",
+    speakers: "Will Werts, Intel",
+    logos:["logo-intel.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=fibzqwCz4ok&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=3",
+    videothumb: "https://i.ytimg.com/vi/fibzqwCz4ok/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/96/Presto%20on%20AWS%20using%20Ahana%20Cloud%20at%20Cartona%20-%20Omar%20Mohamed.pdf",
+    slidesthumb:"cartona.jpg",
+    title: "Presto on AWS using Ahana Cloud at&nbsp;Cartona",
+    speakers: "Omar Mohamed, Cartona",
+    logos:["logo-cartona.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=slwPm-mROZ0&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=4",
+    videothumb: "https://i.ytimg.com/vi/slwPm-mROZ0/hqdefault.jpg",
+    slides: "https://static.sched.com/hosted_files/prestoconday2021/d7/Disaggregated%20Coordinator%20-%20PrestoCon.pdf",
+    slidesthumb:"disaggregated.jpg",
+    title: "Disaggregated Coordinator",
+    speakers: "Swapnil Tailor, Facebook",
+    logos:["logo-facebook.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=JuWiWmUtn3M&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=5",
+    videothumb: "https://i.ytimg.com/vi/JuWiWmUtn3M/hqdefault.jpg",
+    slides: "",
+    title: "Presto at Facebook: State of the&nbsp;Union",
+    speakers: "Biswapesh Chattopadhyay, Facebook",
+    logos:["logo-facebook.png"]
+  },
+  {
+    video: "https://youtube.com/watch?v=PMBh0h-P-WQ&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=13",
+    videothumb: "https://i.ytimg.com/vi/PMBh0h-P-WQ/hqdefault.jpg",
+    slides: "",
+    slidesthumb:"",
+    title: "The Presto Ecosystem",
+    speakers: "Panel Moderated by <div style='font-size:15px'>Dipti Borkar, Maxime Beauchemin, Vinoth Chandar, Kishore Gopalakrishna, & James Sun</div>",
+    logos:["logo-presto.png"]
+  },
+    {
+    video: "https://youtube.com/watch?v=rGIoXoEd_Js&list=PLJVeO1NMmyqUDkrabo6CRGQ7zNTOMvu2L&index=2",
+    videothumb: "https://i.ytimg.com/vi/rGIoXoEd_Js/hqdefault.jpg",
+    slides: "",
+    slidesthumb:"",
+    title: "Presto, Today &&nbsp;Beyond",
+    speakers: "Panel Moderated by <div style='font-size:15px'>Dipti Borkar, David Simmen, Girish Baliga, & Biswapesh Chattopadhyay</div>",
+    logos:["logo-presto.png"]
+  },
+];
+
+const presentationsList = document.getElementById('presentations');
+const imgfolder = 'img/prestoconday/'
+let listCode = '';
+presentationData.forEach((pres) => {
+  const logoList = pres.logos;
+  let logos=''
+  pres.logos.forEach((logo) => {
+    if (logo != ""){
+      logos += `<img src="${imgfolder}${logo}" /> `;
+    }
+
+  });
+  let anchor = pres.title.replace(new RegExp(' |&nbsp;', 'g'),"_").replace(new RegExp('&|:|’|\\?|,|!|\\.|;', 'g'),"").replace(new RegExp('__', 'g'),"_").replace(new RegExp('_-_', 'g'),"-");
+  console.log(anchor)
+  listCode += `<div class="presentationAssets">
+  <a name="${anchor}" href="#${anchor}" ><h3>${pres.title}</h3></a>
+  <div class="presentationThumbs">
+    <a href="${pres.video}" target="_blank" class="ytlightbox" data-aspect="16x9" ><div class="aspect16x9 presentationVideoThumb"><img src="${pres.videothumb}" alt="${pres.title} video" class="" /></div>video</a>`;
+    if( pres.slides != ""){
+      listCode += `<a href="${pres.slides}" target="_blank" ><div><img src="${imgfolder}${pres.slidesthumb}" alt="${pres.title} slides" class="presentationSlidesThumb" /></div>slides</a>`
+    }
+  listCode += `</div>
+  <h4>${pres.speakers}</h4>
+  <div class="presenterLogos">${logos}</div>
+  </div>`
+});
+  presentationsList.innerHTML=listCode;
+</script>
+<script async src="static/js/ytlightbox.js"></script>
+<div class="footer width">
+<section className="copyright">
+Copyright &copy; The Presto Foundation.<br>
+All rights reserved. Presto is a registered trademark of LF Projects, LLC. <br>Please see our <a
+href="https://lfprojects.org/policies/trademark-policy/">Trademark Policy</a> for more
+information.<br>
+<a href="https://lfprojects.org/policies/privacy-policy/">Privacy Policy</a> |
+<a href="https://lfprojects.org/policies/terms-of-use/">Terms of Use</a>.
+</section>
+</div>
+</body>
+</html>

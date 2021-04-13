@@ -1,0 +1,148 @@
+  #presentations {
+    display:flex;
+    flex-wrap:wrap;
+    max-width: 960px;
+    text-align:center;
+    margin: 20px auto 40px;
+  }
+
+  .presentationAssets {
+    padding: 0 15px 15px;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    margin: 7px;
+    border-radius: 12px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.15);
+    flex: 1 1 100%;
+    background:#fff;
+    overflow:hidden;
+  }
+
+  .presentationAssets h3,
+  .presentationAssets h4 {
+    line-height: 1.4;
+    padding:10px;
+    margin:0;
+  }
+
+  .presentationAssets>a {
+    display:block;
+    width: 100%;
+  }
+
+  .presentationAssets h3 {
+    font-weight:bold;
+    min-height: 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 -15px;
+    padding: 10px 30px;
+    background: #f0f3f9;
+    width: calc(100% + 30px);
+    align-self:flex-start;
+  }
+
+  .presentationTitle {
+    display:flex;
+    min-height: 100%;
+    align-content:stretch;
+  }
+
+  @media (min-width:640px) {
+      .presentationAssets {
+        flex: 1 1 calc(45% - 20px);
+      }
+  }
+
+  .presentationThumbs {
+    display:flex;
+    justify-content: space-around;
+    max-width:416px;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .presentationThumbs a {
+    display: block;
+    position: relative;
+    text-align:center;
+    flex: 1 1 50%;
+    max-width: 50%;
+    margin: 0 5px;
+    font-size: 11px;
+    box-sizing:border-box;
+  }
+
+  .presentationThumbs img {
+    width: 100%;
+    height: auto;
+    max-height: 177px;
+    object-fit: contain;
+  }
+
+  .aspect16x9 { 
+    position:relative;
+    padding: 56.25% 0 0 0;
+    overflow:hidden;
+    margin: 0;
+    box-sizing:border-box;
+    width: 100%;
+  }
+  .aspect16x9 img {
+    position:absolute;
+    top:50%;
+    left: 0;
+    transform: translateY(-50%);
+    object-fit: cover;
+  }
+
+  .presentationVideoThumb {
+    position:relative;
+    display:block;
+  }
+
+  .presentationVideoThumb:after {
+    display:block;
+    box-sizing:border-box;
+    padding: 0;
+    margin: 0;
+    content:' ';
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index:3;
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(255,255,255,0);
+    border-radius: 30px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='44' viewBox='0 0 38 44'%3E%3Cpath id='Polygon_1' data-name='Polygon 1' d='M22,0,44,38H0Z' transform='translate(38) rotate(90)' fill='%23fff' opacity='0.75'/%3E%3C/svg%3E%0A") 57% center no-repeat transparent;
+    background-size: auto 30px;
+    filter:drop-shadow(3px 3px 3px rgba(0,0,0,0.2));
+    transition: all 0.25s;
+  }
+
+    .presentationVideoThumb:hover:after {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='44' viewBox='0 0 38 44'%3E%3Cpath id='Polygon_1' data-name='Polygon 1' d='M22,0,44,38H0Z' transform='translate(38) rotate(90)' fill='%23fff' opacity='0.9'/%3E%3C/svg%3E%0A") 57% center no-repeat transparent;
+    background-size: auto 30px;
+    filter:drop-shadow(3px 3px 6px rgba(0,0,0,0.3));
+    border: 2px solid rgba(255,255,255,0.75);
+    transition: all 0.25s;
+  }
+
+  .presenterLogos {
+    margin-top: auto;
+    min-height: 46px;
+  }
+
+  div.content .presenterLogos img {
+    display:inline-block;
+    max-width:120px;
+    max-height: 32px;
+    object-fit: contain;
+    margin:5px;
+  }

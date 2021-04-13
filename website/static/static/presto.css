@@ -483,13 +483,20 @@ code {
     margin-top: 3em;
 }
 
-/* PrestoCon page */
+/* PrestoCon and PrestoCon Day pages */
 
 .prestocon-header {
   background: url('../img/prestocon-web-banners-05-1-scaled.jpg') center center no-repeat transparent;
   background-size: cover;
   text-align: center;
   padding: 40px;
+}
+
+.prestoconday-header {
+  background: url(../img/prestoconday_bg.png) center center no-repeat #3D9FE5;
+  background-size: cover;
+  text-align: center;
+  padding: 30px;
 }
 
 .prestocon-logos {
