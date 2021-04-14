@@ -248,7 +248,6 @@ presentationData.forEach((pres) => {
 
   });
   let anchor = pres.title.replace(new RegExp(' |&nbsp;', 'g'),"_").replace(new RegExp('&|:|’|\\?|,|!|\\.|;', 'g'),"").replace(new RegExp('__', 'g'),"_").replace(new RegExp('_-_', 'g'),"-");
-  console.log(anchor)
   listCode += `<div class="presentationAssets">
   <a name="${anchor}" href="#${anchor}" ><h3>${pres.title}</h3></a>
   <div class="presentationThumbs">
