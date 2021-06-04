@@ -5,7 +5,7 @@ author: Baolong Mao
 authorURL: https://www.linkedin.com/in/baolong-mao-180624136/
 ---
 
-**Authors**: Baolong Mao, Bowen Ding, Jasmine Wang, Bin Fan
+**Authors**: Baolong Mao (Tencent), Bowen Ding (Fudan University)
 
 ## Overview
 
