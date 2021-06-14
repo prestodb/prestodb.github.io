@@ -1,17 +1,18 @@
 ---
 title: Presto Foundation and PrestoDB: Our Commitment to the Presto Open Source Community
-author: Girish Baliga, Tim Meehan, Dipti Borkar, Amit Chopra, Zhenxiao Luo, Steven Mih, Bin Fan
+author: Girish Baliga, Tim Meehan, Dipti Borkar, Amit Chopra, Zhenxiao Luo, Arijit Bandyopadhyay, Steven Mih, Bin Fan
 ---
 
 **Authors** 
 
-Girish Baliga, Chair, Presto Foundation, Presto Foundation Member: [Uber](https://www.uber.com/)
-Tim Meehan, Chair, Presto Foundation, Technical Steering Committee, Presto Foundation Member: [Facebook](https://www.facebook.com/) 
-Dipti Borkar, Chair, Presto Foundation, Outreach, Presto Foundation Member: [Ahana](https://ahana.io/)
-Amit Chopra, Board member, Presto Foundation Member: [Facebook](https://www.facebook.com/)
-Zhenxiao Luo , Board member, Presto Foundation Member: [Twitter](https://twitter.com/)
-Steven Mih, Board member, Presto Foundation Member: Ahana [Ahana](https://ahana.io/)
-Bin Fan, Outreach team member, Presto Foundation Member: [Alluxio](https://www.alluxio.io/)
+* Girish Baliga, Chair, Presto Foundation, Presto Foundation Member: [Uber](https://www.uber.com/)
+* Tim Meehan, Chair, Presto Foundation, Technical Steering Committee, Presto Foundation Member: [Facebook](https://www.facebook.com/)
+* Dipti Borkar, Chair, Presto Foundation, Outreach, Presto Foundation Member: [Ahana](https://ahana.io/)
+* Amit Chopra, Board member, Presto Foundation Member: [Facebook](https://www.facebook.com/)
+* Zhenxiao Luo , Board member, Presto Foundation Member: [Twitter](https://twitter.com/)
+* Arijit Bandyopadhyay, Board member, Presto Foundation Member: [Twitter](https://intel.com/)
+* Steven Mih, Board member, Presto Foundation Member: Ahana [Ahana](https://ahana.io/)
+* Bin Fan, Outreach team member, Presto Foundation Member: [Alluxio](https://www.alluxio.io/)
 
 
 We recently wrapped up an amazing PrestoCon Day attended by over 600 people from across the globe. The technical discussions and the panel was a clear indication of the growing community. We showcased a number of features contributed by various companies that continue to advance the mission of Presto open source, reiterating our commitment to grow the Presto community and support the continued improvement of the core technology. 
@@ -26,7 +27,6 @@ We recently wrapped up an amazing PrestoCon Day attended by over 600 people from
 While the data infrastructure stacks of member companies and customers are built on many different  open source technologies, Presto stands out as the interactive analytics engine of choice.
 
 Companies are choosing Presto for three main reasons:
-
 
 * It’s open source, which lends itself to being a platform for innovation for many developers,
 * It’s incredibly fast and feature rich, and its extensibility allows us to provide a uniform user interface for a variety of analytics use cases. 
