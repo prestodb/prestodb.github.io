@@ -10,8 +10,8 @@ author: Girish Baliga, Tim Meehan, Dipti Borkar, Amit Chopra, Zhenxiao Luo, Arij
 * Dipti Borkar, Chair, Presto Foundation, Outreach, Presto Foundation Member: [Ahana](https://ahana.io/)
 * Amit Chopra, Board member, Presto Foundation Member: [Facebook](https://www.facebook.com/)
 * Zhenxiao Luo , Board member, Presto Foundation Member: [Twitter](https://twitter.com/)
-* Arijit Bandyopadhyay, Board member, Presto Foundation Member: [Twitter](https://intel.com/)
-* Steven Mih, Board member, Presto Foundation Member: Ahana [Ahana](https://ahana.io/)
+* Arijit Bandyopadhyay, Board member, Presto Foundation Member: [Intel](https://intel.com/)
+* Steven Mih, Board member, Presto Foundation Member: [Ahana](https://ahana.io/)
 * Bin Fan, Outreach team member, Presto Foundation Member: [Alluxio](https://www.alluxio.io/)
 
 
@@ -56,6 +56,7 @@ Let’s make Presto better together!
 * Dipti Borkar, Chair, Presto Foundation, Outreach, Presto Foundation Member: Ahana
 * Amit Chopra, Board member, Presto Foundation Member: Facebook
 * Zhenxiao Luo , Board member, Presto Foundation Member: Twitter  
+* Arijit Bandyopadhyay, Board member, Presto Foundation Member: Intel
 * Steven Mih, Board member, Presto Foundation Member: Ahana 
 * Bin Fan, Outreach team member, Presto Foundation Member: Alluxio   
 
