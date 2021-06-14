@@ -6,7 +6,7 @@ author: Girish Baliga, Tim Meehan, Dipti Borkar, Amit Chopra, Zhenxiao Luo, Stev
 **Authors** 
 
 Girish Baliga, Chair, Presto Foundation, Presto Foundation Member: [Uber](https://www.uber.com/)
-Tim Meehan, Chair, Presto Foundation, Technical Steering Committee, Presto Foundation Member: [Facebook](https://www.facebook.com/)
+Tim Meehan, Chair, Presto Foundation, Technical Steering Committee, Presto Foundation Member: [Facebook](https://www.facebook.com/) 
 Dipti Borkar, Chair, Presto Foundation, Outreach, Presto Foundation Member: [Ahana](https://ahana.io/)
 Amit Chopra, Board member, Presto Foundation Member: [Facebook](https://www.facebook.com/)
 Zhenxiao Luo , Board member, Presto Foundation Member: [Twitter](https://twitter.com/)
@@ -51,11 +51,11 @@ Let’s make Presto better together!
 
 **Signed:**
 
-Girish Baliga, Chair, Presto Foundation, Presto Foundation Member: Uber   
-Tim Meehan, Chair, Presto Foundation, Technical Steering Committee, Presto Foundation Member: Facebook
-Dipti Borkar, Chair, Presto Foundation, Outreach, Presto Foundation Member: Ahana
-Amit Chopra, Board member, Presto Foundation Member: Facebook   
-Zhenxiao Luo , Board member, Presto Foundation Member: Twitter  
-Steven Mih, Board member, Presto Foundation Member: Ahana 
-Bin Fan, Outreach team member, Presto Foundation Member: Alluxio   
+* Girish Baliga, Chair, Presto Foundation, Presto Foundation Member: Uber
+* Tim Meehan, Chair, Presto Foundation, Technical Steering Committee, Presto Foundation Member: Facebook
+* Dipti Borkar, Chair, Presto Foundation, Outreach, Presto Foundation Member: Ahana
+* Amit Chopra, Board member, Presto Foundation Member: Facebook
+* Zhenxiao Luo , Board member, Presto Foundation Member: Twitter  
+* Steven Mih, Board member, Presto Foundation Member: Ahana 
+* Bin Fan, Outreach team member, Presto Foundation Member: Alluxio   
 
