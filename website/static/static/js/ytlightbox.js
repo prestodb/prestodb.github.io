@@ -4,10 +4,12 @@ let ytlightbox = document.getElementById('ytlb');
 ytlightbox.querySelector(".ytlightbox-overclose").addEventListener('click', ev => {
   ytlightbox.className = "ytlightbox-overlay";
   document.body.style.overflow="auto";
+  document.getElementById('ytlightboxembed').innerHTML="";
 })
 ytlightbox.querySelector(".ytlightbox-close").addEventListener('click', ev => {
   ytlightbox.className = "ytlightbox-overlay";
   document.body.style.overflow="auto";
+  document.getElementById('ytlightboxembed').innerHTML="";
 })
 
 document.querySelectorAll('.ytlightbox').forEach(item => {

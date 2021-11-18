@@ -349,8 +349,11 @@ code {
 
 /* CSS FOR HOME PAGE BANNER SECTION */
 .banner-wrap {
-  background: url(../img/prestoconday_bg.png) center center no-repeat #3D9FE5;
-  background-size:cover;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(67,195,241,1) 59%, rgba(93,136,214,1) 100%);
+  background-image: url(../img/prestocon_21/bg_big_21.png),linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(67,195,241,1) 59%, rgba(93,136,214,1) 100%);
+  background-size:auto 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 @media screen and (max-width:640px){
   .banner-wrap {
@@ -400,6 +403,7 @@ code {
   border-radius: 5px;
 }
 .banner-logo {
+  width: 95%;
   max-width: 400px;
   height: auto;
   margin-right: 0.5em;
@@ -531,4 +535,43 @@ ul.hang {
 ul.hang li {
   list-style-position: outside !important;
   margin-bottom: 10px !important;
+}
+
+
+/* BOSSIE Badge on Home */
+
+
+
+#bossie-badge {
+  min-width: 100px;
+  max-width: 150px;
+  height: auto;
+  margin: 0 auto 10px;
+  display: block;
+}
+.homehero .leftcol {
+    text-align: center;
+}
+@media(max-width: 989px){
+.homehero.hero h1 {  
+    line-height: 120%;
+}
+}
+@media(min-width: 960px){
+    #bossie-badge {
+      position: absolute;
+      right: 17px;
+      bottom: 0;
+      margin: 0;
+      display: inline;
+    }
+    .hero .leftcol {
+        text-align: left;
+    }
+}
+
+.homehero .width {
+  position: relative;
+  height: auto;
+  overflow: hidden;
 }
