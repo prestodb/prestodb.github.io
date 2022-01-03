@@ -3,7 +3,12 @@
     flex-wrap:wrap;
     max-width: 960px;
     text-align:center;
+    justify-content: center;
     margin: 20px auto 40px;
+  }
+
+  #presentations.presentations-three-col {
+        max-width: 1400px;
   }
 
   .presentationAssets {
@@ -57,6 +62,14 @@
       }
   }
 
+  @media (min-width:1200px) {
+      .presentations-three-col .presentationAssets {
+        flex: 1 1 calc(33% - 30px);
+        margin: 15px;
+        max-width: 440px;
+      }
+  }
+
   .presentationThumbs {
     display:flex;
     justify-content: space-around;
@@ -74,6 +87,10 @@
     margin: 0 5px;
     font-size: 11px;
     box-sizing:border-box;
+  }
+
+    .presentationThumbs a div{
+    border: 1px solid rgba(0,0,0,0.15);
   }
 
   .presentationThumbs img {
@@ -141,8 +158,12 @@
 
   div.content .presenterLogos img {
     display:inline-block;
+    width: 120px;
+    height:  auto;
     max-width:120px;
     max-height: 32px;
     object-fit: contain;
     margin:5px;
+    vertical-align: middle;
   }
+
