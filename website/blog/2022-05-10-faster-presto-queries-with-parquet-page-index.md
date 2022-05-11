@@ -34,10 +34,10 @@ In the third example, the data and statistics in both column chunk and page are 
 
 ![Effectiveness Comparison: Column Statistics accept, Page Statistics reject](/img/blog/2022-05-10-faster-presto-queries-with-parquet-page-index/image6.png)
 
-In the above examples, we only show 3 pages in a column chunk, but in reality generally it has thousands of pages in a column chunk. So the savings would be larger in reality. If the column data is sorted, the page statistics work the better because the possibility of false alarm is reduced.   
+In the above examples, we only show 3 pages in a column chunk, but in reality generally it has tens or hundreds pages in a column chunk. So the savings would be larger in reality. If the column data is sorted, the page statistics work the better because the possibility of false alarm is reduced.   
 
 ## Page Statistics in Presto
-The page statistics in older versions than 1.11.0 are placed in the page header. The problem is that the reader has to read each individual page to get the page statistics. Then even it determines later not to read the page, but it is already red. The parquet-mr 1.11.0 fixed this issue by placing all the page statistics for a column chunk into one place, so that the reader can read them at once and make determination which page should be read.
+The page statistics in older versions than 1.11.0 are placed in the page header. The problem is that the reader has to read each individual page to get the page statistics. Then even it determines later not to read the page, but it is already read. The parquet-mr 1.11.0 fixed this issue by placing all the page statistics for a column chunk into one place, so that the reader can read them at once and make determination which page should be read.
 Because Presto partially rewrites the parquet-mr code, we need to port the changes in Parquet 1.11.0 into the Presto code base. The code change(PR-17284) has been merged into Presto master branch in Feb 2022 and will be released in the 0.273 version.
 
 ## Benchmark Result
@@ -51,4 +51,4 @@ We observed great improvement potential on input data scan. The figures below sh
 Besides the raw input read volume improvement, we also observed memory usage improvement from our testing. As can be seen from screenshots below, when enabling Parquet Page Index (right), it only needed to use 91.73MB peak memory vs 141.60 MB memory when Parquet Page index was not enabled. This improvement is expected: as the query needs to read less raw input data,  the query demands less memory to keep the data in memory.
 
 ![](/img/blog/2022-05-10-faster-presto-queries-with-parquet-page-index/image4.png)
-It is worth noting though, our testing Presto queries have filters on the sorting column, for example, a filter such as WHERE foo = bar condition where foo is the sorting column. This is where the Parquet Page Index brings the most of the read reduction. 
+It is worth noting though, our testing Presto queries have filters on the sorting column, for example, a filter such as WHERE foo = bar condition where foo is the sorting column. This is where the Parquet Page Index brings the most of the read reduction. If the column data that the filter relies on is not sorted, then benefit could be less. 
