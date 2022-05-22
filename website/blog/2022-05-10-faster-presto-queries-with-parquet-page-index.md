@@ -37,7 +37,7 @@ In the third example, the data and statistics in both column chunk and page are 
 In the above examples, we only show 3 pages in a column chunk, but in reality generally it has tens or hundreds pages in a column chunk. So the savings would be larger in reality. If the column data is sorted, the page statistics work the better because the possibility of false alarm is reduced.   
 
 ## Page Statistics in Presto
-The page statistics in older versions than 1.11.0 are placed in the page header. The problem is that the reader has to read each individual page to get the page statistics. Then even it determines later not to read the page, but it is already read. The parquet-mr 1.11.0 fixed this issue by placing all the page statistics for a column chunk into one place, so that the reader can read them at once and make determination which page should be read.
+The page statistics in older versions than 1.11.0 are placed in the page header. The problem is that the reader has to read each individual page to get the page statistics. Then even if it determines later not to read the page, but it is already read. The parquet-mr 1.11.0 fixed this issue by placing all the page statistics for a column chunk into one place, so that the reader can read them at once and make determination which page should be read.
 Because Presto partially rewrites the parquet-mr code, we need to port the changes in Parquet 1.11.0 into the Presto code base. The code change(PR-17284) has been merged into Presto master branch in Feb 2022 and will be released in the 0.273 version.
 
 ## Benchmark Result
