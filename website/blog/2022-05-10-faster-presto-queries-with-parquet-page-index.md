@@ -9,12 +9,16 @@ authorURL: https://www.linkedin.com/in/xinli-shang-2479863/
 
 ## Introduction
 Today’s data is growing very fast, which creates challenges for query engines like Presto.  Presto is a popular interactive query engine, because of its scalability, high performance, and smooth integration with Hadoop. As the volume of data grows, Presto needs to read larger chunks of data and load them into memory, which causes higher IO, memory usage, and GC time etc.
+
 Apache Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval. It provides efficient data compression and encoding schemes with enhanced performance to handle complex data in bulk.
+
 There are some initiatives done earlier to speed up the Presto reading Parquet data, but there is still a lot of data to read. Since the Java version Parquet(parquet-mr 1.11.0) release, a feature called Page Index has been added to speed up the queries by filtering unnecessary Parquet pages in column chunks.
+
 This article discusses this feature, the porting status into Presto and the benchmark testing result. 
 
 ##  Parquet Statistics
 Parquet file metadata contains statistics which have the min/max values of the data in the file. For a given query filter of a query,  the min/max value of the statistics can be used as the range of the values for the filter to look up. If the value being looked for is not in the range, we can skip reading that chunk of data. As a result, it improves resource usage like IO, memory and CPU time and eventually speeds up the queries.  
+
 The example below shows how a filter is applied to a table with statistics. The filter ‘x > 100’ is looking for values that are in the range (100, ∞). The statistics in the table showing only the second  column that has min value 1 and  max value 209, which forms a range [1, 209], has overlap with the range of the filter. As a result, we can  skip reading all 3 other columns which reduce ¾ data reading time.
 
 ![Example of Parquet Statistics Usage](/img/blog/2022-05-10-faster-presto-queries-with-parquet-page-index/image3.png)
@@ -38,7 +42,7 @@ In the above examples, we only show 3 pages in a column chunk, but in reality ge
 
 ## Page Statistics in Presto
 The page statistics in older versions than 1.11.0 are placed in the page header. The problem is that the reader has to read each individual page to get the page statistics. Then even if it determines later not to read the page, but it is already read. The parquet-mr 1.11.0 fixed this issue by placing all the page statistics for a column chunk into one place, so that the reader can read them at once and make determination which page should be read.
-Because Presto partially rewrites the parquet-mr code, we need to port the changes in Parquet 1.11.0 into the Presto code base. The code change(PR-17284) has been merged into Presto master branch in Feb 2022 and will be released in the 0.273 version.
+Because Presto partially rewrites the parquet-mr code, we need to port the changes in Parquet 1.11.0 into the Presto code base. The code change([PR-17284](https://github.com/prestodb/presto/pull/17284)) has been merged into Presto master branch in Feb 2022 and will be released in the 0.273 version.
 
 ## Benchmark Result
 We benchmarked the Parquet column index based on one of our heavily accessed production tables. We created a test table that is a snapshot of the original production tables with some partitions, and the test table is sorted. We then run Presto queries on the table from our staging environment. The Page Index feature can be opted on and off on a per query level using Presto session property. This allows us to do side-to-side comparison.
