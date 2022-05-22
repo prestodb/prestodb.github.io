@@ -8,7 +8,7 @@ authorURL: https://www.linkedin.com/in/xinli-shang-2479863/
 **Uber:** Chen Liang
 
 ## Introduction
-Today’s data is growing very fast, which creates challenges for query engines like Presto.  Presto is a popular interactive query engine, because of its scalability, high performance, and smooth integration with Hadoop. As the volume of data grows, Presto needs to read larger chunks of data and load them into memory, which causes higher IO and memory usage and GC time etc.
+Today’s data is growing very fast, which creates challenges for query engines like Presto.  Presto is a popular interactive query engine, because of its scalability, high performance, and smooth integration with Hadoop. As the volume of data grows, Presto needs to read larger chunks of data and load them into memory, which causes higher IO, memory usage, and GC time etc.
 Apache Parquet is an open source, column-oriented data file format designed for efficient data storage and retrieval. It provides efficient data compression and encoding schemes with enhanced performance to handle complex data in bulk.
 There are some initiatives done earlier to speed up the Presto reading Parquet data, but there is still a lot of data to read. Since the Java version Parquet(parquet-mr 1.11.0) release, a feature called Page Index has been added to speed up the queries by filtering unnecessary Parquet pages in column chunks.
 This article discusses this feature, the porting status into Presto and the benchmark testing result. 
