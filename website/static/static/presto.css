@@ -349,8 +349,8 @@ code {
 
 /* CSS FOR HOME PAGE BANNER SECTION */
 .banner-wrap {
-  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(67,195,241,1) 59%, rgba(93,136,214,1) 100%);
-  background-image: url(../img/prestocon_21/bg_big_21.png),linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(67,195,241,1) 59%, rgba(93,136,214,1) 100%);
+  background: linear-gradient(180deg, #44BAE1 0%, #4F8CE0 100%);
+  background-image: url(../img/prestoconday2022-bg.png),linear-gradient(180deg, #44BAE1 0%,  #4F8CE0 100%);
   background-size:auto 100%;
   /*background: url(../img/prestoconday_bg.png) center center no-repeat #3D9FE5;
   background-size:cover;*/
@@ -388,10 +388,7 @@ code {
 }
 @media(min-width:768px) {
   .banner-content {
-    display: flex;
     text-align: center;
-    align-items: center;
-    justify-content: center;
   }
 }
 .banner-content .button {
@@ -405,8 +402,8 @@ code {
   border-radius: 5px;
 }
 .banner-logo {
-  width: 95%;
-  max-width: 400px;
+  width: 100%;
+  max-width: 480px;
   height: auto;
 }
 .banner-info {
@@ -415,23 +412,10 @@ code {
 }
 @media(min-width:768px) {
     .banner-info {
-      width: 0;
-      flex: 1 1 50%;
-      align-self:stretch;
-      display: flex;
-      flex-direction:column;
-      justify-content: center;
-      align-items:center;
       text-align:center;
     }
     .banner-info div {
-        display:flex;
-        justify-content:stretch;
-        flex-direction:column;
-        align-items:center;
-        justify-content: center;
-        margin: auto;
-        min-width:400px;
+
     }
     .banner-info .btn {
         flex-grow:0;
@@ -605,4 +589,24 @@ ul.hang li {
   position: relative;
   height: auto;
   overflow: hidden;
+}
+
+.sequential-fadeup>* {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.sequential-fadeup>*:first-child {
+    opacity: 0;
+    transform: translateY(100%) scale(0.8);
+}
+
+.sequential-fadeup>*:last-child {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+}
+.sequential-fadeup .revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: all 0.5s ease-out;
 }

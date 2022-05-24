@@ -1,111 +1,93 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Getting Started</title>
-    <link rel="stylesheet" href="static/presto.css" type="text/css"/>
+  <meta charset="utf-8">
+  <title>Getting Started</title>
+  <link rel="stylesheet" href="static/presto.css" type="text/css" />
+  <meta name="viewport" content="width=device-width">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Presto | Getting Started">
+  <meta property="og:description" content="Distributed SQL Query Engine for Big Data">
+  <meta property="og:image" content="static/presto-og.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82811140-44"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
 
-    <meta name="viewport" content="width=device-width">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Presto | Getting Started">
-    <meta property="og:description" content="Distributed SQL Query Engine for Big Data">
-    <meta property="og:image" content="static/presto-og.png">
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82811140-44"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-82811140-44');
-    </script>
-
+  gtag('config', 'UA-82811140-44');
+  </script>
 </head>
+
 <body>
-
-<header class="topbar clearfix">
+  <header class="topbar clearfix">
     <nav class="width">
-        <a href="."><h1>Presto</h1></a>
-        <ul class="nav">
-            <li><a href="overview.html">About</a></li>
-            <li><a href="https://prestodb.github.io/docs/current/">Docs</a></li>
-            <li><a href="blog/index.html">Blog</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="community.html">Community</a></li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="join.html">Foundation</a></li>
-            <li><a href="https://github.com/prestodb/presto"><img height=20 src="./img/github.svg" alt="GitHub Octocat"></a></li>
-        </ul>
+      <a href=".">
+        <h1>Presto</h1>
+      </a>
+      <ul class="nav">
+        <li><a href="overview.html">About</a></li>
+        <li><a href="https://prestodb.github.io/docs/current/">Docs</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="join.html">Foundation</a></li>
+        <li><a href="https://github.com/prestodb/presto"><img height=20 src="./img/github.svg" alt="GitHub Octocat"></a></li>
+      </ul>
     </nav>
-</header>
-
-<header class="hero clearfix">
+  </header>
+  <header class="hero clearfix">
     <div class="width">
-        <h1>Getting Started</h1>
+      <h1>Getting Started</h1>
     </div>
-</header>
-
-<div class="content homecontent width clearfix">
+  </header>
+  <div class="content homecontent width clearfix">
     <div class="">
-        <h1>Installing Presto</h1>
-
-            If you want to install Presto manually, start here with the tarball:
-<p>
-
-<a class="downloadbutton" id="server_download_button" href="download.html">Manual / Local Download</a>
-
-  <h1>Getting Started tutorials provided by the community</h1>
-   </p>
-   <ul>
-            <li><a href="https://hub.docker.com/r/ahanaio/prestodb-sandbox">DockerHub: PrestoDB sandbox container</a></li> 
-	<ul>
-	<ul>
-<ul>
-	<ul>
-		<li> Sandbox includes PrestoDB CLI, JMX, Memory, TPC-DS, and TPC-H </li>
-        
-        </ul>
-   	</ul>
- </ul>
-   	</ul>
-
-    <li><a href="https://github.com/prestodb/f8-2019-demo">F8 2019 Classroom Demo: Getting Started with Presto</a></li> 
-<ul>
-	<ul>
-<ul>
-	<ul>
-		<li> See <a href="https://www.youtube.com/watch?v=67gXN5697Vw">YouTube video</a></ul></li>
-   	</ul>
- </ul>
-   	</ul>
-    <li><a href="https://medium.com/macoclock/installing-prestodb-on-mac-within-3-mins-84720d9b5b45">How to install on Mac in 3 min </a> </li>
- 
-    <li>
-        <a href=" https://ahana.io/ebook">Learning and Operating Presto</a> published by <a href="https://www.oreilly.com/">O’Reilly Media</a>
-        <ul style="margin-left: 1em;">
+      <h1>Installing Presto</h1>
+      If you want to install Presto manually, start here with the tarball:
+      <p>
+        <a class="downloadbutton" id="server_download_button" href="download.html">Manual / Local Download</a>
+        <h1>Getting Started tutorials provided by the community</h1>
+      </p>
+      <ul>
+        <li style="margin-bottom:1em;"><a href="https://hub.docker.com/r/ahanaio/prestodb-sandbox">DockerHub: PrestoDB sandbox container</a>
+          <ul style="margin-left: 1em; font-size:90%;">
+            <li> Sandbox includes PrestoDB CLI, JMX, Memory, TPC-DS, and TPC-H </li>
+          </ul>
+        </li>
+        <li style="margin-bottom:1em;"><a href="https://github.com/prestodb/f8-2019-demo">F8 2019 Classroom Demo: Getting Started with Presto</a>
+          <ul style="margin-left: 1em; font-size:90%;">
+            <li> See <a href="https://www.youtube.com/watch?v=67gXN5697Vw">YouTube video</a>
+          </ul>
+        </li>
+        <li style="margin-bottom:1em;"><a href="https://medium.com/macoclock/installing-prestodb-on-mac-within-3-mins-84720d9b5b45">How to install on Mac in 3 min </a> </li>
+        <li style="margin-bottom:1em;">
+          <a href=" https://ahana.io/ebook">Learning and Operating Presto</a> published by <a href="https://www.oreilly.com/">O’Reilly Media</a>
+          <ul style="margin-left: 1em; font-size:90%;">
             <li>Early release of O’Reilly book about Presto with introduction and tutorial of real-time analytics use case with Presto and Apache Pinot</li>
             <li>Includes a foreword by Nezih Yigitbasi, founding Presto Foundation Technical Steering Committee Chairperson</li>
-        </ul>
-    </li>
-
-
- </ul>
-
-
-
-            </div>
-</div>
-
-<div class="footer width">
-<section className="copyright">
-Copyright &copy; The Presto Foundation.<br>
-All rights reserved. Presto is a registered trademark of LF Projects, LLC. <br>Please see our <a
-href="https://lfprojects.org/policies/trademark-policy/">Trademark Policy</a> for more
-information.<br>
-<a href="https://lfprojects.org/policies/privacy-policy/">Privacy Policy</a> |
-<a href="https://lfprojects.org/policies/terms-of-use/">Terms of Use</a>.
-</section>
-</div>
-
+          </ul>
+        </li>
+        <li style="margin-bottom:1em;"><a href="https://ahana.io/presto-query-analyzer/?utm_source=prestodbio&utm_medium=community&utm_campaign=query" target="_blank">Presto Query Analyzer</a>
+          <ul style="margin-left: 1em; font-size:90%;">
+            <li>Free tool that gives you quick insights into your Presto clusters like query performance, bandwidth bottlenecks & more</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer width">
+    <section className="copyright">
+      Copyright &copy; The Presto Foundation.<br>
+      All rights reserved. Presto is a registered trademark of LF Projects, LLC. <br>Please see our <a href="https://lfprojects.org/policies/trademark-policy/">Trademark Policy</a> for more
+      information.<br>
+      <a href="https://lfprojects.org/policies/privacy-policy/">Privacy Policy</a> |
+      <a href="https://lfprojects.org/policies/terms-of-use/">Terms of Use</a>.
+    </section>
+  </div>
 </body>
+
 </html>
