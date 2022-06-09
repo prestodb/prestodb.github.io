@@ -32,3 +32,4 @@ In addition to PrestoDB committers, this project is also maintained by the indiv
 who have committer rights to this repository:
 
 * [Ariel Weisberg](https://github.com/aweisberg)
+* [Ali LeClerc](https://github.com/alileclerc)
