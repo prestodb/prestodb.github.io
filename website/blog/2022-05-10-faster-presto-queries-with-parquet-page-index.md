@@ -16,6 +16,8 @@ There are some initiatives done earlier to speed up the Presto reading Parquet d
 
 This article discusses this feature, the porting status into Presto and the benchmark testing result. 
 
+<!--truncate-->
+
 ##  Parquet Statistics
 Parquet file metadata contains statistics which have the min/max values of the data in the file. For a given query filter of a query,  the min/max value of the statistics can be used as the range of the values for the filter to look up. If the value being looked for is not in the range, we can skip reading that chunk of data. As a result, it improves resource usage like IO, memory and CPU time and eventually speeds up the queries.  
 
