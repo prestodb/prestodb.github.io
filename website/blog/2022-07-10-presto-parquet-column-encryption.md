@@ -12,6 +12,8 @@ In addition, data access restrictions, retention, and encryption at rest are fun
 
 Apache Parquet modular encryption has been released in Parquet 1.12.0 and Presto has been updated to 1.12.1. This enables the Presto repository to incorporate the Parquet column encryption.
 
+<!--truncate-->
+
 ## Challenges 
 While core encryption and decryption libraries have become very fast due to recent hardware-level acceleration (i.e., [Intel® AES-NI](https://www.intel.com/content/www/us/en/architecture-and-technology/advanced-encryption-standard-aes/data-protection-aes-general-technology.html)) instructions, the question about read-write overhead still has some relevance. The performance penalty could come from key accesses, encryption decisions such as block vs. single value, 256 vs. 128 bit, etc. At the Uber scale, where a user query could potentially scan billions of records, a tiny amount of overhead could halt the execution.
 
