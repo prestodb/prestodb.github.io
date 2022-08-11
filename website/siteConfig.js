@@ -51,28 +51,30 @@ const users = [
 prestoBaseUrl =  '/'
 
 const siteConfig = {
-  title: '',
-  tagline: 'Faster big data with SQL on everything',
-  url: 'https://prestodb.io', // Your website URL
-  cname: 'prestodb.io',
+  title: "",
+  tagline: "Fast and Reliable SQL for Data Analytics and the Open Lakehouse",
+  url: "https://prestodb.io", // Your website URL
+  cname: "prestodb.io",
   baseUrl: prestoBaseUrl, // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
 
   // Used for publishing and more
-  projectName: 'prestodb.github.io',
-  organizationName: 'prestodb',
+  projectName: "prestodb.github.io",
+  organizationName: "prestodb",
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {href: prestoBaseUrl + 'overview.html', label: 'OVERVIEW'},
-    {href: 'https://prestodb.github.io/docs/current', label: 'DOCS'},
-    {href: prestoBaseUrl + 'blog/index.html', label: 'BLOG'},
-    {href: prestoBaseUrl + 'faq.html', label: 'FAQ'},
-    {href: prestoBaseUrl + 'community.html', label: 'COMMUNITY'},
-    {href: prestoBaseUrl + 'resources.html', label: 'RESOURCES'},
-    {href: 'https://github.com/prestodb/presto', label: 'GITHUB'},
+    { href: prestoBaseUrl + "getting-started.html", label: "Get Started" },
+    { href: prestoBaseUrl + "what-is-presto.html", label: "What is Presto?" },
+    { href: prestoBaseUrl + "community.html", label: "Community" },
+    { href: "https://prestodb.github.io/docs/current", label: "Docs",external: true },
+    { href: "https://prestodb.slack.com/", label:"Slack", external: true},
+    { href: "https://github.com/prestodb/presto", label: "GitHub", external: true },
+    { href: "https://twitter.com/prestodb", label: "Tiwtter", external:true},
+    { href: "https://www.linkedin.com/company/presto-foundation/", label: "LinkedIn", external:true},
+
   ],
   // headerLinks: [
   //   {doc: 'overview', label: 'Overview'},
@@ -87,14 +89,14 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/presto.png',
-  footerIcon: 'img/presto-logo.png',
-  favicon: 'img/presto-logo.png',
+  headerIcon: "img/logo-presto-white.svg",
+  footerIcon: "img/logo-presto-white.svg",
+  favicon: "img/icon-presto-dots-color.svg",
 
   /* Colors for website */
   colors: {
-    primaryColor: '#000',
-    secondaryColor: '#374665',
+    primaryColor: "#1c1e21",
+    secondaryColor: "#5D88D6",
   },
 
   /* Custom fonts for website */
@@ -112,29 +114,35 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-//    copyright: ``
-//  copyright: `Copyright © 2013-${new Date().getFullYear()} Presto Foundation`,
+  //    copyright: ``
+  //  copyright: `Copyright © 2013-${new Date().getFullYear()} Presto Foundation`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
+    theme: "default",
   },
 
   // Add custom scripts here that would be placed in <script> tags.
-  scripts: ['https://buttons.github.io/buttons.js'],
+  scripts: [
+    "https://buttons.github.io/buttons.js",
+],
 
   // On page navigation for the current documentation page.
-  onPageNav: 'separate',
+  onPageNav: "separate",
   // No .html extensions for paths.
   cleanUrl: true,
 
   // Open Graph and Twitter card images.
-  ogImage: 'img/docusaurus.png',
-  twitterImage: 'img/docusaurus.png',
+  ogImage: "img/presto-logo-stacked.png",
+  twitterImage: "img/presto-logo-stacked.png",
 
-  separateCss: ['static/basic.css', 'static/haiku.css', 'static/copybutton.css', 'static/material.css', 'static/presto.css', 'static/presentations.css', 'static/ytlightbox.css',
-   'static/pygments.css', 'static/fonts/material-icons.css', 'static/fonts/font-awesome.css',
-   'static/stylesheets/application-fixes.css',  'static/stylesheets/application-palette.css', 'static/stylesheets/application.css'],
+  separateCss: [
+    "static/css/basic.css", // for sphinx docs pages
+    "static/css/bootstrap.min.css",
+    "static/css/effects.css", // sfx and animations
+    "static/css/presentations.css", // for videos presentations pages
+    "static/css/ytlightbox.css", // lightbox popup
+  ],
   // Show documentation's last contributor's name.
   // enableUpdateBy: true,
 
@@ -144,7 +152,10 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
-  stylesheets: ['css/footer.css']
+  stylesheets: [
+    "css/custom.css",
+    "css/footer.css"
+  ],
 };
 
 module.exports = siteConfig;

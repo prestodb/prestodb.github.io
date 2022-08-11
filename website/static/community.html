@@ -1,153 +1,394 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
-    <title>Presto | Community</title>
-    <link rel="stylesheet" href="static/presto.css" type="text/css"/>
-
+    <title>Presto | Distributed SQL Query Engine for Big Data</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
+    <link rel="stylesheet" href="static/css/effects.css" type="text/css" />
+    <link rel="canonical" href="http://prestodb.github.io/" />
     <meta name="viewport" content="width=device-width">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Presto | Community">
     <meta property="og:description" content="Distributed SQL Query Engine for Big Data">
     <meta property="og:image" content="static/presto-og.png">
-
+  <link rel="icon" type="image/x-icon" href="img/icon-presto-dots-color.svg">
+    <script async src="static/js/bootstrap.bundle.min.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82811140-44"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+    <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', 'UA-82811140-44');
     </script>
-
 </head>
+
 <body>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="static/js/version.js"></script>
+    <noscript>
+        <style>
+            .sequential-fadeup>*, .sequential-fadeup>*:first-child, .sequential-fadeup>*:last-child {
+                opacity: 1;
+                transform: scale(1);
+            }
+        </style>
+        This site requires javascript.
+    </noscript>
+    <header class="masthead">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="."><img src="./img/logo-presto-white.svg" alt="" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="getting-started.html">Get Started</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Learn
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="what-is-presto.html">What is Presto?</a></li>
+                                <li><a class="dropdown-item" href="blog">Blog</a></li>
+                                <li><a class="dropdown-item" href="tutorials.html">Tutorials</a></li>
+                                <li><a class="dropdown-item" href="videos.html">Videos</a></li>
+                                <li><a class="dropdown-item" href="powered-by-presto.html">Powered By Presto</a></li>
+                              </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="community.html">Community</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="docs/current" target="_blank">Docs</a>
+                        </li>
+                    </ul>
+                    <div>
+                        <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener noreferrer"
+                            class="navbar__item navbar__link nav-icon nav-github"></a>
+                        <a href="https://twitter.com/prestodb" target="_blank" rel="noopener noreferrer"
+                            class="navbar__item navbar__link nav-icon nav-twitter"></a><a
+                            href="https://prestodb.slack.com/" target="_blank" rel="noopener noreferrer"
+                            class="navbar__item navbar__link nav-icon nav-slack"></a><a
+                            href="https://www.linkedin.com/company/presto-foundation/" target="_blank"
+                            rel="noopener noreferrer" class="navbar__item navbar__link nav-icon nav-linkedin"></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-<header class="topbar clearfix">
-    <nav class="width">
-        <a href="."><h1>Presto</h1></a>
-        <ul class="nav">
-            <li><a href="overview.html">About</a></li>
-            <li><a href="https://prestodb.github.io/docs/current/">Docs</a></li>
-            <li><a href="blog/index.html">Blog</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="community.html">Community</a></li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="join.html">Foundation</a>
-            <li><a href="https://github.com/prestodb/presto"><img height=20 src="./img/github.svg" alt="GitHub Octocat"></a>
-        </ul>
-    </nav>
-</header>
-
-<header class="hero clearfix">
-    <div class="width">
-        <h1>Presto Community</h1>
+<section class="bg-silver-gradient bottom-cap-white">
+    <div class="container-fluid wrapper pb-5">
+        <div class="row align-items-center pt-5">
+            <div class="col-12 col-md-4 text-center"><img src="img/icon-presto-dots-color.svg" alt="presto logo with emojis"
+                    style="width: 100%; max-width: 280px;">
+                </div>
+            <div class="col-12 col-md-8  sequential-fadeup text-start">
+                <h1 class="py-2 text-start ">Be a Part of the Presto Community.</h1>
+                <h5 class="" style="max-width: 700px;"><b><span  class="countup" data-start="10" data-end="13.7" data-step="0.2" data-places="1">13.7</span>K</b> stars and growing. There are many ways to get started with the community.
+                    The best place to start is by joining our Slack channel where you can meet other Presto engineers
+                    and&nbsp;users.</h5>
+                <div class=""><a href="https://prestodb.slack.com/" target="_blank"
+                        class="btn btn-red btn-xlg my-2"><img src="img/icon-slack-white.svg" alt="slack"
+                            style="max-width: 1.5rem;"> Join Our Slack</a></div>
+            </div>
+        </div>
     </div>
-</header>
+</section>
 
-
-<div class="content homecontent width clearfix">
-    <div class="">
-  
- <h2>Quicklinks</h2>
-
-
-<ul>
-    <li><strong>Slack:</strong> <a href="https://prestodb.slack.com"target="_blank">prestodb.slack.com</a> or <a href="https://join.slack.com/t/prestodb/shared_invite/enQtNTQ3NjU2MTYyNDA2LTYyOTg3MzUyMWE1YTI3Njc5YjgxZjNiYTgxODAzYjI5YWMwYWE0MTZjYWFhNGMwNjczYjI3N2JhM2ExMGJlMWM"target="_blank">sign up</a> </li>
- <li><strong>Engage via forums:</strong> <a href="https://github.com/prestodb/presto/discussions" target="_blank">Github Discussions</a></li>
-    <li><strong>File a bug:</strong> <a href="https://github.com/prestodb/presto/issues" target="_blank">GitHub issues</a></li>
-   
-    <li><strong>Twitter:</strong>
-<a href="https://twitter.com/prestodb" target="_blank">@prestodb</a>
-     <li><strong>Meetup Groups:</strong> <a href="https://prestodb.io/community.html#meetup-groups">Join a Presto meetup near you</a></li>
-   <li><strong>Presto user discussion list:</strong> <a href="https://lists.prestodb.io/g/presto-users" target="_blank">presto-users</a></li>
-   <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/company/presto-foundation/" target="_blank">Follow us</a> </li>
-   <li><strong>Mailing List:</strong> <a href="https://groups.google.com/group/presto-users" target="_blank">presto-users</a> (Slack is preferred)</li>  
-</ul>
-
+<section class="container-fluid wrapper py-5 mt-3">
+    <div class="row align-items-center sequential-fadein" style="max-width: 1100px; margin: 0px auto;">
+        <div class="col text-center ">
+            <h2>Presto Meetups</h2>
+        </div>
+        <div class="col text-center "><img src="img/icon-meetup-color.svg" alt="Meetup"></div>
+        <div class="col ">We have meetups all over the world! Join your local meetup to connect with local
+            Presto&nbsp;users.</div>
+    </div>
+    <div class="card-group small-cards justify-content-center sequential-fadein py-5">
+        <div class="card text-center flex-fill "><img src="img/city_bay-area.jpg" class="card-img-top"
+                alt="Bay Area">
+            <div class="card-body"><a href="https://www.meetup.com/prestodb/" target="_blank"><b>Bay Area</b></a></div>
+        </div>
+        <div class="card text-center flex-fill "><img src="img/city_nyc.jpg" class="card-img-top" alt="NYC">
+            <div class="card-body"><a href="https://www.meetup.com/presto-meetup-new-york/" target="_blank"><b>New York
+                        City</b></a></div>
+        </div>
+        <div class="card text-center flex-fill "><img src="img/city_london.jpg" class="card-img-top"
+                alt="London">
+            <div class="card-body"><a href="https://www.meetup.com/presto-meetup-london/"
+                    target="_blank"><b>London</b></a></div>
+        </div>
+        <div class="card text-center flex-fill "><img src="img/city_bangalore.jpg" class="card-img-top"
+                alt="Bangalore">
+            <div class="card-body"><a href="https://www.meetup.com/presto-meetup-bangalore/"
+                    target="_blank"><b>Bangalore</b></a></div>
+        </div>
+        <div class="card text-center flex-fill "><img src="img/city_shanghai.jpg" class="card-img-top"
+                alt="Shanghai">
+            <div class="card-body"><a href="https://www.meetup.com/presto-meetup-shanghai/"
+                    target="_blank"><b>Shanghai</b></a></div>
+        </div>
+        <div class="card text-center flex-fill "><img src="img/city_sydney.jpg" class="card-img-top"
+                alt="Sydney">
+            <div class="card-body"><a href="https://www.meetup.com/presto-meetup-sydney/"
+                    target="_blank"><b>Sydney</b></a></div>
+        </div>
+    </div>
+    <div class="sequential-fadeup">
+        <h2 class="text-center py-5 ">More Ways To Get Involved</h2>
+        <div class="d-flex flex-wrap justify-content-center sequential-fadein mx-auto" style="max-width:900px">
+            <a href="https://prestodb.slack.com/"
+            class="btn btn-lg btn-outline-dark m-1 flex-fill equal-widths-50 text-nowrap" target="_blank"><img
+                src="img/icon-slack-color.svg" alt="slack" style="max-width: 1.5em;"> Join Slack</a>
+            <a href="https://github.com/prestodb/presto/issues"
+                class="btn btn-lg btn-outline-dark m-1 flex-fill equal-widths-50 text-nowrap" target="_blank"><img
+                    src="img/icon-github-dark.svg" alt="github" style="max-width: 1.5em;"> Open a Bug</a>
+            <a href="https://github.com/prestodb/presto/pulls"
+                class="btn btn-lg btn-outline-dark m-1 flex-fill equal-widths-50 text-nowrap" target="_blank"><img
+                    src="img/icon-github-dark.svg" alt="github" style="max-width: 1.5em;"> Contribute with a PR</a>
             
-        </p>
-        
+            <a href="https://github.com/prestodb/prestodb.github.io/pulls"
+                class="btn btn-lg btn-outline-dark m-1 flex-fill equal-widths-50 text-nowrap" target="_blank"><img
+                    src="img/icon-forum-dark.svg" alt="forums" style="max-width: 1.5em;"> Blog About Your Use Case</a>
 
-        <h2>User Group</h2>
-
-        <p>
-            Our main forum for community interaction is the 
-            <a href="https://prestodb.slack.com/" target="_blank">PrestoDB Slack Channel</a>.
-            Use this channel for general questions and
-            discussion around Presto. Easy to become a member, 
-            <a href="https://join.slack.com/t/prestodb/shared_invite/enQtNTQ3NjU2MTYyNDA2LTYyOTg3MzUyMWE1YTI3Njc5YjgxZjNiYTgxODAzYjI5YWMwYWE0MTZjYWFhNGMwNjczYjI3N2JhM2ExMGJlMWM" target="_blank">sign up to PrestoDB Slack here</a>.
-        </p>
-
-  <h2 id="meetup-groups">Meetup Groups</h2>
-
-        <p>
-            There are Presto meetups across the world. Join a meetup near you!
-<li> <a href="https://www.meetup.com/prestodb/" target="_blank">Presto Meetup - Bay Area</a></li>
-<li> <a href="https://www.meetup.com/presto-meetup-new-york/" target="_blank">Presto Meetup - NYC</a> </li>
-<li> <a href="https://www.meetup.com/presto-meetup-london/" target="_blank">Presto Meetup - London</a> </li>
-<li> <a href="https://www.meetup.com/presto-meetup-sydney/" target="_blank">Presto Meetup - Sydney</a> </li>
-<li> <a href="https://www.meetup.com/presto-meetup-bangalore/" target="_blank">Presto Meetup - Bangalore</a> </li>
-<li> <a href="https://www.meetup.com/presto-meetup-shanghai/" target="_blank">Presto Meetup - Shanghai</a> </li>
-       </p>
-    
-
-        <h2>Issues</h2>
-
-        <p>
-            If you find an issue with Presto, please
-            <a href="https://github.com/prestodb/presto/issues/new" target="_blank">report</a> it.
-        </p>
-
-        <h2>Contributing</h2>
-
-        <p>
-            You can also contribute fixes and new features as
-            <a href="https://github.com/prestodb/presto/pulls" target="_blank">pull requests</a>.
-            You will need to sign a
-            <a href="https://developers.facebook.com/opensource/cla" target="_blank">Contributor License Agreement</a>
-            ("CLA") before it can be accepted into the repository.
-        </p>
-
-  <h2>Are you a Presto user?</h2>
-
-        <p>
-       We want to hear from you! 
-<ul>
-<li>Highlight your company on the <a href="https://github.com/prestodb/presto/wiki/Presto-Users" target="_blank">Presto Users page</a></li>
-<li><a href="https://prestodb.io/blog/index.html" target="_blank">Blog about your use case.</a> How? <a href="https://github.com/prestodb/prestodb.github.io" target="_blank">Create a PR.</a></li>
-</ul>
-        </p>
-
-    
-        <h2>Technical Steering Committee Mailing List</h2>
-        <p>
-            The Presto Foundation structure includes the Technical Steering Committee (TSC), which oversees the technical direction of the Presto Project. 
-            The TSC mailing list enables members to communicate openly and transparently 
-            with other members and with all participants in the Presto Foundation.  
-            Membership and all discussions on this mailing list are public.  
-            <br></br>
-            To join the TSC mailing list, please visit <a href="https://lists.prestodb.io/g/presto-tsc" target="_blank">https://lists.prestodb.io/g/presto-tsc</a> 
-                and start participating in discussions. 
-            <br>
-            The Presto Foundation has other mailing lists for the Governing Board, Outreach committee and other sub-committes. 
-                To manage your subscriptions to Presto Foundation mailing lists, 
-            please visit <a href="https://lists.prestodb.io/g/main/subgroups" target="_blank">https://lists.prestodb.io/g/main/subgroups</a>.
-             
-        </p>
+        </div>
     </div>
-</div>
+</section>
 
-<div class="footer width">
-<section className="copyright">
-Copyright &copy; The Presto Foundation.<br>
-All rights reserved. Presto is a registered trademark of LF Projects, LLC. <br>Please see our <a
-href="https://lfprojects.org/policies/trademark-policy/">Trademark Policy</a> for more
-information.<br>
-<a href="https://lfprojects.org/policies/privacy-policy/">Privacy Policy</a> |
-<a href="https://lfprojects.org/policies/terms-of-use/">Terms of Use</a>.
+<section class="pb-2 mt-2 px-0 bg-silver top-cap-white">
+    <div class="container wrapper">
+        <h2 class="text-center pt-2">Community Projects</h2>
+        <div class="d-sm-flex flex-wrap fadein py-3 pb-5" style="margin: 0px auto;">
+            <h5 class="text-center flex-fill p-2 "><a href="#cloud_tools"><b>Cloud Tools</b></a></h5>
+            <h5 class="text-center flex-fill p-2 "><a href="#management_tools"><b>Management Tools</b></a></h5>
+            <h5 class="text-center flex-fill p-2 "><a href="#clients"><b>Clients and GUIs</b></a></h5>
+            <h5 class="text-center flex-fill p-2 "><a href="#libraries"><b>Libraries</b></a></h5>
+        </div>
+    </div>
+</section>
+
+<div class="community-projects">
+    <script>
+        function ProjectCard(item) {
+            var out = `<div class="card community-card text-center">
+                            <div class="card-header bg-white">
+                                <a href="${item.link}" target="_blank">
+                                    <h4 class="card-title">${item.title}</h4>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">${item.description}</p>
+                            </div>
+                            <div class="card-footer small pb-3"> Maintained by: <br>
+                                <div class="d-flex">`;
+            item.maintainers.forEach(m => {
+                out += `<div class="flex-fill"><a href="${m.maintainerLink}" target="_blank"><img
+                                src="${m.logo}" alt="${m.name}"
+                                class="card-logo"></a><br><a href="${m.maintainerLink}"
+                            target="_blank">${m.name}</a></div>`;
+            });
+            out += `</div> 
+                                </div >
+                            </div>`;
+            return out;
+        }  
+    </script>
+<section id="cloud_tools">
+    <h2>Cloud Tools</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col card-group" id="cards_cloud">
+            </div>
+            
+            <script type="module">  
+                import('./data/Projects_Cloud.js').then(
+                    (data) => {
+                        data.Projects_Cloud.forEach(item => {
+                            document.getElementById('cards_cloud').innerHTML += ProjectCard(item);
+                        });
+                    }
+                ).catch( (err) => { console.log('error: '+err); } );
+            </script>
+        </div>
+    </div>
+</section>
+<section id="management_tools">
+    <h2>Presto Management Tools</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col card-group" id="cards_management_tools">
+            </div>
+
+            <script type="module">
+                import('./data/Projects_ManagementTools.js').then(
+                    (data) => {
+                        data.Projects_ManagementTools.forEach(item => {
+                            document.getElementById('cards_management_tools').innerHTML += ProjectCard(item);
+                        });
+                    }
+                ).catch((err) => { console.log('error: ' + err); });
+            </script>
+        </div>
+    </div>
+</section>
+<section id="clients">
+    <h2>Presto Clients and GUIs</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col card-group" id="cards_clients">
+            </div>
+
+            <script type="module">
+                import('./data/Projects_Clients.js').then(
+                    (data) => {
+                        data.Projects_Clients.forEach(item => {
+                            document.getElementById('cards_clients').innerHTML += ProjectCard(item);
+                        });
+                    }
+                ).catch((err) => { console.log('error: ' + err); });
+            </script>
+        </div>
+    </div>
+</section>
+<section id="libraries">
+    <h2>Libraries</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col card-group" id="cards_libraries">
+            </div>
+
+            <script type="module">
+                import('./data/Projects_Libraries.js').then(
+                    (data) => {
+                        data.Projects_Libraries.forEach(item => {
+                            document.getElementById('cards_libraries').innerHTML += ProjectCard(item);
+                        });
+                    }
+                ).catch((err) => { console.log('error: ' + err); });
+            </script>
+        </div>
+    </div>
 </section>
 </div>
 
+<section class="container-fluid wrapper py-5" style="max-width: 1200px;">
+    <div class="container-fluid">
+        <div class="row text-center sequential-fadein">
+            <div class="col">
+                <h2>The Presto Foundation</h2>
+                <hr class="dots">
+            </div>
+        </div>
+        <div class="row sequential-fadein" style="place-content: center;">
+            <div class="col-12 col-md-6 text-center p-3"><img src="img/logo-presto-foundation.svg"
+                    alt="presto foundation" style="width: 100%; max-width: 420px;"></div>
+            <div class="col-12 col-md-6 py-3 px-md-5">The Presto Foundation is the organization that oversees the
+                development of the Presto open source project. Presto is an independent open-source project and not controlled by any single company. Members of the Presto Foundation provide essential
+                financial support for the collaborative development process, including tooling, infrastructure, and community conferences. <a href="join.html">Learn more and become a Member</a>.
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer footer-dark">
+    <div class="container container-fluid">
+      <div class="row footer__links">
+        <div class="col footer__col">
+          <ul class="footer__items clean-list">
+            <li class="footer__title">Docs</li>
+            <li class="footer__item"><a class="footer__link-item" href="getting-started.html">Get Started</a></li>
+            <li class="footer__item"><a href="docs/current/" target="_self" rel="noopener noreferrer"
+                class="footer__link-item" position="left">Presto Docs</a></li>
+          </ul>
+        </div>
+        <div class="col footer__col">
+          <ul class="footer__items clean-list">
+            <li class="footer__title">Community</li>
+            <li class="footer__item"><a href="https://prestodb.slack.com/" target="_blank" rel="noopener noreferrer"
+                class="footer__link-item">Slack <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24"
+                  class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                  <path fill="currentColor"
+                    d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                  </path>
+                </svg></a></li>
+            <li class="footer__item"><a href="https://twitter.com/prestodb" target="_blank" rel="noopener noreferrer"
+                class="footer__link-item">Twitter <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24"
+                  class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                  <path fill="currentColor"
+                    d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                  </path>
+                </svg></a></li>
+            <li class="footer__item"><a href="https://www.meetup.com/prestodb/" target="_blank"
+                rel="noopener noreferrer" class="footer__link-item">Meetup <svg width="13.5" height="13.5"
+                  aria-hidden="true" viewBox="0 0 24 24"
+                  class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                  <path fill="currentColor"
+                    d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                  </path>
+                </svg></a></li>
+            <li class="footer__item"><a href="https://www.linkedin.com/company/presto-foundation/" target="_blank"
+                rel="noopener noreferrer" class="footer__link-item">LinkedIn <svg width="13.5" height="13.5"
+                  aria-hidden="true" viewBox="0 0 24 24"
+                  class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                  <path fill="currentColor"
+                    d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                  </path>
+                </svg></a></li>
+          </ul>
+        </div>
+        <div class="col footer__col">
+          <ul class="footer__items clean-list">
+            <li class="footer__title">More</li>
+            <li class="footer__item"><a class="footer__link-item" href="blog/index.html">PrestoDB Blog</a></li>
+            <li class="footer__item"><a href="https://github.com/prestodb/presto" target="_blank"
+                rel="noopener noreferrer" class="footer__link-item">GitHub <svg width="13.5" height="13.5"
+                  aria-hidden="true" viewBox="0 0 24 24"
+                  class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                  <path fill="currentColor"
+                    d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                  </path>
+                </svg></a></li>
+            <li class="footer__item"><a class="footer__link-item" href="join.html">Presto Foundation</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom text--center">
+        <div class="footer__copyright">Copyright © 2022 The Presto Foundation.<br>
+          All rights reserved. Presto is a registered trademark of LF Projects, LLC. <br>Please see our <a
+            href="https://lfprojects.org/policies/trademark-policy/" target="_blank">Trademark Policy</a> for more
+          information.<br>
+          <a href="https://lfprojects.org/policies/privacy-policy/" target="_blank">Privacy Policy</a> |
+          <a href="https://lfprojects.org/policies/terms-of-use/" target="_blank">Terms of Use</a>.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+    <script async src="static/js/effects.js"></script>
 </body>
+
 </html>

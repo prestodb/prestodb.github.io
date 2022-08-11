@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Keyshape -->
+<svg xmlns="http://www.w3.org/2000/svg" id="_a0" viewBox="0 0 420 420" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" style="white-space: pre;">
+    <style>
+@keyframes a0_t { 0% { transform: translate(209.317px,209.317px) rotate(-90deg); animation-timing-function: cubic-bezier(0,0,0,1); } 100% { transform: translate(209.317px,209.317px) rotate(0deg); } }
+@keyframes a0_s { 0% { stroke: rgba(56,219,252,0.00); } 100% { stroke: #38dbfc; } }
+@keyframes Group_394_o { 0% { opacity: 0; } 100% { opacity: 1; } }
+    </style>
+    <g id="Ellipse_302" data-name="Ellipse 302" fill="none" stroke="#38dbfc" stroke-linecap="round" stroke-linejoin="round" stroke-width="11" stroke-dasharray="1 21" transform="translate(209.317,209.317) translate(-209.317,-209.317)">
+        <ellipse fill="none" rx="203.817" ry="203.817" stroke-dashoffset="-600" stroke-dasharray="1 31" stroke="rgba(56,219,252,0.00)" transform="translate(209.317,209.317) rotate(-90)" style="animation: 1.433s linear both a0_t, 1.433s linear both a0_s; animation-play-state: paused"/>
+    </g>
+    <g id="Group_394" data-name="Group 394" opacity="0" transform="translate(210,209.317) translate(-144.202,-144.404)" style="animation: 1.433s linear both Group_394_o; animation-play-state: paused">
+        <path id="Path_352" data-name="Path 352" d="M1413.87,2743.98L1455.09,2743.98L1455.09,2785.21" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" transform="translate(247.274,247.474) translate(-1434.48,-2764.59)"/>
+        <path id="Path_353" data-name="Path 353" d="M1619.78,2895.28C1643.95,2842.28,1633.66,2777.91,1590.04,2734.29C1533.9,2678.16,1442.33,2678.47,1386.19,2734.6L1367.62,2753.17" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" transform="translate(155.944,101.467) translate(-1500.08,-2793.81)"/>
+        <path id="Path_354" data-name="Path 354" d="M1375.04,2711.89C1350.87,2764.9,1361.16,2829.26,1404.78,2872.88C1460.91,2929.02,1552.49,2928.7,1608.62,2872.57L1627.2,2854" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" transform="translate(132.461,187.338) translate(-1494.74,-2813.36)"/>
+        <path id="Path_355" data-name="Path 355" d="M1408.18,2738.29L1366.95,2738.29L1366.95,2697.06" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" transform="translate(41.127,41.3275) translate(-1387.56,-2717.67)"/>
+        <path id="Icon_ionic-md-person" data-name="Icon ionic-md-person" d="M88.052,88.052C104.949,88.052,120.182,77.8736,126.648,62.263C133.114,46.6524,129.54,28.6838,117.592,16.7359C105.644,4.78805,87.6756,1.21388,72.065,7.68001C56.4544,14.1461,46.276,29.3792,46.276,46.276C46.3441,69.32,65.008,87.9839,88.052,88.052ZM88.052,108.94C60.376,108.94,4.5,123.04,4.5,150.716L4.5,171.6L171.6,171.6L171.6,150.716C171.6,123.04,115.728,108.94,88.052,108.94Z" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" transform="translate(143.105,127.55) translate(-88.05,-88.0494)"/>
+    </g>
+    <script><![CDATA[
+new IntersectionObserver(function(es) {
+    es.forEach(function(e) {
+      if (e.isIntersecting) {
+        var as=document.getElementById('_a0').getAnimations({subtree:true});if(as.length&&as[0].playState!='running'&&as[0].playState!='finished')as.forEach(function(a){a.play()})
+      }
+    })
+}, {threshold:.25}).observe(document.getElementById("_a0"));]]></script>
+</svg>

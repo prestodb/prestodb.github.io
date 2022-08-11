@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Presto | Distributed SQL Query Engine for Big Data</title>
+  <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="static/css/effects.css" type="text/css" />
+  <link rel="canonical" href="http://prestodb.github.io/" />
+  <meta name="viewport" content="width=device-width">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Presto | Distributed SQL Query Engine for Big Data">
+  <meta property="og:description" content="Distributed SQL Query Engine for Big Data">
+  <meta property="og:image" content="static/presto-og.png">
+  <link rel="icon" type="image/x-icon" href="img/icon-presto-dots-color.svg">
+  <script async src="static/js/bootstrap.bundle.min.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82811140-44"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+  <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-82811140-44');
+  </script>
+</head>
+
+<body>
+  <div id="fb-root"></div>
+  <script>
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <script src="static/js/version.js"></script>
+  <noscript>
+    <style>
+      .sequential-fadeup>*,
+      .sequential-fadeup>*:first-child,
+      .sequential-fadeup>*:last-child {
+        opacity: 1;
+        transform: scale(1);
+      }
+    </style>
+    This site requires javascript.
+  </noscript>
+  <header class="masthead">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="."><img src="./img/logo-presto-white.svg" alt="" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="getting-started.html">Get Started</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Learn
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="what-is-presto.html">What is Presto?</a></li>
+                <li><a class="dropdown-item" href="blog">Blog</a></li>
+                <li><a class="dropdown-item" href="powered-by-presto.html">Powered By Presto</a></li>
+                <li><a class="dropdown-item" href="tutorials.html">Tutorials</a></li>
+                <li><a class="dropdown-item" href="videos.html">Videos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="community.html">Community</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="docs/current" target="_blank">Docs</a>
+            </li>
+          </ul>
+          <div>
+            <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener noreferrer"
+              class="navbar__item navbar__link nav-icon nav-github"></a>
+            <a href="https://twitter.com/prestodb" target="_blank" rel="noopener noreferrer"
+              class="navbar__item navbar__link nav-icon nav-twitter"></a><a href="https://prestodb.slack.com/"
+              target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link nav-icon nav-slack"></a><a
+              href="https://www.linkedin.com/company/presto-foundation/" target="_blank" rel="noopener noreferrer"
+              class="navbar__item navbar__link nav-icon nav-linkedin"></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="bg-silver-gradient-to-white">
+    <div class="container-fluid wrapper pb-5">
+      <div class="row align-items-center pt-5  sequential-fadeup">
+        <h1 class="py-2 text-center revealed">What is Presto?</h1>
+        <h2 class="w-75 mx-auto text-center revealed">Fast and reliable SQL for data analytics and the open
+          lakehouse</h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-2 mt-2 px-0 bg-silver top-cap-white">
+    <div class="container wrapper">
+      <h5 class="my-5 mx-auto text-center" style="max-width: 960px;">For data engineers who struggle with managing
+        multiple query languages and interfaces to siloed databases and storage, Presto is the fast and reliable
+        engine that provides one simple ANSI SQL interface for all your data analytics and your open lakehouse.</h5>
+      <div class="d-sm-flex flex-wrap sequential-fadein py-3 pb-5" style="margin: 0px auto; max-width: 900px;">
+        <h5 class="text-center flex-fill p-2 revealed"><a href="#key_innovation"><b>Key Innovation</b></a></h5>
+        <h5 class="text-center flex-fill p-2 revealed"><a href="#why_presto"><b>Why Presto?</b></a></h5>
+        <h5 class="text-center flex-fill p-2 revealed"><a href="#use_cases"><b>Use Cases</b></a></h5>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-silver bottom-cap-white" id="key_innovation">
+    <div class="container-fluid wrapper py-5">
+      <div class="row pb-5">
+        <div class="col text-center">
+          <h2>Key Innovation</h2>
+          <p>Some of the biggest companies in the world are contributing to the Presto open source project. These key
+            innovations are only available in Presto today.</p>
+          <hr class="dots">
+          <div class="text-start mx-auto row" style="max-width:900px;">
+            <div class="col-12 col-md-2 d-flex flex-column" style="place-content:center;"><span
+                class="blue-dot-large" style="background-color:#5D88D6"></span>
+            </div>
+            <div class="col-12 col-md-10 my-3">
+              <h5 class="mb-0"><b>Project Aria</b></h5>Push down entire expressions to the data source for some file formats like
+              ORC.<br><a href="https://prestodb.io/blog/2019/12/23/improve-presto-planner">Blog</a> | <a
+                href="https://engineering.fb.com/2019/06/10/data-infrastructure/aria-presto/" target="_blank">Design</a>
+            </div>
+            <div class="col-12 col-md-2 d-flex flex-column" style="place-content:center;"><span
+                class="blue-dot-large"></span>
+            </div>
+            <div class="col-12 col-md-10 my-3">
+              <h5 class="mb-0"><b>Project Presto Unlimited</b></h5>Exchange materialization to create temporary in-memory bucketed tables to
+              use significantly less&nbsp;memory.<br><a href="https://github.com/prestodb/presto/issues/12124"
+                target="_blank">Github</a> | <a
+                href="https://prestodb.io/blog/2019/08/05/presto-unlimited-mpp-database-at-scale">Blog</a>
+            </div>
+            <div class="col-12 col-md-2 d-flex flex-column" style="place-content:center;"><span
+                class="blue-dot-large" style="background-color:#5D88D6"></span>
+            </div>
+            <div class="col-12 col-md-10 my-3">
+              <h5 class="mb-0"><b>RaptorX</b></h5>Disaggregate storage from compute for low latency to provide a unified, cheap, fast and
+              scalable solution to OLAP and interactive use&nbsp;cases.<br><a
+                href="https://prestodb.io/blog/2021/02/04/raptorx">Blog</a> | <a
+                href="https://static.sched.com/hosted_files/prestoconday2021/13/RaptorX-PrestoCon.pdf"
+                target="_blank">Presentation</a>
+            </div>
+            <div class="col-12 col-md-2 d-flex flex-column" style="place-content:center;"><span
+                class="blue-dot-large"></span>
+            </div>
+            <div class="col-12 col-md-10 my-3">
+              <h5 class="mb-0"><b>User Defined Functions</b></h5>Support for dynamic SQL functions (available in experimental mode)<br><a
+                href="https://prestodb.io/docs/current/admin/function-namespace-managers.html">Docs</a>
+            </div>
+            <div class="col-12 col-md-2 d-flex flex-column" style="place-content:center;"><span
+                class="blue-dot-large" style="background-color:#5D88D6"></span>
+            </div>
+            <div class="col-12 col-md-10 my-3">
+              <h5 class="mb-0"><b>Presto-on-Spark</b></h5>Runs Presto code as a library within a Spark executor.<br><a
+                href="https://prestodb.io/docs/current/installation/spark.html">Docs</a>
+            </div>
+            <div class="col-12 col-md-2 d-flex flex-column" style="place-content:center;"><span
+                class="blue-dot-large"></span>
+            </div>
+            <div class="col-12 col-md-10 my-3">
+              <h5 class="mb-0"><b>Disaggregated Coordinator (aka Fireball)</b></h5>Scale out the coordinator horiztonally and revamp
+              the&nbsp;RPC&nbsp;stack.<br><a href="https://github.com/prestodb/presto/issues/10174" target="_blank">Github</a> |
+              <a href="https://prestodb.io/blog/2022/04/15/disggregated-coordinator">Blog</a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="" id="why_presto">
+    <div class="container-fluid wrapper py-5">
+      <div class="col text-center">
+        <h2>Why Presto?</h2>
+        <hr class="dots">
+      </div>
+      <div class="row sequential-fadein align-items-center" style="max-width: 1024px; margin: 3em auto;">
+        <div class="col-12 col-md-6 revealed">
+          <h3 class="mb-3">One Language</h3>
+          <p>Different engines for different workloads means you will have to re-platform down
+            the&nbsp;road. </p>
+          <p>With Presto, you get 1 familar ANSI SQL language and 1 engine for your data analytics so you don't
+            need to graduate to another lakehouse engine. Presto can be used for interactive and batch
+            workloads, small and large amounts of data, and scales from a few to thousands of&nbsp;users.</p>
+        </div>
+        <div class="col-12 col-md-6 mt-5 mt-md-0 text-center revealed"><img src="img/icon-one-language.svg"
+            alt="One Language" style="width: 100%; max-width: 280px;"></div>
+      </div>
+      <div class="row sequential-fadein align-items-center" style="max-width: 1024px; margin: 3em auto;">
+        <div class="col-12 col-md-6 mt-5 mt-md-0 text-center"><img src="img/icon-one-interface.svg" alt="One Interface"
+            style="width: 100%; max-width: 280px;"></div>
+        <div class="col-12 col-md-6">
+          <h3 class="mb-3">One Interface</h3>
+          <p>Most data teams have different engines for different workloads on their data lake storage, and each
+            engine has its own language and interface. </p>
+          <p>Presto gives you one simple ANSI SQL interface for all of your data in various siloed data systems,
+            helping you join your data ecosystem together. Presto's connector architecture enables you to query
+            data where it lives.</p>
+        </div>
+      </div>
+      <div class="row sequential-fadein align-items-center" style="max-width: 1024px; margin: 3em auto;">
+        <div class="col-12 col-md-6">
+          <h3 class="mb-3">Fast, Reliable &amp; Efficient</h3>
+          <p>Data infrastructure costs can explode, especially with proprietary systeems like data warehouses, as
+            the data size and users workloads grow.</p>
+          <p>Presto is battle-tested at Meta and Uber and can scale to meet growing data sizes adn workloads. It's
+            faster and more efficient than other engines because it's optimized for large numbers of small
+            queries, so you can query data at better price-performance compared to proprietary systems.</p>
+        </div>
+        <div class="col-12 col-md-6 mt-5 mt-md-0 text-center"><img src="img/icon-fast-reliable-efficient.svg"
+            alt="Fast, Reliable, and Efficient" style="width: 100%; max-width: 280px;"></div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-silver-gradient-to-white top-cap-white" id="use_cases">
+    <div class="container-fluid wrapper py-5">
+      <div class="row">
+        <div class="col text-center">
+          <h2>Use Cases</h2>
+          <hr class="dots">
+          <div class="card-group sequential-fadein pb-5">
+            <div class="card text-center revealed">
+              <div class="card-header bg-white">
+                <h4 class="card-title my-4">Ad-hoc Query</h4>
+              </div>
+              <div class="card-body">
+                <p class="card-text mb-3">Use SQL to run ad hoc queries whenever you want, wherever your
+                  data resides. Presto allows you to query data where it’s stored so you don’t have to ETL
+                  data into a separate system.</p>
+              </div>
+            </div>
+            <div class="card text-center revealed">
+              <div class="card-header bg-white">
+                <h4 class="card-title my-4">Reporting and dashboarding</h4>
+              </div>
+              <div class="card-body">
+                <p class="card-text mb-3">Query data across multiple sources to build one Presto view of
+                  reports and dashboards for Presto self-service BI business intelligence.</p>
+              </div>
+            </div>
+            <div class="card text-center revealed">
+              <div class="card-header bg-white">
+                <h4 class="card-title my-4">Open Lakehouse</h4>
+              </div>
+              <div class="card-body">
+                <p class="card-text mb-3">Through one interface, Presto acts as more than just a query
+                  engine as it sits at the core of your data ecosystem, helping to tie it all together by
+                  solving data problems at scale.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <footer class="footer footer-dark">
+  <div class="container container-fluid">
+    <div class="row footer__links">
+      <div class="col footer__col">
+        <ul class="footer__items clean-list">
+          <li class="footer__title">Docs</li>
+          <li class="footer__item"><a class="footer__link-item" href="getting-started.html">Get Started</a></li>
+          <li class="footer__item"><a href="docs/current/" target="_self" rel="noopener noreferrer"
+              class="footer__link-item" position="left">Presto Docs</a></li>
+        </ul>
+      </div>
+      <div class="col footer__col">
+        <ul class="footer__items clean-list">
+          <li class="footer__title">Community</li>
+          <li class="footer__item"><a href="https://prestodb.slack.com/" target="_blank" rel="noopener noreferrer"
+              class="footer__link-item">Slack <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+          <li class="footer__item"><a href="https://twitter.com/prestodb" target="_blank" rel="noopener noreferrer"
+              class="footer__link-item">Twitter <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+          <li class="footer__item"><a href="https://www.meetup.com/prestodb/" target="_blank"
+              rel="noopener noreferrer" class="footer__link-item">Meetup <svg width="13.5" height="13.5"
+                aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+          <li class="footer__item"><a href="https://www.linkedin.com/company/presto-foundation/" target="_blank"
+              rel="noopener noreferrer" class="footer__link-item">LinkedIn <svg width="13.5" height="13.5"
+                aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+        </ul>
+      </div>
+      <div class="col footer__col">
+        <ul class="footer__items clean-list">
+          <li class="footer__title">More</li>
+          <li class="footer__item"><a class="footer__link-item" href="blog/index.html">PrestoDB Blog</a></li>
+          <li class="footer__item"><a href="https://github.com/prestodb/presto" target="_blank"
+              rel="noopener noreferrer" class="footer__link-item">GitHub <svg width="13.5" height="13.5"
+                aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+          <li class="footer__item"><a class="footer__link-item" href="join.html">Presto Foundation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom text--center">
+      <div class="footer__copyright">Copyright © 2022 The Presto Foundation.<br>
+        All rights reserved. Presto is a registered trademark of LF Projects, LLC. <br>Please see our <a
+          href="https://lfprojects.org/policies/trademark-policy/" target="_blank">Trademark Policy</a> for more
+        information.<br>
+        <a href="https://lfprojects.org/policies/privacy-policy/" target="_blank">Privacy Policy</a> |
+        <a href="https://lfprojects.org/policies/terms-of-use/" target="_blank">Terms of Use</a>.
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script async src="static/js/effects.js"></script>
+</body>
+
+</html>

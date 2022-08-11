@@ -4,13 +4,17 @@
 <head>
   <meta charset="utf-8">
   <title>Presto | Distributed SQL Query Engine for Big Data</title>
-  <link rel="stylesheet" href="static/presto.css" type="text/css" />
+  <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="static/css/effects.css" type="text/css" />
   <link rel="canonical" href="http://prestodb.github.io/" />
   <meta name="viewport" content="width=device-width">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Presto | Distributed SQL Query Engine for Big Data">
   <meta property="og:description" content="Distributed SQL Query Engine for Big Data">
   <meta property="og:image" content="static/presto-og.png">
+  <link rel="icon" type="image/x-icon" href="img/icon-presto-dots-color.svg">
+  <script async src="static/js/bootstrap.bundle.min.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82811140-44"></script>
   <script>
   window.dataLayer = window.dataLayer || [];
@@ -42,211 +46,313 @@
           transform: scale(1);
       }
     </style>
+    This site requires javascript.
   </noscript>
-  <header class="topbar clearfix">
-    <nav class="width">
-      <a href=".">
-        <h1>Presto</h1>
-      </a>
-      <ul class="nav">
-        <li><a href="overview.html">About</a></li>
-        <li><a href="https://prestodb.github.io/docs/current/">Docs</a></li>
-        <li><a href="blog/index.html">Blog</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="community.html">Community</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="join.html">Foundation</a>
-        <li><a href="https://github.com/prestodb/presto"><img height=20 src="./img/github.svg" alt="GitHub Octocat"></a>
-      </ul>
-    </nav>
-  </header>
-  <header class="hero homehero clearfix">
-    <div class="width">
-      <div class="leftcol">
-        <h1>Distributed SQL Query Engine for&nbsp;Big&nbsp;Data</h1>
-        <div>
-          <a class="button" href="getting-started.html">Get Started</a>
-          <a class="button" href="download.html">Download</a>
+  <header class="masthead">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="."><img src="./img/logo-presto-white.svg" alt="" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="getting-started.html">Get Started</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Learn
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="what-is-presto.html">What is Presto?</a></li>
+                <li><a class="dropdown-item" href="blog">Blog</a></li>
+                <li><a class="dropdown-item" href="powered-by-presto.html">Powered By Presto</a></li>
+                <li><a class="dropdown-item" href="tutorials.html">Tutorials</a></li>
+                <li><a class="dropdown-item" href="videos.html">Videos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="community.html">Community</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="docs/current" target="_blank">Docs</a>
+            </li>
+          </ul>
+          <div>
+            <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener noreferrer"
+              class="navbar__item navbar__link nav-icon nav-github"></a>
+            <a href="https://twitter.com/prestodb" target="_blank" rel="noopener noreferrer"
+              class="navbar__item navbar__link nav-icon nav-twitter"></a><a href="https://prestodb.slack.com/"
+              target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link nav-icon nav-slack"></a><a
+              href="https://www.linkedin.com/company/presto-foundation/" target="_blank" rel="noopener noreferrer"
+              class="navbar__item navbar__link nav-icon nav-linkedin"></a>
+          </div>
         </div>
       </div>
-      <div class="rightcol widecol showterm">
-        <img src="static/presto-screenshot.png">
-      </div>
-      <a href="https://www.infoworld.com/article/3637038/the-best-open-source-software-of-2021.html#slide16" target="_blank"><img src="img/badge-bossie.png" alt="" id="bossie-badge" /></a>
-    </div>
+    </nav>
   </header>
-<div class="clearfix banner-wrap">
-  <div class="banner-content">
-    <div class="banner-info">
-      <div class="sequential-fadeup">
-          <img src="./img/prestoconday_logo-white.svg" alt="PrestoCon Day 2022" class="banner-logo">
-          <h2 class="test"><b><i>All Things PrestoDB</i></b></h2><h3 class="test">Free Virtual Event: July 21, 2022</h2>
-          <div class="btn"><a class="button" href="https://events.linuxfoundation.org/prestocon-day/" target="_blank" >Register Here</a></div> 
-      </div>
+
+<section class="bg-silver-gradient">
+<div class="container-fluid wrapper pb-5">
+  <div class="billboard sequential-fadeup pt-5">
+    <img src="img/logo-presto-color.svg" alt="Presto Logo" class="billboard-logo pt-1" />
+    <h1 class="pt-0 mb-3">Fast and Reliable SQL Engine for Data&nbsp;Analytics and the Open&nbsp;Lakehouse</h1>
+    <div>
+      <a href="getting-started.html" class="btn btn-blue btn-lg">Get Started</a>
+    </div>
+    <a class="my-5 d-inline-flex" href="https://github.com/prestodb/presto" target="_blank"
+      style="font-size:22px;place-content:center;color:#000;text-decoration:none" title="presto on github">
+      <img src="img/icon-github-dark.svg" alt="github" style="max-width:1.75rem" />&nbsp;<img
+        src="img/icon-github-star.svg" alt="star" style="max-width:1.5rem" />&nbsp;<span  class="countup" data-start="10" data-end="13.7" data-step="0.2" data-places="1">13.7</span>K
+    </a>
+  </div>
+  <div class="my-5 text-center">
+    <div class="sequential-fadeup">
+      <h2>What is Presto?</h2>
+      <h5 style="max-width:700px;margin:0 auto 1em">Presto is an open source SQL query engine that’s fast, reliable, and efficient at scale. Run ad hoc queries against data sources of all sizes ranging from gigabytes to petabytes.</h5>
+          <div>
+            <a href="what-is-presto.html" class="btn btn-blue">Learn More</a>
+          </div>
+    </div>
+    <div class="my-5">
+      <img src="img/diag-presto-main.svg" alt="presto architecture" style="width:100%;max-width:1024px" />
     </div>
   </div>
 </div>
+</section>
+
+<section class="bg-dkblue bg-side-dots text-white">
+  <div class="container-fluid wrapper py-5">
+    <div class="row" style="max-width:1100px;margin:0 auto">
+      <div class="col-12 col-md-9 text-white text-center text-md-start" style="font-size:1.2rem; place-content:center;" ><h3 class="text-white">Explore Key Innovations <i>Only Available in&nbsp;Presto:</i></h3>
+        Presto-on-Spark | Project Aria | Disaggregated Coordinator | RaptorX</div>
+      <div class="col-12 col-md-3 text-white d-flex" style="flex-direction:column;place-content:center;"><a href="what-is-presto.html#key_innovation" class="btn btn-outline-light btn-lg my-2">Learn More</a></div>
+    </div>
   </div>
-  <div class="clearfix banner-wrap-signup">
-    <div class="banner-content">
-      <div class="banner-signup banner-info">
-        <h3><b>Join the Presto mailing list for the latest community updates</b> <a class="button" href="https://lists.prestodb.io/g/Community" target="_blank">Sign up</a></h3>
+</section>
+
+<section class="">
+  <div class="container-fluid py-5">
+    <div class="row">
+      <div class="col text-center mb-3 mx-auto" style="max-width:800px;">
+        <h2 class="my-4">Presto runs reliably at massive scale</h2>
+        <p>See how some the largest internet-scale companies are using Presto today. It doesn't matter if you're operating at Meta-like scale or at just a few nodes - Presto is for everyone! </p>
+        <table style="width: 100%;max-width: 900px;margin: 1rem auto; text-align:left;" cellpadding="15" class="">
+          <tr style="border-bottom: 1px solid #ccc;">
+            <td style="padding-right:20px;text-align:center;"><img src="img/presto-users/logo-uber.svg" className="" alt="Uber" style="max-width:150px;" /><br/>
+            </td>
+            <td><b><span class="countup" data-start="0" data-end="2" data-step="1" data-places="0">2</span></b> regions<br/>
+              <b><span class="countup" data-start="0" data-end="20" data-step="1" data-places="0">20</span></b> clusters<br/>
+              <b><span class="countup" data-start="0" data-end="8" data-step="1" data-places="0">8</span>K</b> nodes </td>
+              <td><b><span  class="countup" data-start="0" data-end="7" data-step="1" data-places="0">7</span>K</b> weekly active users<br/>
+                <b><span  class="countup" data-start="0" data-end="100" data-step="5" data-places="0">100</span>M+</b> queries/day<br/>
+                <b><span  class="countup" data-start="0" data-end="50" data-step="2" data-places="0">50</span>PB</b> HDFS bytes read/day</td>
+                <td><a href="https://ahana.io/case-studies/uber?utm_source=prestodb&utm_medium=homepage&utm_campaign=ubercs" class="btn btn-sm btn-primary mt-3" target="_blank" >Read Case Study &rarr;</a></td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ccc;">
+          <td style="padding-right:20px;text-align:center;"><img src="img/presto-users/logo-bytedance.svg" className="" alt="ByteDance" style="max-width:200px;" /></td>
+          
+            <td colspan="2"><b><span class="countup" data-start="0" data-end="10" data-step="1" data-places="0">10</span>K+</b> compute cores<br/>
+              <b>1M</b> queries/day</td>
+              <td><a href="https://static.sched.com/hosted_files/prestocon2021/1f/Presto%40Bytedance.pdf" class="btn btn-sm btn-primary mt-3" target="_blank" >See Presentation &rarr;</a></td>
+        </tr>
+        <tr >
+          <td style="padding-right:20px;text-align:center;"><img src="img/presto-users/logo-meta.svg" className="" alt="Meta" style="max-width:180px;" /></td>
+          
+            <td colspan="2"><b><span  class="countup" data-start="0" data-end="300" data-step="10" data-places="0">300</span>PB</b> data lakehouse<br/>
+              <b>1K</b> daily active users<br/>
+              <b><span class="countup" data-start="0" data-end="30" data-step="1" data-places="0">30</span>K</b> queries/day</td>
+              <td><a href="https://www.youtube.com/watch?v=GHXjjfGyCw8&list=PLJVeO1NMmyqXHoLuUJtulMDU0yBgSL0GH&index=8" class="btn btn-sm btn-primary mt-3" target="_blank" >See Presentation &rarr;</a></td>
+        </tr>
+        </table>
+          <h5><a href="powered-by-presto.html">Check out how other companies are using Presto today.</a></h5>
+      </div>
+    </div>
+    <hr class="dots">
+  </div>
+</section>
+<section class="container-fluid wrapper pb-5" style="max-width: 1100px;">
+  <div class="row my-5 align-items-center value_props">
+    <div class="col-12 col-sm-4 text-center image"><object data="img/graphic-querydata.svg"
+        type="image/svg+xml"></object></div>
+    <div class="col-12 col-sm-8 slideleft px-md-5">
+      <h4>Query data wherever it lives</h4>
+      <p>Presto allows querying data where it lives and a single Presto query can combine data from multiple sources,
+        allowing for analytics across your entire organization.</p>
+    </div>
+  </div>
+  <div class="row my-5 align-items-center value_props">
+    <div class="col-12 col-sm-4 text-center image"><object data="img/graphic-fasteranalytics.svg"
+        type="image/svg+xml"></object></div>
+    <div class="col-12 col-sm-8 slideleft px-md-5">
+      <h4>Blazing fast analytics</h4>
+      <p>Presto is an in-memory distributed SQL engine, faster than other compute engines in the disaggregated stack</p>
+    </div>
+  </div>
+  <div class="row my-5 align-items-center value_props">
+    <div class="col-12 col-sm-4 text-center image"><object data="img/graphic-federated.svg"
+        type="image/svg+xml"></object></div>
+    <div class="col-12 col-sm-8 slideleft px-md-5">
+      <h4>Federate your queries</h4>
+      <p>Presto can query relational &amp; NoSQL databases, data warehouses, data lakes and more and has dozens of
+        connectors available today.</p>
+    </div>
+  </div>
+  <div class="row my-5 align-items-center value_props">
+    <div class="col-12 col-sm-4 text-center image"><object data="img/graphic-opensource.svg"
+        type="image/svg+xml"></object></div>
+    <div class="col-12 col-sm-8 slideleft px-md-5">
+      <h4>Open source</h4>
+      <p>Presto is a neutrally governed open source project under The Linux Foundation. Run Presto wherever you want,
+        on-prem or in any&nbsp;cloud.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-silver top-cap-white">
+  <div class="container-fluid py-5 text-center mx-auto sequential-fadein" style="max-width:1400px;">
+    <h2>Presto Users & Contributors</h2>
+    <div class="poweredbypresto">
+      <img src="img/presto-users/logo-meta.svg" alt="" class="py-1" />
+      <img src="img/presto-users/logo-uber.svg" alt="" />
+      <img src="img/presto-users/logo-twitter.svg" alt="" />
+      <img src="img/presto-users/logo-alibaba.svg" alt="" />
+      <img src="img/presto-users/logo-ahana.svg" alt="" />
+      <img src="img/presto-users/logo-carbon.svg" alt="" />
+      <img src="img/presto-users/logo-cartona.png" alt="" />
+      <img src="img/presto-users/logo-intel.svg" alt="" />
+      <img src="img/presto-users/logo-hpe.svg" alt="" />
+      <img src="img/presto-users/logo-blinkit.svg" alt=""  class="py-1" />
+      <img src="img/presto-users/logo-securonix.png" alt="" />
+      <img src="img/presto-users/logo-metropolis.png" alt="" />
+      <img src="img/presto-users/logo-intuit.png" alt="" />
+      <img src="img/presto-users/logo-adroitts.png" alt="" />
+      <img src="img/presto-users/logo-platform24.png" alt="" />
+      <img src="img/presto-users/logo-bytedance.svg" alt="" />
+      <img src="img/presto-users/logo-tencent.png" alt="" />
+    </div>
+    <a href="powered-by-presto.html" class="btn  btn-primary mt-3" target="_blank" >See More</a>
+  </div>
+</section>
+
+<section class="bg-silver bottom-cap-white">
+  <div class="container-fluid py-5">
+    <div class="row">
+      <div class="col-8 text-center mb-3 mx-auto">
+        <h2>Join the Presto community</h2>
+        <p>There's a lot of ways to get involved with the Presto community. Join our Slack channel to connect with other
+          Presto engineers and users, contribute to the project, and join our Virtual Meetup to stay up to date on
+          community events.</p>
+      </div>
+    </div>
+    <div class="community-buttons d-flex flex-wrap" style="place-content: center;"><a href="https://prestodb.slack.com/"
+        target="_blank" class="btn btn-light" title="slack"><img src="img/icon-slack-color.svg" alt="slack"></a><a
+        href="https://github.com/prestodb/presto" target="_blank" class="btn btn-light" title="github"><img
+          src="img/icon-github-dark.svg" alt="github"></a><a href="https://twitter.com/prestodb" target="_blank"
+        class="btn btn-light" title="twitter"><img src="img/icon-twitter-color.svg" alt="twitter"></a><a
+        href="https://www.meetup.com/prestodb/" target="_blank" class="btn btn-light" title="meetup"><img
+          src="img/icon-meetup-color.svg" alt="meetup"></a><a href="https://www.linkedin.com/company/presto-foundation/"
+        target="_blank" class="btn btn-light" title="linkedin"><img src="img/icon-linkedin-color.svg"
+          alt="linkedin"></a></div>
+  </div>
+</section>
+
+<section class="container-fluid wrapper py-5" style="max-width: 1200px;">
+  <div class="container-fluid">
+    <div class="row text-center sequential-fadein">
+      <div class="col">
+        <h2>The Presto Foundation</h2>
+        <hr class="dots">
+      </div>
+    </div>
+    <div class="row sequential-fadein" style="place-content: center;">
+      <div class="col-12 col-md-6 text-center p-3"><img src="img/logo-presto-foundation.svg"
+          alt="presto foundation" style="width: 100%; max-width: 420px;"></div>
+      <div class="col-12 col-md-6 py-3 px-md-5">The Presto Foundation is the organization that oversees the
+        development of thePresto open source project. Presto is an independent open-source project and not controlled by any single company. Members of the Presto Foundation provide essential financial
+        support for the collaborative development process, including tooling, infrastructure, and community conferences.
+        <a href="join.html">Learn more and become a Member</a>.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer footer-dark">
+  <div class="container container-fluid">
+    <div class="row footer__links">
+      <div class="col footer__col">
+        <ul class="footer__items clean-list">
+          <li class="footer__title">Docs</li>
+          <li class="footer__item"><a class="footer__link-item" href="getting-started.html">Get Started</a></li>
+          <li class="footer__item"><a href="docs/current/" target="_self" rel="noopener noreferrer"
+              class="footer__link-item" position="left">Presto Docs</a></li>
+        </ul>
+      </div>
+      <div class="col footer__col">
+        <ul class="footer__items clean-list">
+          <li class="footer__title">Community</li>
+          <li class="footer__item"><a href="https://prestodb.slack.com/" target="_blank" rel="noopener noreferrer"
+              class="footer__link-item">Slack <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+          <li class="footer__item"><a href="https://twitter.com/prestodb" target="_blank" rel="noopener noreferrer"
+              class="footer__link-item">Twitter <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+          <li class="footer__item"><a href="https://www.meetup.com/prestodb/" target="_blank"
+              rel="noopener noreferrer" class="footer__link-item">Meetup <svg width="13.5" height="13.5"
+                aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+          <li class="footer__item"><a href="https://www.linkedin.com/company/presto-foundation/" target="_blank"
+              rel="noopener noreferrer" class="footer__link-item">LinkedIn <svg width="13.5" height="13.5"
+                aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+        </ul>
+      </div>
+      <div class="col footer__col">
+        <ul class="footer__items clean-list">
+          <li class="footer__title">More</li>
+          <li class="footer__item"><a class="footer__link-item" href="blog/index.html">PrestoDB Blog</a></li>
+          <li class="footer__item"><a href="https://github.com/prestodb/presto" target="_blank"
+              rel="noopener noreferrer" class="footer__link-item">GitHub <svg width="13.5" height="13.5"
+                aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+          <li class="footer__item"><a class="footer__link-item" href="join.html">Presto Foundation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom text--center">
+      <div class="footer__copyright">Copyright © 2022 The Presto Foundation.<br>
+        All rights reserved. Presto is a registered trademark of LF Projects, LLC. <br>Please see our <a
+          href="https://lfprojects.org/policies/trademark-policy/" target="_blank">Trademark Policy</a> for more
+        information.<br>
+        <a href="https://lfprojects.org/policies/privacy-policy/" target="_blank">Privacy Policy</a> |
+        <a href="https://lfprojects.org/policies/terms-of-use/" target="_blank">Terms of Use</a>.
       </div>
     </div>
   </div>
-  <div class="content homecontent width clearfix">
-    <div class="leftcol widecol">
-      <h2>What is Presto?</h2>
-      <p>
-        Presto is an open source distributed SQL query engine for
-        running interactive analytic queries against data sources
-        of all sizes ranging from gigabytes to petabytes.
-      </p>
-      <p>
-        Presto was designed and written from the ground up for
-        interactive analytics and approaches the speed of commercial
-        data warehouses while scaling to the size of organizations
-        like Facebook.
-      </p>
-      <p>
-        The community owned and driven Presto project is supported by the
-        <a href="./join.html">Presto Foundation</a>, an independent
-        nonprofit organization with open and neutral governance, hosted
-        under the <a href="https://www.linuxfoundation.org/">Linux
-          Foundation®</a>.
-      </p>
-      <p>
-        Learn more about the Presto's
-        <a href="https://www.linuxfoundation.org/uncategorized/2019/09/facebook-uber-twitter-and-alibaba-form-presto-foundation-to-tackle-distributed-data-processing-at-scale/">move
-          to the Linux Foundation</a>, and learn how to
-        <a href="./join.html">become a member of the Presto Foundation
-          today</a>.
-      </p>
-      <h2>What can it do?</h2>
-      <p>
-        Presto allows querying data where it lives, including Hive,
-        Cassandra, relational databases or even proprietary data stores.
-        A single Presto query can combine data from multiple sources,
-        allowing for analytics across your entire organization.
-      </p>
-      <p>
-        Presto is targeted at analysts who expect response times ranging
-        from sub-second to minutes. Presto breaks the false choice between
-        having fast analytics using an expensive commercial solution or
-        using a slow "free" solution that requires excessive hardware.
-      </p>
-      <h2>Who uses it?</h2>
-      <p>
-        Facebook uses Presto for interactive queries against several
-        internal data stores, including their 300PB data warehouse.
-        Over 1,000 Facebook employees use Presto daily to run more than
-        30,000 queries that in total scan over a petabyte each per day.
-      </p>
-      <p>
-        Leading internet companies including Airbnb and Dropbox are using Presto.
-      </p>
-      <blockquote>
-        <p>
-          Presto is amazing. Lead engineer Andy Kramolisch got it into
-          production in just a few days.
-          It's an order of magnitude faster than Hive in most our use cases.
-          It reads directly from HDFS, so unlike Redshift, there isn't a lot
-          of ETL before you can use it. It just works.
-        </p>
-        <small>Christopher Gutierrez, Manager of Online Analytics, Airbnb</small>
-      </blockquote>
-      <blockquote>
-        <p>
-          We're really excited about Presto.
-          We're planning on using it to quickly gain insight about the
-          different ways our users use Dropbox, as well as diagnosing
-          problems they encounter along the way. In our tests so far it's
-          been rock solid and extremely fast when applied to some of our
-          most important ad hoc use cases.
-        </p>
-        <small>Fred Wulff, Software Engineer, Dropbox</small>
-      </blockquote>
-      <h2>What are the latest innovations?</h2>
-      <p><b>Project Aria</b> – PrestoDB can now push down entire expressions to the data source for some file formats like ORC. <a href="https://prestodb.io/blog/2019/12/23/improve-presto-planner">Blog</a> <a href="https://engineering.fb.com/data-infrastructure/aria-presto/" target="_blank">Design</a></p>
-      <p><b>Project Presto Unlimited</b> – Introduced exchange materialization to create temporary in-memory bucketed tables to use significantly less memory. <a href="https://github.com/prestodb/presto/issues/12124" target="_blank">PR</a> <a href="https://prestodb.io/blog/2019/08/05/presto-unlimited-mpp-database-at-scale" target="_blank">Blog</a></p>
-      <p><b>User Defined Functions</b> – Support for dynamic SQL functions is now available in experimental mode. <a href="https://prestodb.io/docs/current/admin/function-namespace-managers.html">Docs</a></p>
-      <p><b>Apache Pinot and Druid Connectors</b> – <a href="https://prestodb.io/docs/current/connector.html">Docs</a></p>
-      <p><b>RaptorX</b> – Disaggregates the storage from compute for low latency to provide a unified, cheap, fast, and scalable solution to OLAP and interactive use cases. <a href="https://github.com/prestodb/presto/issues/13205" target="_blank">Issue</a></p>
-      <p><b>Presto-on-Spark</b> Runs Presto code as a library within Spark executor. <a href="http://tinyurl.com/presto-on-spark-design" target="_blank">Design</a> <a href="https://prestodb.io/docs/current/installation/spark.html">Docs</a></p>
-      <p><b>Disaggregated Coordinator (a.k.a. Fireball)</b> – Scale out the coordinator horizontally and revamp the RPC stack. Beta in Q4 2020. <a href="https://github.com/prestodb/presto/issues/10174" target="_blank">Issues</a></p>
-      <h2>What is the Presto Foundation?</h2>
-      <p>
-        The Presto Foundation is the non-profit established to support the
-        developer and community processes for the Presto open source
-        project. Hosted under the auspices of <a href="https://linuxfoundation.org">the Linux Foundation</a>,
-        the Presto Foundation is governed openly and transparently.
-      </p>
-      <p>
-        If you share our vision for Presto and are ready to provide
-        financial support for the community development process, please
-        <a href="/join.html">join us!</a>
-    </div>
-    <div class="rightcol">
-      <h3>Release Git Stats</h3>
-      <table cellspacing="0">
-        <tr>
-          <td><b>Current Version</b></td>
-          <td id="presto_current_version">0.222</td>
-        </tr>
-        <tr>
-          <td><b>Date</b></td>
-          <td id="presto_current_date">July 02, 2019</td>
-        </tr>
-        <tr>
-          <td><b>Commits</b></td>
-          <td id="presto_current_commits">250</td>
-        </tr>
-        <tr>
-          <td><b>Authors</b></td>
-          <td id="presto_current_contributors">25</td>
-        </tr>
-        <tr>
-          <td><b>Committers</b></td>
-          <td id="presto_current_committers">18</td>
-        </tr>
-      </table>
-      <script>
-      document.getElementById('presto_current_version').innerHTML = presto_latest_presto_version;
-      document.getElementById('presto_current_date').innerHTML = presto_latest_date;
-      document.getElementById('presto_current_commits').innerHTML = presto_latest_num_commits;
-      document.getElementById('presto_current_contributors').innerHTML = presto_latest_num_contributors;
-      document.getElementById('presto_current_committers').innerHTML = presto_latest_num_committers;
-      </script>
-      <h3>Community</h3>
-      <ul>
-        <li><a href="https://lists.prestodb.io/g/Community">Presto mailing list</a></li>
-        <li><a href="https://github.com/prestodb/presto/issues">Report an issue</a></li>
-        <li><a href="https://join.slack.com/t/prestodb/shared_invite/enQtNTQ3NjU2MTYyNDA2LTYyOTg3MzUyMWE1YTI3Njc5YjgxZjNiYTgxODAzYjI5YWMwYWE0MTZjYWFhNGMwNjczYjI3N2JhM2ExMGJlMWM">Slack</a></li>
-        <li><a href="https://prestodb.io/community.html#meetup-groups">Virtual Meetup Groups</a></li>
-        <li><a href="https://www.linkedin.com/company/presto-foundation/">LinkedIn</a></li>
-        <li><a href="https://www.facebook.com/prestodb">Facebook</a>
-          <div class="fb-like" data-href="https://www.facebook.com/prestodb" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
-        </li>
-        <li><a href="https://twitter.com/prestodb">Twitter</a></li>
-        <li><a href="https://groups.google.com/group/presto-users">presto-users google mailing list</a></li>
-        <li><a href="join">Join the Presto Foundation</a></li>
-      </ul>
-      <h3>License</h3>
-      <ul>
-        <li><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2</a></li>
-        <li><a href="https://github.com/prestodb/presto/blob/master/CONTRIBUTING.md">Contributing</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer width">
-    <section className="copyright">
-      Copyright &copy; The Presto Foundation.<br>
-      All rights reserved. Presto is a registered trademark of LF Projects, LLC. <br>Please see our <a href="https://lfprojects.org/policies/trademark-policy/">Trademark Policy</a> for more
-      information.<br>
-      <a href="https://lfprojects.org/policies/privacy-policy/">Privacy Policy</a> |
-      <a href="https://lfprojects.org/policies/terms-of-use/">Terms of Use</a>.
-    </section>
-  </div>
+</footer>
+
   <script async src="static/js/effects.js"></script>
 </body>
 

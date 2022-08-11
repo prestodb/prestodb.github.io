@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Keyshape -->
+<svg xmlns="http://www.w3.org/2000/svg" id="_a0" viewBox="0 0 420 420" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" style="white-space: pre;">
+    <style>
+@keyframes a0_t { 0% { transform: translate(209.317px,209.317px) rotate(90deg); animation-timing-function: cubic-bezier(0,0,0,1); } 100% { transform: translate(209.317px,209.317px) rotate(0deg); } }
+@keyframes a0_s { 0% { stroke: rgba(56,219,252,0.00); } 100% { stroke: #38dbfc; } }
+@keyframes Group_312_o { 0% { opacity: 0; } 100% { opacity: 1; } }
+    </style>
+    <g id="Ellipse_302" data-name="Ellipse 302" fill="none" stroke="#38dbfc" stroke-linecap="round" stroke-linejoin="round" stroke-width="11" stroke-dasharray="1 21" transform="translate(209.317,209.317) translate(-209.317,-209.317)">
+        <ellipse fill="none" rx="203.817" ry="203.817" stroke-dashoffset="-600" stroke-dasharray="1 31" stroke="rgba(56,219,252,0.00)" transform="translate(209.317,209.317) rotate(90)" style="animation: 1.433s linear both a0_t, 1.433s linear both a0_s; animation-play-state: paused"/>
+    </g>
+    <g id="Group_312" data-name="Group 312" opacity="0" transform="translate(209.317,210) translate(-111.141,-101.26)" style="animation: 1.433s linear both Group_312_o; animation-play-state: paused">
+        <path id="Path_337" data-name="Path 337" d="M1067.83,267.862L845.545,267.862L845.545,65.342" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" transform="translate(111.141,101.26) translate(-956.686,-166.602)"/>
+        <path id="Line_13" data-name="Line 13" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" d="M0,0L0,14.818" transform="translate(29.638,195.112) translate(0,-7.409)"/>
+        <path id="Line_14" data-name="Line 14" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" d="M0,0L0,14.818" transform="translate(59.276,195.112) translate(0,-7.409)"/>
+        <path id="Line_15" data-name="Line 15" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" d="M0,0L0,14.818" transform="translate(88.913,195.112) translate(0,-7.409)"/>
+        <path id="Line_16" data-name="Line 16" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" d="M0,0L0,14.818" transform="translate(118.551,195.112) translate(0,-7.409)"/>
+        <path id="Line_17" data-name="Line 17" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" d="M0,0L0,14.818" transform="translate(148.189,195.112) translate(0,-7.409)"/>
+        <path id="Line_18" data-name="Line 18" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" d="M0,0L0,14.818" transform="translate(177.825,195.112) translate(0,-7.409)"/>
+        <path id="Line_19" data-name="Line 19" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" d="M0,0L0,14.818" transform="translate(207.463,195.112) translate(0,-7.409)"/>
+        <path id="Line_20" data-name="Line 20" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" d="M0,0L14.818,0" transform="translate(7.41,172.883) translate(-7.409,0)"/>
+        <path id="Line_21" data-name="Line 21" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" d="M0,0L14.818,0" transform="translate(7.41,143.245) translate(-7.409,0)"/>
+        <path id="Line_22" data-name="Line 22" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" d="M0,0L14.818,0" transform="translate(7.41,113.608) translate(-7.409,0)"/>
+        <path id="Line_23" data-name="Line 23" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" d="M0,0L14.818,0" transform="translate(7.41,83.97) translate(-7.409,0)"/>
+        <path id="Line_24" data-name="Line 24" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" d="M0,0L14.818,0" transform="translate(7.41,54.333) translate(-7.409,0)"/>
+        <path id="Line_25" data-name="Line 25" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" d="M0,0L14.818,0" transform="translate(7.41,24.697) translate(-7.409,0)"/>
+        <path id="Path_338" data-name="Path 338" d="M888.363,118.223C888.366,124.218,884.756,129.625,879.218,131.921C873.68,134.217,867.303,132.95,863.063,128.711C858.823,124.473,857.555,118.097,859.849,112.558C862.144,107.019,867.55,103.408,873.545,103.409C881.727,103.411,888.359,110.041,888.363,118.223Z" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" transform="translate(59.2748,143.251) translate(-873.542,-118.23)"/>
+        <path id="Path_339" data-name="Path 339" d="M897.145,97.729C897.145,103.723,893.535,109.127,887.997,111.421C882.46,113.715,876.086,112.447,871.847,108.209C867.609,103.97,866.341,97.5961,868.635,92.0586C870.929,86.521,876.333,82.9106,882.327,82.911C890.51,82.9127,897.143,89.5459,897.145,97.729Z" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" transform="translate(88.9128,74.0932) translate(-882.326,-97.7302)"/>
+        <path id="Path_340" data-name="Path 340" d="M903,112.37C903,118.364,899.39,123.768,893.852,126.062C888.315,128.356,881.941,127.088,877.702,122.85C873.464,118.611,872.196,112.237,874.49,106.7C876.784,101.162,882.188,97.5516,888.182,97.552C896.365,97.5537,902.998,104.187,903,112.37Z" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" transform="translate(108.671,123.489) translate(-888.181,-112.371)"/>
+        <path id="Path_341" data-name="Path 341" d="M913.25,87.477C913.252,93.4713,909.643,98.8764,904.105,101.172C898.568,103.467,892.193,102.2,887.954,97.962C883.715,93.724,882.446,87.3495,884.74,81.8115C887.034,76.2734,892.438,72.6626,898.432,72.663C902.361,72.6625,906.13,74.2229,908.909,77.0011C911.688,79.7793,913.249,83.5476,913.25,87.477Z" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" transform="translate(143.248,39.5192) translate(-898.431,-87.4822)"/>
+        <path id="Path_342" data-name="Path 342" d="M923.5,103.582C923.502,109.576,919.892,114.98,914.355,117.275C908.818,119.57,902.444,118.303,898.206,114.065C893.967,109.828,892.698,103.454,894.992,97.9163C897.285,92.3787,902.688,88.768,908.682,88.768C916.864,88.7674,923.498,95.3996,923.5,103.582Z" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" transform="translate(177.83,93.8532) translate(-908.682,-103.586)"/>
+        <path id="Path_343" data-name="Path 343" d="M929.355,83.088C929.355,89.0819,925.745,94.4858,920.207,96.7798C914.67,99.0737,908.296,97.8059,904.057,93.5676C899.819,89.3293,898.551,82.9551,900.845,77.4176C903.139,71.88,908.543,68.2696,914.537,68.27C918.467,68.2695,922.236,69.8305,925.015,72.6095C927.795,75.3885,929.356,79.1579,929.355,83.088Z" fill="none" stroke="#5d88d6" stroke-linecap="round" stroke-width="6" transform="translate(197.582,24.6982) translate(-914.536,-83.0892)"/>
+    </g>
+    <script><![CDATA[
+new IntersectionObserver(function(es) {
+    es.forEach(function(e) {
+      if (e.isIntersecting) {
+        var as=document.getElementById('_a0').getAnimations({subtree:true});if(as.length&&as[0].playState!='running'&&as[0].playState!='finished')as.forEach(function(a){a.play()})
+      }
+    })
+}, {threshold:.25}).observe(document.getElementById("_a0"));]]></script>
+</svg>

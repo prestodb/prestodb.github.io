@@ -1,215 +1,284 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Presto | Join the Presto Foundation</title>
-    <link rel="stylesheet" href="static/presto.css" type="text/css"/>
+  <meta charset="utf-8">
+  <title>Presto | Distributed SQL Query Engine for Big Data</title>
+  <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="static/css/effects.css" type="text/css" />
+  <link rel="canonical" href="http://prestodb.github.io/" />
+  <meta name="viewport" content="width=device-width">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Presto | Join the Presto Foundation">
+  <meta property="og:description" content="Distributed SQL Query Engine for Big Data">
+  <meta property="og:image" content="static/presto-og.png">
+  <link rel="icon" type="image/x-icon" href="img/icon-presto-dots-color.svg">
+  <script async src="static/js/bootstrap.bundle.min.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82811140-44"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+  <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-    <meta name="viewport" content="width=device-width">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Presto | Join the Presto Foundation">
-    <meta property="og:description" content="Distributed SQL Query Engine for Big Data">
-    <meta property="og:image" content="static/presto-og.png">
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82811140-44"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-82811140-44');
-    </script>
-
+    gtag('config', 'UA-82811140-44');
+  </script>
 </head>
+
 <body>
-
-<header class="topbar clearfix">
-    <nav class="width">
-        <a href="."><h1>Presto</h1></a>
-        <ul class="nav">
-            <li><a href="overview.html">About</a></li>
-            <li><a href="https://prestodb.github.io/docs/current/">Docs</a></li>
-            <li><a href="blog/index.html">Blog</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="community.html">Community</a></li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="join.html">Foundation</a>
-            <li><a href="https://github.com/prestodb/presto"><img height=20 src="./img/github.svg" alt="GitHub Octocat"></a>
-        </ul>
+  <div id="fb-root"></div>
+  <script>
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <script src="static/js/version.js"></script>
+  <noscript>
+    <style>
+      .sequential-fadeup>*,
+      .sequential-fadeup>*:first-child,
+      .sequential-fadeup>*:last-child {
+        opacity: 1;
+        transform: scale(1);
+      }
+    </style>
+    This site requires javascript.
+  </noscript>
+  <header class="masthead">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="."><img src="./img/logo-presto-white.svg" alt="" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="getting-started.html">Get Started</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Learn
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="what-is-presto.html">What is Presto?</a></li>
+                <li><a class="dropdown-item" href="blog">Blog</a></li>
+                <li><a class="dropdown-item" href="powered-by-presto.html">Powered By Presto</a></li>
+                <li><a class="dropdown-item" href="tutorials.html">Tutorials</a></li>
+                <li><a class="dropdown-item" href="videos.html">Videos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="community.html">Community</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="docs/current" target="_blank">Docs</a>
+            </li>
+          </ul>
+          <div>
+            <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener noreferrer"
+              class="navbar__item navbar__link nav-icon nav-github"></a>
+            <a href="https://twitter.com/prestodb" target="_blank" rel="noopener noreferrer"
+              class="navbar__item navbar__link nav-icon nav-twitter"></a><a href="https://prestodb.slack.com/"
+              target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link nav-icon nav-slack"></a><a
+              href="https://www.linkedin.com/company/presto-foundation/" target="_blank" rel="noopener noreferrer"
+              class="navbar__item navbar__link nav-icon nav-linkedin"></a>
+          </div>
+        </div>
+      </div>
     </nav>
-</header>
+  </header>
 
-<header class="hero clearfix">
-    <div class="width">
-        <h1>Join the Presto Foundation</h1>
+<section class="bg-silver-gradient bottom-cap-white">
+    <div class="container-fluid wrapper pb-5">
+        <div class="row align-items-center pt-5  sequential-fadein">
+            <h1 class="py-2 pb-5 text-center revealed">Join the Presto Foundation</h1>
+            <div class="col-12 col-md-4 revealed">
+                <h2>What is the Presto Foundation?</h2>
+                <p>The Presto Foundation is the organization that oversees the development of the Presto open source
+                    project. Members of the Presto Foundation provide essential financial support for the collaborative
+                    development process, including tooling, infrastructure, and community conferences.</p>
+                <p>The Presto Foundation <a
+                        href="https://www.linuxfoundation.org/press-release/2019/09/facebook-uber-twitter-and-alibaba-form-presto-foundation-to-tackle-distributed-data-processing-at-scale/"
+                        target="_blank">joined the Linux Foundation</a> in September&nbsp;2019.</p>
+            </div>
+            <div class="col-12 col-md-8 revealed"><img
+                    src="img/prestostructure-2022.svg"
+                    alt="The Presto Foundation" style="width: 100%;"></div>
+        </div>
     </div>
-</header>
-
-<div class="content homecontent width clearfix">
-    <div class="">
-        <h2 id="about">About the Presto Foundation</h2>
-
-        <h3 id="what-is-the-presto-foundation">What is the Presto Foundation?</h3>
-
-        <p>
-            The Presto Foundation is the organization that oversees the
-            development of the <a href="https://prestodb.io">Presto open source
-            project</a>. Members of the Presto Foundation provide essential
-            financial support for the collaborative development process,
-            including tooling, infrastructure, and community conferences.
-
-            <img src="./img/prestostructure-update.png">
-        </p>
-
-        <p>
-            The Presto Foundation <a
-href="https://www.linuxfoundation.org/press-release/2019/09/facebook-uber-twitter-and-alibaba-form-presto-foundation-to-tackle-distributed-data-processing-at-scale/">joined the Linux Foundation</a>
-            in September 2019.
-        </p>
-
-        <iframe
-src="https://landscape.prestodb.io/card-mode?category=presto-foundation-member&grouping=category&embed=yes&style=borderless&css=https://prestodb.io/static/landscape.css" frameborder="0" id="landscape" scrolling="no" style="width: 1px; min-width: 100%; opacity: 1; visibility: visible; overflow: hidden; height: 1717px;"></iframe>
-        <script src="https://landscape.openmainframeproject.org/iframeResizer.js"></script>
-        </p>
-
-        <h3 id="where-is-the-presto-foundation-hosted">Where is the Presto Foundation hosted?</h3>
-
-        <p>
-            The Presto Foundation is hosted at
-            <a href="https://linuxfoundation.org">the Linux Foundation</a>, the
-            non-profit which hosts the Linux kernel and many other open source
-            projects. Founded in 2000, the Linux Foundation is supported by more
-            than 1,000 members and is the world’s leading home for collaboration
-            on open source software, open standards, open data, and open
-            hardware.
-        </p>
-
-        <h3 id="how-presto-foundation-will-enable-open-governance">How will the
-        Presto Foundation enable neutral governance for Presto?</h3>
-
-        <p>
-            <a href="https://www.facebook.com/notes/facebook-engineering/presto-interacting-with-petabytes-of-data-at-facebook/10151786197628920/">Presto was developed at Facebook</a>
-            in 2012 as a high-performance distributed SQL query engine for large
-            scale data analytics. Presto Foundation will operate under a
-            community governance model with representation from each of the
-            founding members. With this evolution Facebook will be collaborating
-            with the broader ecosystem of users and contributors as one voice in
-            the future of the Foundation.
-        </p>
-
-        <h3 id="governing-body">What are the governing bodies?</h3>
-
-        <p>
-            The Presto Foundation has two main governing bodies: The Governing
-            Board, and the Technical Steering Committee (TSC).
-        </p>
-
-
-        <p>
-            The <strong>Governing Board</strong> manages the Presto Foundation's
-            funding in support of the Presto open source project. Organizations
-            become members and pay dues, which the Governing Board then
-            allocates. Premier members are entitled to appoint a representative
-            to the Governing Board, and participate directly in funding
-            decisions.
-        </p>
-
-        <p>
-            The <strong>TSC</strong> manages the open source development
-            process, and is responsible for technical oversight of the project.
-            This means continuing the development of Presto as an open source
-            distributed SQL query engine, but also developing documentation,
-            testing, integration, and the creation of artifacts that aid the
-            development process. While the TSC is open for any observer to
-            participate, any contributor to the open source project may, through
-            time, experience, and wise decision-making, be selected by their
-            peers to be a voting member of the TSC.
-        </p>
-
-        <p>
-            It is important to note that while participation on the
-            <strong>Governing Board</strong> is limited to Presto Foundation
-            members, anyone may earn the right to lead the <strong>TSC</strong>,
-            regardless of their membership status.
-        </p>
-
-        <h3 id="help">How do I get help with something?</h3>
-
-        <p>
-          For help with anything related to membership (billing, renewals, access
-          to member committees, etc.) please file a ticket with our <a href=
-          "https://members.prestodb.io">member service desk</a>. Project community
-          members may also <a href="https://members.prestodb.io">file a ticket</a>
-          to gain access to project resources such as Zoom or shared calendars.
-        </p>
-
-        <h2 id="join">Become a member</h2>
-
-        <h3 id="membership-categories">What are the different types of Presto
-           Foundation membership?</h3>
-
-        <p>
-            The Presto Foundation has three membership levels: Executive Premier,
-            Premier, and Associate.
-        </p>
-
-        <p>
-            <strong>Executive Premier and Premier members</strong> are entitled to appoint a
-            representative to the Presto Foundation Governing Board and any
-            Presto Foundation committees. In this way, these members are
-            directly involved in policy and funding allocation decisions.
-        </p>
-
-        <p>
-            <strong>Associate members</strong> are limited to Associate Members
-            of the Linux Foundation.
-        </p>
-
-        <h3>What are the requirements to become a member?</h3>
-
-        <p>
-            To become a member in the Presto Foundation, an organization must
-            also be a <a href="https://www.linuxfoundation.org/membership/">
-            member of the Linux Foundation</a>. Organizations can become members
-            in the Linux Foundation first, or both simultaneously.
-        </p>
-
-        <p>
-            Executive Premier membership in the Presto Foundation is $90k annually, in
-            addition to Linux Foundation membership.
-        </p>
-
-        <p>
-            Premier membership in the Presto Foundation is $15k annually, in
-            addition to Linux Foundation membership.
-        </p>
-
-        <p>
-            There is no cost for Associate membership for qualifying
-            organizations.
-        </p>
-
-        <h3 id="how-to-join">How to join</h3>
-
-        <p>
-            Please complete the <a href="https://join.prestodb.io">Presto Foundation application
-            form</a>. If you have any questions, please
-            <a href="https://members.prestodb.io">file a ticket</a> or email <a
-            href="mailto:membership@prestodb.io">membership@prestodb.io</a>.
-        </p>
-
-</div>
-
-<div class="footer width">
-<section className="copyright">
-Copyright &copy; The Presto Foundation.<br>
-All rights reserved. Presto is a registered trademark of LF Projects, LLC. <br>Please see our <a
-href="https://lfprojects.org/policies/trademark-policy/">Trademark Policy</a> for more
-information.<br>
-<a href="https://lfprojects.org/policies/privacy-policy/">Privacy Policy</a> |
-<a href="https://lfprojects.org/policies/terms-of-use/">Terms of Use</a>.
 </section>
-</div>
 
+<section class="container-fluid wrapper">
+    <div class="row my-5">
+        <div class="col"><iframe
+                src="https://landscape.prestodb.io/card-mode?category=presto-foundation-member&amp;grouping=category&amp;embed=yes&amp;style=borderless&amp;css=https://prestodb.io/static/landscape.css"
+                frameborder="0" id="landscape" scrolling="no"
+                style="width: 1px; min-width: 100%; opacity: 1; visibility: visible; overflow: hidden; height: 1717px;"></iframe>
+        </div>
+    </div>
+    <script src="https://landscape.openmainframeproject.org/iframeResizer.js"></script>
+</section>
+
+<section class="bg-silver-gradient top-cap-white bottom-cap-white">
+    <div class="container-fluid wrapper pb-5">
+        <div class="row align-items-center pt-5  sequential-fadein">
+            <div class="col-12 revealed">
+                <h2 class="py-2 pb-5 text-center">Frequently Asked Questions</h2>
+                <h3 id="where-is-the-presto-foundation-hosted">Where is the Presto Foundation hosted?</h3>
+                <p>The Presto Foundation is hosted at <a href="https://linuxfoundation.org">the Linux Foundation</a>,
+                    the non-profit which hosts the Linux kernel and many other open source projects. Founded in 2000,
+                    the Linux Foundation is supported by more than 1,000 members and is the world’s leading home for
+                    collaboration on open source software, open standards, open data, and open hardware.</p>
+                <h3 id="how-presto-foundation-will-enable-open-governance">How will the Presto Foundation enable neutral
+                    governance for Presto?</h3>
+                <p><a
+                        href="https://www.facebook.com/notes/facebook-engineering/presto-interacting-with-petabytes-of-data-at-facebook/10151786197628920/">Presto
+                        was developed at Facebook</a> in 2012 as a high-performance distributed SQL query engine for
+                    large scale data analytics. Presto Foundation will operate under a community governance model with
+                    representation from each of the founding members. With this evolution Facebook will be collaborating
+                    with the broader ecosystem of users and contributors as one voice in the future of the Foundation.
+                </p>
+                <h3 id="governing-body">What are the governing bodies?</h3>
+                <p>The Presto Foundation has two main governing bodies: The Governing Board, and the Technical Steering
+                    Committee (TSC).</p>
+                <p>The <strong>Governing Board</strong> manages the Presto Foundation's funding in support of the Presto
+                    open source project. Organizations become members and pay dues, which the Governing Board then
+                    allocates. Premier members are entitled to appoint a representative to the Governing Board, and
+                    participate directly in funding decisions.</p>
+                <p>The <strong>TSC</strong> manages the open source development process, and is responsible for
+                    technical oversight of the project. This means continuing the development of Presto as an open
+                    source distributed SQL query engine, but also developing documentation, testing, integration, and
+                    the creation of artifacts that aid the development process. While the TSC is open for any observer
+                    to participate, any contributor to the open source project may, through time, experience, and wise
+                    decision-making, be selected by their peers to be a voting member of the TSC.</p>
+                <p>It is important to note that while participation on the <strong>Governing Board</strong> is limited
+                    to Presto Foundation members, anyone may earn the right to lead the <strong>TSC</strong>, regardless
+                    of their membership status.</p>
+                <h3 id="help">How do I get help with something?</h3>
+                <p>For help with anything related to membership (billing, renewals, access to member committees, etc.)
+                    please file a ticket with our <a href="https://members.prestodb.io">member service desk</a>. Project
+                    community members may also <a href="https://members.prestodb.io">file a ticket</a> to gain access to
+                    project resources such as Zoom or shared calendars.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="">
+    <div class="container-fluid wrapper pb-5">
+        <div class="row align-items-center pt-5  sequential-fadein">
+            <div class="col-12 pb-5 revealed">
+                <h2 class="py-2 pb-5 text-center">Become a Member</h2>
+                <p>The Presto Foundation has three membership levels: Executive Premier, Premier, and Associate.</p>
+                <p><strong>Executive Premier and Premier members</strong> are entitled to appoint a representative to
+                    the Presto Foundation Governing Board and any Presto Foundation committees. In this way, these
+                    members are directly involved in policy and funding allocation decisions.</p>
+                <p><strong>Associate members</strong> are limited to Associate Members of the Linux Foundation.</p>
+                <h3>What are the requirements to become a member?</h3>
+                <p>To become a member in the Presto Foundation, an organization must also be a <a
+                        href="https://www.linuxfoundation.org/membership/"> member of the Linux Foundation</a>.
+                    Organizations can become members in the Linux Foundation first, or both simultaneously.</p>
+                <p>Executive Premier membership in the Presto Foundation is $90k annually, in addition to Linux
+                    Foundation membership.</p>
+                <p>Premier membership in the Presto Foundation is $15k annually, in addition to Linux Foundation
+                    membership.</p>
+                <p>There is no cost for Associate membership for qualifying organizations.</p>
+                <h3 id="how-to-join">How to join</h3>
+                <p>Please complete the <a href="https://join.prestodb.io">Presto Foundation application form</a>. If you
+                    have any questions, please <a href="https://members.prestodb.io">file a ticket</a> or email <a
+                        href="mailto:membership@prestodb.io">membership@prestodb.io</a>.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer footer-dark">
+  <div class="container container-fluid">
+    <div class="row footer__links">
+      <div class="col footer__col">
+        <ul class="footer__items clean-list">
+          <li class="footer__title">Docs</li>
+          <li class="footer__item"><a class="footer__link-item" href="getting-started.html">Get Started</a></li>
+          <li class="footer__item"><a href="docs/current/" target="_self" rel="noopener noreferrer"
+              class="footer__link-item" position="left">Presto Docs</a></li>
+        </ul>
+      </div>
+      <div class="col footer__col">
+        <ul class="footer__items clean-list">
+          <li class="footer__title">Community</li>
+          <li class="footer__item"><a href="https://prestodb.slack.com/" target="_blank" rel="noopener noreferrer"
+              class="footer__link-item">Slack <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+          <li class="footer__item"><a href="https://twitter.com/prestodb" target="_blank" rel="noopener noreferrer"
+              class="footer__link-item">Twitter <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+          <li class="footer__item"><a href="https://www.meetup.com/prestodb/" target="_blank"
+              rel="noopener noreferrer" class="footer__link-item">Meetup <svg width="13.5" height="13.5"
+                aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+          <li class="footer__item"><a href="https://www.linkedin.com/company/presto-foundation/" target="_blank"
+              rel="noopener noreferrer" class="footer__link-item">LinkedIn <svg width="13.5" height="13.5"
+                aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+        </ul>
+      </div>
+      <div class="col footer__col">
+        <ul class="footer__items clean-list">
+          <li class="footer__title">More</li>
+          <li class="footer__item"><a class="footer__link-item" href="blog/index.html">PrestoDB Blog</a></li>
+          <li class="footer__item"><a href="https://github.com/prestodb/presto" target="_blank"
+              rel="noopener noreferrer" class="footer__link-item">GitHub <svg width="13.5" height="13.5"
+                aria-hidden="true" viewBox="0 0 24 24"
+                class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                <path fill="currentColor"
+                  d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                </path>
+              </svg></a></li>
+          <li class="footer__item"><a class="footer__link-item" href="join.html">Presto Foundation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom text--center">
+      <div class="footer__copyright">Copyright © 2022 The Presto Foundation.<br>
+        All rights reserved. Presto is a registered trademark of LF Projects, LLC. <br>Please see our <a
+          href="https://lfprojects.org/policies/trademark-policy/" target="_blank">Trademark Policy</a> for more
+        information.<br>
+        <a href="https://lfprojects.org/policies/privacy-policy/" target="_blank">Privacy Policy</a> |
+        <a href="https://lfprojects.org/policies/terms-of-use/" target="_blank">Terms of Use</a>.
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script async src="static/js/effects.js"></script>
 </body>
+
 </html>
