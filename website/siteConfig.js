@@ -69,12 +69,23 @@ const siteConfig = {
     { href: prestoBaseUrl + "getting-started.html", label: "Get Started" },
     { href: prestoBaseUrl + "what-is-presto.html", label: "What is Presto?" },
     { href: prestoBaseUrl + "community.html", label: "Community" },
-    { href: "https://prestodb.github.io/docs/current", label: "Docs",external: true },
-    { href: "https://prestodb.slack.com/", label:"Slack", external: true},
-    { href: "https://github.com/prestodb/presto", label: "GitHub", external: true },
-    { href: "https://twitter.com/prestodb", label: "Tiwtter", external:true},
-    { href: "https://www.linkedin.com/company/presto-foundation/", label: "LinkedIn", external:true},
-
+    {
+      href: "https://prestodb.github.io/docs/current",
+      label: "Docs",
+      external: true,
+    },
+    { href: "https://prestodb.slack.com/", label: "Slack", external: true },
+    {
+      href: "https://github.com/prestodb/presto",
+      label: "GitHub",
+      external: true,
+    },
+    { href: "https://twitter.com/prestodb", label: "Tiwtter", external: true },
+    {
+      href: "https://www.linkedin.com/company/presto-foundation/",
+      label: "LinkedIn",
+      external: true,
+    },
   ],
   // headerLinks: [
   //   {doc: 'overview', label: 'Overview'},
@@ -123,9 +134,7 @@ const siteConfig = {
   },
 
   // Add custom scripts here that would be placed in <script> tags.
-  scripts: [
-    "https://buttons.github.io/buttons.js",
-],
+  scripts: ["https://buttons.github.io/buttons.js"],
 
   // On page navigation for the current documentation page.
   onPageNav: "separate",
@@ -137,7 +146,19 @@ const siteConfig = {
   twitterImage: "img/presto-logo-stacked.png",
 
   separateCss: [
-    "static/css/basic.css", // for sphinx docs pages
+    "static/basic.css",
+    "static/haiku.css",
+    "static/copybutton.css",
+    "static/material.css",
+    "static/presto.css",
+    "static/presentations.css",
+    "static/ytlightbox.css",
+    "static/pygments.css",
+    "static/fonts/material-icons.css",
+    "static/fonts/font-awesome.css",
+    "static/stylesheets/application-fixes.css",
+    "static/stylesheets/application-palette.css",
+    "static/stylesheets/application.css",
     "static/css/bootstrap.min.css",
     "static/css/effects.css", // sfx and animations
     "static/css/presentations.css", // for videos presentations pages
@@ -152,10 +173,7 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
-  stylesheets: [
-    "css/custom.css",
-    "css/footer.css"
-  ],
+  stylesheets: ["css/custom.css", "css/footer.css"],
 };
 
 module.exports = siteConfig;
