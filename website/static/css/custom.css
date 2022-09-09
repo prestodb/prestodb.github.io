@@ -2,7 +2,7 @@
  * Any CSS included here will be global. 
  */
 
-.docusaurus-highlight-code-line {
+ .docusaurus-highlight-code-line {
    background-color: rgba(0, 0, 0, 0.1);
    display: block;
    margin: 0 calc(-1 * var(--ifm-pre-padding));
@@ -192,19 +192,19 @@ nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(-n+4) a {
 }
 
 nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(4) a{
-   background-image: url(../../img/icon-slack-white.svg);
+   background-image: url(/img/icon-slack-white.svg);
 }
 
 nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(3) a{
-   background-image: url(../../img/icon-github-white.svg);
+   background-image: url(/img/icon-github-white.svg);
 }
 
 nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(2) a{
-   background-image: url(../../img/icon-twitter-white.svg);
+   background-image: url(/img/icon-twitter-white.svg);
 }
 
 nav.slidingNav ul.nav-site.nav-site-internal li:last-child a{
-   background-image: url(../../img/icon-linkedin-white.svg);
+   background-image: url(/img/icon-linkedin-white.svg);
 }
 
 @media only screen and (min-width: 1024px){
@@ -249,22 +249,22 @@ nav.slidingNav ul.nav-site.nav-site-internal li:last-child a{
 
 .nav-github,
 .navbar-sidebar__item .nav-github:hover {
-   background-image: url(../../img/icon-github-white.svg);
+   background-image: url(/img/icon-github-white.svg);
 }
 
 .nav-twitter,
 .navbar-sidebar__item .nav-twitter:hover {
-   background-image: url(../../img/icon-twitter-white.svg);
+   background-image: url(/img/icon-twitter-white.svg);
 }
 
 .nav-slack,
 .navbar-sidebar__item .nav-slack:hover {
-   background-image: url(../../img/icon-slack-white.svg);
+   background-image: url(/img/icon-slack-white.svg);
 }
 
 .nav-linkedin,
 .navbar-sidebar__item .nav-linkedin:hover {
-   background-image: url(../../img/icon-linkedin-white.svg);
+   background-image: url(/img/icon-linkedin-white.svg);
 }
 
 .navbar-sidebar__item .nav-icon,
@@ -313,7 +313,7 @@ img {
    content: '';
    width: 100%;
    height: 32px;
-   background: url(../../img/top-cap-white.png) center top no-repeat transparent;
+   background: url(/img/top-cap-white.png) center top no-repeat transparent;
    background-size: 100% 32px;
    margin-bottom: 32px;
 }
@@ -323,7 +323,7 @@ img {
    content: '';
    width: 100%;
    height: 32px;
-   background: url(../../img/bottom-cap-white.png) center bottom no-repeat transparent;
+   background: url(/img/bottom-cap-white.png) center bottom no-repeat transparent;
    background-size: 100% 32px;
    margin-top: 32px;
 }
@@ -351,7 +351,7 @@ img {
 }
 
 .bg-side-dots {
-   background: url(../../img/bg-dots.svg) center center no-repeat #5B87DA;
+   background: url(/img/bg-dots.svg) center center no-repeat #5B87DA;
    background-size: 110% auto;
 }
 
@@ -399,7 +399,7 @@ img {
    background: #32DBFC;
    border-radius: 70px;
    margin: 0 0.5rem 0 auto;
-   background: url(../../img/icon-dots-sm-white.svg) center center no-repeat #32DBFC;
+   background: url(/img/icon-dots-sm-white.svg) center center no-repeat #32DBFC;
    background-size: 30%;
 }
 
@@ -410,7 +410,7 @@ hr.dots {
    margin: 0 auto;
    max-width: 280px;
    text-align: center;
-   background: url(../../img/separator-dots-cyan.svg) center center no-repeat transparent;
+   background: url(/img/separator-dots-cyan.svg) center center no-repeat transparent;
 }
 
 .community-projects section {
@@ -434,7 +434,7 @@ hr.dots {
    content: '';
    width: 100%;
    height: 32px;
-   background: url(../../img/bottom-cap-white.png) center bottom no-repeat transparent;
+   background: url(/img/bottom-cap-white.png) center bottom no-repeat transparent;
    background-size: contain;
    margin-top: 32px;
 }
@@ -679,7 +679,7 @@ footer.footer-dark:before {
    display: block;
    content: ' ';
    height: 32px;
-   background: url(../../img/top-cap-white.png) center top no-repeat transparent;
+   background: url(/img/top-cap-white.png) center top no-repeat transparent;
    background-size: 100% 32px;
    width: 100%;
 }
