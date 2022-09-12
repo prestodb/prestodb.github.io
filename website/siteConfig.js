@@ -146,24 +146,15 @@ const siteConfig = {
   twitterImage: "img/presto-logo-stacked.png",
 
   separateCss: [
-    "static/basic.css",
-    "static/haiku.css",
-    "static/copybutton.css",
-    "static/material.css",
-    "static/presto.css",
-    "static/presentations.css",
-    "static/ytlightbox.css",
-    "static/pygments.css",
-    "static/fonts/material-icons.css",
-    "static/fonts/font-awesome.css",
-    "static/stylesheets/application-fixes.css",
-    "static/stylesheets/application-palette.css",
-    "static/stylesheets/application.css",
-    "static/css/bootstrap.min.css",
-    "static/css/custom.css",
-    "static/css/effects.css", // sfx and animations
-    "static/css/presentations.css", // for videos presentations pages
-    "static/css/ytlightbox.css", // lightbox popup
+    "static/css/",
+    // "static/css/basic.css",
+    // "static/css/bootstrap.min.css",
+    // "static/css/custom.css",
+    // "static/css/effects.css",
+    // "static/css/landscape.css",
+    // "static/css/presentations.css",
+    // "static/css/slider.css",
+    // "static/css/ytlightbox.css",
   ],
   // Show documentation's last contributor's name.
   // enableUpdateBy: true,
@@ -174,7 +165,10 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
-  stylesheets: ["css/custom.css", "css/footer.css"],
+  stylesheets: [
+    "/css/bootstrap.min.css",
+    "/css/custom.css",
+  ],
 };
 
 module.exports = siteConfig;
