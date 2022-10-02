@@ -70,16 +70,23 @@ const siteConfig = {
     { href: prestoBaseUrl + "what-is-presto.html", label: "What is Presto?" },
     { href: prestoBaseUrl + "community.html", label: "Community" },
     {
-      href: "https://prestodb.github.io/docs/current",
+      href: "/docs/current",
       label: "Docs",
       external: true,
     },
-    { href: "https://join.slack.com/t/prestodb/shared_invite/zt-1e895j77n-zdX2Z3~6tFDnmFSruztQOw", label: "Slack", external: true },
+    { href: "https://join.slack.com/t/prestodb/shared_invite/zt-1e895j77n-zdX2Z3~6tFDnmFSruztQOw", 
+      label: "Slack", 
+      external: true },
     {
       href: "https://github.com/prestodb/presto",
       label: "GitHub",
       external: true,
     },
+    {
+      href: "https://stackoverflow.com/questions/tagged/presto",
+      label: "Stackoverflow",
+      external: true,
+    }, 
     { href: "https://twitter.com/prestodb", label: "Twitter", external: true },
     {
       href: "https://www.linkedin.com/company/presto-foundation/",
@@ -146,24 +153,19 @@ const siteConfig = {
   twitterImage: "img/presto-logo-stacked.png",
 
   separateCss: [
-    "static/basic.css",
-    "static/haiku.css",
+    "static/css/",
+
+    // styles for docs
     "static/copybutton.css",
     "static/material.css",
     "static/presto.css",
-    "static/presentations.css",
-    "static/ytlightbox.css",
     "static/pygments.css",
     "static/fonts/material-icons.css",
     "static/fonts/font-awesome.css",
     "static/stylesheets/application-fixes.css",
     "static/stylesheets/application-palette.css",
     "static/stylesheets/application.css",
-    "static/css/bootstrap.min.css",
-    "static/css/custom.css",
-    "static/css/effects.css", // sfx and animations
-    "static/css/presentations.css", // for videos presentations pages
-    "static/css/ytlightbox.css", // lightbox popup
+
   ],
   // Show documentation's last contributor's name.
   // enableUpdateBy: true,
@@ -174,7 +176,10 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
-  stylesheets: ["css/custom.css", "css/footer.css"],
+  stylesheets: [
+    "/css/bootstrap.min.css",
+    "/css/custom.css",
+  ],
 };
 
 module.exports = siteConfig;

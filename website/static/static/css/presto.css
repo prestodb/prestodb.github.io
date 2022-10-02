@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-@import url("haiku.css");
+ /* @import url("haiku.css");  */
 
 * {
     -webkit-box-sizing: border-box;
@@ -27,7 +27,8 @@ html {
 }
 
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+    /* font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif; */
+    font-family: 'Open Sans', sans-serif;
     color: #222222;
     max-width: inherit;
     min-width: inherit;

@@ -10,7 +10,9 @@
 }
 
 
-
+/*
+ NOTE: Styles may contain multiple class selectors to cover both static pages and docusaurus-generated header & footer elements.
+*/
 
 /*
 
@@ -35,6 +37,10 @@ body,
    font-family: 'Open Sans', sans-serif;
    line-height: 1.5;
    font-size:16px;
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing:antialiased;
+   -webkit-font-feature-settings:"kern","liga";
+   font-feature-settings:"kern","liga";
 }
 
 h1 {
@@ -71,7 +77,8 @@ h3 {
 
 
 /* HEADER/NAVBAR */
-header.masthead, .fixedHeaderContainer {
+header.masthead, 
+body .fixedHeaderContainer {
    background: linear-gradient(260.56deg, #32DBFC 44.64%, #5D88D6 84.38%);
 }
 
@@ -81,22 +88,23 @@ header.masthead, .fixedHeaderContainer {
    color: #fff;
 }
 
-.fixedHeaderContainer header {
+body .fixedHeaderContainer header {
    align-items: center;
 }
 
-.navbar  {
+.navbar,
+body  .wrapper  {
    max-width: 1400px;
    margin: 0 auto;
 }
 
-.headerWrapper.wrapper  {
-   max-width: 1416px;
+body .headerWrapper.wrapper  {
+   max-width: 1400px;
    margin: 0 auto;
-   padding: 0 16px;
+   padding: 2px 16px;
 }
 
-.fixedHeaderContainer header img.logo {
+body .fixedHeaderContainer header img.logo {
    margin-right: 1rem !important;
 }
 
@@ -110,11 +118,13 @@ header.masthead, .fixedHeaderContainer {
    height: auto;
 }
 
-.navigationSlider .slidingNav ul li>a:hover {
+.navigationSlider .slidingNav ul li>a:hover,
+.navigationSlider .slidingNav ul li>a:active,
+.navigationSlider .slidingNav ul li>a:focus {
    background-color :transparent !important;
 }
-.navigationSlider .slidingNav ul li a,
-.navigationSlider .slidingNav ul li a:hover {
+body .navigationSlider .slidingNav ul li a,
+body .navigationSlider .slidingNav ul li a:hover {
   border: 0;
   color: #fff;
   display: flex;
@@ -122,8 +132,8 @@ header.masthead, .fixedHeaderContainer {
   font-weight: 600;
   line-height: 1.2em;
   margin: 0;
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
+  padding-right: 12px;
+  padding-left: 12px;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -134,6 +144,7 @@ li.nav-item {
 .navbar-dark .navbar-nav .nav-link,
 .navbar-dark .navbar-nav .nav-link:hover {
    color: #fff;
+   font-weight: 600;
 }
 
 .navbar-nav.nav-social {
@@ -148,7 +159,7 @@ li.nav-item {
       padding-top:5px;
    }
 
-   .fixedHeaderContainer a { 
+   body .fixedHeaderContainer a { 
       height: auto;
       max-width: 160px;
    }
@@ -160,20 +171,23 @@ li.nav-item {
    }
 
    .navbar-expand-lg .navbar-nav .nav-link {
-      padding-right: 0.75rem;
-      padding-left: 0.75rem;
+      padding-right: 12px;
+      padding-left: 12px;
    }
 }
-
 
 .navigationSlider {
    width: 100%;
 }
-.navigationSlider .slidingNav ul li {
+body .navigationSlider .slidingNav ul li {
    flex: 0 0 auto;
 }
 
-nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(-n+4) a {
+nav.slidingNav ul.nav-site.nav-site-internal li{
+   font-size: 16px;
+}
+
+nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(-n+5) a {
    font-size:0;
    width: 30px;
    height: 30px;
@@ -189,13 +203,18 @@ nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(-n+4) a {
    background: transparent;
 }
 
-nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(4) a{
+nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(5) a{
    background-image: url(../img/icon-slack-white.svg);
 }
 
-nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(3) a{
+nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(4) a{
    background-image: url(../img/icon-github-white.svg);
 }
+
+nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(3) a{
+   background-image: url(../img/icon-stackoverflow-white.svg);
+}
+
 
 nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(2) a{
    background-image: url(../img/icon-twitter-white.svg);
@@ -224,9 +243,14 @@ nav.slidingNav ul.nav-site.nav-site-internal li:last-child a{
    nav.slidingNav ul.nav-site.nav-site-internal li:nth-child(4){
       margin-right: auto !important;
    }
-   nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(4) {
+   nav.slidingNav ul.nav-site.nav-site-internal li:nth-last-child(5) {
       margin-left: auto !important;
    }
+}
+
+.nav-icons {
+   white-space:nowrap;
+   font-size:0;
 }
 
 .nav-icon {
@@ -259,6 +283,12 @@ nav.slidingNav ul.nav-site.nav-site-internal li:last-child a{
 .navbar-sidebar__item .nav-slack:hover {
    background-image: url(../img/icon-slack-white.svg);
 }
+
+.nav-stackoverflow,
+.navbar-sidebar__item .nav-stackoverflow:hover {
+   background-image: url(../img/icon-stackoverflow-white.svg);
+}
+
 
 .nav-linkedin,
 .navbar-sidebar__item .nav-linkedin:hover {

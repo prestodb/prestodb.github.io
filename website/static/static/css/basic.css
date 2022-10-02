@@ -124,6 +124,11 @@ a.headerlink {
     visibility: hidden;
 }
 
+.md-header {
+    background:#666;
+}
+
+
 h1:hover > a.headerlink,
 h2:hover > a.headerlink,
 h3:hover > a.headerlink,
