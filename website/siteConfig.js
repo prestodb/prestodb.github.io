@@ -74,7 +74,7 @@ const siteConfig = {
       label: "Docs",
       external: true,
     },
-    { href: "https://join.slack.com/t/prestodb/shared_invite/zt-1e895j77n-zdX2Z3~6tFDnmFSruztQOw", 
+    { href: "https://communityinviter.com/apps/prestodb/prestodb", 
       label: "Slack", 
       external: true },
     {
