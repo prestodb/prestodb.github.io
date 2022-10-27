@@ -36,7 +36,7 @@ export const GetStarted_Cards = [
       'See <a href="https://ahana.io/videos-presentations/demo-getting-started/?utm_source=prestodb&utm_medium=getting-started&utm_campaign=docker#docker" target="_blank">demo</a> to get started',
   },
   {
-    title: "SaaS for Presto on AWS by Ahana",
+    title: "Managed Presto on AWS by Ahana",
     description: "Easily run Presto clusters free-forever in your AWS VPC with the Ahana Cloud Managed Service for&nbsp;Presto.",
     buttonText: "Get Started",
     buttonLink:

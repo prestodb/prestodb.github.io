@@ -110,8 +110,11 @@
     <a class="my-5 d-inline-flex" href="https://github.com/prestodb/presto" target="_blank"
       style="font-size:22px;place-content:center;color:#000;text-decoration:none" title="presto on github">
       <img src="img/icon-github-dark.svg" alt="github" style="max-width:1.75rem" />&nbsp;<img
-        src="img/icon-github-star.svg" alt="star" style="max-width:1.5rem" />&nbsp;<span  class="countup" data-start="10" data-end="13.7" data-step="0.2" data-places="1">13.7</span>K
+        src="img/icon-github-star.svg" alt="star" style="max-width:1.5rem" />&nbsp;<span id="starcount">10</span>K
     </a>
+    <script>
+      document.getElementById('starcount').innerHTML = presto_latest_stars;
+    </script>
   </div>
 </div>
 
