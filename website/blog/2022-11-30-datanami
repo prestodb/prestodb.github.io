@@ -1,0 +1,24 @@
+---
+title: Is PrestoDB the most popular Open Source Data Analytics project?
+author: Ali LeClerc
+authorURL: https://www.linkedin.com/in/alidodson/
+---
+**Co-author:** [Rachel Pedreschi](https://www.linkedin.com/in/rachelpedreschi/)
+
+The Presto Foundation is thrilled to announce that today Presto has been awarded “2022 Editors Choice for Top 3 Data and AI Open Source Projects to Watch” from [BigDATAwire](https://www.datanami.com/this-just-in/bigdatawire-formerly-datanami-reveals-winners-of-2022-readers-and-editors-choice-awards/).  Past winners are a true who’s who in the data world including Apache Spark (2020), Apache Kafka (2018), MongoDB (2019), Apache Cassandra, ElasticSearch and Redis (2021).  This award underscores what the Linux Foundation's Presto Foundation has known for a long time, that PrestoDB continues to be extremely popular, and we have recently dug into the data to find out more.
+
+![Presto Architecture](/img/blog/2022-11-30-datanami/datanami2022.jpg)
+<!--truncate-->
+
+Back in March of this year,  the Presto Outreach committee has been doing some in-depth analysis of the PrestoDB Community as a whole.  We have been digging into Slack messages and Github issues, pouring over survey results and talking to as many users as we can to get a better idea of who our users are and how we can better serve them.  In doing so, we were able to unearth up a veritable treasure trove of impressive statistics.  I mean, we know PrestoDB was popular, but WOW, this really blew our socks off.  
+
+As of Dec. 1 2022 we are able to count:
+21000+ members all over the world, representing over 2200 organizations.  Developers have been busy with 19k commits merged, 13k PRs created and over 13k stars on the Github repo.  
+
+That is a lot to celebrate!
+
+So, the Presto Foundation has decided to throw a party for our community on Dec 7th and 8th at the Computer History Museum in Mountain View, CA.   PrestoCon Live will include hands-on workshops on Building Presto Connectors and Getting Started with a Data Lakehouse on Dec 7th.  The next day, Dec 8th, will be full of deep-cut technical sessions, ecosystem lightning talks, and real-world use cases highlighting the best of what Presto brings to these 2000 organizations that rely on it for making critical business decisions. We will then celebrate the 10 years of Presto success with a “meet the committers” cocktail party.  If you aren’t in the Bay Area, no worries, you can register as a virtual attendee to get access to all the recordings after the event.  
+
+To register, just create a free account with The Linux Foundation:
+https://events.linuxfoundation.org/prestocon/register/
+Only $25 if you register with the Cyber week special code: PRESTODB25.
