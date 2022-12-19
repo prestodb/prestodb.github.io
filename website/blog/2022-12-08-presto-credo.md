@@ -45,3 +45,13 @@ Signed,
 - Tim Meehan, Chair, Presto Foundation TSC Presto Foundation Member; Meta
 - Philip S Bell, Board Member, Presto Foundation; Meta Open Source
 - Rohan Pednekar, Chair, Presto Foundation, Conformance, Presto Foundation Member; Ahana
+- Ali LeClerc, Senior Director of Marketing & Community at Ahana; Presto Foundation Member; Ahana
+- Hans Uhlig, Principal Tech Product Manager at IBM
+- Bhoomaiah Alishetti, Program Director at IBM
+- Kevin Shen, Product Manager at IBM
+- Kanchana padmanabhan, Program Director at IBM
+- Deepak Rangarao, Distinguished Engineer at IBM
+- Ashish Vishwakarma, Data Engineer at Intel
+- Danfeng Xu, Software Engineer
+- Roy Hassan, Head of Product at Upsolver.
+- Satish Ramakrishnan. Executive at minIO
