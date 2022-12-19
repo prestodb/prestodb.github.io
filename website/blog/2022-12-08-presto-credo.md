@@ -55,3 +55,5 @@ Signed,
 - Danfeng Xu, Software Engineer
 - Roy Hassan, Head of Product at Upsolver.
 - Satish Ramakrishnan. Executive at minIO
+
+-- If you would like to sign this Credo then please write us at Community@lists.prestodb.io
