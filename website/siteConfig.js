@@ -70,6 +70,11 @@ const siteConfig = {
     { href: prestoBaseUrl + "what-is-presto.html", label: "What is Presto?" },
     { href: prestoBaseUrl + "community.html", label: "Community" },
     {
+      href: "/blog",
+      label: "Blog",
+      external: true,
+    },
+    {
       href: "/docs/current",
       label: "Docs",
       external: true,
