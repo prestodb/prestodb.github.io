@@ -383,6 +383,18 @@
 </footer>
 
   <script async src="static/js/effects.js"></script>
+
+  <script>
+  async function loadNames() {
+    const response = await fetch('https://api.github.com/repos/prestodb/presto');
+    const stats = await response.json();
+    console.log(stats.stargazers_count);
+    var starCount10K = stats.stargazers_count/1000
+    var starCount = Math.round(10*starCount10K)/10
+    document.getElementById('starcount').innerHTML=starCount;
+  }
+  loadNames();
+  </script>
 </body>
 
 </html>

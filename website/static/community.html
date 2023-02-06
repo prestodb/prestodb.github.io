@@ -112,7 +112,7 @@
                 </div>
             <div class="col-12 col-md-8  sequential-fadeup text-start">
                 <h1 class="py-2 text-start ">Be a Part of the Presto Community.</h1>
-                <h5 class="" style="max-width: 700px;"><b><span  class="countup" data-start="10" data-end="13.7" data-step="0.2" data-places="1">13.7</span>K</b> stars and growing. There are many ways to get started with the community.
+                <h5 class="" style="max-width: 700px;"><b><span  id="starcount"></span>K</b> stars and growing. There are many ways to get started with the community.
                     The best place to start is by joining our Slack channel where you can meet other Presto engineers
                     and&nbsp;users.</h5>
                 <div class=""><a href="https://communityinviter.com/apps/prestodb/prestodb" target="_blank"
@@ -399,5 +399,15 @@ we'll send you a swag pack as a thanks!
 
     <script async src="static/js/effects.js"></script>
 </body>
-
+<script>
+    async function loadNames() {
+      const response = await fetch('https://api.github.com/repos/prestodb/presto');
+      const stats = await response.json();
+      console.log(stats.stargazers_count);
+      var starCount10K = stats.stargazers_count/1000
+      var starCount = Math.round(10*starCount10K)/10
+      document.getElementById('starcount').innerHTML=starCount;
+    }
+    loadNames();
+    </script>
 </html>
