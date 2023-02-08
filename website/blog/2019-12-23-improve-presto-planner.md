@@ -19,7 +19,7 @@ However, there are certain limitations with the existing predicate pushdown func
 <!-- truncate -->
 
 This image shows what the planner and connector interaction used to look like:
-![Remote Exchange](/img/blog/2019-12-19-improve-presto-planner.md/image_01.png)
+![Remote Exchange](/img/blog/2019-12-19-improve-presto-planner/image_01.png)
 
 First, Presto only supports predicate push down through connector provided methods. If Presto needs to push down a set of operations (for example, `projection`/`filter`/`aggregation`/`limit`), then the connectors need to support several methods:
 
@@ -48,7 +48,7 @@ Presto executes a SQL query by first parsing it to an Abstract Syntax Tree (AST)
 
 Presto uses a list of optimizers to transform the logical plan to an optimized physical plan. Each plan optimizer can operate on sub-trees of the whole plan tree and replace them with more optimized sub-trees based on heuristic or statistics. Optimizers can save the physical information of execution on a set of connector provided handles (for example, `ConnectorTableHandle`, `ConnectorTableLayoutHandle`, `ConnectorPartitionHandle`, …).
 
-![Remote Exchange](/img/blog/2019-12-19-improve-presto-planner.md/image_02.png)
+![Remote Exchange](/img/blog/2019-12-19-improve-presto-planner/image_02.png)
 
 Unlike some other SQL engines, Presto does not explicitly set the boundary between the logical plan and physical plan. Instead, there are a few crucial optimizers that transform the logical plan into a physical one.
 
@@ -75,7 +75,7 @@ public  interface  ConnectorPlanOptimizer
 		PlanNodeIdAllocator idAllocator);
 }
 ```
-![Remote Exchange](/img/blog/2019-12-19-improve-presto-planner.md/image_03.png)
+![Remote Exchange](/img/blog/2019-12-19-improve-presto-planner/image_03.png)
 
 Note that, the above rule only applies to the `maxSubPlan` optimizer taken as input. It is quite possible a connector provided optimizer can generate a new plan contains nodes belonging to another connector (usually during a view expansion). In such cases, `TableScan` might be reading from a virtual table combining data from multiple different data sources. The `TableScan` on the virtual table can be expanded to a new sub tree that unions TableScans from both sides. Once expanded, the optimization of newly generated plan nodes can then be handled by the connectors they belong to, so that most optimized subplan can be achieved.
 
@@ -117,12 +117,12 @@ At Facebook, we use Scuba for analytics on real time data. The new connector arc
 
 We also built views that combine Scuba tables with their Hive counterparts to allow for seamless querying. The support for views spanning two connectors was made possible by the new planner architecture. The connector expands the table scan node referring to the view into a union of table scans: one from Scuba, and one from Hive.
 
-![Remote Exchange](/img/blog/2019-12-19-improve-presto-planner.md/image_04.png)
+![Remote Exchange](/img/blog/2019-12-19-improve-presto-planner/image_04.png)
 
 ### Row level security
 Sometimes we want to add filters dynamically, e.g. based on who is querying the data. For example, an employee of Coca Cola shouldn’t see records from Pepsi. We built an optimizer rule that conditionally adds Filter node on top of the TableScan node based on the query user and table structure.
 
-![Remote Exchange](/img/blog/2019-12-19-improve-presto-planner.md/image_05.png)
+![Remote Exchange](/img/blog/2019-12-19-improve-presto-planner/image_05.png)
 
 ## What’s next?
 Even though the planner changes are already delivery benefits, we are still only half way there:
