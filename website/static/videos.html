@@ -98,6 +98,7 @@
         <h4 class="form-label d-inline" style="margin-right:15px;">Categories: </h4> 
         <select id="categories"  class="form-select">
           <option value="Videos_PrestoMeetupsTechTalks.js">Presto Meetups and Tech Talks</option>
+          <option value="Videos_PrestoCon2022.js">PrestoCon 2022</option>
           <option value="Videos_PrestoConDay2022.js">PrestoCon Day 2022</option>
           <option value="Videos_PrestoCon2021.js">PrestoCon 2021</option>
           <option value="Videos_PrestoConDay2021.js">PrestoCon Day 2021</option>
@@ -110,12 +111,16 @@
 
 <script>
   function PresCard(item) {
+      var thumbnail = `img/videos/${item.thumbnail}`;
+      if (item.thumbnail.substring(4, 0) == "http") {
+        thumbnail = item.thumbnail
+      }
       var out = `<div class="presentationAssets video sequential-fadein">
                       <h3 class="card-title">${item.title}</h3>
                       <div class="card-body">
                         <div >
                           <div style="min-width: 40%;margin:5px 10px 5px 0;display:inline-block;float:left;">
-                            <a href="${item.video}" target="_blank" class="ytlightbox" data-aspect="16x9" ><div class="aspect16x9 presentationVideoThumb" style="display:inline-block;box-shadow:0 0 5px rgba(0,0,0,0.15);"><img src="img/videos/${item.thumbnail}" alt="${item.title} video" class="" /></div></a>
+                            <a href="${item.video}" target="_blank" class="ytlightbox" data-aspect="16x9" ><div class="aspect16x9 presentationVideoThumb" style="display:inline-block;box-shadow:0 0 5px rgba(0,0,0,0.15);"><img src="${thumbnail}" alt="${item.title} video" class="" /></div></a>
                           </div>
                           <p class="card-text text-start small">${item.description}</p>
                         </div>
