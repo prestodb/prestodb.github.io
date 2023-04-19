@@ -27,14 +27,14 @@ export const Projects_Clients = [
   },
   {
     title: "Quix",
-    link: "https://wix.github.io/quix/docs/about",
+    link: "https://wix-incubator.github.io/quix/",
     description:
       "Quix is a multi-user, easy-to-use notebook manager. By utilizing Presto it provides unified access to multiple data sources and effectively acts as a shared space for your company's BI insights and know-how.",
     maintainers: [
       {
         name: "Wix",
         logo: "img/community-logos/logo-wix.svg",
-        maintainerLink: "https://github.com/wix/quix/",
+        maintainerLink: "https://github.com/wix-incubator/quix",
       },
     ],
   },
