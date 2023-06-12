@@ -627,7 +627,8 @@ ul li {
       place-content: center;
    }
 
-   .card-group>.card {
+   .card-group>.card,
+   .card-group.card-group-2-per-row>.card {
       flex: 1 1 calc(45% - 20px) !important;
    }
 
