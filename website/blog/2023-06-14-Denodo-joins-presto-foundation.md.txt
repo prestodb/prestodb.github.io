@@ -6,6 +6,8 @@ title: Denodo Joins the Presto Foundation
 
 We are pleased to announce that <a href="https://www.denodo.com/en">Denodo Technologies</a> has joined the Presto Foundation. The Denodo Platform is a popular data management platform based on the concept of data virtualization and logical data models, which includes capabilities for data integration, privacy, governance, and data cataloging. Denodo is often used to implement logical and distributed data architectures like the Data Fabric and plays a pivotal role in self-service initiatives and distributed processes like the Data Mesh.  
 
+<!--truncate-->
+
 
 In today’s data-driven world, businesses generate vast amounts of data that can provide valuable insights when analyzed effectively. Data lakes, fueled by the rise of cloud-based object storage and new generation execution engines, have gained significant traction in recent years, as they enable organizations to store raw data from a wide range of sources, process and refine using ELT execution patterns, and provide a scalable engine for interactive queries with high concurrency.  The Presto project, from its inception at Facebook to its current state, has been at the forefront of data lake evolution. Presto has shown its powers in some of the largest and most demanding deployments. Furthermore, its addition to the Linux Foundation has laid the foundation for a project with a strong focus on collaboration and openness, which sets it apart from other projects in this space. 
 
