@@ -3,21 +3,21 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Launch Presto: Local download, JDBC, Docker or on AWS Cloud</title>
+  <title>Presto Community Newsletter</title>
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
   <link rel="stylesheet" href="css/custom.css" type="text/css" />
   <link rel="stylesheet" href="css/effects.css" type="text/css" />
   <link rel="canonical" href="https://prestodb.io/getting-started.html" />
   <meta name="viewport" content="width=device-width">
   <meta name="robots" content="follow, index"/>
-  <meta name="description" content="Get started with a local installation of Presto, or try the SaaS version. Find additional learning resources or get help on how to install and run PrestoDB."/>
+  <meta name="description" content="Subscribe to get the latest blogs, events, and news from the open source Presto community."/>
   <meta property="og:type" content="website">
   <meta property="og:title" content="Launch Presto: Local download, JDBC, Docker or on AWS Cloud">
-  <meta property="og:description" content="Get started with a local installation of Presto, or try the SaaS version. Find additional learning resources or get help on how to install and run PrestoDB.">
+  <meta property="og:description" content="Subscribe to get the latest blogs, events, and news from the open source Presto community.">
   <meta property="og:image" content="static/presto-og.png">
   <meta name="twitter:card" content="static/presto-og.png" />
-  <meta name="twitter:title" content="Launch Presto: Local download, JDBC, Docker or on AWS Cloud" />
-  <meta name="twitter:description" content="Get started with a local installation of Presto, or try the SaaS version. Find additional learning resources or get help on how to install and run PrestoDB." />
+  <meta name="twitter:title" content="Presto Community Newsletter" />
+  <meta name="twitter:description" content="Subscribe to get the latest blogs, events, and news from the open source Presto community." />
   <link rel="icon" type="image/x-icon" href="img/icon-presto-dots-color.svg">
   <script async src="static/js/bootstrap.bundle.min.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82811140-44"></script>  <!-- Start of HubSpot Embed Code -->
@@ -84,6 +84,7 @@
                 <li><a class="dropdown-item" href="tutorials.html">Tutorials</a></li>
                 <li><a class="dropdown-item" href="videos.html">Videos</a></li>
                 <li><a class="dropdown-item" href="newsletter.html">Newsletter</a></li>
+                <li><a class="dropdown-item" href="newsletter.html">Newsletter</a></li>
               </ul>
             </li>
             <li class="nav-item">
@@ -111,110 +112,26 @@
   <section class="bg-silver-gradient bottom-cap-white">
     <div class="container-fluid wrapper pb-5">
       <div class="row align-items-center pt-5 ">
-        <h1 class="py-2 text-center revealed">Get Started with Presto</h1>
-        <h5 class="mx-auto text-center revealed">The current Presto release version is <strong><span
-              id="version">0</span></strong> from
-          <span id="verdate">June, 2022</span>. See the <a href="docs/current/release.html"
-            title="release notes">Release Notes</a> for more&nbsp;information. <br>The git stats for this release are
-          <b><span id="commits">200</span></b> commits from <b><span id="authors">60</span></b> authors and <b><span
-              id="committers">10</span></b> committers.
-        </h5>
+        <h1 class="py-2 text-center">Presto Community Newsletter</h1>
       </div>
     </div>
   </section>
-  <script>
-        document.getElementById('version').innerHTML = presto_latest_presto_version;
-        document.getElementById('verdate').innerHTML = presto_latest_date;
-        document.getElementById('commits').innerHTML = presto_latest_num_commits;
-        document.getElementById('authors').innerHTML = presto_latest_num_contributors;
-        document.getElementById('committers').innerHTML = presto_latest_num_committers;
-  </script>
-  <section>
-    <script>
-      function GetStartedCard(item) {
-        var out = `<div class="card text-center">
-                        <div class="card-header bg-white">
-                                <h4 class="card-title">${item.title}</h4>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">${item.description}</p>
-                            <p><a href="${item.buttonLink}" target="_blank" class="btn btn-primary">${item.buttonText}</a></p>
-                        </div>
-                        <div class="card-footer small pb-3 d-flex flex-column" style="min-height:4.25rem;place-content:center;"><div>${item.footer}</div></div>`;
-        out += `</div>`;
-        return out;
-      }
-    </script>
-    <div class="container my-5">
-      <div class="row">
-        <div class="col card-group card-group-2-per-row" id="getStartedCards">
-          <script type="module">
-            import('./data/GetStarted_Cards.js').then(
-              (data) => {
-                data.GetStarted_Cards.forEach(item => {
-                  document.getElementById('getStartedCards').innerHTML += GetStartedCard(item);
-                });
-              }
-            ).catch((err) => { console.log('error: ' + err); });
+  <section class="">
+    <div class="container-fluid wrapper py-5">
+      <div class="row" style="max-width:960px;margin:0 auto;">
+        <div class="col-12 col-md-4">
+          <h5>Subscribe to get the latest blogs, events, and news from the open source Presto community.</h5>
+        </div>
+        <div class="col-12 col-md-8 mt-5 mt-md-0">
+          <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+          <script>
+            hbspt.forms.create({
+              region: "na1",
+              portalId: "39785153",
+              formId: "9a7d8060-594d-43de-934e-624cf5c5d7f5"
+            });
           </script>
         </div>
-      </div>
-    </div>
-  </section>
-  <section class="bg-silver-gradient-to-white top-cap-white">
-    <div class="container-fluid wrapper py-5">
-      <div class="row">
-        <div class="col-12 col-md-6">
-          <h2 class="text-center mb-3">More Community Resources</h2>
-          <ul>
-            <li><a href="https://ahana.io/getting-started/installing-presto-on-a-mac/" target="_blank">Install Presto
-                using Homebrew</a></li>
-            <li>F8 2019 Classroom Demo: Getting started with Presto:<br><a
-                href="https://github.com/prestodb/f8-2019-demo" target="_blank">Github</a> | <a
-                href="https://www.youtube.com/watch?v=67gXN5697Vw" target="_blank">YouTube</a></li>
-            <li><a
-                href="https://ahana.io/presto-query-analyzer/?utm_source=prestodbio&amp;utm_medium=community&amp;utm_campaign=query"
-                target="_blank">Presto Query Analyzer</a> - free tool for quick insights into your Presto clusters</li>
-          </ul>
-        </div>
-        <div class="col-12 col-md-6 mt-5 mt-md-0">
-          <h2 class="text-center mb-3">Get Help</h2>
-          <ul>
-            <li>Join the <a href="https://communityinviter.com/apps/prestodb/prestodb" target="_blank">Presto slack channel</a> to ask questions
-              and get help running Presto.</li>
-            <li>Check out our <a href="tutorials.html">tutorials section</a> for help getting started.</li>
-          </ul>
-        </div>
-        <div class="card-group py-5">
-          <div class="card text-center">
-            <div class="card-header bg-white">
-              <h4 class="card-title my-1"><img src="img/logo-oreilly-color.svg" alt="OREILLY" style="width: 100%; max-width: 220px;margin-top:29px;margin-bottom:10px"></h4>
-            </div>
-            <div class="card-body">
-              <p class="card-text mb-3">Free eBook: <a
-                  href="https://ahana.io/ebook/?utm_source=prestodbio&amp;utm_medium=community&amp;utm_campaign=get_started"
-                  target="_blank">Learning and Operating Presto</a><br></p>
-                  <img src="/img/presto-ebook-cover-2023.png" alt="Presto eBook" style="max-width:180px" />
-            </div>
-          </div>
-          <div class="card text-center">
-            <div class="card-header bg-white">
-              <h4 class="card-title my-1"><img src="img/logo-presto-color.svg" alt="OREILLY"
-                style="width: 100%; max-width: 240px;"></h4>
-            </div>
-            <div class="card-body" style="padding-bottom:30px;">
-              <h5>Subscribe to the Community Newsletter</h5>
-              <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
-              <script>
-                hbspt.forms.create({
-                  region: "na1",
-                  portalId: "39785153",
-                  formId: "9a7d8060-594d-43de-934e-624cf5c5d7f5"
-                });
-              </script>
-
-            </div>
-          </div>
       </div>
     </div>
   </section>
