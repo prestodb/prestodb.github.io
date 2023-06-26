@@ -4,13 +4,11 @@ author: Ali LeClerc, Chair of Presto Foundation Outreach Team
 authorURL: https://www.linkedin.com/in/alidodson/
 ---
 
-# Recapping PrestoCon Day 2023: Presto for the Data Lakehouse, Presto at scale
-
 Just a few weeks ago we hosted PrestoCon Day, our annual virtual community conference. Thank you to everyone who attended - it was an awesome day! We had a fantastic agenda with many Presto users sharing why they chose Presto and how they’re using it to power some pretty sizable workloads.
 
 <!--truncate-->
 <div style="text-align: center;">
-  Sign up for the <a href="https://prestodb.io/newsletter.html" style="color:blue;">Presto community newsletter</a>
+  <em>Sign up for the <a href="https://prestodb.io/newsletter.html" style="color:blue;">Presto community newsletter</a></em>
 </div>
 <br>
 
