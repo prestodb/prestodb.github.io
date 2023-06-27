@@ -3,23 +3,23 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Who uses Presto? PrestoDB Case Studies and Companies</title>
+  <title>Presto News and Press</title>
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
   <link rel="stylesheet" href="css/custom.css" type="text/css" />
   <link rel="stylesheet" href="css/effects.css" type="text/css" />
   <link rel="stylesheet" href="css/presentations.css" type="text/css" />
   <link rel="stylesheet" href="css/ytlightbox.css" type="text/css" />
-  <link rel="canonical" href="https://prestodb.io/powered-by-presto.html" />
+  <link rel="canonical" href="https://prestodb.io/tutorials.html" />
   <meta name="viewport" content="width=device-width">
   <meta name="robots" content="follow, index"/>
-  <meta name="description" content="Learn how Facebook (Meta), Uber, Twitter, and Ahana build on open-source Presto. Read detailed blogs to understand PrestoDB use cases and implementations."/>
+  <meta name="description" content="Read about Presto in the news and press"/>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Who uses Presto? PrestoDB Case Studies and Companies">
-  <meta property="og:description" content="Learn how Facebook (Meta), Uber, Twitter, and Ahana build on open-source Presto. Read detailed blogs to understand PrestoDB use cases and implementations.">
+  <meta property="og:title" content="Presto News and Press">
+  <meta property="og:description" content="Read about Presto in the news and press">
   <meta property="og:image" content="static/presto-og.png">
   <meta name="twitter:card" content="static/presto-og.png" />
-  <meta name="twitter:title" content="Who uses Presto? PrestoDB Case Studies and Companies" />
-  <meta name="twitter:description" content="Learn how Facebook (Meta), Uber, Twitter, and Ahana build on open-source Presto. Read detailed blogs to understand PrestoDB use cases and implementations." />
+  <meta name="twitter:title" content="Presto News and Press" />
+  <meta name="twitter:description" content="Read about Presto in the news and press" />
   <link rel="icon" type="image/x-icon" href="img/icon-presto-dots-color.svg">
     <script async src="static/js/bootstrap.bundle.min.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82811140-44"></script>  <!-- Start of HubSpot Embed Code -->
@@ -91,54 +91,43 @@
 
   <section class="bg-silver-gradient bottom-cap-white">
     <div class="width">
-      <h1>Powered by Presto</h1>
+      <h1>Presto News & Press</h1>
     </div>
-    <h3 style="text-align:center;">Companies Using Presto Today</h3>
+    <h3 style="text-align:center;">Read about Presto in the news and press.</h3>
   </section>
 <section class="py-5">
-      <div id="presentations" class="card-group poweredby" style="min-height:100vh;max-width:1400px;"></div>
+    <div class="row">
+      <div id="news_items" class="col card-group mb-5" style="min-height:50vh"></div>
+    </div>
 </section>
-
-
 <script>
-  function PresCard(item) {
-      var out = `<div class="card sequential-fadein">
-                      <div class="card-header">
-                        <h3 class="card-title">${item.Company}</h3>
+  function NewsCard(item) {
+      var out = `<div class="card news-card text-center">
+                      <div class="card-header bg-white">
+                        <a href="${item.link}" target="_blank">
+                              <img src="${item.logo}" alt="${item.source}" />
+                        </a>
                       </div>
                       <div class="card-body">
-                        <div >
-                          <img src="${item.logo}" alt="${item.Company}">
-                          <p class="card-text text-start small">
-                            ${item.Description}
-                          </p>
-                        </div>
+                        <div class="">${item.source} | ${item.date}</div >
+                        <a href="${item.link}" target="_blank">
+                              <h4 class="card-title">${item.title}</h4>
+                        </a>
                       </div>
-                      <div class="card-footer"><a href="${item.Link}" target="_blank" style="text-decoration:none;">${item.CTA}  <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24"  class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
-                <path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></a></div>
-                  </div>
-                      `;
+                      
+                  </div>`;
       return out;
   }  
 </script>
-<script type="module">
-  function loadVideos(fileName){
-      document.getElementById('presentations').innerHTML = "";
-      import('./data/'+fileName).then(
-      (data) => {
-          data.Items.forEach(item => { 
-              document.getElementById('presentations').innerHTML += PresCard(item);
-          });
-          ytlightboxinit();
-          setTimeout(scrollEffects,0)
-      }
-  ).catch( (err) => { console.log('error: '+err); } );
-  }
-  loadVideos( 'PoweredBy.js')
-
+<script type="module">  
+    import('./data/News.js').then(
+        (data) => {
+            data.Items.forEach(item => {
+                document.getElementById('news_items').innerHTML += NewsCard(item);
+            });
+        }
+    ).catch( (err) => { console.log('error: '+err); } );
 </script>
-
-<script async src="static/js/ytlightbox.js"></script>
 
 <footer class="footer footer-dark">
   <div class="container container-fluid">

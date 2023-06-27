@@ -1,0 +1,40 @@
+Arguments: 
+  /Users/dmcknight/.nvm/versions/node/v17.5.0/bin/node /usr/local/bin/yarn
+
+PATH: 
+  /Users/dmcknight/.nvm/versions/node/v17.5.0/bin:/Users/dmcknight/.rbenv/shims:/Users/dmcknight/.pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/Apple/usr/bin:/Users/dmcknight/.nvm/versions/node/v17.5.0/bin:/Users/dmcknight/.rbenv/shims:/Users/dmcknight/.pyenv/shims
+
+Yarn version: 
+  1.3.2
+
+Node version: 
+  17.5.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "scripts": {
+      "examples": "docusaurus-examples",
+      "start": "docusaurus-start",
+      "build": "docusaurus-build",
+      "publish-gh-pages": "docusaurus-publish",
+      "write-translations": "docusaurus-write-translations",
+      "version": "docusaurus-version",
+      "rename-version": "docusaurus-rename-version"
+    },
+    "devDependencies": {
+      "docusaurus": "^1.7.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: read ETIMEDOUT
+      at TLSWrap.onStreamRead (node:internal/stream_base_commons:217:20)
