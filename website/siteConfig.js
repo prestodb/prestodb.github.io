@@ -146,7 +146,7 @@ const siteConfig = {
   },
 
   // Add custom scripts here that would be placed in <script> tags.
-  scripts: ["https://buttons.github.io/buttons.js"],
+  scripts: ["https://buttons.github.io/buttons.js","https://js.hs-scripts.com/39785153.js"],
 
   // On page navigation for the current documentation page.
   onPageNav: "separate",
