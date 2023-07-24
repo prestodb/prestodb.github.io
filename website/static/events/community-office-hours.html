@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Presto Community Office Hours</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="/css/effects.css" type="text/css" />
+  <link rel="canonical" href="https://prestodb.io/events/community-office-hours.html" />
+  <meta name="viewport" content="width=device-width">
+  <meta name="robots" content="follow, index"/>
+  <meta name="description" content="Join the community for monthly Presto virtual office hours. Ask questions, troubleshoot, meet Presto engineers and users."/>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Presto Community Office Hours">
+  <meta property="og:description" content="Join the community for monthly Presto virtual office hours. Ask questions, troubleshoot, meet Presto engineers and users.">
+  <meta property="og:image" content="static/presto-og.png">
+  <meta name="twitter:card" content="static/presto-og.png" />
+  <meta name="twitter:title" content="Presto Community Office Hours" />
+  <meta name="twitter:description" content="Join the community for monthly Presto virtual office hours. Ask questions, troubleshoot, meet Presto engineers and users." />
+  <link rel="icon" type="image/x-icon" href="/img/icon-presto-dots-color.svg">
+  <script async src="/static/js/bootstrap.bundle.min.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-82811140-44"></script>  <!-- Start of HubSpot Embed Code -->
+  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/39785153.js"></script>
+  <!-- End of HubSpot Embed Code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+  <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-82811140-44');
+  </script>
+</head>
+
+<body>
+  <div id="fb-root"></div>
+  <script>
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <noscript>
+    <style>
+      .sequential-fadeup>*,
+      .sequential-fadeup>*:first-child,
+      .sequential-fadeup>*:last-child {
+        opacity: 1;
+        transform: scale(1);
+      }
+    </style>
+    This site requires javascript.
+  </noscript>
+  <header class="masthead">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="."><img src="../img/logo-presto-white.svg" alt="" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/getting-started.html">Get Started</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Learn
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/what-is-presto.html">What is Presto?</a></li>
+                <li><a class="dropdown-item" href="/powered-by-presto.html">Powered By Presto</a></li>
+                <li><a class="dropdown-item" href="/tutorials.html">Tutorials</a></li>
+                <li><a class="dropdown-item" href="/videos.html">Videos</a></li>
+                <li><a class="dropdown-item" href="/newsletter.html">Newsletter</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/community.html">Community</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/docs/current" target="_blank">Docs</a>
+            </li>
+          </ul>
+          <div class="nav-icons">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link nav-icon nav-slack"></a>
+            <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link nav-icon nav-github"></a>
+            <a href="https://stackoverflow.com/questions/tagged/presto" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link nav-icon nav-stackoverflow"></a>
+            <a href="https://twitter.com/prestodb" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link nav-icon nav-twitter"></a>
+            <a href="https://www.linkedin.com/company/presto-foundation/" target="_blank"  rel="noopener noreferrer" class="navbar__item navbar__link nav-icon nav-linkedin"></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="bg-silver-gradient bottom-cap-white">
+    <div class="container-fluid wrapper pb-5">
+      <div class="row align-items-center pt-5 ">
+        <h1 class="py-2 text-center">Presto Community Office Hours</h1>
+        <h5 class="mx-auto text-center" style="max-width:1000px">Our monthly virtual community office hour is a time for you to ask questions, get help troubleshooting, and meet Presto engineers and community members. All are welcome!</h5>
+      </div>
+    </div>
+  </section>
+  <section class="">
+    <div class="container-fluid wrapper py-5">
+      <div class="row" style="max-width:960px;margin:0 auto;">
+        <div class="col-12 col-md-7 mb-3">
+          <h2>Next Office Hours</h2> 
+          <h5><b>Date:</b> Wednesday, August 2nd</h5>
+          <h5><b>Time:</b> 8:30a PT | 11:30a ET | 4:30p GMT | 9:00p IST</h5>
+          <h5><b>Meeting link:</b> <a href="https://zoom.us/j/98507169692" alt="join meeting on zoom" target="_blank">https://zoom.us/j/98507169692</a></h5> 
+        </div>
+        <div class="col-12 col-md-5 text-center" style="border-radius:12px;background:#fff;padding:0 30px 30px;box-shadow:0 0 10px rgba(0,0,0,0.15)">
+          <p><h4>Add Event to your Calendar</h4> </p>
+          <a href="https://calndr.link/e/gJF8KARaRa?s=apple" title="Add Apple calendar event" class="btn btn-primary m-1" target="_blank">Apple</a>
+          <a href="https://calndr.link/e/gJF8KARaRa?s=google" title="Add Google calendar event" class="btn btn-primary m-1" target="_blank">Google</a>
+          <a href="https://calndr.link/e/gJF8KARaRa?s=office365" title="Add Office 365 calendar event" class="btn btn-primary m-1" target="_blank">Office 365</a>
+          <a href="https://calndr.link/e/gJF8KARaRa?s=outlookcom" title="Add Outlook Web calendar event" class="btn btn-primary m-1" target="_blank">Outlook Web</a>
+          <a href="https://calndr.link/e/gJF8KARaRa?s=outlook" title="Add Outlook calendar event" class="btn btn-primary m-1" target="_blank">Outlook</a>
+          <a href="https://calndr.link/e/gJF8KARaRa?s=yahoo" title="Add Yahoo calendar event" class="btn btn-primary m-1" target="_blank">Yahoo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer footer-dark">
+    <div class="container container-fluid">
+      <div class="row footer__links">
+        <div class="col footer__col">
+          <ul class="footer__items clean-list">
+            <li class="footer__title">Docs</li>
+            <li class="footer__item"><a class="footer__link-item" href="/getting-started.html">Get Started</a></li>
+            <li class="footer__item"><a href="/docs/current/" target="_self" rel="noopener noreferrer"
+                class="footer__link-item" position="left">Presto Docs</a></li>
+          </ul>
+        </div>
+        <div class="col footer__col">
+          <ul class="footer__items clean-list">
+            <li class="footer__title">Community</li>
+            <li class="footer__item"><a href="https://communityinviter.com/apps/prestodb/prestodb" target="_blank" rel="noopener noreferrer"
+                class="footer__link-item">Slack <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24"
+                  class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                  <path fill="currentColor"
+                    d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                  </path>
+                </svg></a></li>
+            <li class="footer__item"><a href="https://twitter.com/prestodb" target="_blank" rel="noopener noreferrer"
+                class="footer__link-item">Twitter <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24"
+                  class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                  <path fill="currentColor"
+                    d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                  </path>
+                </svg></a></li>
+            <li class="footer__item"><a href="https://www.meetup.com/prestodb/" target="_blank"
+                rel="noopener noreferrer" class="footer__link-item">Meetup <svg width="13.5" height="13.5"
+                  aria-hidden="true" viewBox="0 0 24 24"
+                  class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                  <path fill="currentColor"
+                    d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                  </path>
+                </svg></a></li>
+            <li class="footer__item"><a href="https://www.linkedin.com/company/presto-foundation/" target="_blank"
+                rel="noopener noreferrer" class="footer__link-item">LinkedIn <svg width="13.5" height="13.5"
+                  aria-hidden="true" viewBox="0 0 24 24"
+                  class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                  <path fill="currentColor"
+                    d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                  </path>
+                </svg></a></li>
+          </ul>
+        </div>
+        <div class="col footer__col">
+          <ul class="footer__items clean-list">
+            <li class="footer__title">More</li>
+            <li class="footer__item"><a class="footer__link-item" href="/blog/index.html">PrestoDB Blog</a></li>
+            <li class="footer__item"><a href="https://github.com/prestodb/presto" target="_blank"
+                rel="noopener noreferrer" class="footer__link-item">GitHub <svg width="13.5" height="13.5"
+                  aria-hidden="true" viewBox="0 0 24 24"
+                  class="iconExternalLink_node_modules-@docusaurus-theme-classic-lib-theme-IconExternalLink-styles-module">
+                  <path fill="currentColor"
+                    d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z">
+                  </path>
+                </svg></a></li>
+            <li class="footer__item"><a class="footer__link-item" href="/join.html">Presto Foundation</a></li>
+<li class="footer__item"><a class="footer__link-item" href="/news.html">News & Press</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom text--center">
+        <div class="footer__copyright">Copyright © 2022 The Presto Foundation.<br>
+          All rights reserved. Presto is a registered trademark of LF Projects, LLC. <br>Please see our <a
+            href="https://lfprojects.org/policies/trademark-policy/" target="_blank">Trademark Policy</a> for more
+          information.<br>
+          <a href="https://lfprojects.org/policies/privacy-policy/" target="_blank">Privacy Policy</a> |
+          <a href="https://lfprojects.org/policies/terms-of-use/" target="_blank">Terms of Use</a>.
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
