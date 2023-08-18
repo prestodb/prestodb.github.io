@@ -43,7 +43,7 @@ Meta plans to consolidate their data warehouse workloads onto Presto as they mig
 
 ## Presto at Uber - Enhancing User Experience with Presto  
 
-Gurmeet Singh, a software engineer in the Uber Presto team, discusses Uber's journey with Presto and its impact on user experience. Previously working in the storage domain, Gurmeet transitioned to the analytics layer at Uber, where he witnessed firsthand how Presto drives business use cases and improves user satisfaction. Key use cases are exploratory analytics for operations teams who want to do analysis on how operations are doing, as well as batch ETL workloads where you run a query on an ad hoc basis but you want to convert it to a pipeline. Dashboarding, reporting, and experimentation analysis is also done with Presto. 
+Gurmeet Singh, a software engineer in the Uber Presto team, discusses Uber's journey with Presto and its impact on user experience. Previously working in the storage domain, Gurmeet transitioned to the analytics layer at Uber, where he witnessed firsthand how Presto drives business use cases and improves user satisfaction. Key use cases are exploratory analytics for operations teams who want to do analysis on how operations are doing, as well as batch ETL workloads where you run a query on an ad hoc basis but you want to convert it to a pipeline. Dashboarding, reporting, and experimentation analysis are also done with Presto. 
 
 ### Key Metrics 
 
@@ -59,7 +59,7 @@ Intuit, with its massive data landscape serving millions of customers, relies on
 
 Meta processes data at an exabyte scale, benefiting tens of thousands of users and enhancing their data warehouse infrastructure with Presto. 
 
-Uber focuses on delivering a seamless user experience and utilizes Presto to support various business use cases, including efficient data processing for Uber Eats deliveries and quick matching with rides. Presto plays a critical role in business operations at Presto. 
+Uber focuses on delivering a seamless user experience and utilizes Presto to support various business use cases, including efficient data processing for Uber Eats deliveries and quick matching with rides. Presto plays a critical role in business operations at Uber. 
 
 Overall, these three companies showcase the reliability of Presto as a powerful SQL query engine for scaling data analytics. Whether it's exploring vast amounts of data, performing ETL tasks, or optimizing user experiences, Presto proves its effectiveness in meeting the diverse needs of organizations across different industries. As Presto continues to evolve and improve, it is expected to play an even more significant role in the data analytics landscape in the future. 
 
