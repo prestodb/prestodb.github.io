@@ -63,4 +63,4 @@ Uber focuses on delivering a seamless user experience and utilizes Presto to sup
 
 Overall, these three companies showcase the reliability of Presto as a powerful SQL query engine for scaling data analytics. Whether it's exploring vast amounts of data, performing ETL tasks, or optimizing user experiences, Presto proves its effectiveness in meeting the diverse needs of organizations across different industries. As Presto continues to evolve and improve, it is expected to play an even more significant role in the data analytics landscape in the future. 
 
-You can see the full <a href="https://www.youtube.com/watch?v=KHd86oyd534&list=PLJVeO1NMmyqXm5_fuFoKyMfZWyT5jOeKh&index=14" style="color:blue;">panel presentation on the Presto Foundation Youtube channel</a>. 
+You can see the full <a href="https://www.youtube.com/watch?v=KHd86oyd534&list=PLJVeO1NMmyqXm5_fuFoKyMfZWyT5jOeKh&index=14" style="color:blue;">panel presentation on the Presto Foundation YouTube channel</a>. 
