@@ -14,7 +14,7 @@ We looked at how other open source projects solve this problem, and came across 
 Working groups help to create focus around specific areas of the project to advance that part of the project more effectively. Each group will have a leader who will call meetings and help facilitate discussions. Members are encouraged to attend these meetings to help determine priorities and roadmap as well as work on delivering on that roadmap. 
 
 ## Who are working groups for? 
-Whether you’re new to Presto or a seasoned vet who has been working on Presto for a long time, working groups are literally for anyone in the community!  
+Whether you’re new to Presto or a seasoned vet who has been working on Presto for a long time, working groups are for anyone in the technical community!  
 
 If you’re brand new to the Presto community and don’t know where to get started, working groups are a *great* way to meet other Presto engineers and start contributing to the project. 
 
