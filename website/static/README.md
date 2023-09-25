@@ -4,4 +4,4 @@ To test locally, follow the [Docusarus instructions](https://docusaurus.io/docs/
 
 To summarize, you need to `brew install node` then `brew install yarn`. Once you have `node` and `yarn` you can run `yarn` from the website subdirectory to install the dependencies. Then you can run `yarn start` at any time to run a web server that will host the site from source or invoke `yarn build` to see what will be created when the site is compiled.
 
-Static HTML portions of the site are stored under [website/static](website/static), and blog posts are stored as markdown under [website/blog](website/blog).
+Static HTML portions of the site are stored under [website/static](https://github.com/prestodb/prestodb.github.io/tree/source/website/static), and blog posts are stored as markdown under [website/blog](https://github.com/prestodb/prestodb.github.io/tree/source/website/blog).
