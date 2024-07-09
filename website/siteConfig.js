@@ -163,6 +163,7 @@ const siteConfig = {
     // styles for docs
     "static/copybutton.css",
     "static/material.css",
+    "static/sphinx_immaterial_theme.359ec555e2989f00f.min.css",
     "static/presto.css",
     "static/pygments.css",
     "static/fonts/material-icons.css",
