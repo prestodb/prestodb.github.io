@@ -1,0 +1,1270 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Supporting DELETE and UPDATE - Presto 0.288 Documentation</title>
+      
+    
+    
+      
+        
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.359ec555e2989f00f.min.css?v=b000af5c" />
+        <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-K7GB6F0LBZ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#delete-and-update-data-flow" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.288 Documentation" class="md-header__button md-logo" aria-label="Presto 0.288 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.288 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Supporting DELETE and UPDATE
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.288 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.288 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.288 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        <span class="md-ellipsis">Overview</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        <span class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto Clients</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        <span class="md-ellipsis">Security</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        <span class="md-ellipsis">Administration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        <span class="md-ellipsis">Cache</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        <span class="md-ellipsis">Query Optimizer</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        <span class="md-ellipsis">Connectors</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        <span class="md-ellipsis">Plugins</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        <span class="md-ellipsis">Functions and Operators</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Language</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Statement Syntax</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        <span class="md-ellipsis">Migration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        <span class="md-ellipsis">REST API</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        <span class="md-ellipsis">Ecosystem</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        <span class="md-ellipsis">Router</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_17" type="checkbox" id="__nav_17" checked>
+      
+      
+      
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../develop.html"><span class="md-ellipsis">Developer Guide</span></a>
+          
+            <label for="__nav_17">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Developer Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_17">
+          <span class="md-nav__icon md-icon"></span>
+          <span class="md-ellipsis">Developer Guide</span>
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="spi-overview.html" class="md-nav__link">
+        <span class="md-ellipsis">SPI Overview</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="connectors.html" class="md-nav__link">
+        <span class="md-ellipsis">Connectors</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="example-http.html" class="md-nav__link">
+        <span class="md-ellipsis">Example HTTP Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span class="md-ellipsis">Supporting DELETE and UPDATE</span>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        <span class="md-ellipsis">Supporting DELETE and UPDATE</span>
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/develop/delete-and-update.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/develop/delete-and-update.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#delete-and-update-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">DELETE and UPDATE Data Flow</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#the-rowid-column-handle-abstraction" class="md-nav__link">
+    <span class="md-ellipsis">The row<wbr>Id Column Handle Abstraction</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The rowId Column Handle Abstraction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-rowid-column-handle-for-delete" class="md-nav__link">
+    <span class="md-ellipsis">The row<wbr>Id Column Handle for DELETE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-rowid-column-handle-for-update" class="md-nav__link">
+    <span class="md-ellipsis">The row<wbr>Id Column Handle for UPDATE</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#updatablepagesource-api" class="md-nav__link">
+    <span class="md-ellipsis">Updatable<wbr>Page<wbr>Source API</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#connectormetadata-delete-api" class="md-nav__link">
+    <span class="md-ellipsis">Connector<wbr>Metadata DELETE API</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#connectormetadata-update-api" class="md-nav__link">
+    <span class="md-ellipsis">Connector<wbr>Metadata UPDATE API</span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="types.html" class="md-nav__link">
+        <span class="md-ellipsis">Types</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="functions.html" class="md-nav__link">
+        <span class="md-ellipsis">Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="system-access-control.html" class="md-nav__link">
+        <span class="md-ellipsis">System Access Control</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="password-authenticator.html" class="md-nav__link">
+        <span class="md-ellipsis">Password Authenticator</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="event-listener.html" class="md-nav__link">
+        <span class="md-ellipsis">Event Listener</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="client-protocol.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto Client REST API</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="worker-protocol.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto Worker REST API</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="serialized-page.html" class="md-nav__link">
+        <span class="md-ellipsis">Serialized<wbr>Page Wire Format</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="presto-console.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto Console</span>
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presto-cpp.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto C++</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        <span class="md-ellipsis">Release Notes</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/develop/delete-and-update.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/develop/delete-and-update.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#delete-and-update-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">DELETE and UPDATE Data Flow</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#the-rowid-column-handle-abstraction" class="md-nav__link">
+    <span class="md-ellipsis">The row<wbr>Id Column Handle Abstraction</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The rowId Column Handle Abstraction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-rowid-column-handle-for-delete" class="md-nav__link">
+    <span class="md-ellipsis">The row<wbr>Id Column Handle for DELETE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-rowid-column-handle-for-update" class="md-nav__link">
+    <span class="md-ellipsis">The row<wbr>Id Column Handle for UPDATE</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#updatablepagesource-api" class="md-nav__link">
+    <span class="md-ellipsis">Updatable<wbr>Page<wbr>Source API</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#connectormetadata-delete-api" class="md-nav__link">
+    <span class="md-ellipsis">Connector<wbr>Metadata DELETE API</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#connectormetadata-update-api" class="md-nav__link">
+    <span class="md-ellipsis">Connector<wbr>Metadata UPDATE API</span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+  <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/develop/delete-and-update.rst" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+<h1 id="supporting-delete-and-update">Supporting <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> and <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code><a class="headerlink" href="#supporting-delete-and-update" title="Link to this heading">¶</a></h1>
+<p>The Presto engine provides APIs to support row-level SQL <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> and <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>.
+To implement <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> or <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>, a connector must:</p>
+<ul class="simple">
+<li><p>Layer an <code class="docutils literal notranslate"><span class="pre">UpdatablePageSource</span></code> on top of the connector’s <code class="docutils literal notranslate"><span class="pre">ConnectorPageSource</span></code></p></li>
+<li><p>Define <code class="docutils literal notranslate"><span class="pre">ConnectorMetadata</span></code> methods to get a rowId column handle</p></li>
+<li><p>Start the operation using <code class="docutils literal notranslate"><span class="pre">beginUpdate()</span></code> or <code class="docutils literal notranslate"><span class="pre">beginDelete()</span></code></p></li>
+<li><p>Finish the operation using <code class="docutils literal notranslate"><span class="pre">finishUpdate()</span></code> or <code class="docutils literal notranslate"><span class="pre">finishDelete()</span></code></p></li>
+</ul>
+<h2 id="delete-and-update-data-flow"><code class="docutils literal notranslate"><span class="pre">DELETE</span></code> and <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> Data Flow<a class="headerlink" href="#delete-and-update-data-flow" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">DELETE</span></code> and <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> have a similar flow:</p>
+<ul class="simple">
+<li><p>For each split, the connector will create an <code class="docutils literal notranslate"><span class="pre">UpdatablePageSource</span></code> instance, layered over the
+connector’s <code class="docutils literal notranslate"><span class="pre">ConnectorPageSource</span></code>, to read pages on behalf of the Presto engine, and to
+write deletions or updates to the underlying data store.</p></li>
+<li><p>The connector’s <code class="docutils literal notranslate"><span class="pre">UpdatablePageSource.getNextPage()</span></code> implementation fetches the next page
+from the underlying <code class="docutils literal notranslate"><span class="pre">ConnectorPageSource</span></code>, optionally reformats the page, and returns it
+to the Presto engine.</p></li>
+<li><p>The Presto engine performs filtering and projection on the page read, producing a page of filtered,
+projected results.</p></li>
+<li><p>The Presto engine passes that filtered, projected page of results to the connector’s
+<code class="docutils literal notranslate"><span class="pre">UpdatablePageSource</span></code> <code class="docutils literal notranslate"><span class="pre">deleteRows()</span></code> or <code class="docutils literal notranslate"><span class="pre">updateRows()</span></code> method.  Those methods persist
+the deletions or updates in the underlying data store.</p></li>
+<li><p>When all the pages for a specific split have been processed, the Presto engine calls
+<code class="docutils literal notranslate"><span class="pre">UpdatablePageSource.finish()</span></code>, which returns a <code class="docutils literal notranslate"><span class="pre">Collection&lt;Slice&gt;</span></code> of fragments
+representing connector-specific information about the rows processed by the calls to
+<code class="docutils literal notranslate"><span class="pre">deleteRows</span></code> or <code class="docutils literal notranslate"><span class="pre">updateRows</span></code>.</p></li>
+<li><p>When all pages for all splits have been processed, the Presto engine calls <code class="docutils literal notranslate"><span class="pre">ConnectorMetadata.finishDelete()</span></code> or
+<code class="docutils literal notranslate"><span class="pre">finishUpdate</span></code>, passing a collection containing all the fragments from all the splits.  The connector
+does what is required to finalize the operation, for example, committing the transaction.</p></li>
+</ul>
+<h2 id="the-rowid-column-handle-abstraction">The rowId Column Handle Abstraction<a class="headerlink" href="#the-rowid-column-handle-abstraction" title="Link to this heading">¶</a></h2>
+<p>The Presto engine and connectors use a rowId column handle abstraction to agree on the identities of rows
+to be updated or deleted.  The rowId column handle is opaque to the Presto engine.  Depending on the connector,
+the rowId column handle abstraction could represent several physical columns.</p>
+<h3 id="the-rowid-column-handle-for-delete">The rowId Column Handle for <code class="docutils literal notranslate"><span class="pre">DELETE</span></code><a class="headerlink" href="#the-rowid-column-handle-for-delete" title="Link to this heading">¶</a></h3>
+<p>The Presto engine identifies the rows to be deleted using a connector-specific
+rowId column handle, returned by the connector’s <code class="docutils literal notranslate"><span class="pre">ConnectorMetadata.getDeleteRowIdColumnHandle()</span></code>
+method, whose full signature is:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">ColumnHandle</span><span class="w"> </span><span class="n">getDeleteRowIdColumnHandle</span><span class="p">(</span>
+<span class="w">    </span><span class="n">ConnectorSession</span><span class="w"> </span><span class="k">session</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ConnectorTableHandle</span><span class="w"> </span><span class="n">tableHandle</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h3 id="the-rowid-column-handle-for-update">The rowId Column Handle for <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code><a class="headerlink" href="#the-rowid-column-handle-for-update" title="Link to this heading">¶</a></h3>
+<p>The Presto engine identifies rows to be updated using a connector-specific rowId column handle,
+returned by the connector’s <code class="docutils literal notranslate"><span class="pre">ConnectorMetadata.getUpdateRowIdColumnHandle()</span></code>
+method.  In addition to the columns that identify the row, for <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> the rowId column will contain
+any columns that the connector requires in order to perform the <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> operation.</p>
+<h2 id="updatablepagesource-api">UpdatablePageSource API<a class="headerlink" href="#updatablepagesource-api" title="Link to this heading">¶</a></h2>
+<p>As mentioned above, to support <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> or <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>, the connector must define a subclass of
+<code class="docutils literal notranslate"><span class="pre">UpdatablePageSource</span></code>, layered over the connector’s <code class="docutils literal notranslate"><span class="pre">ConnectorPageSource</span></code>.  The interesting methods are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Page</span> <span class="pre">getNextPage()</span></code>.  When the Presto engine calls <code class="docutils literal notranslate"><span class="pre">getNextPage()</span></code>, the <code class="docutils literal notranslate"><span class="pre">UpdatablePageSource</span></code> calls
+its underlying <code class="docutils literal notranslate"><span class="pre">ConnectorPageSource.getNextPage()</span></code> method to get a page.  Some connectors will reformat
+the page before returning it to the Presto engine.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">deleteRows(Block</span> <span class="pre">rowIds)</span></code>.  The Presto engine calls the <code class="docutils literal notranslate"><span class="pre">deleteRows()</span></code> method of the same <code class="docutils literal notranslate"><span class="pre">UpdatablePageSource</span></code>
+instance that supplied the original page,  passing a block of rowIds, created by the Presto engine based on the column
+handle returned by <code class="docutils literal notranslate"><span class="pre">ConnectorMetadata.getDeleteRowIdColumnHandle()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">updateRows(Page</span> <span class="pre">page,</span> <span class="pre">List&lt;Integer&gt;</span> <span class="pre">columnValueAndRowIdChannels)</span></code>.  The Presto engine calls the <code class="docutils literal notranslate"><span class="pre">updateRows()</span></code>
+method of the same <code class="docutils literal notranslate"><span class="pre">UpdatablePageSource</span></code> instance that supplied the original page, passing a page of projected columns,
+one for each updated column and the last one for the rowId column.  The order of projected columns is defined by the Presto engine,
+and that order is reflected in the <code class="docutils literal notranslate"><span class="pre">columnValueAndRowIdChannels</span></code> argument.  The job of <code class="docutils literal notranslate"><span class="pre">updateRows()</span></code> is to:</p>
+<ul>
+<li><p>Extract the updated column blocks and the rowId block from the projected page.</p></li>
+<li><p>Assemble them in whatever order is required by the connector for storage.</p></li>
+<li><p>Store the update result in the underlying file store.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CompletableFuture&lt;Collection&lt;Slice&gt;&gt;</span> <span class="pre">finish()</span></code>.  The Presto engine calls <code class="docutils literal notranslate"><span class="pre">finish()</span></code> when all the pages
+of a split have been processed.  The connector returns a future containing a collection of <code class="docutils literal notranslate"><span class="pre">Slice</span></code>, representing
+connector-specific information about the rows processed.  Usually this will include the row count, and might
+include information like the files or partitions created or changed.</p></li>
+</ul>
+<h2 id="connectormetadata-delete-api"><code class="docutils literal notranslate"><span class="pre">ConnectorMetadata</span></code> <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> API<a class="headerlink" href="#connectormetadata-delete-api" title="Link to this heading">¶</a></h2>
+<p>A connector implementing <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> must specify three <code class="docutils literal notranslate"><span class="pre">ConnectorMetadata</span></code> methods.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">getDeleteRowIdColumnHandle()</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">ColumnHandle</span><span class="w"> </span><span class="n">getDeleteRowIdColumnHandle</span><span class="p">(</span>
+<span class="w">     </span><span class="n">ConnectorSession</span><span class="w"> </span><span class="k">session</span><span class="p">,</span>
+<span class="w">     </span><span class="n">ConnectorTableHandle</span><span class="w"> </span><span class="n">tableHandle</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>The ColumnHandle returned by this method provides the rowId column handle used by the connector to identify rows
+to be deleted, as well as any other fields of the row that the connector will need to complete the <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> operation.
+For a JDBC connector, that rowId is usually the primary key for the table and no other fields are required.
+For other connectors, the information needed to identify a row usually consists of multiple physical columns.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">beginDelete()</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">ConnectorTableHandle</span><span class="w"> </span><span class="n">beginDelete</span><span class="p">(</span>
+<span class="w">     </span><span class="n">ConnectorSession</span><span class="w"> </span><span class="k">session</span><span class="p">,</span>
+<span class="w">     </span><span class="n">ConnectorTableHandle</span><span class="w"> </span><span class="n">tableHandle</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>As the last step in creating the <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> execution plan, the connector’s <code class="docutils literal notranslate"><span class="pre">beginDelete()</span></code> method is called,
+passing the <code class="docutils literal notranslate"><span class="pre">session</span></code> and <code class="docutils literal notranslate"><span class="pre">tableHandle</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">beginDelete()</span></code> performs any orchestration needed in the connector to start processing the <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>.
+This orchestration varies from connector to connector.</p>
+<p><code class="docutils literal notranslate"><span class="pre">beginDelete()</span></code> returns a <code class="docutils literal notranslate"><span class="pre">ConnectorTableHandle</span></code> with any added information the connector needs when the handle
+is passed back to <code class="docutils literal notranslate"><span class="pre">finishDelete()</span></code> and the split generation machinery.  For most connectors, the returned table
+handle contains a flag identifying the table handle as a table handle for a <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> operation.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">finishDelete()</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">void</span><span class="w"> </span><span class="n">finishDelete</span><span class="p">(</span>
+<span class="w">    </span><span class="n">ConnectorSession</span><span class="w"> </span><span class="k">session</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ConnectorTableHandle</span><span class="w"> </span><span class="n">tableHandle</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Slice</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fragments</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>During <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> processing, the Presto engine accumulates the <code class="docutils literal notranslate"><span class="pre">Slice</span></code> collections returned by <code class="docutils literal notranslate"><span class="pre">UpdatablePageSource.finish()</span></code>.
+After all splits have been processed, the engine calls <code class="docutils literal notranslate"><span class="pre">finishDelete()</span></code>, passing the table handle and that
+collection of <code class="docutils literal notranslate"><span class="pre">Slice</span></code> fragments.  In response, the connector takes appropriate actions to complete the <code class="docutils literal notranslate"><span class="pre">Delete</span></code> operation.
+Those actions might include committing the transaction, assuming the connector supports a transaction paradigm.</p>
+</li>
+</ul>
+<h2 id="connectormetadata-update-api"><code class="docutils literal notranslate"><span class="pre">ConnectorMetadata</span></code> <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> API<a class="headerlink" href="#connectormetadata-update-api" title="Link to this heading">¶</a></h2>
+<p>A connector implementing <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> must specify three <code class="docutils literal notranslate"><span class="pre">ConnectorMetadata</span></code> methods.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">getUpdateRowIdColumnHandle</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">ColumnHandle</span><span class="w"> </span><span class="n">getUpdateRowIdColumnHandle</span><span class="p">(</span>
+<span class="w">     </span><span class="n">ConnectorSession</span><span class="w"> </span><span class="k">session</span><span class="p">,</span>
+<span class="w">     </span><span class="n">ConnectorTableHandle</span><span class="w"> </span><span class="n">tableHandle</span><span class="p">,</span>
+<span class="w">     </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ColumnHandle</span><span class="o">&gt;</span><span class="w"> </span><span class="n">updatedColumns</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">updatedColumns</span></code> list contains column handles for all columns updated by the <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> operation in table column order.</p>
+<p>The ColumnHandle returned by this method provides the rowId used by the connector to identify rows to be updated, as
+well as any other fields of the row that the connector will need to complete the <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> operation.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">beginUpdate</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">ConnectorTableHandle</span><span class="w"> </span><span class="n">beginUpdate</span><span class="p">(</span>
+<span class="w">     </span><span class="n">ConnectorSession</span><span class="w"> </span><span class="k">session</span><span class="p">,</span>
+<span class="w">     </span><span class="n">ConnectorTableHandle</span><span class="w"> </span><span class="n">tableHandle</span><span class="p">,</span>
+<span class="w">     </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ColumnHandle</span><span class="o">&gt;</span><span class="w"> </span><span class="n">updatedColumns</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>As the last step in creating the <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> execution plan, the connector’s <code class="docutils literal notranslate"><span class="pre">beginUpdate()</span></code> method is called,
+passing arguments that define the <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> to the connector.  In addition to the <code class="docutils literal notranslate"><span class="pre">session</span></code>
+and <code class="docutils literal notranslate"><span class="pre">tableHandle</span></code>, the arguments includes the list of the updated columns handles, in table column order.</p>
+<p><code class="docutils literal notranslate"><span class="pre">beginUpdate()</span></code> performs any orchestration needed in the connector to start processing the <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>.
+This orchestration varies from connector to connector.</p>
+<p><code class="docutils literal notranslate"><span class="pre">beginUpdate</span></code> returns a <code class="docutils literal notranslate"><span class="pre">ConnectorTableHandle</span></code> with any added information the connector needs when the handle
+is passed back to <code class="docutils literal notranslate"><span class="pre">finishUpdate()</span></code> and the split generation machinery.  For most connectors, the returned table
+handle contains a flag identifying the table handle as a table handle for a <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> operation.  For some connectors
+that support partitioning, the table handle will reflect that partitioning.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">finishUpdate</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">void</span><span class="w"> </span><span class="n">finishUpdate</span><span class="p">(</span>
+<span class="w">    </span><span class="n">ConnectorSession</span><span class="w"> </span><span class="k">session</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ConnectorTableHandle</span><span class="w"> </span><span class="n">tableHandle</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Slice</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fragments</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>During <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> processing, the Presto engine accumulates the <code class="docutils literal notranslate"><span class="pre">Slice</span></code> collections returned by <code class="docutils literal notranslate"><span class="pre">UpdatablePageSource.finish()</span></code>.
+After all splits have been processed, the engine calls <code class="docutils literal notranslate"><span class="pre">finishUpdate()</span></code>, passing the table handle and that
+collection of <code class="docutils literal notranslate"><span class="pre">Slice</span></code> fragments.  In response, the connector takes appropriate actions to complete the <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> operation.
+Those actions might include committing the transaction, assuming the connector supports a transaction paradigm.</p>
+</li>
+</ul>
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="example-http.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Example HTTP Connector" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Example HTTP Connector
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="types.html" class="md-footer__link md-footer__link--next" aria-label="Next: Types" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Types
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    
+  </body>
+</html>
