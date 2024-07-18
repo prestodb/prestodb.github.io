@@ -1,0 +1,779 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="374665">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  <script>
+      window.ga = window.ga || function () {
+          (ga.q = ga.q || []).push(arguments)
+      };
+      ga.l = +new Date;
+      ga('create', 'UA-82811140-44', 'auto');
+      ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+  
+    <title>SerializedPage Wire Format &#8212; Presto 0.260.1 Documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/material.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/presto.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Release Notes" href="../release.html" />
+    <link rel="prev" title="Presto Client REST API" href="client-protocol.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=grey data-md-color-accent=blue>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#develop/serialized-page" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="Presto 0.260.1 Documentation"
+           class="md-header-nav__button md-logo">
+          
+              <img src="../_static/logo.png" height="26"
+                   alt="Presto 0.260.1 Documentation logo">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Presto 0.260.1 Documentation</span>
+          <span class="md-header-nav__topic"> SerializedPage Wire Format </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="GET" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    <!-- empty -->
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="Presto 0.260.1 Documentation" class="md-nav__button md-logo">
+      
+        <img src="../_static/logo.png" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="Presto 0.260.1 Documentation">Presto 0.260.1 Documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../overview.html" class="md-nav__link">Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../installation.html" class="md-nav__link">Installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../security.html" class="md-nav__link">Security</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html" class="md-nav__link">Administration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../cache.html" class="md-nav__link">Cache</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../connector.html" class="md-nav__link">Connectors</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../language.html" class="md-nav__link">SQL Language</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../migration.html" class="md-nav__link">Migration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="spi-overview.html" class="md-nav__link">SPI Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="connectors.html" class="md-nav__link">Connectors</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="example-http.html" class="md-nav__link">Example HTTP Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="types.html" class="md-nav__link">Types</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="functions.html" class="md-nav__link">Functions</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="system-access-control.html" class="md-nav__link">System Access Control</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="password-authenticator.html" class="md-nav__link">Password Authenticator</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="event-listener.html" class="md-nav__link">Event Listener</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="client-protocol.html" class="md-nav__link">Presto Client REST API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> SerializedPage Wire Format </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">SerializedPage Wire Format</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#develop-serialized-page--page-root" class="md-nav__link">SerializedPage Wire Format</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#header" class="md-nav__link">Header</a>
+        </li>
+        <li class="md-nav__item"><a href="#columns" class="md-nav__link">Columns</a>
+        </li>
+        <li class="md-nav__item"><a href="#column-header" class="md-nav__link">Column Header</a>
+        </li>
+        <li class="md-nav__item"><a href="#null-flags" class="md-nav__link">Null Flags</a>
+        </li>
+        <li class="md-nav__item"><a href="#xxx-array-encodings" class="md-nav__link">XXX_ARRAY Encodings</a>
+        </li>
+        <li class="md-nav__item"><a href="#variable-width-encoding" class="md-nav__link">VARIABLE_WIDTH Encoding</a>
+        </li>
+        <li class="md-nav__item"><a href="#array-encoding" class="md-nav__link">ARRAY Encoding</a>
+        </li>
+        <li class="md-nav__item"><a href="#map-encoding" class="md-nav__link">MAP Encoding</a>
+        </li>
+        <li class="md-nav__item"><a href="#row-encoding" class="md-nav__link">ROW Encoding</a>
+        </li>
+        <li class="md-nav__item"><a href="#additional-usage" class="md-nav__link">Additional Usage</a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../release.html" class="md-nav__link">Release Notes</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#develop-serialized-page--page-root" class="md-nav__link">SerializedPage Wire Format</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#header" class="md-nav__link">Header</a>
+        </li>
+        <li class="md-nav__item"><a href="#columns" class="md-nav__link">Columns</a>
+        </li>
+        <li class="md-nav__item"><a href="#column-header" class="md-nav__link">Column Header</a>
+        </li>
+        <li class="md-nav__item"><a href="#null-flags" class="md-nav__link">Null Flags</a>
+        </li>
+        <li class="md-nav__item"><a href="#xxx-array-encodings" class="md-nav__link">XXX_ARRAY Encodings</a>
+        </li>
+        <li class="md-nav__item"><a href="#variable-width-encoding" class="md-nav__link">VARIABLE_WIDTH Encoding</a>
+        </li>
+        <li class="md-nav__item"><a href="#array-encoding" class="md-nav__link">ARRAY Encoding</a>
+        </li>
+        <li class="md-nav__item"><a href="#map-encoding" class="md-nav__link">MAP Encoding</a>
+        </li>
+        <li class="md-nav__item"><a href="#row-encoding" class="md-nav__link">ROW Encoding</a>
+        </li>
+        <li class="md-nav__item"><a href="#additional-usage" class="md-nav__link">Additional Usage</a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="serializedpage-wire-format">
+<h1 id="develop-serialized-page--page-root">SerializedPage Wire Format<a class="headerlink" href="#develop-serialized-page--page-root" title="Permalink to this headline">#</a></h1>
+<p>Presto uses SerializedPage binary columnar format for exchanging data between
+stages.</p>
+<p>The data can be compressed, encrypted and include a checksum. The layout is a
+header followed by a number of columns, followed by individual columns.</p>
+<a class="reference internal image-reference" href="../_images/serialized-page-layout.png"><img alt="../_images/serialized-page-layout.png" src="../_images/serialized-page-layout.png" style="width: 600px;"/></a>
+<section id="header">
+<h2 id="header">Header<a class="headerlink" href="#header" title="Permalink to this headline">#</a></h2>
+<p>The header includes:</p>
+<table>
+<colgroup>
+<col style="width: 77%"/>
+<col style="width: 23%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Size</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Number of rows</p></td>
+<td><p>4 bytes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Codec</p></td>
+<td><p>1 byte</p></td>
+</tr>
+<tr class="row-even"><td><p>Uncompressed size</p></td>
+<td><p>4 bytes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Size</p></td>
+<td><p>4 bytes</p></td>
+</tr>
+<tr class="row-even"><td><p>Checksum</p></td>
+<td><p>8 bytes</p></td>
+</tr>
+</tbody>
+</table>
+<p>Codec is a set of flags, one bit per flag.
+* 1st bit set if data is compressed
+* 2nd bit set if data is encrypted
+* 3rd bit set if checksum is included</p>
+<p>Size is the size of the payload after the header. If data is not compressed,
+size and uncompressed size are the same. If data is compressed, size is the
+size of the compressed data and uncompressed size is the size of the data
+before compression.</p>
+<p>Checksum is an CRC32 computed over the following bytes in the specified order:
+* Data after the header
+* Codec (1 byte)
+* Number of rows (4 bytes)
+* Uncompressed size (4 bytes)
+Checksum must be zero if codec doesn’t have Checksummed bit set.</p>
+<p>Note: Number of columns is not part of the header. It is stored in 4 bytes
+directly after the header.</p>
+<a class="reference internal image-reference" href="../_images/serialized-page-header.png"><img alt="../_images/serialized-page-header.png" src="../_images/serialized-page-header.png" style="width: 400px;"/></a>
+</section>
+<section id="columns">
+<h2 id="columns">Columns<a class="headerlink" href="#columns" title="Permalink to this headline">#</a></h2>
+<p>Each column starts with a header. The data follows.</p>
+</section>
+<section id="column-header">
+<h2 id="column-header">Column Header<a class="headerlink" href="#column-header" title="Permalink to this headline">#</a></h2>
+<p>The column header specifies the encoding of the column.</p>
+<ul class="simple">
+<li><p>Length of the encoding name - 4 bytes</p></li>
+<li><p>Name of the encoding</p></li>
+</ul>
+<p>The supported encodings and mappings for Presto types are:</p>
+<table>
+<colgroup>
+<col style="width: 38%"/>
+<col style="width: 63%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Encoding Name</p></th>
+<th class="head"><p>Presto Types</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BYTE_ARRAY</p></td>
+<td><p>BOOLEAN, TINYINT, UNKNOWN</p></td>
+</tr>
+<tr class="row-odd"><td><p>SHORT_ARRAY</p></td>
+<td><p>SMALLINT</p></td>
+</tr>
+<tr class="row-even"><td><p>INT_ARRAY</p></td>
+<td><p>INTEGER, REAL</p></td>
+</tr>
+<tr class="row-odd"><td><p>LONG_ARRAY</p></td>
+<td><p>BIGINT, DOUBLE, TIMESTAMP</p></td>
+</tr>
+<tr class="row-even"><td><p>INT128_ARRAY</p></td>
+<td><p>Not used</p></td>
+</tr>
+<tr class="row-odd"><td><p>VARIABLE_WIDTH</p></td>
+<td><p>VARCHAR, VARBINARY</p></td>
+</tr>
+<tr class="row-even"><td><p>ARRAY</p></td>
+<td><p>ARRAY</p></td>
+</tr>
+<tr class="row-odd"><td><p>MAP</p></td>
+<td><p>MAP</p></td>
+</tr>
+<tr class="row-even"><td><p>MAP_ELEMENT</p></td>
+<td><p>n/a</p></td>
+</tr>
+<tr class="row-odd"><td><p>ROW</p></td>
+<td><p>ROW</p></td>
+</tr>
+<tr class="row-even"><td><p>DICTIONARY</p></td>
+<td><p>n/a</p></td>
+</tr>
+<tr class="row-odd"><td><p>RLE</p></td>
+<td><p>n/a</p></td>
+</tr>
+</tbody>
+</table>
+<p>See presto-common/src/main/java/com/facebook/presto/common/block/BlockEncodingManager.java</p>
+<p>For example, the header for an INTEGER column describes INT_ARRAY encoding.
+The length of the encoding name is 9, hence, the first 4 bytes will be 0 0 0 9.
+The following 9 bytes store the INT_ARRAY string.</p>
+<a class="reference internal image-reference" href="../_images/serialized-page-int-array.png"><img alt="../_images/serialized-page-int-array.png" src="../_images/serialized-page-int-array.png" style="width: 200px;"/></a>
+</section>
+<section id="null-flags">
+<h2 id="null-flags">Null Flags<a class="headerlink" href="#null-flags" title="Permalink to this headline">#</a></h2>
+<p>All columns include the 1-byte has-nulls flag. 0 means no nulls. 1 means may have nulls.
+If has-nulls byte is 1, individual null flags are specified in the following bytes using
+1 bit per flag. 0 means the value is not null. 1 means the value is null.</p>
+<ul class="simple">
+<li><p>Has-nulls flag - 1 byte</p></li>
+<li><p>[optional] Null flags - number of rows / 8 bytes; 1 bit per flag; the bits are stored in bytes in reverse order; the first flag in each byte is the high bit.</p></li>
+</ul>
+<p>Let’s say we have 10 rows with nulls in zero-based rows 1, 4, 6, 7, 9. The null flags
+will be represented with 3 bytes. First byte stores the has-null flag: 1. Second byte
+stores null flags for the first 8 rows. Third byte stores null flags for the last 2 rows.</p>
+<a class="reference internal image-reference" href="../_images/serialized-page-nulls.png"><img alt="../_images/serialized-page-nulls.png" src="../_images/serialized-page-nulls.png" style="width: 400px;"/></a>
+</section>
+<section id="xxx-array-encodings">
+<h2 id="xxx-array-encodings">XXX_ARRAY Encodings<a class="headerlink" href="#xxx-array-encodings" title="Permalink to this headline">#</a></h2>
+<p>BYTE_ARRAY, INT_ARRAY, SHORT_ARRAY, LONG_ARRAY and INT128_ARRAY encodings differ
+only by the number of bytes used per value.</p>
+<p>The data layout is:</p>
+<ul class="simple">
+<li><p>Number of rows - 4 bytes</p></li>
+<li><p>Null flags</p></li>
+<li><p>Values - (number of rows - number of nulls) * &lt;number of bytes per value&gt; bytes; only rows with non-null values are represented</p></li>
+</ul>
+<p>The number of bytes per value is:</p>
+<table>
+<colgroup>
+<col style="width: 34%"/>
+<col style="width: 66%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Encoding Name</p></th>
+<th class="head"><p>Number of bytes per value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BYTE_ARRAY</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>SHORT_ARRAY</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>INT_ARRAY</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>LONG_ARRAY</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>INT128_ARRAY</p></td>
+<td><p>16</p></td>
+</tr>
+</tbody>
+</table>
+<p>Let’s take the example from the Null Flags section and say that we have an
+integer column with 10 rows with nulls in zero-based rows 1, 4, 6, 7, 9.
+We’ll have 4 bytes storing the number of rows: 10, followed by 3 bytes of
+null flags, followed by 20 bytes representing 5 non-null integer values for
+rows 0, 2, 3, 5, 8..</p>
+<a class="reference internal image-reference" href="../_images/serialized-page-int-column.png"><img alt="../_images/serialized-page-int-column.png" src="../_images/serialized-page-int-column.png" style="width: 500px;"/></a>
+</section>
+<section id="variable-width-encoding">
+<h2 id="variable-width-encoding">VARIABLE_WIDTH Encoding<a class="headerlink" href="#variable-width-encoding" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Number of rows - 4 bytes</p></li>
+<li><p>Offsets - number of rows * 4 bytes; 4 bytes per offset</p></li>
+<li><p>Null flags</p></li>
+<li><p>Total number of bytes in all values - 4 bytes</p></li>
+<li><p>Concatenated values</p></li>
+</ul>
+<p>Let’s again take the example from the Null Flags section and say that we
+have a string column with 10 rows with nulls in zero-based rows 1, 4, 6, 7, 9.
+The non-null rows will have values: 0 - Denali, 2 - Reinier, 3 - Whitney,
+5 - Bona, 8 - Bear. We’ll have 4 bytes storing the number of rows: 10, followed
+by 40 bytes of offsets, followed by 3 bytes of null flags, followed by 1 bytes
+storing total size of all strings: 28, followed by the concatenated string values.
+Notice that we have offsets for all rows, not just the non-null rows.</p>
+<a class="reference internal image-reference" href="../_images/serialized-page-string-column.png"><img alt="../_images/serialized-page-string-column.png" src="../_images/serialized-page-string-column.png" style="width: 800px;"/></a>
+</section>
+<section id="array-encoding">
+<h2 id="array-encoding">ARRAY Encoding<a class="headerlink" href="#array-encoding" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Elements column</p></li>
+<li><p>Number of rows - 4 bytes</p></li>
+<li><p>Offsets - (number of rows + 1) * 4 bytes; 4 bytes per offset</p></li>
+<li><p>Null flags</p></li>
+</ul>
+<p>An array column with 10 rows is represented like this:</p>
+<a class="reference internal image-reference" href="../_images/serialized-page-array-column.png"><img alt="../_images/serialized-page-array-column.png" src="../_images/serialized-page-array-column.png" style="width: 400px;"/></a>
+</section>
+<section id="map-encoding">
+<h2 id="map-encoding">MAP Encoding<a class="headerlink" href="#map-encoding" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Keys column</p></li>
+<li><p>Values column</p></li>
+<li><p>Hash table size - 4 bytes</p></li>
+<li><p>[optional] Hash table</p></li>
+<li><p>Number of rows - 4 bytes</p></li>
+<li><p>Offsets - (number of rows + 1) * 4 bytes; 4 bytes per offset</p></li>
+<li><p>Null flags</p></li>
+</ul>
+<p>A map column with 10 rows is represented like this:</p>
+<a class="reference internal image-reference" href="../_images/serialized-page-map-column.png"><img alt="../_images/serialized-page-map-column.png" src="../_images/serialized-page-map-column.png" style="width: 600px;"/></a>
+</section>
+<section id="row-encoding">
+<h2 id="row-encoding">ROW Encoding<a class="headerlink" href="#row-encoding" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Number of fields - 4 bytes</p></li>
+<li><p>One column per field</p></li>
+<li><p>Number of rows - 4 bytes</p></li>
+<li><p>Offsets - (number of rows + 1) * 4 bytes; 4 bytes per offset</p></li>
+<li><p>Null flags</p></li>
+</ul>
+<p>Nested columns are serialized only for non-null rows. In the presence of
+null rows, the row numbers of the nested columns don’t match the top-level
+row numbers. Offsets are specifying the row numbers of the nested columns.</p>
+<p>Let’s again take the example from the Null Flags section and say that we
+have a column of type ROW(a, b, c, d) with 10 rows with nulls in zero-based
+rows 1, 4, 6, 7, 9. Nested columns will have only 5 rows and offsets will
+be: 0, 0, 1, 2, 0, 3, 0, 0, 4, 0. Offsets for null rows are zero.</p>
+<p>Note: Offsets are redundant information as they can be reconstructed
+from the null flags.</p>
+<a class="reference internal image-reference" href="../_images/serialized-page-row-column.png"><img alt="../_images/serialized-page-row-column.png" src="../_images/serialized-page-row-column.png" style="width: 600px;"/></a>
+</section>
+<section id="additional-usage">
+<h2 id="additional-usage">Additional Usage<a class="headerlink" href="#additional-usage" title="Permalink to this headline">#</a></h2>
+<p>SerializedPage format is also used to specify constant values in the plan
+fragment sent from the coordinator to the workers. In this case, the binary
+representation is converted to an ASCII string using base64 encoding.</p>
+<p>For example, the plan for the SELECT array[1, 23, 456] query includes a Project
+node with array[1, 23, 456] value represented as base64 encoded binary of the
+SerializedPage format.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>- Project[projectLocality = LOCAL] =&gt; [expr:array(integer)]
+        Estimates: {rows: 1 (51B), cpu: 51.00, memory: 0.00, network: 0.00}
+        expr := [Block: position count: 3; size: 92 bytes]
+</pre></div>
+</div>
+<p>Also, this format is used to store intermediate data when session property
+exchange_materialization_strategy is ALL and temporary_table_storage_format
+is PAGEFILE.</p>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="client-protocol.html" title="Presto Client REST API"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Presto Client REST API </span>
+              </div>
+            </a>
+          
+          
+            <a href="../release.html" title="Release Notes"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Release Notes </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

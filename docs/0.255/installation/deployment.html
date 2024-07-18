@@ -1,0 +1,903 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="374665">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  <script>
+      window.ga = window.ga || function () {
+          (ga.q = ga.q || []).push(arguments)
+      };
+      ga.l = +new Date;
+      ga('create', 'UA-82811140-44', 'auto');
+      ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+  
+    <title>Deploying Presto &#8212; Presto 0.255 Documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/material.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/presto.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Command Line Interface" href="cli.html" />
+    <link rel="prev" title="Installation" href="../installation.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=grey data-md-color-accent=blue>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#installation/deployment" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="Presto 0.255 Documentation"
+           class="md-header-nav__button md-logo">
+          
+              <img src="../_static/logo.png" height="26"
+                   alt="Presto 0.255 Documentation logo">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Presto 0.255 Documentation</span>
+          <span class="md-header-nav__topic"> Deploying Presto </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="GET" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    <!-- empty -->
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="Presto 0.255 Documentation" class="md-nav__button md-logo">
+      
+        <img src="../_static/logo.png" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="Presto 0.255 Documentation">Presto 0.255 Documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../overview.html" class="md-nav__link">Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../installation.html" class="md-nav__link">Installation</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Deploying Presto </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Deploying Presto</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#installation-deployment--page-root" class="md-nav__link">Deploying Presto</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#installing-presto" class="md-nav__link">Installing Presto</a>
+        </li>
+        <li class="md-nav__item"><a href="#configuring-presto" class="md-nav__link">Configuring Presto</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#node-properties" class="md-nav__link">Node Properties</a>
+        </li>
+        <li class="md-nav__item"><a href="#jvm-config" class="md-nav__link">JVM Config</a>
+        </li>
+        <li class="md-nav__item"><a href="#config-properties" class="md-nav__link">Config Properties</a>
+        </li>
+        <li class="md-nav__item"><a href="#log-levels" class="md-nav__link">Log Levels</a>
+        </li>
+        <li class="md-nav__item"><a href="#catalog-properties" class="md-nav__link">Catalog Properties</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#running-presto" class="md-nav__link">Running Presto</a>
+        </li>
+        <li class="md-nav__item"><a href="#an-example-deployment-on-laptop-querying-s3" class="md-nav__link">An Example Deployment on Laptop Querying S3</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#configure-hive-metastore" class="md-nav__link">Configure Hive MetaStore</a>
+        </li>
+        <li class="md-nav__item"><a href="#configure-presto" class="md-nav__link">Configure Presto</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#an-example-deployment-with-docker" class="md-nav__link">An Example Deployment with Docker</a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="cli.html" class="md-nav__link">Command Line Interface</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="jdbc.html" class="md-nav__link">JDBC Driver</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="benchmark-driver.html" class="md-nav__link">Benchmark Driver</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tableau.html" class="md-nav__link">Web Connector for Tableau</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="spark.html" class="md-nav__link">Executing Presto on Spark</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../security.html" class="md-nav__link">Security</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html" class="md-nav__link">Administration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../cache.html" class="md-nav__link">Cache</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../connector.html" class="md-nav__link">Connectors</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../language.html" class="md-nav__link">SQL Language</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../migration.html" class="md-nav__link">Migration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../release.html" class="md-nav__link">Release Notes</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#installation-deployment--page-root" class="md-nav__link">Deploying Presto</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#installing-presto" class="md-nav__link">Installing Presto</a>
+        </li>
+        <li class="md-nav__item"><a href="#configuring-presto" class="md-nav__link">Configuring Presto</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#node-properties" class="md-nav__link">Node Properties</a>
+        </li>
+        <li class="md-nav__item"><a href="#jvm-config" class="md-nav__link">JVM Config</a>
+        </li>
+        <li class="md-nav__item"><a href="#config-properties" class="md-nav__link">Config Properties</a>
+        </li>
+        <li class="md-nav__item"><a href="#log-levels" class="md-nav__link">Log Levels</a>
+        </li>
+        <li class="md-nav__item"><a href="#catalog-properties" class="md-nav__link">Catalog Properties</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#running-presto" class="md-nav__link">Running Presto</a>
+        </li>
+        <li class="md-nav__item"><a href="#an-example-deployment-on-laptop-querying-s3" class="md-nav__link">An Example Deployment on Laptop Querying S3</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#configure-hive-metastore" class="md-nav__link">Configure Hive MetaStore</a>
+        </li>
+        <li class="md-nav__item"><a href="#configure-presto" class="md-nav__link">Configure Presto</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#an-example-deployment-with-docker" class="md-nav__link">An Example Deployment with Docker</a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="deploying-presto">
+<h1 id="installation-deployment--page-root">Deploying Presto<a class="headerlink" href="#installation-deployment--page-root" title="Permalink to this headline">#</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#installing-presto" id="id7">Installing Presto</a></p></li>
+<li><p><a class="reference internal" href="#configuring-presto" id="id8">Configuring Presto</a></p></li>
+<li><p><a class="reference internal" href="#running-presto" id="id9">Running Presto</a></p></li>
+<li><p><a class="reference internal" href="#an-example-deployment-on-laptop-querying-s3" id="id10">An Example Deployment on Laptop Querying S3</a></p></li>
+<li><p><a class="reference internal" href="#an-example-deployment-with-docker" id="id11">An Example Deployment with Docker</a></p></li>
+</ul>
+</div>
+<section id="installing-presto">
+<h2 id="installing-presto">Installing Presto<a class="headerlink" href="#installing-presto" title="Permalink to this headline">#</a></h2>
+<p>Download the Presto server tarball, <a class="reference external" href="https://repo1.maven.org/maven2/com/facebook/presto/presto-server/0.255/presto-server-0.255.tar.gz">presto-server-0.255.tar.gz</a>, and unpack it.
+The tarball will contain a single top-level directory,
+<code class="docutils literal notranslate"><span class="pre">presto-server-0.255</span></code>, which we will call the <em>installation</em> directory.</p>
+<p>Presto needs a <em>data</em> directory for storing logs, etc.
+We recommend creating a data directory outside of the installation directory,
+which allows it to be easily preserved when upgrading Presto.</p>
+</section>
+<section id="configuring-presto">
+<h2 id="configuring-presto">Configuring Presto<a class="headerlink" href="#configuring-presto" title="Permalink to this headline">#</a></h2>
+<p>Create an <code class="docutils literal notranslate"><span class="pre">etc</span></code> directory inside the installation directory.
+This will hold the following configuration:</p>
+<ul class="simple">
+<li><p>Node Properties: environmental configuration specific to each node</p></li>
+<li><p>JVM Config: command line options for the Java Virtual Machine</p></li>
+<li><p>Config Properties: configuration for the Presto server</p></li>
+<li><p>Catalog Properties: configuration for <a class="reference internal" href="../connector.html"><span class="doc">Connectors</span></a> (data sources)</p></li>
+</ul>
+<section id="node-properties">
+<span id="presto-node-properties"></span><h3 id="node-properties">Node Properties<a class="headerlink" href="#node-properties" title="Permalink to this headline">#</a></h3>
+<p>The node properties file, <code class="docutils literal notranslate"><span class="pre">etc/node.properties</span></code>, contains configuration
+specific to each node. A <em>node</em> is a single installed instance of Presto
+on a machine. This file is typically created by the deployment system when
+Presto is first installed. The following is a minimal <code class="docutils literal notranslate"><span class="pre">etc/node.properties</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>node.environment=production
+node.id=ffffffff-ffff-ffff-ffff-ffffffffffff
+node.data-dir=/var/presto/data
+</pre></div>
+</div>
+<p>The above properties are described below:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">node.environment</span></code>:
+The name of the environment. All Presto nodes in a cluster must
+have the same environment name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">node.id</span></code>:
+The unique identifier for this installation of Presto. This must be
+unique for every node. This identifier should remain consistent across
+reboots or upgrades of Presto. If running multiple installations of
+Presto on a single machine (i.e. multiple nodes on the same machine),
+each installation must have a unique identifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">node.data-dir</span></code>:
+The location (filesystem path) of the data directory. Presto will store
+logs and other data here.</p></li>
+</ul>
+</section>
+<section id="jvm-config">
+<span id="presto-jvm-config"></span><h3 id="jvm-config">JVM Config<a class="headerlink" href="#jvm-config" title="Permalink to this headline">#</a></h3>
+<p>The JVM config file, <code class="docutils literal notranslate"><span class="pre">etc/jvm.config</span></code>, contains a list of command line
+options used for launching the Java Virtual Machine. The format of the file
+is a list of options, one per line. These options are not interpreted by
+the shell, so options containing spaces or other special characters should
+not be quoted.</p>
+<p>The following provides a good starting point for creating <code class="docutils literal notranslate"><span class="pre">etc/jvm.config</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-server
+-Xmx16G
+-XX:+UseG1GC
+-XX:G1HeapRegionSize=32M
+-XX:+UseGCOverheadLimit
+-XX:+ExplicitGCInvokesConcurrent
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:+ExitOnOutOfMemoryError
+</pre></div>
+</div>
+<p>Because an <code class="docutils literal notranslate"><span class="pre">OutOfMemoryError</span></code> will typically leave the JVM in an
+inconsistent state, we write a heap dump (for debugging) and forcibly
+terminate the process when this occurs.</p>
+</section>
+<section id="config-properties">
+<span id="id1"></span><h3 id="config-properties">Config Properties<a class="headerlink" href="#config-properties" title="Permalink to this headline">#</a></h3>
+<p>The config properties file, <code class="docutils literal notranslate"><span class="pre">etc/config.properties</span></code>, contains the
+configuration for the Presto server. Every Presto server can function
+as both a coordinator and a worker, but dedicating a single machine
+to only perform coordination work provides the best performance on
+larger clusters.</p>
+<p>The following is a minimal configuration for the coordinator:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>coordinator=true
+node-scheduler.include-coordinator=false
+http-server.http.port=8080
+query.max-memory=50GB
+query.max-memory-per-node=1GB
+query.max-total-memory-per-node=2GB
+discovery-server.enabled=true
+discovery.uri=http://example.net:8080
+</pre></div>
+</div>
+<p>And this is a minimal configuration for the workers:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>coordinator=false
+http-server.http.port=8080
+query.max-memory=50GB
+query.max-memory-per-node=1GB
+query.max-total-memory-per-node=2GB
+discovery.uri=http://example.net:8080
+</pre></div>
+</div>
+<p>Alternatively, if you are setting up a single machine for testing that
+will function as both a coordinator and worker, use this configuration:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>coordinator=true
+node-scheduler.include-coordinator=true
+http-server.http.port=8080
+query.max-memory=5GB
+query.max-memory-per-node=1GB
+query.max-total-memory-per-node=2GB
+discovery-server.enabled=true
+discovery.uri=http://example.net:8080
+</pre></div>
+</div>
+<p>These properties require some explanation:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">coordinator</span></code>:
+Allow this Presto instance to function as a coordinator
+(accept queries from clients and manage query execution).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">node-scheduler.include-coordinator</span></code>:
+Allow scheduling work on the coordinator.
+For larger clusters, processing work on the coordinator
+can impact query performance because the machine’s resources are not
+available for the critical task of scheduling, managing and monitoring
+query execution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http-server.http.port</span></code>:
+Specifies the port for the HTTP server. Presto uses HTTP for all
+communication, internal and external.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">query.max-memory</span></code>:
+The maximum amount of distributed memory that a query may use.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">query.max-memory-per-node</span></code>:
+The maximum amount of user memory that a query may use on any one machine.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">query.max-total-memory-per-node</span></code>:
+The maximum amount of user and system memory that a query may use on any one machine,
+where system memory is the memory used during execution by readers, writers, and network buffers, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">discovery-server.enabled</span></code>:
+Presto uses the Discovery service to find all the nodes in the cluster.
+Every Presto instance will register itself with the Discovery service
+on startup. In order to simplify deployment and avoid running an additional
+service, the Presto coordinator can run an embedded version of the
+Discovery service. It shares the HTTP server with Presto and thus uses
+the same port.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">discovery.uri</span></code>:
+The URI to the Discovery server. Because we have enabled the embedded
+version of Discovery in the Presto coordinator, this should be the
+URI of the Presto coordinator. Replace <code class="docutils literal notranslate"><span class="pre">example.net:8080</span></code> to match
+the host and port of the Presto coordinator. This URI must not end
+in a slash.</p></li>
+</ul>
+<p>You may also wish to set the following properties:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">jmx.rmiregistry.port</span></code>:
+Specifies the port for the JMX RMI registry. JMX clients should connect to this port.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jmx.rmiserver.port</span></code>:
+Specifies the port for the JMX RMI server. Presto exports many metrics
+that are useful for monitoring via JMX.</p></li>
+</ul>
+<p>See also <a class="reference internal" href="../admin/resource-groups.html"><span class="doc">Resource Groups</span></a>.</p>
+</section>
+<section id="log-levels">
+<h3 id="log-levels">Log Levels<a class="headerlink" href="#log-levels" title="Permalink to this headline">#</a></h3>
+<p>The optional log levels file, <code class="docutils literal notranslate"><span class="pre">etc/log.properties</span></code>, allows setting the
+minimum log level for named logger hierarchies. Every logger has a name,
+which is typically the fully qualified name of the class that uses the logger.
+Loggers have a hierarchy based on the dots in the name (like Java packages).
+For example, consider the following log levels file:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>com.facebook.presto=INFO
+</pre></div>
+</div>
+<p>This would set the minimum level to <code class="docutils literal notranslate"><span class="pre">INFO</span></code> for both
+<code class="docutils literal notranslate"><span class="pre">com.facebook.presto.server</span></code> and <code class="docutils literal notranslate"><span class="pre">com.facebook.presto.hive</span></code>.
+The default minimum level is <code class="docutils literal notranslate"><span class="pre">INFO</span></code>
+(thus the above example does not actually change anything).
+There are four levels: <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>, <code class="docutils literal notranslate"><span class="pre">INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">WARN</span></code> and <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>.</p>
+</section>
+<section id="catalog-properties">
+<span id="id2"></span><h3 id="catalog-properties">Catalog Properties<a class="headerlink" href="#catalog-properties" title="Permalink to this headline">#</a></h3>
+<p>Presto accesses data via <em>connectors</em>, which are mounted in catalogs.
+The connector provides all of the schemas and tables inside of the catalog.
+For example, the Hive connector maps each Hive database to a schema,
+so if the Hive connector is mounted as the <code class="docutils literal notranslate"><span class="pre">hive</span></code> catalog, and Hive
+contains a table <code class="docutils literal notranslate"><span class="pre">clicks</span></code> in database <code class="docutils literal notranslate"><span class="pre">web</span></code>, that table would be accessed
+in Presto as <code class="docutils literal notranslate"><span class="pre">hive.web.clicks</span></code>.</p>
+<p>Catalogs are registered by creating a catalog properties file
+in the <code class="docutils literal notranslate"><span class="pre">etc/catalog</span></code> directory.
+For example, create <code class="docutils literal notranslate"><span class="pre">etc/catalog/jmx.properties</span></code> with the following
+contents to mount the <code class="docutils literal notranslate"><span class="pre">jmx</span></code> connector as the <code class="docutils literal notranslate"><span class="pre">jmx</span></code> catalog:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>connector.name=jmx
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../connector.html"><span class="doc">Connectors</span></a> for more information about configuring connectors.</p>
+</section>
+</section>
+<section id="running-presto">
+<span id="id3"></span><h2 id="running-presto">Running Presto<a class="headerlink" href="#running-presto" title="Permalink to this headline">#</a></h2>
+<p>The installation directory contains the launcher script in <code class="docutils literal notranslate"><span class="pre">bin/launcher</span></code>.
+Presto can be started as a daemon by running the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>bin/launcher start
+</pre></div>
+</div>
+<p>Alternatively, it can be run in the foreground, with the logs and other
+output being written to stdout/stderr (both streams should be captured
+if using a supervision system like daemontools):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>bin/launcher run
+</pre></div>
+</div>
+<p>Run the launcher with <code class="docutils literal notranslate"><span class="pre">--help</span></code> to see the supported commands and
+command line options. In particular, the <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> option is
+very useful for debugging the installation.</p>
+<p>After launching, you can find the log files in <code class="docutils literal notranslate"><span class="pre">var/log</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">launcher.log</span></code>:
+This log is created by the launcher and is connected to the stdout
+and stderr streams of the server. It will contain a few log messages
+that occur while the server logging is being initialized and any
+errors or diagnostics produced by the JVM.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">server.log</span></code>:
+This is the main log file used by Presto. It will typically contain
+the relevant information if the server fails during initialization.
+It is automatically rotated and compressed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http-request.log</span></code>:
+This is the HTTP request log which contains every HTTP request
+received by the server. It is automatically rotated and compressed.</p></li>
+</ul>
+</section>
+<section id="an-example-deployment-on-laptop-querying-s3">
+<h2 id="an-example-deployment-on-laptop-querying-s3">An Example Deployment on Laptop Querying S3<a class="headerlink" href="#an-example-deployment-on-laptop-querying-s3" title="Permalink to this headline">#</a></h2>
+<p>This section shows how to run Presto connecting to Hive MetaStore on a single laptop to query data in an S3 bucket.</p>
+<section id="configure-hive-metastore">
+<h3 id="configure-hive-metastore">Configure Hive MetaStore<a class="headerlink" href="#configure-hive-metastore" title="Permalink to this headline">#</a></h3>
+<p>Download and extract the binary tarball of Hive.
+For example, download and untar <a class="reference external" href="https://downloads.apache.org/hive">apache-hive-&lt;VERSION&gt;-bin.tar.gz</a> .</p>
+<p>You only need to launch Hive Metastore to serve Presto catalog information such as table schema and partition location.
+If it is the first time to launch the Hive Metastore, prepare corresponding configuration files and environment, also initialize a new Metastore:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">export</span> <span class="nv">HIVE_HOME</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+<span class="gp">$ </span>cp conf/hive-default.xml.template conf/hive-site.xml
+<span class="gp">$ </span>mkdir -p hcatalog/var/log/
+<span class="gp"># </span>only required <span class="k">for</span> the first <span class="nb">time</span>
+<span class="gp">$ </span>bin/schematool -dbType derby -initSchema
+</pre></div>
+</div>
+<p>If you want to access AWS S3, append the following lines in <code class="docutils literal notranslate"><span class="pre">conf/hive-env.sh</span></code>.
+Hive needs the corresponding jars to access files with <code class="docutils literal notranslate"><span class="pre">s3a://</span></code> addresses, and AWS credentials as well to access an S3 bucket (even it is public).
+These jars can be found in Hadoop distribution (e.g., under <code class="docutils literal notranslate"><span class="pre">${HADOOP_HOME}/share/hadoop/tools/lib/</span></code>),
+or download from <a class="reference external" href="https://repo1.maven.org/">maven central repository</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">HIVE_AUX_JARS_PATH</span><span class="o">=</span>/path/to/aws-java-sdk-core-&lt;version&gt;.jar:$/path/to/aws-java-sdk-s3-&lt;version&gt;.jar:/path/to/hadoop-aws-&lt;version&gt;.jar
+<span class="nb">export</span> <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>&lt;Your AWS Access Key&gt;
+<span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>&lt;Your AWS Secret Key&gt;
+</pre></div>
+</div>
+<p>Start a Hive Metastore which will run in the background and listen on port 9083 (by default).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>hcatalog/sbin/hcat_server.sh start
+<span class="go">Started metastore server init, testing if initialized correctly...</span>
+<span class="go">Metastore initialized successfully on port[9083].</span>
+</pre></div>
+</div>
+<p>To verify if the MetaStore is running, check the Hive Metastore logs at <code class="docutils literal notranslate"><span class="pre">hcatalog/var/log/</span></code></p>
+</section>
+<section id="configure-presto">
+<h3 id="configure-presto">Configure Presto<a class="headerlink" href="#configure-presto" title="Permalink to this headline">#</a></h3>
+<p>Create a configuration file <code class="docutils literal notranslate"><span class="pre">etc/config.properties</span></code> to based on <a class="reference external" href="#config-properties">Config Properties</a>.
+For example, follow the minimal configuration to run Presto on your laptop:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>coordinator=true
+node-scheduler.include-coordinator=true
+http-server.http.port=8080
+discovery-server.enabled=true
+discovery.uri=http://localhost:8080
+</pre></div>
+</div>
+<p>Create <code class="docutils literal notranslate"><span class="pre">etc/jvm.config</span></code> according to <a class="reference external" href="#jvm-config">JVM Config</a>
+and <code class="docutils literal notranslate"><span class="pre">etc/node.properties</span></code> according to <a class="reference external" href="#node-properties">Node Properties</a>.</p>
+<p>Lastly, configure Presto Hive connector in <code class="docutils literal notranslate"><span class="pre">etc/catalog/hive.properties</span></code>, pointing to the Hive Metastore service just started.
+Include AWS credentials here again if Presto needs to read input files from S3.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>connector.name=hive-hadoop2
+hive.metastore.uri=thrift://localhost:9083
+hive.s3.aws-access-key=&lt;Your AWS Access Key&gt;
+hive.s3.aws-secret-key=&lt;Your AWS Secret Key&gt;
+</pre></div>
+</div>
+<p>Run the Presto server:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./bin/launcher start
+</pre></div>
+</div>
+</section>
+</section>
+<section id="an-example-deployment-with-docker">
+<h2 id="an-example-deployment-with-docker">An Example Deployment with Docker<a class="headerlink" href="#an-example-deployment-with-docker" title="Permalink to this headline">#</a></h2>
+<p>Let’s take a look at getting a Docker image together for Presto (though they already exist on Dockerhub,
+e.g. <a class="reference external" href="https://hub.docker.com/r/ahanaio/prestodb-sandbox">ahanaio/prestodb-sandbox</a>).
+We can see below how relatively easy it is to get Presto up and running.
+For demonstration purposes, this configuration is a single-node Presto installation where the scheduler will include the Coordinator as a Worker.
+We will configure one catalog, <a class="reference external" href="https://prestodb.io/docs/current/connector/tpch.html">TPCH</a>.</p>
+<p>For the Dockerfile, we download Presto, copy some configuration files in a local <code class="docutils literal notranslate"><span class="pre">etc</span></code> directory into the image,
+and specify an entry point to run the server.</p>
+<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span> <span class="s">openjdk:8-jre</span>
+
+<span class="c"># Presto version will be passed in at build time</span>
+<span class="k">ARG</span> PRESTO_VERSION
+
+<span class="c"># Set the URL to download</span>
+<span class="k">ARG</span> <span class="nv">PRESTO_BIN</span><span class="o">=</span>https://repo1.maven.org/maven2/com/facebook/presto/presto-server/<span class="si">${</span><span class="nv">PRESTO_VERSION</span><span class="si">}</span>/presto-server-<span class="si">${</span><span class="nv">PRESTO_VERSION</span><span class="si">}</span>.tar.gz
+
+<span class="c"># Update the base image OS and install wget and python</span>
+<span class="k">RUN</span> apt-get update
+<span class="k">RUN</span> apt-get install -y wget python less
+
+<span class="c"># Download Presto and unpack it to /opt/presto</span>
+<span class="k">RUN</span> wget --quiet <span class="si">${</span><span class="nv">PRESTO_BIN</span><span class="si">}</span>
+<span class="k">RUN</span> mkdir -p /opt
+<span class="k">RUN</span> tar -xf presto-server-<span class="si">${</span><span class="nv">PRESTO_VERSION</span><span class="si">}</span>.tar.gz -C /opt
+<span class="k">RUN</span> rm presto-server-<span class="si">${</span><span class="nv">PRESTO_VERSION</span><span class="si">}</span>.tar.gz
+<span class="k">RUN</span> ln -s /opt/presto-server-<span class="si">${</span><span class="nv">PRESTO_VERSION</span><span class="si">}</span> /opt/presto
+
+<span class="c"># Copy configuration files on the host into the image</span>
+<span class="k">COPY</span> etc /opt/presto/etc
+
+<span class="c"># Download the Presto CLI and put it in the image</span>
+<span class="k">RUN</span> wget --quiet https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/<span class="si">${</span><span class="nv">PRESTO_VERSION</span><span class="si">}</span>/presto-cli-<span class="si">${</span><span class="nv">PRESTO_VERSION</span><span class="si">}</span>-executable.jar
+<span class="k">RUN</span> mv presto-cli-<span class="si">${</span><span class="nv">PRESTO_VERSION</span><span class="si">}</span>-executable.jar /usr/local/bin/presto
+<span class="k">RUN</span> chmod +x /usr/local/bin/presto
+
+<span class="c"># Specify the entrypoint to start</span>
+<span class="k">ENTRYPOINT</span> /opt/presto/bin/launcher run
+</pre></div>
+</div>
+<p>There are four files in the <code class="docutils literal notranslate"><span class="pre">etc/</span></code> folder to configure Presto, along with one catalog in <code class="docutils literal notranslate"><span class="pre">etc/catalog/</span></code>. A catalog defines the configuration
+of a connector, and the catalog is named after the file name (minus the <code class="docutils literal notranslate"><span class="pre">.properties</span></code> extension). You can have multiple
+catalogs for each Presto installation, including multiple catalogs using the same connector; they just need a different filename.
+The files are:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>etc/
+├── catalog
+│   └── tpch.properties  # Configures the TPCH connector to generate data
+├── config.properties    # Presto instance configuration properties
+├── jvm.config           # JVM configuration for the process
+├── log.properties       # Logging configuration
+└── node.properties      # Node-specific configuration properties
+</pre></div>
+</div>
+<p>The four files directly under <code class="docutils literal notranslate"><span class="pre">etc</span></code> are documented above (using the single-node Coordinator configuration for <code class="docutils literal notranslate"><span class="pre">config.properties</span></code>).
+The file called <code class="docutils literal notranslate"><span class="pre">etc/catalog/tpch.properties</span></code> is used to defined the <code class="docutils literal notranslate"><span class="pre">tpch</span></code> catalog.  Each connector has their own set
+of configuration properites that are specific to the connector.
+You can find a connector’s configuration properties documented along with the connector.  The TPCH connector has no special
+configuration, so we just specify the name of the connector for the catalog, also <code class="docutils literal notranslate"><span class="pre">tpch</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">etc/catalog/tpch.properties</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>connector.name=tpch
+</pre></div>
+</div>
+<p>We’re now ready to build our Docker container specifying the version and then start Presto.
+The latest version of Presto is currently 0.255.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker build --build-arg PRESTO_VERSION=&lt;see releases for latest version&gt; . -t prestodb:latest
+docker run --name presto prestodb:latest
+</pre></div>
+</div>
+<p>You’ll see a series of logs as Presto starts, ending with <code class="docutils literal notranslate"><span class="pre">SERVER</span> <span class="pre">STARTED</span></code> signaling that it is ready to receive queries.
+We’ll use the <a class="reference external" href="https://prestodb.io/docs/current/installation/cli.html">Presto CLI</a> to connect to Presto that we put inside the image
+using a separate Terminal window.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker exec -it presto presto
+</pre></div>
+</div>
+<p>We can now execute a query against the <cite>tpch</cite> catalog.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">presto</span><span class="o">&gt;</span> <span class="k">SELECT</span>
+     <span class="o">-&gt;</span>   <span class="n">l</span><span class="p">.</span><span class="n">returnflag</span><span class="p">,</span>
+     <span class="o">-&gt;</span>   <span class="n">l</span><span class="p">.</span><span class="n">linestatus</span><span class="p">,</span>
+     <span class="o">-&gt;</span>   <span class="k">sum</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">quantity</span><span class="p">)</span>                                       <span class="k">AS</span> <span class="n">sum_qty</span><span class="p">,</span>
+     <span class="o">-&gt;</span>   <span class="k">sum</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">extendedprice</span><span class="p">)</span>                                  <span class="k">AS</span> <span class="n">sum_base_price</span><span class="p">,</span>
+     <span class="o">-&gt;</span>   <span class="k">sum</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">extendedprice</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">l</span><span class="p">.</span><span class="n">discount</span><span class="p">))</span>               <span class="k">AS</span> <span class="n">sum_disc_price</span><span class="p">,</span>
+     <span class="o">-&gt;</span>   <span class="k">sum</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">extendedprice</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">l</span><span class="p">.</span><span class="n">discount</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">l</span><span class="p">.</span><span class="n">tax</span><span class="p">))</span> <span class="k">AS</span> <span class="n">sum_charge</span><span class="p">,</span>
+     <span class="o">-&gt;</span>   <span class="k">avg</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">quantity</span><span class="p">)</span>                                       <span class="k">AS</span> <span class="n">avg_qty</span><span class="p">,</span>
+     <span class="o">-&gt;</span>   <span class="k">avg</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">extendedprice</span><span class="p">)</span>                                  <span class="k">AS</span> <span class="n">avg_price</span><span class="p">,</span>
+     <span class="o">-&gt;</span>   <span class="k">avg</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">discount</span><span class="p">)</span>                                       <span class="k">AS</span> <span class="n">avg_disc</span><span class="p">,</span>
+     <span class="o">-&gt;</span>   <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>                                              <span class="k">AS</span> <span class="n">count_order</span>
+     <span class="o">-&gt;</span> <span class="k">FROM</span>
+     <span class="o">-&gt;</span>   <span class="n">tpch</span><span class="p">.</span><span class="n">sf1</span><span class="p">.</span><span class="n">lineitem</span> <span class="k">AS</span> <span class="n">l</span>
+     <span class="o">-&gt;</span> <span class="k">WHERE</span>
+     <span class="o">-&gt;</span>   <span class="n">l</span><span class="p">.</span><span class="n">shipdate</span> <span class="o">&lt;=</span> <span class="nb">DATE</span> <span class="s1">'1998-12-01'</span> <span class="o">-</span> <span class="nb">INTERVAL</span> <span class="s1">'90'</span> <span class="k">DAY</span>
+     <span class="o">-&gt;</span> <span class="k">GROUP</span> <span class="k">BY</span>
+     <span class="o">-&gt;</span>   <span class="n">l</span><span class="p">.</span><span class="n">returnflag</span><span class="p">,</span>
+     <span class="o">-&gt;</span>   <span class="n">l</span><span class="p">.</span><span class="n">linestatus</span>
+     <span class="o">-&gt;</span> <span class="k">ORDER</span> <span class="k">BY</span>
+     <span class="o">-&gt;</span>   <span class="n">l</span><span class="p">.</span><span class="n">returnflag</span><span class="p">,</span>
+     <span class="o">-&gt;</span>   <span class="n">l</span><span class="p">.</span><span class="n">linestatus</span><span class="p">;</span>
+ <span class="n">returnflag</span> <span class="o">|</span> <span class="n">linestatus</span> <span class="o">|</span>   <span class="n">sum_qty</span>   <span class="o">|</span>    <span class="n">sum_base_price</span>     <span class="o">|</span>    <span class="n">sum_disc_price</span>     <span class="o">|</span>      <span class="n">sum_charge</span>       <span class="o">|</span>      <span class="n">avg_qty</span>       <span class="o">|</span>     <span class="n">avg_price</span>     <span class="o">|</span>       <span class="n">avg_disc</span>       <span class="o">|</span> <span class="n">count_order</span>
+<span class="c1">------------+------------+-------------+-----------------------+-----------------------+-----------------------+--------------------+-------------------+----------------------+-------------</span>
+ <span class="n">A</span>          <span class="o">|</span> <span class="n">F</span>          <span class="o">|</span> <span class="mi">3</span><span class="p">.</span><span class="mi">7734107</span><span class="n">E7</span> <span class="o">|</span>  <span class="mi">5</span><span class="p">.</span><span class="mi">658655440072982</span><span class="n">E10</span> <span class="o">|</span> <span class="mi">5</span><span class="p">.</span><span class="mi">3758257134869644</span><span class="n">E10</span> <span class="o">|</span>  <span class="mi">5</span><span class="p">.</span><span class="mi">590906522282741</span><span class="n">E10</span> <span class="o">|</span> <span class="mi">25</span><span class="p">.</span><span class="mi">522005853257337</span> <span class="o">|</span> <span class="mi">38273</span><span class="p">.</span><span class="mi">12973462155</span> <span class="o">|</span>  <span class="mi">0</span><span class="p">.</span><span class="mi">04998529583846928</span> <span class="o">|</span>     <span class="mi">1478493</span>
+ <span class="n">N</span>          <span class="o">|</span> <span class="n">F</span>          <span class="o">|</span>    <span class="mi">991417</span><span class="p">.</span><span class="mi">0</span> <span class="o">|</span>  <span class="mi">1</span><span class="p">.</span><span class="mi">4875047103800006</span><span class="n">E9</span> <span class="o">|</span>  <span class="mi">1</span><span class="p">.</span><span class="mi">4130821680540998</span><span class="n">E9</span> <span class="o">|</span>   <span class="mi">1</span><span class="p">.</span><span class="mi">469649223194377</span><span class="n">E9</span> <span class="o">|</span> <span class="mi">25</span><span class="p">.</span><span class="mi">516471920522985</span> <span class="o">|</span> <span class="mi">38284</span><span class="p">.</span><span class="mi">46776084832</span> <span class="o">|</span>  <span class="mi">0</span><span class="p">.</span><span class="mi">05009342667421586</span> <span class="o">|</span>       <span class="mi">38854</span>
+ <span class="n">N</span>          <span class="o">|</span> <span class="n">O</span>          <span class="o">|</span>  <span class="mi">7</span><span class="p">.</span><span class="mi">447604</span><span class="n">E7</span> <span class="o">|</span> <span class="mi">1</span><span class="p">.</span><span class="mi">1170172969773982</span><span class="n">E11</span> <span class="o">|</span> <span class="mi">1</span><span class="p">.</span><span class="mi">0611823030760503</span><span class="n">E11</span> <span class="o">|</span> <span class="mi">1</span><span class="p">.</span><span class="mi">1036704387249734</span><span class="n">E11</span> <span class="o">|</span>  <span class="mi">25</span><span class="p">.</span><span class="mi">50222676958499</span> <span class="o">|</span> <span class="mi">38249</span><span class="p">.</span><span class="mi">11798890821</span> <span class="o">|</span>   <span class="mi">0</span><span class="p">.</span><span class="mi">0499965860537345</span> <span class="o">|</span>     <span class="mi">2920374</span>
+ <span class="n">R</span>          <span class="o">|</span> <span class="n">F</span>          <span class="o">|</span> <span class="mi">3</span><span class="p">.</span><span class="mi">7719753</span><span class="n">E7</span> <span class="o">|</span>   <span class="mi">5</span><span class="p">.</span><span class="mi">65680413808999</span><span class="n">E10</span> <span class="o">|</span>  <span class="mi">5</span><span class="p">.</span><span class="mi">374129268460365</span><span class="n">E10</span> <span class="o">|</span>  <span class="mi">5</span><span class="p">.</span><span class="mi">588961911983193</span><span class="n">E10</span> <span class="o">|</span>  <span class="mi">25</span><span class="p">.</span><span class="mi">50579361269077</span> <span class="o">|</span> <span class="mi">38250</span><span class="p">.</span><span class="mi">85462609959</span> <span class="o">|</span> <span class="mi">0</span><span class="p">.</span><span class="mi">050009405830198916</span> <span class="o">|</span>     <span class="mi">1478870</span>
+<span class="p">(</span><span class="mi">4</span> <span class="k">rows</span><span class="p">)</span>
+
+<span class="n">Query</span> <span class="mi">20200625</span><span class="n">_171123_00000_xqmp4</span><span class="p">,</span> <span class="n">FINISHED</span><span class="p">,</span> <span class="mi">1</span> <span class="n">node</span>
+<span class="n">Splits</span><span class="p">:</span> <span class="mi">56</span> <span class="n">total</span><span class="p">,</span> <span class="mi">56</span> <span class="n">done</span> <span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">00</span><span class="o">%</span><span class="p">)</span>
+<span class="mi">0</span><span class="p">:</span><span class="mi">05</span> <span class="p">[</span><span class="mi">6</span><span class="n">M</span> <span class="k">rows</span><span class="p">,</span> <span class="mi">0</span><span class="n">B</span><span class="p">]</span> <span class="p">[</span><span class="mi">1</span><span class="p">.</span><span class="mi">1</span><span class="n">M</span> <span class="k">rows</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="../installation.html" title="Installation"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Installation </span>
+              </div>
+            </a>
+          
+          
+            <a href="cli.html" title="Command Line Interface"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Command Line Interface </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

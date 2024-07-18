@@ -1,0 +1,732 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="374665">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-82811140-44"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-82811140-44');
+</script>
+  
+  
+    <title>Lark Sheets connector &#8212; Presto 0.273 Documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/presto.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Local File Connector" href="localfile.html" />
+    <link rel="prev" title="Kudu Connector" href="kudu.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=grey data-md-color-accent=blue>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#connector/larksheets" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="Presto 0.273 Documentation"
+           class="md-header-nav__button md-logo">
+          
+              <img src="../_static/logo.png" height="26"
+                   alt="Presto 0.273 Documentation logo">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Presto 0.273 Documentation</span>
+          <span class="md-header-nav__topic"> Lark Sheets connector </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    <!-- empty -->
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="Presto 0.273 Documentation" class="md-nav__button md-logo">
+      
+        <img src="../_static/logo.png" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="Presto 0.273 Documentation">Presto 0.273 Documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../overview.html" class="md-nav__link">Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../installation.html" class="md-nav__link">Installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../security.html" class="md-nav__link">Security</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html" class="md-nav__link">Administration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../cache.html" class="md-nav__link">Cache</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../connector.html" class="md-nav__link">Connectors</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="accumulo.html" class="md-nav__link">Accumulo Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="bigquery.html" class="md-nav__link">BigQuery Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="blackhole.html" class="md-nav__link">Black Hole Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="cassandra.html" class="md-nav__link">Cassandra Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="deltalake.html" class="md-nav__link">Delta Lake Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="druid.html" class="md-nav__link">Druid Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="elasticsearch.html" class="md-nav__link">Elasticsearch Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="hive.html" class="md-nav__link">Hive Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="hive-security.html" class="md-nav__link">Hive Security Configuration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="iceberg.html" class="md-nav__link">Iceberg Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="jmx.html" class="md-nav__link">JMX Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="kafka.html" class="md-nav__link">Kafka Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="kafka-tutorial.html" class="md-nav__link">Kafka Connector Tutorial</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="kudu.html" class="md-nav__link">Kudu Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Lark Sheets connector </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Lark Sheets connector</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#connector-larksheets--page-root" class="md-nav__link">Lark Sheets connector</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#lark-app" class="md-nav__link">Lark App</a>
+        </li>
+        <li class="md-nav__item"><a href="#configuration" class="md-nav__link">Configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#query-model" class="md-nav__link">Query Model</a>
+        </li>
+        <li class="md-nav__item"><a href="#security-model" class="md-nav__link">Security Model</a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="localfile.html" class="md-nav__link">Local File Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="memory.html" class="md-nav__link">Memory Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="mongodb.html" class="md-nav__link">MongoDB Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="mysql.html" class="md-nav__link">MySQL Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="oracle.html" class="md-nav__link">Oracle Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="pinot.html" class="md-nav__link">Apache Pinot Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="postgresql.html" class="md-nav__link">PostgreSQL Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="prometheus.html" class="md-nav__link">Prometheus Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="redis.html" class="md-nav__link">Redis Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="redshift.html" class="md-nav__link">Redshift Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="sqlserver.html" class="md-nav__link">SQL Server Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="system.html" class="md-nav__link">System Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="thrift.html" class="md-nav__link">Thrift Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tpcds.html" class="md-nav__link">TPCDS Connector</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tpch.html" class="md-nav__link">TPCH Connector</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../language.html" class="md-nav__link">SQL Language</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../migration.html" class="md-nav__link">Migration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../release.html" class="md-nav__link">Release Notes</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#connector-larksheets--page-root" class="md-nav__link">Lark Sheets connector</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#lark-app" class="md-nav__link">Lark App</a>
+        </li>
+        <li class="md-nav__item"><a href="#configuration" class="md-nav__link">Configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#query-model" class="md-nav__link">Query Model</a>
+        </li>
+        <li class="md-nav__item"><a href="#security-model" class="md-nav__link">Security Model</a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="lark-sheets-connector">
+<h1 id="connector-larksheets--page-root">Lark Sheets connector<a class="headerlink" href="#connector-larksheets--page-root" title="Permalink to this headline">#</a></h1>
+<p>The Lark Sheets connector allows reading <a class="reference external" href="https://www.larksuite.com/en_us/">Lark Sheets</a> spreadsheets in Presto.</p>
+<section id="lark-app">
+<h2 id="lark-app">Lark App<a class="headerlink" href="#lark-app" title="Permalink to this headline">#</a></h2>
+<p>The connector requires a Lark app in order to access the Lark Sheets API.</p>
+<ol class="arabic simple">
+<li><p>Create a Lark app by clicking the <strong>Create Custom App</strong> button at
+<a class="reference external" href="https://open.larksuite.com/app">Lark Open Platform</a> (for global users) or
+<a class="reference external" href="https://open.feishu.cn/app">Feishu Open Platform</a> (for Chinese users).
+Choose <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">App</span></code> when creating the app. Get and remember <code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">id</span></code> and <code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">secret</span></code> from
+<strong>Credentials and Basic Info</strong> page.</p></li>
+<li><p>Grant <code class="docutils literal notranslate"><span class="pre">View,</span> <span class="pre">comment,</span> <span class="pre">and</span> <span class="pre">export</span> <span class="pre">Sheets</span></code> permission to the app at <strong>Permission &amp; Scopes</strong> page.
+And publish a new release for the app at <strong>App Release</strong> page to make the permissions take effect.</p></li>
+</ol>
+</section>
+<section id="configuration">
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
+<p>Create <code class="docutils literal notranslate"><span class="pre">etc/catalog/larksheets.properties</span></code>
+to mount the Lark Sheets connector as the <code class="docutils literal notranslate"><span class="pre">larksheets</span></code> catalog,
+replacing the properties as appropriate:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>connector.name=lark-sheets
+app-domain=FEISHU
+app-id=example_app_id
+app-secret-file=/path/to/app-secret.json
+</pre></div>
+</div>
+<p>Create <code class="docutils literal notranslate"><span class="pre">app-secret.json</span></code> as the example below:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">"app-secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcdefghijklmnopqrstuvwxyzabcdef"</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The following configuration properties are available:</p>
+<table>
+<colgroup>
+<col style="width: 33%"/>
+<col style="width: 67%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">app-domain</span></code></p></td>
+<td><p>Use <code class="docutils literal notranslate"><span class="pre">LARK</span></code> if created at <cite>Lark Open Platform</cite>, or <code class="docutils literal notranslate"><span class="pre">FEISHU</span></code> otherwise</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">app-id</span></code></p></td>
+<td><p>Your app id, available at <cite>Lark Open Platform</cite> or <cite>Feishu Open Platform</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">app-secret-file</span></code></p></td>
+<td><p>Path to the JSON file that contains your app secret</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="query-model">
+<h2 id="query-model">Query Model<a class="headerlink" href="#query-model" title="Permalink to this headline">#</a></h2>
+<p>In the connector, a Lark spreadsheet is mapped to a Presto schema, and each sheet
+inside the spreadsheet is mapped to a Presto table.</p>
+<p>Create a spreadsheet-schema mapping by executing a query like:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">my_ss</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="n">TOKEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'shtcnBf5pg4BNSkwV2Ku5xwW9Pf'</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">token</span></code> property is taken from the last path segment of the spreadsheet url, using the pattern
+<code class="docutils literal notranslate"><span class="pre">https://{lark_site_domain}/sheets/{token}?sheet={sheet_id}</span></code>. For example,
+<code class="docutils literal notranslate"><span class="pre">shtcnBf5pg4BNSkwV2Ku5xwW9Pf</span></code> is the token of the spreadsheet at
+<code class="docutils literal notranslate"><span class="pre">https://test-ch80md45anra.feishu.cn/sheets/shtcnBf5pg4BNSkwV2Ku5xwW9Pf?sheet=MT1p4I</span></code></p>
+<p>After that, all sheets (tabs) of the spreadsheet are automatically mapped to tables in the schema.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">my_ss</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For each table, its name is taken from the sheet title; its columns are inferred from the head row
+(the first row of the sheet). Sheets metadata could be listed through the query as:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">my_ss</span><span class="p">.</span><span class="ss">"$sheets"</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In a query statement, a table can be specified in such ways:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- by sheet title</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">my_ss</span><span class="p">.</span><span class="ss">"number_text"</span><span class="w"></span>
+
+<span class="c1">-- by sheet index</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">my_ss</span><span class="p">.</span><span class="ss">"$0"</span><span class="w"></span>
+
+<span class="c1">-- by sheet id</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">my_ss</span><span class="p">.</span><span class="ss">"@MT1p4I"</span><span class="w"></span>
+</pre></div>
+</div>
+<p>As for column infer, columns that have blank value in the head row are ignored.
+A sheet with duplicate column names can not be queried.</p>
+</section>
+<section id="security-model">
+<h2 id="security-model">Security Model<a class="headerlink" href="#security-model" title="Permalink to this headline">#</a></h2>
+<p>Only the spreadsheet that enables <strong>Link Sharing</strong> can be queried.</p>
+<p>The schema is visible and manipulative only to its creator by default.
+To make the schema visible to others, create it as:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">my_ss</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="p">(</span><span class="n">TOKEN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'shtcnBf5pg4BNSkwV2Ku5xwW9Pf'</span><span class="p">,</span><span class="w"> </span><span class="k">PUBLIC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="kudu.html" title="Kudu Connector"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Kudu Connector </span>
+              </div>
+            </a>
+          
+          
+            <a href="localfile.html" title="Local File Connector"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Local File Connector </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
