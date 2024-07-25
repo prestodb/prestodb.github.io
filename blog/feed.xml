@@ -2,60 +2,60 @@
 <rss version="2.0">
     <channel>
         <title> Blog</title>
-        <link>https://prestodb.github.io/blog</link>
+        <link>https://yhwang.github.io /blog</link>
         <description>The best place to stay up-to-date with the latest  news and events.</description>
         <lastBuildDate>Tue, 29 Aug 2023 06:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
             <title> Blog</title>
-            <url>https://prestodb.github.io/img/logo-presto-white.svg</url>
-            <link>https://prestodb.github.io/blog</link>
+            <url>https://yhwang.github.io /img/logo-presto-white.svg</url>
+            <link>https://yhwang.github.io /blog</link>
         </image>
         <item>
             <title><![CDATA[Introducing Presto Working Groups]]></title>
-            <link>https://prestodb.github.io/blog/2023/08/29/presto-working-groups.html</link>
-            <guid>https://prestodb.github.io/blog/2023/08/29/presto-working-groups.html</guid>
+            <link>https://yhwang.github.io /blog/2023/08/29/presto-working-groups.html</link>
+            <guid>https://yhwang.github.io /blog/2023/08/29/presto-working-groups.html</guid>
             <pubDate>Tue, 29 Aug 2023 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Recently we introduced some new working groups within the Presto open-source project. Before sharing more about those groups, I wanted to give a perspective on why working groups in open-source projects like Presto are important and will help move the project forward at a faster and more effective pace. Below you’ll see an FAQ that shares that perspective, as well as how to join.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[Scaling Presto for Data Analytics - Insights from Meta, Uber, and Intuit]]></title>
-            <link>https://prestodb.github.io/blog/2023/08/17/scaling-presto-panel-blog.html</link>
-            <guid>https://prestodb.github.io/blog/2023/08/17/scaling-presto-panel-blog.html</guid>
+            <link>https://yhwang.github.io /blog/2023/08/17/scaling-presto-panel-blog.html</link>
+            <guid>https://yhwang.github.io /blog/2023/08/17/scaling-presto-panel-blog.html</guid>
             <pubDate>Thu, 17 Aug 2023 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>At PrestoCon Day 2023, we had a fantastic panel discussion with speakers from Meta, Uber, and Intuit. Each shared their experiences and use cases of scaling Presto in their respective companies. Let’s take a look at the key points discussed by each panelist, including use cases, key metrics, and future plans for Presto.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[Simplifying Presto on Kubernetes - Introducing the Presto Helm Chart]]></title>
-            <link>https://prestodb.github.io/blog/2023/08/02/presto-on-kubernetes-with-helm-prestocon-day.html</link>
-            <guid>https://prestodb.github.io/blog/2023/08/02/presto-on-kubernetes-with-helm-prestocon-day.html</guid>
+            <link>https://yhwang.github.io /blog/2023/08/02/presto-on-kubernetes-with-helm-prestocon-day.html</link>
+            <guid>https://yhwang.github.io /blog/2023/08/02/presto-on-kubernetes-with-helm-prestocon-day.html</guid>
             <pubDate>Wed, 02 Aug 2023 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Let’s explore how to run Presto on Kubernetes. At PrestoCon Day 2023, Denis Krivenko of Platform24 shared his work on the Presto Helm Chart and why Presto on Kubernetes helps make for an efficient deployment. He also demoed a step-by-step process of deploying Presto on a Kubernetes cluster using the Helm package manager.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[Quick Stats - Runtime ANALYZE for Better Query Plans with Presto]]></title>
-            <link>https://prestodb.github.io/blog/2023/07/20/quick-stats-presto-blog.html</link>
-            <guid>https://prestodb.github.io/blog/2023/07/20/quick-stats-presto-blog.html</guid>
+            <link>https://yhwang.github.io /blog/2023/07/20/quick-stats-presto-blog.html</link>
+            <guid>https://yhwang.github.io /blog/2023/07/20/quick-stats-presto-blog.html</guid>
             <pubDate>Thu, 20 Jul 2023 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>At PrestoCon Day, Anant Aneja of Ahana, an IBM Company introduced a new feature for Presto called Quick Stats which aims to enhance query optimization by providing up-to-date statistics for the query optimizer. This enables more accurate cost-based decisions and better selectivity for non-trivial queries. In this blog post we’ll recap the details and benefits of Quick Stats for Presto and how it can help improve query optimization.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[Migrating to Presto - How Bolt Built a Data Platform Architecture for Scalability and Cost Efficiency]]></title>
-            <link>https://prestodb.github.io/blog/2023/07/13/presto-at-bolt.html</link>
-            <guid>https://prestodb.github.io/blog/2023/07/13/presto-at-bolt.html</guid>
+            <link>https://yhwang.github.io /blog/2023/07/13/presto-at-bolt.html</link>
+            <guid>https://yhwang.github.io /blog/2023/07/13/presto-at-bolt.html</guid>
             <pubDate>Thu, 13 Jul 2023 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>At PrestoCon Day we heard from Bolt, a ride sharing app with 100 million users across 45 countries in Eastern Europe, who shared why they chose Presto to underpin their data architecture platform. By leveraging Presto's capabilities, Bolt was able to address scalability limits, cost efficiency, and workload management challenges. In this blog we’ll recap the presentation delivered by Bolt, which includes their data platform architecture, challenges faced, the migration process, and what their outcomes were.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[IBM watsonx.data - a modern open data lakehouse architecture, built on Presto!]]></title>
-            <link>https://prestodb.github.io/blog/2023/07/11/announcing-watsonxdata-presto-lakehouse.html</link>
-            <guid>https://prestodb.github.io/blog/2023/07/11/announcing-watsonxdata-presto-lakehouse.html</guid>
+            <link>https://yhwang.github.io /blog/2023/07/11/announcing-watsonxdata-presto-lakehouse.html</link>
+            <guid>https://yhwang.github.io /blog/2023/07/11/announcing-watsonxdata-presto-lakehouse.html</guid>
             <pubDate>Tue, 11 Jul 2023 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Co-authors</strong>
 <a href="https://www.linkedin.com/in/stevenmih/">Steven Mih</a>, Co-Founder and CEO of Ahana, an IBM Company</p>
@@ -64,40 +64,40 @@
         </item>
         <item>
             <title><![CDATA[Harnessing Presto - A Deep Dive into Adobe Advertising's Three Use Cases]]></title>
-            <link>https://prestodb.github.io/blog/2023/06/29/presto-at-adobe-prestocon-day.html</link>
-            <guid>https://prestodb.github.io/blog/2023/06/29/presto-at-adobe-prestocon-day.html</guid>
+            <link>https://yhwang.github.io /blog/2023/06/29/presto-at-adobe-prestocon-day.html</link>
+            <guid>https://yhwang.github.io /blog/2023/06/29/presto-at-adobe-prestocon-day.html</guid>
             <pubDate>Thu, 29 Jun 2023 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>At PrestoCon Day 2023, we had a team from Adobe showcasing three different Presto-based use cases. As part of Adobe Advertising, Rajmani Arya, Varun Senthilnathan and Manoj Kumar Dhakad detailed the Adobe Data Processing platform (ADP) and three use cases for Presto: scheduled pipelines, ad-hoc query, and custom reporting. Let’s dive into what they covered.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[Recapping PrestoCon Day 2023 - Presto for the Data Lakehouse, Presto at scale]]></title>
-            <link>https://prestodb.github.io/blog/2023/06/23/prestocon-day-recap.html</link>
-            <guid>https://prestodb.github.io/blog/2023/06/23/prestocon-day-recap.html</guid>
+            <link>https://yhwang.github.io /blog/2023/06/23/prestocon-day-recap.html</link>
+            <guid>https://yhwang.github.io /blog/2023/06/23/prestocon-day-recap.html</guid>
             <pubDate>Fri, 23 Jun 2023 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Just a few weeks ago we hosted PrestoCon Day, our annual virtual community conference. Thank you to everyone who attended - it was an awesome day! We had a fantastic agenda with many Presto users sharing why they chose Presto and how they’re using it to power some pretty sizable workloads.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[Denodo Joins the Presto Foundation]]></title>
-            <link>https://prestodb.github.io/blog/2023/06/14/Denodo-joins-presto-foundation.html</link>
-            <guid>https://prestodb.github.io/blog/2023/06/14/Denodo-joins-presto-foundation.html</guid>
+            <link>https://yhwang.github.io /blog/2023/06/14/Denodo-joins-presto-foundation.html</link>
+            <guid>https://yhwang.github.io /blog/2023/06/14/Denodo-joins-presto-foundation.html</guid>
             <pubDate>Wed, 14 Jun 2023 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>We are pleased to announce that <a href="https://www.denodo.com/en">Denodo Technologies</a> has joined the Presto Foundation. The Denodo Platform is a popular data management platform based on the concept of data virtualization and logical data models, which includes capabilities for data integration, privacy, governance, and data cataloging. Denodo is often used to implement logical and distributed data architectures like the Data Fabric and plays a pivotal role in self-service initiatives and distributed processes like the Data Mesh.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[Hudi tables via Presto-Hive connector: A Deep Dive]]></title>
-            <link>https://prestodb.github.io/blog/2023/05/30/presto-hudi-deep-dive.html</link>
-            <guid>https://prestodb.github.io/blog/2023/05/30/presto-hudi-deep-dive.html</guid>
+            <link>https://yhwang.github.io /blog/2023/05/30/presto-hudi-deep-dive.html</link>
+            <guid>https://yhwang.github.io /blog/2023/05/30/presto-hudi-deep-dive.html</guid>
             <pubDate>Tue, 30 May 2023 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>With the growing popularity of the lakehouse approach, it has become increasingly important for query engines to support these new formats such as Hudi. A <a href="https://prestodb.io/blog/2020/08/04/prestodb-and-hudi">previous blog</a> discusses the evolution of presto-hudi integration via hive connector at a high level. With the latest community developments, a <a href="https://github.com/prestodb/presto/issues/17006">separate presto-hudi connector</a> has come up but it is not at par with the hive connector in terms of security features, caching and cost-based optimization. Hive connector has <a href="https://github.com/prestodb/presto/blob/master/presto-hive/src/main/java/com/facebook/presto/hive/CachingDirectoryLister.java">CachingDirectoryLister</a> which can be used for caching the splits for a given table for a configurable period of time. It also supports <a href="https://prestodb.io/docs/current/sql/analyze.html">analyze command</a> which helps in better planning during optimization phase. In this blog, we dive deeper into presto-hudi integration supported via hive connector from a developer's perspective and list down the various checkpoints where the query execution moves from presto to hudi library.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[IBM joins the Presto Foundation through acquisition of Ahana]]></title>
-            <link>https://prestodb.github.io/blog/2023/04/12/IBM-joins-presto-foundation.html</link>
-            <guid>https://prestodb.github.io/blog/2023/04/12/IBM-joins-presto-foundation.html</guid>
+            <link>https://yhwang.github.io /blog/2023/04/12/IBM-joins-presto-foundation.html</link>
+            <guid>https://yhwang.github.io /blog/2023/04/12/IBM-joins-presto-foundation.html</guid>
             <pubDate>Wed, 12 Apr 2023 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Co-authors</strong>
 <a href="https://www.linkedin.com/in/stevenmih/">Steven Mih</a>, Co-Founder and CEO of Ahana</p>
@@ -106,8 +106,8 @@
         </item>
         <item>
             <title><![CDATA[A recap of PrestoCon 2022 - Bringing Data Lakehouse Analytics to Life (plus a special video recap)]]></title>
-            <link>https://prestodb.github.io/blog/2023/01/09/prestocon-recap.html</link>
-            <guid>https://prestodb.github.io/blog/2023/01/09/prestocon-recap.html</guid>
+            <link>https://yhwang.github.io /blog/2023/01/09/prestocon-recap.html</link>
+            <guid>https://yhwang.github.io /blog/2023/01/09/prestocon-recap.html</guid>
             <pubDate>Mon, 09 Jan 2023 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Last month the Computer History Museum in Mountain View, California, reverberated with “all things Presto,” at our PrestoCon 2022 conference. Back for the third time—and the first time post-pandemic—PrestoCon was ground zero for training, knowledge sharing, and inspiration about the open-source Presto for data analytics and lakehouses, as well as for the vibrant Presto community. This year was special however, as it was the first ever in-person PrestoCon event, and I couldn’t have been more thrilled to meet the community, hear how companies are using Presto in production, and learn  what’s coming up on the engineering roadmap.</p>
 <p>To memorialize this awesome event, we put together <a href="https://youtu.be/sKYy_PwaGYA" style="color:blue;">a quick 3 minute video of PrestoCon</a>! Check it out, and we hope you enjoy it 🙂</p>
@@ -116,16 +116,16 @@
         </item>
         <item>
             <title><![CDATA[Customer-Facing Presto at Rippling - Andy Li, Rippling]]></title>
-            <link>https://prestodb.github.io/blog/2023/01/09/presto-at-rippling.html</link>
-            <guid>https://prestodb.github.io/blog/2023/01/09/presto-at-rippling.html</guid>
+            <link>https://yhwang.github.io /blog/2023/01/09/presto-at-rippling.html</link>
+            <guid>https://yhwang.github.io /blog/2023/01/09/presto-at-rippling.html</guid>
             <pubDate>Mon, 09 Jan 2023 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Last month we hosted PrestoCon, a return to in-person events that showcased the community development of Presto. In this blog we’ll detail Rippling’s presentation on their Presto use case, including their architecture, key optimizations, and hard earned lessons. You can also check out their <a href="https://www.youtube.com/playlist?list=PLJVeO1NMmyqXvoKFad0_SJ9C9AlqtVaQ3">full presentation here</a>.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[2022 PrestoDB Community in Review]]></title>
-            <link>https://prestodb.github.io/blog/2022/12/30/prestodb-2022-reveiw.html</link>
-            <guid>https://prestodb.github.io/blog/2022/12/30/prestodb-2022-reveiw.html</guid>
+            <link>https://yhwang.github.io /blog/2022/12/30/prestodb-2022-reveiw.html</link>
+            <guid>https://yhwang.github.io /blog/2022/12/30/prestodb-2022-reveiw.html</guid>
             <pubDate>Fri, 30 Dec 2022 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Hello Presto enthusiasts!</p>
 <p>We here at the Presto Outreach Committee are absolutely thrilled to be entering the new year of 2023. It's hard to believe that another year has passed, but as we reflect on the past year, we can't help but feel grateful for the amazing growth and progress we've seen in the Presto community in 2022.</p>
@@ -134,16 +134,16 @@
         </item>
         <item>
             <title><![CDATA[Presto on AWS at Twilio - Lesson Learned and Optimization]]></title>
-            <link>https://prestodb.github.io/blog/2022/12/28/presto-at-twilio.html</link>
-            <guid>https://prestodb.github.io/blog/2022/12/28/presto-at-twilio.html</guid>
+            <link>https://yhwang.github.io /blog/2022/12/28/presto-at-twilio.html</link>
+            <guid>https://yhwang.github.io /blog/2022/12/28/presto-at-twilio.html</guid>
             <pubDate>Wed, 28 Dec 2022 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Earlier this month we hosted PrestoCon, a fantastic in-person event that showcased the innovation around the Presto project. In this blog we’ll detail Twilio’s presentation on their Presto use case, including their architecture, key optimizations, and lessons learned. You can also check out their <a href="https://www.youtube.com/playlist?list=PLJVeO1NMmyqXvoKFad0_SJ9C9AlqtVaQ3">full presentation here</a>.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[Our Presto Credo for the Truly Open Source SQL Query Engine.]]></title>
-            <link>https://prestodb.github.io/blog/2022/12/08/presto-credo.html</link>
-            <guid>https://prestodb.github.io/blog/2022/12/08/presto-credo.html</guid>
+            <link>https://yhwang.github.io /blog/2022/12/08/presto-credo.html</link>
+            <guid>https://yhwang.github.io /blog/2022/12/08/presto-credo.html</guid>
             <pubDate>Thu, 08 Dec 2022 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Co-authors:</strong></p>
 <ul>
@@ -159,8 +159,8 @@
         </item>
         <item>
             <title><![CDATA[Is PrestoDB the most popular Open Source Data Analytics project?]]></title>
-            <link>https://prestodb.github.io/blog/2022/11/30/datanami.html</link>
-            <guid>https://prestodb.github.io/blog/2022/11/30/datanami.html</guid>
+            <link>https://yhwang.github.io /blog/2022/11/30/datanami.html</link>
+            <guid>https://yhwang.github.io /blog/2022/11/30/datanami.html</guid>
             <pubDate>Wed, 30 Nov 2022 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Co-author:</strong> <a href="https://www.linkedin.com/in/rachelpedreschi/">Rachel Pedreschi</a></p>
 <p>The Presto Foundation is thrilled to announce that today Presto has been awarded “2022 Editors Choice for Top 3 Data and AI Open Source Projects to Watch” from <a href="https://www.datanami.com/this-just-in/bigdatawire-formerly-datanami-reveals-winners-of-2022-readers-and-editors-choice-awards/">BigDATAwire</a>.  Past winners are a true who’s who in the data world including Apache Spark (2020), Apache Kafka (2018), MongoDB (2019), Apache Cassandra, ElasticSearch and Redis (2021).  This award underscores what the Linux Foundation's Presto Foundation has known for a long time, that PrestoDB continues to be extremely popular, and we have recently dug into the data to find out more.</p>
@@ -169,8 +169,8 @@
         </item>
         <item>
             <title><![CDATA[5 Reasons to attend PrestoCon 2022 on Dec. 7-8.]]></title>
-            <link>https://prestodb.github.io/blog/2022/11/28/PrestoCon-2022.html</link>
-            <guid>https://prestodb.github.io/blog/2022/11/28/PrestoCon-2022.html</guid>
+            <link>https://yhwang.github.io /blog/2022/11/28/PrestoCon-2022.html</link>
+            <guid>https://yhwang.github.io /blog/2022/11/28/PrestoCon-2022.html</guid>
             <pubDate>Mon, 28 Nov 2022 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Co-author:</strong> Steven Mih, Board member, Presto Foundation Member: <a href="https://ahana.io/">Ahana</a></p>
 <p>The annual <a href="https://events.linuxfoundation.org/prestocon/">PrestoCon</a> is coming back for its 3rd year and it’s going to be better than ever! If you want to learn how to use Presto with confidence and/or network with data engineers, this is the event for you. PrestoCon 2022 will be held in Mountain View, California on December 7th and 8th. The conference features two days of in-depth training sessions and talks led by some of the best minds in the industry. If you want to learn how to use Presto for data analytics and lakehouses, or simply to get the most out of your data infrastructure, register now and get ready for two exciting days of learning and networking!</p>
@@ -178,8 +178,8 @@
         </item>
         <item>
             <title><![CDATA[Presto Parquet Column Encryption]]></title>
-            <link>https://prestodb.github.io/blog/2022/07/10/presto-parquet-column-encryption.html</link>
-            <guid>https://prestodb.github.io/blog/2022/07/10/presto-parquet-column-encryption.html</guid>
+            <link>https://yhwang.github.io /blog/2022/07/10/presto-parquet-column-encryption.html</link>
+            <guid>https://yhwang.github.io /blog/2022/07/10/presto-parquet-column-encryption.html</guid>
             <pubDate>Sun, 10 Jul 2022 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Uber:</strong> Xinli Shang</p>
 <h2><a class="anchor" aria-hidden="true" id="introduction"></a><a href="#introduction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Introduction</h2>
@@ -190,8 +190,8 @@
         </item>
         <item>
             <title><![CDATA[Faster Presto Queries with Parquet Page Index]]></title>
-            <link>https://prestodb.github.io/blog/2022/05/10/faster-presto-queries-with-parquet-page-index.html</link>
-            <guid>https://prestodb.github.io/blog/2022/05/10/faster-presto-queries-with-parquet-page-index.html</guid>
+            <link>https://yhwang.github.io /blog/2022/05/10/faster-presto-queries-with-parquet-page-index.html</link>
+            <guid>https://yhwang.github.io /blog/2022/05/10/faster-presto-queries-with-parquet-page-index.html</guid>
             <pubDate>Tue, 10 May 2022 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Uber:</strong> Xinli Shang</p>
 <p><strong>Uber:</strong> Chen Liang</p>
@@ -204,8 +204,8 @@
         </item>
         <item>
             <title><![CDATA[Disaggregated Coordinator]]></title>
-            <link>https://prestodb.github.io/blog/2022/04/15/disggregated-coordinator.html</link>
-            <guid>https://prestodb.github.io/blog/2022/04/15/disggregated-coordinator.html</guid>
+            <link>https://yhwang.github.io /blog/2022/04/15/disggregated-coordinator.html</link>
+            <guid>https://yhwang.github.io /blog/2022/04/15/disggregated-coordinator.html</guid>
             <pubDate>Fri, 15 Apr 2022 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Meta</strong>: Swapnil Tailor, Tim Meehan, Vaishnavi Batni, Abhisek Saikia, Neerad Somanchi</p>
 <h2><a class="anchor" aria-hidden="true" id="overview"></a><a href="#overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h2>
@@ -219,8 +219,8 @@
         </item>
         <item>
             <title><![CDATA[Native Delta Lake Connector for Presto]]></title>
-            <link>https://prestodb.github.io/blog/2022/03/15/native-delta-lake-connector-for-presto.html</link>
-            <guid>https://prestodb.github.io/blog/2022/03/15/native-delta-lake-connector-for-presto.html</guid>
+            <link>https://yhwang.github.io /blog/2022/03/15/native-delta-lake-connector-for-presto.html</link>
+            <guid>https://yhwang.github.io /blog/2022/03/15/native-delta-lake-connector-for-presto.html</guid>
             <pubDate>Tue, 15 Mar 2022 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Co-authors</strong><br>
 <a href="https://www.linkedin.com/in/dennyglee/">Denny Lee</a>, Sr. Staff Developer Advocate at Databricks</p>
@@ -231,8 +231,8 @@
         </item>
         <item>
             <title><![CDATA[Avoid Data Silos in Presto in Meta: the journey from Raptor to RaptorX]]></title>
-            <link>https://prestodb.github.io/blog/2022/01/28/avoid-data-silos-in-presto-in-meta.html</link>
-            <guid>https://prestodb.github.io/blog/2022/01/28/avoid-data-silos-in-presto-in-meta.html</guid>
+            <link>https://yhwang.github.io /blog/2022/01/28/avoid-data-silos-in-presto-in-meta.html</link>
+            <guid>https://yhwang.github.io /blog/2022/01/28/avoid-data-silos-in-presto-in-meta.html</guid>
             <pubDate>Fri, 28 Jan 2022 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Alluxio</strong>: Rongrong Zhong
 <strong>Meta</strong>: James Sun, Ke Wang</p>
@@ -251,8 +251,8 @@ storage latency add difficult to avoid variability. To address this limitation, 
         </item>
         <item>
             <title><![CDATA[Common Sub-Expression optimization]]></title>
-            <link>https://prestodb.github.io/blog/2021/11/22/common-sub-expression-optimization.html</link>
-            <guid>https://prestodb.github.io/blog/2021/11/22/common-sub-expression-optimization.html</guid>
+            <link>https://yhwang.github.io /blog/2021/11/22/common-sub-expression-optimization.html</link>
+            <guid>https://yhwang.github.io /blog/2021/11/22/common-sub-expression-optimization.html</guid>
             <pubDate>Mon, 22 Nov 2021 06:00:00 GMT</pubDate>
             <description><![CDATA[<h2><a class="anchor" aria-hidden="true" id="the-problem"></a><a href="#the-problem" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The problem</h2>
 <p>One common pattern we see in some analytical workloads is the repeated use of the same, often times expensive expression. Look at the following query plan for example:</p>
@@ -262,8 +262,8 @@ storage latency add difficult to avoid variability. To address this limitation, 
         </item>
         <item>
             <title><![CDATA[Scaling with Presto on Spark]]></title>
-            <link>https://prestodb.github.io/blog/2021/10/26/Scaling-with-Presto-on-Spark.html</link>
-            <guid>https://prestodb.github.io/blog/2021/10/26/Scaling-with-Presto-on-Spark.html</guid>
+            <link>https://yhwang.github.io /blog/2021/10/26/Scaling-with-Presto-on-Spark.html</link>
+            <guid>https://yhwang.github.io /blog/2021/10/26/Scaling-with-Presto-on-Spark.html</guid>
             <pubDate>Tue, 26 Oct 2021 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Co-authors</strong><br>
 <a href="https://www.linkedin.com/in/shradha-ambekar-a0504714">Shradha Ambekar</a>, Staff Software Engineer at <a href="https://www.intuit.com/">Intuit</a><br>
@@ -281,8 +281,8 @@ storage latency add difficult to avoid variability. To address this limitation, 
         </item>
         <item>
             <title><![CDATA[Native Parquet Writer for Presto]]></title>
-            <link>https://prestodb.github.io/blog/2021/06/29/native-parquet-writer-for-presto.html</link>
-            <guid>https://prestodb.github.io/blog/2021/06/29/native-parquet-writer-for-presto.html</guid>
+            <link>https://yhwang.github.io /blog/2021/06/29/native-parquet-writer-for-presto.html</link>
+            <guid>https://yhwang.github.io /blog/2021/06/29/native-parquet-writer-for-presto.html</guid>
             <pubDate>Tue, 29 Jun 2021 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Pinterest:</strong> Lu Niu</p>
 <p><strong>Twitter:</strong> Zhenxiao Luo</p>
@@ -292,8 +292,8 @@ storage latency add difficult to avoid variability. To address this limitation, 
         </item>
         <item>
             <title><![CDATA[Presto Foundation and PrestoDB: Our Commitment to the Presto Open Source Community]]></title>
-            <link>https://prestodb.github.io/blog/2021/06/14/Commitment-to-Presto-Open-Source-Community.html</link>
-            <guid>https://prestodb.github.io/blog/2021/06/14/Commitment-to-Presto-Open-Source-Community.html</guid>
+            <link>https://yhwang.github.io /blog/2021/06/14/Commitment-to-Presto-Open-Source-Community.html</link>
+            <guid>https://yhwang.github.io /blog/2021/06/14/Commitment-to-Presto-Open-Source-Community.html</guid>
             <pubDate>Mon, 14 Jun 2021 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Authors</strong></p>
 <ul>
@@ -311,8 +311,8 @@ storage latency add difficult to avoid variability. To address this limitation, 
         </item>
         <item>
             <title><![CDATA[RaptorX: Building a 10X Faster Presto]]></title>
-            <link>https://prestodb.github.io/blog/2021/02/04/raptorx.html</link>
-            <guid>https://prestodb.github.io/blog/2021/02/04/raptorx.html</guid>
+            <link>https://yhwang.github.io /blog/2021/02/04/raptorx.html</link>
+            <guid>https://yhwang.github.io /blog/2021/02/04/raptorx.html</guid>
             <pubDate>Thu, 04 Feb 2021 06:00:00 GMT</pubDate>
             <description><![CDATA[<div style="text-align: justify">
 <p><strong>Facebook:</strong> Abhinav Sharma, Amit Dutta, Baldeep Hira, Biswapesh Chattopadhyay, James Sun, Jialiang Tan, Ke Wang, Lin Liu, Naveen Cherukuri, Nikhil Collooru, Peter Na, Prashant Nema, Rohit Jain, Saksham Sachdev, Sergey Pershin, Shixuan Fan, Varun Gajjala</p>
@@ -324,8 +324,8 @@ storage latency add difficult to avoid variability. To address this limitation, 
         </item>
         <item>
             <title><![CDATA[2020 Recap - A Year with Presto]]></title>
-            <link>https://prestodb.github.io/blog/2021/01/12/2020-recap-year-with-presto.html</link>
-            <guid>https://prestodb.github.io/blog/2021/01/12/2020-recap-year-with-presto.html</guid>
+            <link>https://yhwang.github.io /blog/2021/01/12/2020-recap-year-with-presto.html</link>
+            <guid>https://yhwang.github.io /blog/2021/01/12/2020-recap-year-with-presto.html</guid>
             <pubDate>Tue, 12 Jan 2021 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Tl;dr: 2020 was a huge year for the Presto community. We held our first major conference, PrestoCon, the biggest Presto event ever. We had a massive expansion of our meetup groups with more than 20 sessions held throughout the year, and significant innovations were contributed to Presto!</p>
 <p>This year has certainly been unique, to say the least. As chairperson of the Presto Foundation Outreach Committee, the term “outreach” took on a whole new meaning this year. But through the challenges of 2020, we adopted new ways to connect. We continued to build and engage with the Presto community in a new “virtual” way, and I couldn’t be more proud of all we’ve accomplished as a community in 2020.</p>
@@ -334,8 +334,8 @@ storage latency add difficult to avoid variability. To address this limitation, 
         </item>
         <item>
             <title><![CDATA[Using OptimizedTypedSet to Improve Map and Array Functions]]></title>
-            <link>https://prestodb.github.io/blog/2020/12/04/typedset.html</link>
-            <guid>https://prestodb.github.io/blog/2020/12/04/typedset.html</guid>
+            <link>https://yhwang.github.io /blog/2020/12/04/typedset.html</link>
+            <guid>https://yhwang.github.io /blog/2020/12/04/typedset.html</guid>
             <pubDate>Fri, 04 Dec 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Function evaluation is a big part of projection CPU cost. Recently we optimized a set of functions that use <code>TypedSet</code>, e.g.  <code>map_concat</code>, <code>array_union</code>, <code>array_intersect</code>, and <code>array_except</code>. By introducing a new <code>OptimizedTypeSet</code>, the above functions saw improvements in several dimensions:</p>
 <ul>
@@ -349,24 +349,24 @@ storage latency add difficult to avoid variability. To address this limitation, 
         </item>
         <item>
             <title><![CDATA[PrestoCon and Growing Industry Consortium - Intel and Upsolver Join Presto Foundation]]></title>
-            <link>https://prestodb.github.io/blog/2020/11/20/prestocon-and-foundation-update.html</link>
-            <guid>https://prestodb.github.io/blog/2020/11/20/prestocon-and-foundation-update.html</guid>
+            <link>https://yhwang.github.io /blog/2020/11/20/prestocon-and-foundation-update.html</link>
+            <guid>https://yhwang.github.io /blog/2020/11/20/prestocon-and-foundation-update.html</guid>
             <pubDate>Fri, 20 Nov 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Presto Foundation joined the Linux Foundation over a year ago, and has been focused on growing the <a href="http://prestodb.io">Presto open source project</a> and community. We encourage industry involvement with an <a href="https://github.com/prestodb/foundation#presto-foundation-related-documents">open charter</a>, <a href="https://github.com/prestodb/foundation/blob/master/PRINCIPLES.md#presto-foundation-principles">clear guiding principles</a>, and <a href="https://github.com/prestodb/foundation/blob/master/GOALS.md#presto-foundation-pf-strategic-goals">community-oriented goals</a>. We recently hosted <a href="https://prestodb.io/prestocon.html">PrestoCon 2020</a>, our first annual community conference, which was widely attended and well represented by Presto community members. We also warmly welcome Intel and Upsolver who recently joined the Presto Foundation.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[Presto Enables Internal Log Data Analysis at Drift]]></title>
-            <link>https://prestodb.github.io/blog/2020/10/29/presto-at-drift.html</link>
-            <guid>https://prestodb.github.io/blog/2020/10/29/presto-at-drift.html</guid>
+            <link>https://yhwang.github.io /blog/2020/10/29/presto-at-drift.html</link>
+            <guid>https://yhwang.github.io /blog/2020/10/29/presto-at-drift.html</guid>
             <pubDate>Thu, 29 Oct 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>I’m a Senior Software Engineer in the data group at Drift, a conversational marketing platform that is used for qualifying leads faster, automatically booking meetings and connecting customers to the right business solutions more efficiently. I’ve used Presto quite a bit throughout my career, and I want to first give readers a quick overview of how Presto has enabled my team at Drift to quickly and cost-effectively analyze distributed logs at scale. Then I will share how we used and benefited from Presto at Vistaprint, where I worked previously.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[Even Faster Unnest]]></title>
-            <link>https://prestodb.github.io/blog/2020/08/20/unnest.html</link>
-            <guid>https://prestodb.github.io/blog/2020/08/20/unnest.html</guid>
+            <link>https://yhwang.github.io /blog/2020/08/20/unnest.html</link>
+            <guid>https://yhwang.github.io /blog/2020/08/20/unnest.html</guid>
             <pubDate>Thu, 20 Aug 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Ying Su, Masha Basmanova, Orri Erling</p>
 <p>Unnest is a common operation in Facebook’s daily Presto workload. It converts an <code>ARRAY</code>, <code>MAP</code>, or <code>ROW</code> into a flat relation. Its original implementation used deep copy all the time and was very inefficient. In <a href="https://prestosql.io/blog/2019/08/23/unnest-operator-performance-enhancements.html">Unnest Operator Performance Enhancement with Dictionary Blocks</a>, the author improved the Unnest operator by up to 10x in CPU and elapsed times by using <code>DictionaryBlock</code> when possible. We went one step further and improved it for another 5-10x.</p>
@@ -374,8 +374,8 @@ storage latency add difficult to avoid variability. To address this limitation, 
         </item>
         <item>
             <title><![CDATA[Getting Started with PrestoDB and Aria Scan Optimizations]]></title>
-            <link>https://prestodb.github.io/blog/2020/08/14/getting-started-and-aria.html</link>
-            <guid>https://prestodb.github.io/blog/2020/08/14/getting-started-and-aria.html</guid>
+            <link>https://yhwang.github.io /blog/2020/08/14/getting-started-and-aria.html</link>
+            <guid>https://yhwang.github.io /blog/2020/08/14/getting-started-and-aria.html</guid>
             <pubDate>Fri, 14 Aug 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>This article was originally published by Adam on June 15th, 2020 over at his blog at <a href="https://datacatessen.com/blog/prestodb-aria/">datacatessen.com</a>.</p>
 <hr>
@@ -384,8 +384,8 @@ storage latency add difficult to avoid variability. To address this limitation, 
         </item>
         <item>
             <title><![CDATA[Building a high-performance platform on AWS to support real-time gaming services using Presto and Alluxio]]></title>
-            <link>https://prestodb.github.io/blog/2020/08/06/presto-in-ea.html</link>
-            <guid>https://prestodb.github.io/blog/2020/08/06/presto-in-ea.html</guid>
+            <link>https://yhwang.github.io /blog/2020/08/06/presto-in-ea.html</link>
+            <guid>https://yhwang.github.io /blog/2020/08/06/presto-in-ea.html</guid>
             <pubDate>Thu, 06 Aug 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Authors:</strong> Teng Wang, Du Li, Yu Jin and Sundeep Narravula</p>
 <p>Electronic Arts (EA) is a leading company in the gaming industry, providing dozens of games to serve billions of users worldwide each year.
@@ -395,8 +395,8 @@ This blog describes a data platform on AWS based on Presto and Alluxio to suppor
         </item>
         <item>
             <title><![CDATA[PrestoDB and Apache Hudi]]></title>
-            <link>https://prestodb.github.io/blog/2020/08/04/prestodb-and-hudi.html</link>
-            <guid>https://prestodb.github.io/blog/2020/08/04/prestodb-and-hudi.html</guid>
+            <link>https://yhwang.github.io /blog/2020/08/04/prestodb-and-hudi.html</link>
+            <guid>https://yhwang.github.io /blog/2020/08/04/prestodb-and-hudi.html</guid>
             <pubDate>Tue, 04 Aug 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Co-author:</strong> <a href="https://www.linkedin.com/in/brandon-scheller-a00851ab">Brandon Scheller</a></p>
 <p><a href="https://hudi.apache.org">Apache Hudi</a> is a fast growing data lake storage system that helps organizations build and manage petabyte-scale data lakes. Hudi brings stream style processing to batch-like big data by introducing primitives such as upserts, deletes and incremental queries. These features help surface faster, fresher data on a unified serving layer. Hudi tables can be stored on the Hadoop Distributed File System (HDFS) or cloud stores and integrates well with popular query engines such as <a href="https://prestodb.io">Presto</a>, <a href="https://hive.apache.org">Apache Hive</a>, <a href="https://spark.apache.org">Apache Spark</a> and <a href="https://impala.apache.org">Apache Impala</a>. Given Hudi pioneered a new model that moved beyond just writing files to a more managed storage layer that interops with all major query engines, there were interesting learnings on how integration points evolved.</p>
@@ -405,8 +405,8 @@ This blog describes a data platform on AWS based on Presto and Alluxio to suppor
         </item>
         <item>
             <title><![CDATA[Running Presto in a Hybrid Cloud Architecture]]></title>
-            <link>https://prestodb.github.io/blog/2020/07/17/alluxio-hybrid-cloud.html</link>
-            <guid>https://prestodb.github.io/blog/2020/07/17/alluxio-hybrid-cloud.html</guid>
+            <link>https://yhwang.github.io /blog/2020/07/17/alluxio-hybrid-cloud.html</link>
+            <guid>https://yhwang.github.io /blog/2020/07/17/alluxio-hybrid-cloud.html</guid>
             <pubDate>Fri, 17 Jul 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Migrating SQL workloads from a fully on-premise environment to cloud infrastructure has numerous benefits, including alleviating resource contention and reducing costs by paying for computation resources on an on-demand basis. In the case of Presto running on data stored in HDFS, the separation of compute in the cloud and storage on-premises is apparent since Presto’s architecture enables the storage and compute components to operate independently. The critical issue in this hybrid environment of Presto in the cloud retrieving HDFS data from an on-premise environment is the network latency between the two clusters.</p>
 <p>This crucial bottleneck severely limits performance of any workload since a significant portion of its time is spent transferring the requested data between networks that could be residing in geographically disparate locations. As a result, most companies copy their data into a cloud environment and maintain that duplicate data, also known as Lift and Shift. Companies with compliance and data sovereignty requirements may even prevent organizations from copying data into the cloud. This approach is not scalable and requires introducing a lot of manual effort to achieve reasonable results. This article introduces <a href="https://www.alluxio.io/">Alluxio</a> to serve as a <a href="https://www.alluxio.io/data-orchestration/">data orchestration</a> layer to help serve data to Presto efficiently, as opposed to either directly querying the distant HDFS cluster or manually providing a localized copy of the data to Presto in a cloud cluster.</p>
@@ -414,8 +414,8 @@ This blog describes a data platform on AWS based on Presto and Alluxio to suppor
         </item>
         <item>
             <title><![CDATA[Data Lake Analytics: Alibaba's Federated Cloud Strategy]]></title>
-            <link>https://prestodb.github.io/blog/2020/06/30/data-lake-analytics-blog.html</link>
-            <guid>https://prestodb.github.io/blog/2020/06/30/data-lake-analytics-blog.html</guid>
+            <link>https://yhwang.github.io /blog/2020/06/30/data-lake-analytics-blog.html</link>
+            <guid>https://yhwang.github.io /blog/2020/06/30/data-lake-analytics-blog.html</guid>
             <pubDate>Tue, 30 Jun 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Presto is known to be a high-performance, distributed SQL query engine for Big Data. It offers large-scale data analytics with multiple connectors for accessing various data sources. This capability enables the Presto users to further extend some features to build a large-scale data federation service on cloud. <br>
 <br>
@@ -425,8 +425,8 @@ Alibaba Data Lake Analytics embraces Presto’s federated query engine capabilit
         </item>
         <item>
             <title><![CDATA[Improving Presto Latencies with Alluxio Data Caching]]></title>
-            <link>https://prestodb.github.io/blog/2020/06/16/alluxio-datacaching.html</link>
-            <guid>https://prestodb.github.io/blog/2020/06/16/alluxio-datacaching.html</guid>
+            <link>https://yhwang.github.io /blog/2020/06/16/alluxio-datacaching.html</link>
+            <guid>https://yhwang.github.io /blog/2020/06/16/alluxio-datacaching.html</guid>
             <pubDate>Tue, 16 Jun 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Facebook:</strong> Rohit Jain, James Sun, Ke Wang, Shixuan Fan, Biswapesh Chattopadhyay, Baldeep Hira</p>
 <p><strong>Alluxio:</strong> Bin Fan, Calvin Jia, Haoyuan Li</p>
@@ -438,8 +438,8 @@ We have observed significant improvements in query latencies and IO scans in our
         </item>
         <item>
             <title><![CDATA[Spatial Joins 1: Local Spatial Joins]]></title>
-            <link>https://prestodb.github.io/blog/2020/05/07/local-spatial-joins.html</link>
-            <guid>https://prestodb.github.io/blog/2020/05/07/local-spatial-joins.html</guid>
+            <link>https://yhwang.github.io /blog/2020/05/07/local-spatial-joins.html</link>
+            <guid>https://yhwang.github.io /blog/2020/05/07/local-spatial-joins.html</guid>
             <pubDate>Thu, 07 May 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>A common type of spatial query involves relating one table of geometric
 objects (e.g., a table <code>population_centers</code> with columns
@@ -455,8 +455,8 @@ queries blazingly fast.</p>
         </item>
         <item>
             <title><![CDATA[Engineering SQL Support on Apache Pinot at Uber]]></title>
-            <link>https://prestodb.github.io/blog/2020/03/18/uber-pinot.html</link>
-            <guid>https://prestodb.github.io/blog/2020/03/18/uber-pinot.html</guid>
+            <link>https://yhwang.github.io /blog/2020/03/18/uber-pinot.html</link>
+            <guid>https://yhwang.github.io /blog/2020/03/18/uber-pinot.html</guid>
             <pubDate>Wed, 18 Mar 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>The article,  <a href="https://eng.uber.com/engineering-sql-support-on-apache-pinot/">Engineering SQL Support on Apache Pinot at Uber</a>, was originally published by Uber on the Uber Engineering Blog on January 15, 2020. Check out <a href="https://eng.uber.com/">eng.uber.com</a> for more articles about Uber's engineering work and follow Uber Engineering at <a href="https://twitter.com/UberEng">@UberEng</a> and Uber Open Source at <a href="https://twitter.com/UberOpenSource">@UberOpenSouce</a> on Twitter for updates from our teams.</p>
 <p><img src="/img/blog/2020-03-18-uber-pinot/shiny-thing.png" alt=""></p>
@@ -468,8 +468,8 @@ queries blazingly fast.</p>
         </item>
         <item>
             <title><![CDATA[Querying Nested Data with Lambda Functions]]></title>
-            <link>https://prestodb.github.io/blog/2020/03/02/presto-lambda.html</link>
-            <guid>https://prestodb.github.io/blog/2020/03/02/presto-lambda.html</guid>
+            <link>https://yhwang.github.io /blog/2020/03/02/presto-lambda.html</link>
+            <guid>https://yhwang.github.io /blog/2020/03/02/presto-lambda.html</guid>
             <pubDate>Mon, 02 Mar 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Denormalized data with nested values (e.g. array/map) have become omnipresent in this Big Data era, as a lot of data naturally conforms to a nested representation [1, 2]. As a result it is important to provide an efficient and convenient way to query nested data. SQL traditionally does not include support for this.</p>
 <p>The pioneering work of Dremel proposed an extension to SQL based on recursive relational algebra to allow querying nested records [1], and is now available in BigQuery and the SQL:2016 standard. The following example shows how to transform array elements with this (adapted from <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/arrays#creating-arrays-from-subqueries">BigQuery Docs</a>):</p>
@@ -515,15 +515,15 @@ x -&gt; x + TRY(1 / 0)
         </item>
         <item>
             <title><![CDATA[Announcing PrestoCon 2020: Advancing the Big Data Ecosystem with Presto]]></title>
-            <link>https://prestodb.github.io/blog/2020/02/13/prestocon-announcement.html</link>
-            <guid>https://prestodb.github.io/blog/2020/02/13/prestocon-announcement.html</guid>
+            <link>https://yhwang.github.io /blog/2020/02/13/prestocon-announcement.html</link>
+            <guid>https://yhwang.github.io /blog/2020/02/13/prestocon-announcement.html</guid>
             <pubDate>Thu, 13 Feb 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>On March 24, 2020 in San Mateo, the Presto Foundation, in partnership with The Linux Foundation, will be hosting the organization’s first-ever <a href="https://events.linuxfoundation.org/prestocon/">PrestoCon</a>. The event, one of the first Presto-focused full-day conferences ever held, will feature speakers...</p>]]></description>
         </item>
         <item>
             <title><![CDATA[Improving the Presto planner for better push down and data federation]]></title>
-            <link>https://prestodb.github.io/blog/2019/12/23/improve-presto-planner.html</link>
-            <guid>https://prestodb.github.io/blog/2019/12/23/improve-presto-planner.html</guid>
+            <link>https://yhwang.github.io /blog/2019/12/23/improve-presto-planner.html</link>
+            <guid>https://yhwang.github.io /blog/2019/12/23/improve-presto-planner.html</guid>
             <pubDate>Mon, 23 Dec 2019 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><strong>Alibaba:</strong> Yuan Mei</p>
 <p><strong>Facebook:</strong> James Sun, Maria Basmanova, Rongrong Zhong, Jiexi Lin, Saksham Sachdev</p>
@@ -535,8 +535,8 @@ x -&gt; x + TRY(1 / 0)
         </item>
         <item>
             <title><![CDATA[5 design choices—and 1 weird trick — to get 2x efficiency gains in Presto repartitioning]]></title>
-            <link>https://prestodb.github.io/blog/2019/12/20/repartition.html</link>
-            <guid>https://prestodb.github.io/blog/2019/12/20/repartition.html</guid>
+            <link>https://yhwang.github.io /blog/2019/12/20/repartition.html</link>
+            <guid>https://yhwang.github.io /blog/2019/12/20/repartition.html</guid>
             <pubDate>Fri, 20 Dec 2019 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Ying Su, Masha Basmanova, Orri Erling, Tim Meehan, Sahar Massachi, Bhavani Hari</p>
 <p>We like Presto. We like it a lot — so much we want to make it better in every way. Here's an example: we just optimized the PartitionedOutputOperator. It's now 2-3x more CPU efficient, which, when measured against Facebook's production workload, translates to 6% gains overall. That's huge.</p>
@@ -546,38 +546,38 @@ x -&gt; x + TRY(1 / 0)
         </item>
         <item>
             <title><![CDATA[Join Us! Growing the Presto Foundation in 2020 and Beyond]]></title>
-            <link>https://prestodb.github.io/blog/2019/12/16/growing-the-presto-foundation.html</link>
-            <guid>https://prestodb.github.io/blog/2019/12/16/growing-the-presto-foundation.html</guid>
+            <link>https://yhwang.github.io /blog/2019/12/16/growing-the-presto-foundation.html</link>
+            <guid>https://yhwang.github.io /blog/2019/12/16/growing-the-presto-foundation.html</guid>
             <pubDate>Mon, 16 Dec 2019 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>The Presto Foundation (PF) was <a href="https://www.linuxfoundation.org/press-release/2019/09/facebook-uber-twitter-and-alibaba-form-presto-foundation-to-tackle-distributed-data-processing-at-scale/">established in September 2019</a> as an openly governed and vendor-neutral body dedicated to scaling and diversifying the <a href="https://prestodb.io/">Presto</a> community. Hosted by the Linux Foundation, PF and its Governing Board are in a unique position...</p>]]></description>
         </item>
         <item>
             <title><![CDATA[Table Scan: Doing The Right Thing With Structured Types]]></title>
-            <link>https://prestodb.github.io/blog/2019/09/26/tablescan-structs.html</link>
-            <guid>https://prestodb.github.io/blog/2019/09/26/tablescan-structs.html</guid>
+            <link>https://yhwang.github.io /blog/2019/09/26/tablescan-structs.html</link>
+            <guid>https://yhwang.github.io /blog/2019/09/26/tablescan-structs.html</guid>
             <pubDate>Thu, 26 Sep 2019 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>In the previous article we saw what gains are possible when filtering early and in the right order. In this article we look at how we do this with nested and structured types.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[Presto now hosted under the Linux Foundation]]></title>
-            <link>https://prestodb.github.io/blog/2019/09/23/linux-foundation.html</link>
-            <guid>https://prestodb.github.io/blog/2019/09/23/linux-foundation.html</guid>
+            <link>https://yhwang.github.io /blog/2019/09/23/linux-foundation.html</link>
+            <guid>https://yhwang.github.io /blog/2019/09/23/linux-foundation.html</guid>
             <pubDate>Mon, 23 Sep 2019 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>We are excited to announce today, in partnership with <a href="https://www.alibaba.com/">Alibaba</a>, <a href="https://www.facebook.com/">Facebook</a>, <a href="https://twitter.com/home">Twitter</a>, and <a href="https://www.uber.com">Uber</a>, the launch of the Presto Foundation, a non-profit organization under the umbrella of the <a href="https://www.linuxfoundation.org/">Linux Foundation</a>.</p> <p>Hosting by the Linux Foundation opens up the Presto...</p>]]></description>
         </item>
         <item>
             <title><![CDATA[Memory Management in Presto]]></title>
-            <link>https://prestodb.github.io/blog/2019/08/19/memory-tracking.html</link>
-            <guid>https://prestodb.github.io/blog/2019/08/19/memory-tracking.html</guid>
+            <link>https://yhwang.github.io /blog/2019/08/19/memory-tracking.html</link>
+            <guid>https://yhwang.github.io /blog/2019/08/19/memory-tracking.html</guid>
             <pubDate>Mon, 19 Aug 2019 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>In a multi-tenant system like Presto careful memory management is required to keep the system stable and prevent individual queries from taking over all the resources. However, tracking the memory usage of data structures in an application (Presto) running on the Java Virtual Machine (JVM) requires a significant amount of work. In addition, Presto is a distributed system, which makes the problem more complicated. This post provides an overview of how memory management works in Presto, and provides info about the various memory management related JMX counters/endpoints that can be used for monitoring production clusters.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[Presto Unlimited: MPP SQL Engine at Scale]]></title>
-            <link>https://prestodb.github.io/blog/2019/08/05/presto-unlimited-mpp-database-at-scale.html</link>
-            <guid>https://prestodb.github.io/blog/2019/08/05/presto-unlimited-mpp-database-at-scale.html</guid>
+            <link>https://yhwang.github.io /blog/2019/08/05/presto-unlimited-mpp-database-at-scale.html</link>
+            <guid>https://yhwang.github.io /blog/2019/08/05/presto-unlimited-mpp-database-at-scale.html</guid>
             <pubDate>Mon, 05 Aug 2019 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Wenlei Xie, Andrii Rosa, Shixuan Fan, Rebecca Schlussel, Tim Meehan</p>
 <p>Presto is an open source distributed SQL query engine for running analytic queries against data sources of all sizes ranging from gigabytes to petabytes.</p>
@@ -587,8 +587,8 @@ x -&gt; x + TRY(1 / 0)
         </item>
         <item>
             <title><![CDATA[Complete Table Scan: A Quantitative Assessment]]></title>
-            <link>https://prestodb.github.io/blog/2019/07/23/complete-table-scan.html</link>
-            <guid>https://prestodb.github.io/blog/2019/07/23/complete-table-scan.html</guid>
+            <link>https://yhwang.github.io /blog/2019/07/23/complete-table-scan.html</link>
+            <guid>https://yhwang.github.io /blog/2019/07/23/complete-table-scan.html</guid>
             <pubDate>Tue, 23 Jul 2019 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>In the previous article we looked at the abstract problem statement and possibilities inherent in scanning tables. In this piece we look at the quantitative upside with Presto. We look at a number of queries and explain the findings.</p>
 <p>The initial impulse motivating this work is the observation that table scan is by far the #1 operator in Presto workloads I have seen. This is a little over half of all Presto CPU, with repartitioning a distant second, at around 1/10 of the total. The other half of the motivation is ready opportunity: Presto in its pre-Aria state does almost none of the things that are common in table scan.</p>
@@ -596,8 +596,8 @@ x -&gt; x + TRY(1 / 0)
         </item>
         <item>
             <title><![CDATA[Everything You Always Wanted To Do in Table Scan]]></title>
-            <link>https://prestodb.github.io/blog/2019/06/29/everything-you-always-wanted-to-do-in-a-table-scan.html</link>
-            <guid>https://prestodb.github.io/blog/2019/06/29/everything-you-always-wanted-to-do-in-a-table-scan.html</guid>
+            <link>https://yhwang.github.io /blog/2019/06/29/everything-you-always-wanted-to-do-in-a-table-scan.html</link>
+            <guid>https://yhwang.github.io /blog/2019/06/29/everything-you-always-wanted-to-do-in-a-table-scan.html</guid>
             <pubDate>Sat, 29 Jun 2019 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Orri Erling, Maria Basmanova, Ying Su, Timothy Meehan, Elon Azoulay</p>
 <p>Table scan, on the face of it, sounds trivial and boring. What’s there in just reading a long bunch of records from first to last? Aren’t indexing and other kinds of physical design more interesting?</p>
@@ -608,8 +608,8 @@ x -&gt; x + TRY(1 / 0)
         </item>
         <item>
             <title><![CDATA[Introducing the Presto blog]]></title>
-            <link>https://prestodb.github.io/blog/2019/06/28/introducing-the-presto-blog.html</link>
-            <guid>https://prestodb.github.io/blog/2019/06/28/introducing-the-presto-blog.html</guid>
+            <link>https://yhwang.github.io /blog/2019/06/28/introducing-the-presto-blog.html</link>
+            <guid>https://yhwang.github.io /blog/2019/06/28/introducing-the-presto-blog.html</guid>
             <pubDate>Fri, 28 Jun 2019 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Presto is a key piece of data infrastructure at many companies. The community has many ongoing projects for taking it to new levels of performance and functionality plus unique experience and insight into challenges of scale.</p> <p>We are opening this blog...</p>]]></description>
         </item>

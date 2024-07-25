@@ -1,141 +1,166 @@
 
-<!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+<!doctype html>
+<html lang="en" class="no-js">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>PostgreSQL Connector - Presto 0.288 Documentation</title>
+      
+    
+    
+      
+        
+        
+      
+      
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="lang:clipboard.copy" content="Copy to clipboard">
-  <meta name="lang:clipboard.copied" content="Copied to clipboard">
-  <meta name="lang:search.language" content="en">
-  <meta name="lang:search.pipeline.stopwords" content="True">
-  <meta name="lang:search.pipeline.trimmer" content="True">
-  <meta name="lang:search.result.none" content="No matching documents">
-  <meta name="lang:search.result.one" content="1 matching document">
-  <meta name="lang:search.result.other" content="# matching documents">
-  <meta name="lang:search.tokenizer" content="[\s\-]+">
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.359ec555e2989f00f.min.css?v=b000af5c" />
+        <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
 
   
-    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
-
-    <style>
-      body,
-      input {
-        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
-      }
-
-      code,
-      kbd,
-      pre {
-        font-family: "Roboto Mono", "Courier New", Courier, monospace
-      }
-    </style>
   
 
-  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
-  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
-  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
-  
-  
-  <link rel="stylesheet" href="../_static/fonts/font-awesome.css"/>
 
-  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
-  
-  <meta name="theme-color" content="374665">
-  <script src="../_static/javascripts/modernizr.js"></script>
-  
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-K7GB6F0LBZ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-K7GB6F0LBZ');
-</script>
   
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
   
-    <title>PostgreSQL Connector &#8212; Presto 0.288 Documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=83e35b93" />
-    <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=949a1ff5" />
-    <link rel="stylesheet" type="text/css" href="../_static/presto.css?v=880aad8f" />
-    <script src="../_static/documentation_options.js?v=cb86531f"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=ff8fa330"></script>
-    <link rel="icon" href="../_static/favicon.ico"/>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Prometheus Connector" href="prometheus.html" />
-    <link rel="prev" title="Apache Pinot Connector" href="pinot.html" />
-  
-   
 
+    
+    
+    
   </head>
-  <body dir=ltr
-        data-md-color-primary=grey data-md-color-accent=blue>
   
-  <svg class="md-svg">
-    <defs data-children-count="0">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
-      
-    </defs>
-  </svg>
   
-  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
-  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
-  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-  <a href="#connector/postgresql" tabindex="1" class="md-skip"> Skip to content </a>
-  <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex navheader">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="../index.html" title="Presto 0.288 Documentation"
-           class="md-header-nav__button md-logo">
-          
-            &nbsp;
-          
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration" class="md-skip">
+          Skip to content
         </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          <span class="md-header-nav__topic">Presto 0.288 Documentation</span>
-          <span class="md-header-nav__topic"> PostgreSQL Connector </span>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.288 Documentation" class="md-header__button md-logo" aria-label="Presto 0.288 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.288 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PostgreSQL Connector
+            
+          </span>
         </div>
       </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
         
-<div class="md-search" data-md-component="search" role="dialog">
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
-    <form class="md-search__form" action="../search.html" method="get" name="search">
-      <input type="text" class="md-search__input" name="q" placeholder="Search"
-             autocapitalize="off" autocomplete="off" spellcheck="false"
-             data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
-      </button>
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Type to start searching
+            Initializing search
           </div>
           <ol class="md-search-result__list"></ol>
         </div>
@@ -143,671 +168,1399 @@
     </div>
   </div>
 </div>
-
-      </div>
-      
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
-            <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-source="github">
-
-    <div class="md-source__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     Presto
   </div>
 </a>
-          </div>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.288 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.288 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.288 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        <span class="md-ellipsis">Overview</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        <span class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto Clients</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        <span class="md-ellipsis">Security</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        <span class="md-ellipsis">Administration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        <span class="md-ellipsis">Cache</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        <span class="md-ellipsis">Query Optimizer</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+      
+      
+      
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../connector.html"><span class="md-ellipsis">Connectors</span></a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
         </div>
       
-      
-  
-  <script src="../_static/javascripts/version_dropdown.js"></script>
-  <script>
-    var json_loc = "../"versions.json"",
-        target_loc = "../../",
-        text = "Versions";
-    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
-  </script>
-  
-
-    </div>
-  </nav>
-</header>
-
-  
-  <div class="md-container">
-    
-    
-    <!-- empty -->
-    <main class="md-main">
-      <div class="md-main__inner md-grid" data-md-component="container">
-        
-          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
-            <div class="md-sidebar__scrollwrap">
-              <div class="md-sidebar__inner">
-                <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="../index.html" title="Presto 0.288 Documentation" class="md-nav__button md-logo">
-      
-        <img src="../_static/" alt=" logo" width="48" height="48">
-      
-    </a>
-    <a href="../index.html"
-       title="Presto 0.288 Documentation">Presto 0.288 Documentation</a>
-  </label>
-    <div class="md-nav__source">
-      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-source="github">
-
-    <div class="md-source__icon">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
-  <div class="md-source__repository">
-    Presto
-  </div>
-</a>
-    </div>
-  
-  
-
-  
-  <ul class="md-nav__list">
-    <li class="md-nav__item">
-    
-    
-      <a href="../overview.html" class="md-nav__link">Overview</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../installation.html" class="md-nav__link">Installation</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../clients.html" class="md-nav__link">Presto Clients</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../security.html" class="md-nav__link">Security</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../admin.html" class="md-nav__link">Administration</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../cache.html" class="md-nav__link">Cache</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../connector.html" class="md-nav__link">Connectors</a>
-      <ul class="md-nav__list"> 
-    <li class="md-nav__item">
-    
-    
-      <a href="accumulo.html" class="md-nav__link">Accumulo Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="bigquery.html" class="md-nav__link">BigQuery Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="blackhole.html" class="md-nav__link">Black Hole Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="cassandra.html" class="md-nav__link">Cassandra Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="clickhouse.html" class="md-nav__link">ClickHouse connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="deltalake.html" class="md-nav__link">Delta Lake Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="druid.html" class="md-nav__link">Druid Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="elasticsearch.html" class="md-nav__link">Elasticsearch Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="googlesheets.html" class="md-nav__link">Google Sheets connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="hana.html" class="md-nav__link">HANA Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="hive.html" class="md-nav__link">Hive Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="hive-security.html" class="md-nav__link">Hive Security Configuration</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="hudi.html" class="md-nav__link">Hudi Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="iceberg.html" class="md-nav__link">Iceberg Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="jmx.html" class="md-nav__link">JMX Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="kafka.html" class="md-nav__link">Kafka Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="kafka-tutorial.html" class="md-nav__link">Kafka Connector Tutorial</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="kudu.html" class="md-nav__link">Kudu Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="larksheets.html" class="md-nav__link">Lark Sheets connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="localfile.html" class="md-nav__link">Local File Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="memory.html" class="md-nav__link">Memory Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="mongodb.html" class="md-nav__link">MongoDB Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="mysql.html" class="md-nav__link">MySQL Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="oracle.html" class="md-nav__link">Oracle Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="pinot.html" class="md-nav__link">Apache Pinot Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    <label class="md-nav__link md-nav__link--active" for="__toc"> PostgreSQL Connector </label>
-    
-      <a href="#" class="md-nav__link md-nav__link--active">PostgreSQL Connector</a>
-      
-        
-
-<nav class="md-nav md-nav--secondary">
-  
-  <ul class="md-nav__list" data-md-scrollfix="">
-    <li class="md-nav__item">
-      <a class="md-nav__link" target="_blank" href="https://github.com/prestodb/presto/tree/master/presto-docs/src/main/sphinx/connector/postgresql.rst">
-        <i class="fa fa-file-text" aria-hidden="true"></i>
-        View page source
-      </a>
-    </li>
-    <li class="md-nav__item">
-      <a class="md-nav__link" target="_blank" href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/connector/postgresql.rst">
-        <i class="fa fa-pencil-square" aria-hidden="true"></i>
-        Edit this page
-      </a>
-    </li>
-    <li class="md-nav__item">
-      <a class="md-nav__link" target="_blank" href="https://github.com/prestodb/presto/issues/new?title=Documentation&amp;labels=docs">
-        <i class="fa fa-list" aria-hidden="true"></i>
-        Create docs issue
-      </a>
-    </li>
-    <li class="md-nav__item">
-      <a class="md-nav__link" target="_blank" href="https://github.com/prestodb/presto/issues/new">
-        <i class="fa fa-list" aria-hidden="true"></i>
-        Create project issue
-      </a>
-    </li>
-  </ul>
-    <label class="md-nav__title" for="__toc">Contents</label>
-  <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#connector-postgresql--page-root" class="md-nav__link" data-md-state="blur">PostgreSQL Connector</a><nav class="md-nav">
-              <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#configuration" class="md-nav__link" data-md-state="blur">Configuration</a><nav class="md-nav">
-              <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#multiple-postgresql-databases-or-servers" class="md-nav__link" data-md-state="blur">Multiple PostgreSQL Databases or Servers</a>
-        </li></ul>
-            </nav>
-        </li>
-        <li class="md-nav__item"><a href="#general-configuration-properties" class="md-nav__link" data-md-state="blur">General Configuration Properties</a>
-        </li>
-        <li class="md-nav__item"><a href="#querying-postgresql" class="md-nav__link" data-md-state="blur">Querying PostgreSQL</a>
-        </li>
-        <li class="md-nav__item"><a href="#type-mapping" class="md-nav__link" data-md-state="blur">Type mapping</a><nav class="md-nav">
-              <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#postgresql-to-prestodb-type-mapping" class="md-nav__link" data-md-state="blur">PostgreSQL to PrestoDB type mapping</a>
-        </li>
-        <li class="md-nav__item"><a href="#prestodb-to-postgresql-type-mapping" class="md-nav__link" data-md-state="blur">PrestoDB to PostgreSQL type mapping</a>
-        </li></ul>
-            </nav>
-        </li>
-        <li class="md-nav__item"><a href="#tables-with-unsupported-columns" class="md-nav__link" data-md-state="blur">Tables with Unsupported Columns</a>
-        </li>
-        <li class="md-nav__item"><a href="#sql-support" class="md-nav__link" data-md-state="blur">SQL Support</a><nav class="md-nav">
-              <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#alter-table" class="md-nav__link" data-md-state="blur">ALTER TABLE</a>
-        </li>
-        <li class="md-nav__item"><a href="#create-table" class="md-nav__link" data-md-state="blur">CREATE TABLE</a>
-        </li>
-        <li class="md-nav__item"><a href="#create-table-as-select" class="md-nav__link" data-md-state="blur">CREATE TABLE AS SELECT</a>
-        </li>
-        <li class="md-nav__item"><a href="#describe" class="md-nav__link" data-md-state="blur">DESCRIBE</a>
-        </li>
-        <li class="md-nav__item"><a href="#insert-into" class="md-nav__link" data-md-state="blur">INSERT INTO</a>
-        </li>
-        <li class="md-nav__item"><a href="#select" class="md-nav__link" data-md-state="blur">SELECT</a>
-        </li>
-        <li class="md-nav__item"><a href="#show-schemas" class="md-nav__link" data-md-state="blur">SHOW SCHEMAS</a>
-        </li>
-        <li class="md-nav__item"><a href="#show-tables" class="md-nav__link" data-md-state="blur">SHOW TABLES</a>
-        </li>
-        <li class="md-nav__item"><a href="#truncate" class="md-nav__link" data-md-state="blur">TRUNCATE</a>
-        </li></ul>
-            </nav>
-        </li>
-        <li class="md-nav__item"><a href="#postgresql-connector-limitations" class="md-nav__link" data-md-state="blur">PostgreSQL Connector Limitations</a>
-        </li></ul>
-            </nav>
-        </li>
-  </ul>
-</nav>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="prometheus.html" class="md-nav__link">Prometheus Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="redis.html" class="md-nav__link">Redis Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="redshift.html" class="md-nav__link">Redshift Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="scylladb.html" class="md-nav__link">ScyllaDB Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="singlestore.html" class="md-nav__link">SingleStore Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="sqlserver.html" class="md-nav__link">SQL Server Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="system.html" class="md-nav__link">System Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="thrift.html" class="md-nav__link">Thrift Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="tpcds.html" class="md-nav__link">TPCDS Connector</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="tpch.html" class="md-nav__link">TPCH Connector</a>
-      
-    
-    </li></ul>
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../plugin.html" class="md-nav__link">Plugins</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../language.html" class="md-nav__link">SQL Language</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../migration.html" class="md-nav__link">Migration</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../rest.html" class="md-nav__link">REST API</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../ecosystem.html" class="md-nav__link">Ecosystem</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../router.html" class="md-nav__link">Router</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../presto-cpp.html" class="md-nav__link">Presto C++</a>
-      
-    
-    </li>
-    <li class="md-nav__item">
-    
-    
-      <a href="../release.html" class="md-nav__link">Release Notes</a>
-      
-    
-    </li>
-  </ul>
-  
-
-</nav>
-              </div>
-            </div>
-          </div>
-          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-            <div class="md-sidebar__scrollwrap">
-              <div class="md-sidebar__inner">
-                
-
-<nav class="md-nav md-nav--secondary">
-  
-  <ul class="md-nav__list" data-md-scrollfix="">
-    <li class="md-nav__item">
-      <a class="md-nav__link" target="_blank" href="https://github.com/prestodb/presto/tree/master/presto-docs/src/main/sphinx/connector/postgresql.rst">
-        <i class="fa fa-file-text" aria-hidden="true"></i>
-        View page source
-      </a>
-    </li>
-    <li class="md-nav__item">
-      <a class="md-nav__link" target="_blank" href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/connector/postgresql.rst">
-        <i class="fa fa-pencil-square" aria-hidden="true"></i>
-        Edit this page
-      </a>
-    </li>
-    <li class="md-nav__item">
-      <a class="md-nav__link" target="_blank" href="https://github.com/prestodb/presto/issues/new?title=Documentation&amp;labels=docs">
-        <i class="fa fa-list" aria-hidden="true"></i>
-        Create docs issue
-      </a>
-    </li>
-    <li class="md-nav__item">
-      <a class="md-nav__link" target="_blank" href="https://github.com/prestodb/presto/issues/new">
-        <i class="fa fa-list" aria-hidden="true"></i>
-        Create project issue
-      </a>
-    </li>
-  </ul>
-    <label class="md-nav__title" for="__toc">Contents</label>
-  <ul class="md-nav__list" data-md-scrollfix="">
-        <li class="md-nav__item"><a href="#connector-postgresql--page-root" class="md-nav__link" data-md-state="blur">PostgreSQL Connector</a><nav class="md-nav">
-              <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#configuration" class="md-nav__link" data-md-state="blur">Configuration</a><nav class="md-nav">
-              <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#multiple-postgresql-databases-or-servers" class="md-nav__link" data-md-state="blur">Multiple PostgreSQL Databases or Servers</a>
-        </li></ul>
-            </nav>
-        </li>
-        <li class="md-nav__item"><a href="#general-configuration-properties" class="md-nav__link" data-md-state="blur">General Configuration Properties</a>
-        </li>
-        <li class="md-nav__item"><a href="#querying-postgresql" class="md-nav__link" data-md-state="blur">Querying PostgreSQL</a>
-        </li>
-        <li class="md-nav__item"><a href="#type-mapping" class="md-nav__link" data-md-state="blur">Type mapping</a><nav class="md-nav">
-              <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#postgresql-to-prestodb-type-mapping" class="md-nav__link" data-md-state="blur">PostgreSQL to PrestoDB type mapping</a>
-        </li>
-        <li class="md-nav__item"><a href="#prestodb-to-postgresql-type-mapping" class="md-nav__link" data-md-state="blur">PrestoDB to PostgreSQL type mapping</a>
-        </li></ul>
-            </nav>
-        </li>
-        <li class="md-nav__item"><a href="#tables-with-unsupported-columns" class="md-nav__link" data-md-state="blur">Tables with Unsupported Columns</a>
-        </li>
-        <li class="md-nav__item"><a href="#sql-support" class="md-nav__link" data-md-state="blur">SQL Support</a><nav class="md-nav">
-              <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#alter-table" class="md-nav__link" data-md-state="blur">ALTER TABLE</a>
-        </li>
-        <li class="md-nav__item"><a href="#create-table" class="md-nav__link" data-md-state="blur">CREATE TABLE</a>
-        </li>
-        <li class="md-nav__item"><a href="#create-table-as-select" class="md-nav__link" data-md-state="blur">CREATE TABLE AS SELECT</a>
-        </li>
-        <li class="md-nav__item"><a href="#describe" class="md-nav__link" data-md-state="blur">DESCRIBE</a>
-        </li>
-        <li class="md-nav__item"><a href="#insert-into" class="md-nav__link" data-md-state="blur">INSERT INTO</a>
-        </li>
-        <li class="md-nav__item"><a href="#select" class="md-nav__link" data-md-state="blur">SELECT</a>
-        </li>
-        <li class="md-nav__item"><a href="#show-schemas" class="md-nav__link" data-md-state="blur">SHOW SCHEMAS</a>
-        </li>
-        <li class="md-nav__item"><a href="#show-tables" class="md-nav__link" data-md-state="blur">SHOW TABLES</a>
-        </li>
-        <li class="md-nav__item"><a href="#truncate" class="md-nav__link" data-md-state="blur">TRUNCATE</a>
-        </li></ul>
-            </nav>
-        </li>
-        <li class="md-nav__item"><a href="#postgresql-connector-limitations" class="md-nav__link" data-md-state="blur">PostgreSQL Connector Limitations</a>
-        </li></ul>
-            </nav>
-        </li>
-  </ul>
-</nav>
-              </div>
-            </div>
-          </div>
-        
-        <div class="md-content">
-          <article class="md-content__inner md-typeset" role="main">
+      <nav class="md-nav" aria-label="Connectors" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          <span class="md-ellipsis">Connectors</span>
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
             
-  <section id="postgresql-connector">
-<h1 id="connector-postgresql--page-root">PostgreSQL Connector<a class="headerlink" href="#connector-postgresql--page-root" title="Link to this heading">¶</a></h1>
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="accumulo.html" class="md-nav__link">
+        <span class="md-ellipsis">Accumulo Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bigquery.html" class="md-nav__link">
+        <span class="md-ellipsis">Big<wbr>Query Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blackhole.html" class="md-nav__link">
+        <span class="md-ellipsis">Black Hole Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cassandra.html" class="md-nav__link">
+        <span class="md-ellipsis">Cassandra Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="clickhouse.html" class="md-nav__link">
+        <span class="md-ellipsis">Click<wbr>House connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deltalake.html" class="md-nav__link">
+        <span class="md-ellipsis">Delta Lake Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="druid.html" class="md-nav__link">
+        <span class="md-ellipsis">Druid Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="elasticsearch.html" class="md-nav__link">
+        <span class="md-ellipsis">Elasticsearch Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="googlesheets.html" class="md-nav__link">
+        <span class="md-ellipsis">Google Sheets connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hana.html" class="md-nav__link">
+        <span class="md-ellipsis">HANA Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hive.html" class="md-nav__link">
+        <span class="md-ellipsis">Hive Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hive-security.html" class="md-nav__link">
+        <span class="md-ellipsis">Hive Security Configuration</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hudi.html" class="md-nav__link">
+        <span class="md-ellipsis">Hudi Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iceberg.html" class="md-nav__link">
+        <span class="md-ellipsis">Iceberg Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="jmx.html" class="md-nav__link">
+        <span class="md-ellipsis">JMX Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kafka.html" class="md-nav__link">
+        <span class="md-ellipsis">Kafka Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kafka-tutorial.html" class="md-nav__link">
+        <span class="md-ellipsis">Kafka Connector Tutorial</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kudu.html" class="md-nav__link">
+        <span class="md-ellipsis">Kudu Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="larksheets.html" class="md-nav__link">
+        <span class="md-ellipsis">Lark Sheets connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localfile.html" class="md-nav__link">
+        <span class="md-ellipsis">Local File Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="memory.html" class="md-nav__link">
+        <span class="md-ellipsis">Memory Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mongodb.html" class="md-nav__link">
+        <span class="md-ellipsis">Mongo<wbr>DB Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mysql.html" class="md-nav__link">
+        <span class="md-ellipsis">My<wbr>SQL Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="oracle.html" class="md-nav__link">
+        <span class="md-ellipsis">Oracle Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pinot.html" class="md-nav__link">
+        <span class="md-ellipsis">Apache Pinot Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span class="md-ellipsis">Postgre<wbr>SQL Connector</span>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        <span class="md-ellipsis">Postgre<wbr>SQL Connector</span>
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/connector/postgresql.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/connector/postgresql.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">Configuration</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-postgresql-databases-or-servers" class="md-nav__link">
+    <span class="md-ellipsis">Multiple Postgre<wbr>SQL Databases or Servers</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#general-configuration-properties" class="md-nav__link">
+    <span class="md-ellipsis">General Configuration Properties</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#querying-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">Querying Postgre<wbr>SQL</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#type-mapping" class="md-nav__link">
+    <span class="md-ellipsis">Type mapping</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Type mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-to-prestodb-type-mapping" class="md-nav__link">
+    <span class="md-ellipsis">Postgre<wbr>SQL to Presto<wbr>DB type mapping</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prestodb-to-postgresql-type-mapping" class="md-nav__link">
+    <span class="md-ellipsis">Presto<wbr>DB to Postgre<wbr>SQL type mapping</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#tables-with-unsupported-columns" class="md-nav__link">
+    <span class="md-ellipsis">Tables with Unsupported Columns</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#sql-support" class="md-nav__link">
+    <span class="md-ellipsis">SQL Support</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL Support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alter-table" class="md-nav__link">
+    <span class="md-ellipsis">ALTER TABLE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-table" class="md-nav__link">
+    <span class="md-ellipsis">CREATE TABLE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-table-as-select" class="md-nav__link">
+    <span class="md-ellipsis">CREATE TABLE AS SELECT</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describe" class="md-nav__link">
+    <span class="md-ellipsis">DESCRIBE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert-into" class="md-nav__link">
+    <span class="md-ellipsis">INSERT INTO</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select" class="md-nav__link">
+    <span class="md-ellipsis">SELECT</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-schemas" class="md-nav__link">
+    <span class="md-ellipsis">SHOW SCHEMAS</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-tables" class="md-nav__link">
+    <span class="md-ellipsis">SHOW TABLES</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truncate" class="md-nav__link">
+    <span class="md-ellipsis">TRUNCATE</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#postgresql-connector-limitations" class="md-nav__link">
+    <span class="md-ellipsis">Postgre<wbr>SQL Connector Limitations</span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prometheus.html" class="md-nav__link">
+        <span class="md-ellipsis">Prometheus Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        <span class="md-ellipsis">Redis Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redshift.html" class="md-nav__link">
+        <span class="md-ellipsis">Redshift Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scylladb.html" class="md-nav__link">
+        <span class="md-ellipsis">Scylla<wbr>DB Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="singlestore.html" class="md-nav__link">
+        <span class="md-ellipsis">Single<wbr>Store Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sqlserver.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Server Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="system.html" class="md-nav__link">
+        <span class="md-ellipsis">System Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="thrift.html" class="md-nav__link">
+        <span class="md-ellipsis">Thrift Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tpcds.html" class="md-nav__link">
+        <span class="md-ellipsis">TPCDS Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tpch.html" class="md-nav__link">
+        <span class="md-ellipsis">TPCH Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        <span class="md-ellipsis">Plugins</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        <span class="md-ellipsis">Functions and Operators</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Language</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Statement Syntax</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        <span class="md-ellipsis">Migration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        <span class="md-ellipsis">REST API</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        <span class="md-ellipsis">Ecosystem</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        <span class="md-ellipsis">Router</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        <span class="md-ellipsis">Developer Guide</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presto-cpp.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto C++</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        <span class="md-ellipsis">Release Notes</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/connector/postgresql.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/connector/postgresql.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">Configuration</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-postgresql-databases-or-servers" class="md-nav__link">
+    <span class="md-ellipsis">Multiple Postgre<wbr>SQL Databases or Servers</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#general-configuration-properties" class="md-nav__link">
+    <span class="md-ellipsis">General Configuration Properties</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#querying-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">Querying Postgre<wbr>SQL</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#type-mapping" class="md-nav__link">
+    <span class="md-ellipsis">Type mapping</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Type mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-to-prestodb-type-mapping" class="md-nav__link">
+    <span class="md-ellipsis">Postgre<wbr>SQL to Presto<wbr>DB type mapping</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prestodb-to-postgresql-type-mapping" class="md-nav__link">
+    <span class="md-ellipsis">Presto<wbr>DB to Postgre<wbr>SQL type mapping</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#tables-with-unsupported-columns" class="md-nav__link">
+    <span class="md-ellipsis">Tables with Unsupported Columns</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#sql-support" class="md-nav__link">
+    <span class="md-ellipsis">SQL Support</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL Support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alter-table" class="md-nav__link">
+    <span class="md-ellipsis">ALTER TABLE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-table" class="md-nav__link">
+    <span class="md-ellipsis">CREATE TABLE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-table-as-select" class="md-nav__link">
+    <span class="md-ellipsis">CREATE TABLE AS SELECT</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describe" class="md-nav__link">
+    <span class="md-ellipsis">DESCRIBE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert-into" class="md-nav__link">
+    <span class="md-ellipsis">INSERT INTO</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select" class="md-nav__link">
+    <span class="md-ellipsis">SELECT</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-schemas" class="md-nav__link">
+    <span class="md-ellipsis">SHOW SCHEMAS</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-tables" class="md-nav__link">
+    <span class="md-ellipsis">SHOW TABLES</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truncate" class="md-nav__link">
+    <span class="md-ellipsis">TRUNCATE</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#postgresql-connector-limitations" class="md-nav__link">
+    <span class="md-ellipsis">Postgre<wbr>SQL Connector Limitations</span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+  <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/connector/postgresql.rst" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+<h1 id="postgresql-connector">PostgreSQL Connector<a class="headerlink" href="#postgresql-connector" title="Link to this heading">¶</a></h1>
 <p>The PostgreSQL connector allows querying and creating tables in an
 external PostgreSQL database. This can be used to join data between
 different systems like PostgreSQL and Hive, or between two different
 PostgreSQL instances.</p>
-<section id="configuration">
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
 <p>To configure the PostgreSQL connector, create a catalog properties file
 in <code class="docutils literal notranslate"><span class="pre">etc/catalog</span></code> named, for example, <code class="docutils literal notranslate"><span class="pre">postgresql.properties</span></code>, to
 mount the PostgreSQL connector as the <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> catalog.
 Create the file with the following contents, replacing the
 connection properties as appropriate for your setup:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>connector.name=postgresql
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><code>connector.name=postgresql
 connection-url=jdbc:postgresql://example.net:5432/database
 connection-user=root
 connection-password=secret
-</pre></div>
+</code></pre></div>
 </div>
-<section id="multiple-postgresql-databases-or-servers">
 <h3 id="multiple-postgresql-databases-or-servers">Multiple PostgreSQL Databases or Servers<a class="headerlink" href="#multiple-postgresql-databases-or-servers" title="Link to this heading">¶</a></h3>
 <p>The PostgreSQL connector can only access a single database within
 a PostgreSQL server. Thus, if you have multiple PostgreSQL databases,
@@ -817,11 +1570,8 @@ multiple instances of the PostgreSQL connector.</p>
 with a different name (making sure it ends in <code class="docutils literal notranslate"><span class="pre">.properties</span></code>). For example,
 if you name the property file <code class="docutils literal notranslate"><span class="pre">sales.properties</span></code>, Presto will create a
 catalog named <code class="docutils literal notranslate"><span class="pre">sales</span></code> using the configured connector.</p>
-</section>
-</section>
-<section id="general-configuration-properties">
 <h2 id="general-configuration-properties">General Configuration Properties<a class="headerlink" href="#general-configuration-properties" title="Link to this heading">¶</a></h2>
-<table>
+<table class="docutils data align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Property Name</p></th>
 <th class="head"><p>Description</p></th>
@@ -851,44 +1601,39 @@ cached. Set to <code class="docutils literal notranslate"><span class="pre">0ms<
 </tr>
 </tbody>
 </table>
-</section>
-<section id="querying-postgresql">
 <h2 id="querying-postgresql">Querying PostgreSQL<a class="headerlink" href="#querying-postgresql" title="Link to this heading">¶</a></h2>
 <p>The PostgreSQL connector provides a schema for every PostgreSQL schema.
 You can see the available PostgreSQL schemas by running <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">SCHEMAS</span></code>:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">SCHEMAS</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">;</span>
-</pre></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">SCHEMAS</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">;</span>
+</code></pre></div>
 </div>
 <p>If you have a PostgreSQL schema named <code class="docutils literal notranslate"><span class="pre">web</span></code>, you can view the tables
 in this schema by running <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">TABLES</span></code>:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="n">web</span><span class="p">;</span>
-</pre></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="n">web</span><span class="p">;</span>
+</code></pre></div>
 </div>
 <p>You can see a list of the columns in the <code class="docutils literal notranslate"><span class="pre">clicks</span></code> table in the <code class="docutils literal notranslate"><span class="pre">web</span></code> database
 using either of the following:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DESCRIBE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="n">web</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">DESCRIBE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="n">web</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
 <span class="k">SHOW</span><span class="w"> </span><span class="n">COLUMNS</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="n">web</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 </div>
 <p>Finally, you can access the <code class="docutils literal notranslate"><span class="pre">clicks</span></code> table in the <code class="docutils literal notranslate"><span class="pre">web</span></code> schema:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="n">web</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
-</pre></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="n">web</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
+</code></pre></div>
 </div>
 <p>If you used a different name for your catalog properties file, use
 that catalog name instead of <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> in the above examples.</p>
-</section>
-<section id="type-mapping">
 <h2 id="type-mapping">Type mapping<a class="headerlink" href="#type-mapping" title="Link to this heading">¶</a></h2>
 <p>PrestoDB and PostgreSQL each support types that the other does not. When reading from or writing to PostgreSQL, Presto converts
 the data types from PostgreSQL to equivalent Presto data types, and from Presto to equivalent PostgreSQL data types.</p>
-<section id="postgresql-to-prestodb-type-mapping">
 <h3 id="postgresql-to-prestodb-type-mapping">PostgreSQL to PrestoDB type mapping<a class="headerlink" href="#postgresql-to-prestodb-type-mapping" title="Link to this heading">¶</a></h3>
 <p>The connector maps PostgreSQL types to the corresponding PrestoDB types:</p>
-<table id="id2">
+<table class="docutils data align-default" id="id2">
 <caption><span class="caption-text">PostgreSQL to PrestoDB type mapping</span><a class="headerlink" href="#id2" title="Link to this table">¶</a></caption>
 <colgroup>
-<col style="width: 50.0%"/>
-<col style="width: 50.0%"/>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>PostgreSQL type</p></th>
@@ -959,15 +1704,13 @@ the data types from PostgreSQL to equivalent Presto data types, and from Presto 
 </tbody>
 </table>
 <p>No other types are supported.</p>
-</section>
-<section id="prestodb-to-postgresql-type-mapping">
 <h3 id="prestodb-to-postgresql-type-mapping">PrestoDB to PostgreSQL type mapping<a class="headerlink" href="#prestodb-to-postgresql-type-mapping" title="Link to this heading">¶</a></h3>
 <p>The connector maps PrestoDB types to the corresponding PostgreSQL types:</p>
-<table id="id3">
+<table class="docutils data align-default" id="id3">
 <caption><span class="caption-text">PrestoDB to PostgreSQL type mapping</span><a class="headerlink" href="#id3" title="Link to this table">¶</a></caption>
 <colgroup>
-<col style="width: 50.0%"/>
-<col style="width: 50.0%"/>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>PrestoDB type</p></th>
@@ -1017,107 +1760,82 @@ the data types from PostgreSQL to equivalent Presto data types, and from Presto 
 </tbody>
 </table>
 <p>No other types are supported.</p>
-</section>
-</section>
-<section id="tables-with-unsupported-columns">
 <h2 id="tables-with-unsupported-columns">Tables with Unsupported Columns<a class="headerlink" href="#tables-with-unsupported-columns" title="Link to this heading">¶</a></h2>
 <p>If you query a PostgreSQL table with the Presto connector, and the table either has no supported columns or contains
 only unsupported data types, Presto returns an error similar to the following example:</p>
 <p><code class="docutils literal notranslate"><span class="pre">Query</span> <span class="pre">20231120_102910_00004_35dqb</span> <span class="pre">failed:</span> <span class="pre">Table</span> <span class="pre">'public.unsupported_type_table'</span> <span class="pre">has</span> <span class="pre">no</span> <span class="pre">supported</span> <span class="pre">columns</span> <span class="pre">(all</span> <span class="pre">1</span> <span class="pre">columns</span> <span class="pre">are</span> <span class="pre">not</span> <span class="pre">supported).</span></code></p>
-</section>
-<section id="sql-support">
 <h2 id="sql-support">SQL Support<a class="headerlink" href="#sql-support" title="Link to this heading">¶</a></h2>
 <p>The PostgreSQL connector allows querying and creating tables. Here are some examples of the SQL operations supported:</p>
-<section id="alter-table">
 <h3 id="alter-table">ALTER TABLE<a class="headerlink" href="#alter-table" title="Link to this heading">¶</a></h3>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">sample_table</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">new_col</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">sample_table</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">new_col</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
 <span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">sample_table</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">new_col</span><span class="p">;</span>
 <span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">sample_table</span><span class="w"> </span><span class="k">RENAME</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">is_active</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">is_enabled</span><span class="p">;</span>
 <span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">sample_table</span><span class="w"> </span><span class="k">RENAME</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">renamed_table</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 </div>
-<div class="admonition note">
+<div class="note admonition">
 <p class="admonition-title">Note</p>
 <p>Presto does not support altering the data type of a column directly with the ALTER TABLE command.</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">users</span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="nb">BIGINT</span><span class="p">;</span>
-</pre></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">users</span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="nb">BIGINT</span><span class="p">;</span>
+</code></pre></div>
 </div>
 <p>returns an error similar to the following:</p>
 <p><code class="docutils literal notranslate"><span class="pre">Query</span> <span class="pre">20240322_091317_00007_syzb3</span> <span class="pre">failed:</span> <span class="pre">line</span> <span class="pre">1:19:</span> <span class="pre">mismatched</span> <span class="pre">input</span> <span class="pre">'ALTER'.</span> <span class="pre">Expecting:</span> <span class="pre">'FUNCTION',</span> <span class="pre">'SCHEMA',</span> <span class="pre">'TABLE'</span></code></p>
 </div>
-</section>
-<section id="create-table">
 <h3 id="create-table">CREATE TABLE<a class="headerlink" href="#create-table" title="Link to this heading">¶</a></h3>
 <p>Create a new table named <code class="docutils literal notranslate"><span class="pre">test_integer</span></code> in the <code class="docutils literal notranslate"><span class="pre">public</span></code> schema:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">test_integer</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="p">);</span>
-</pre></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">test_integer</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="p">);</span>
+</code></pre></div>
 </div>
-<div class="admonition note">
+<div class="note admonition">
 <p class="admonition-title">Note</p>
 <p>Presto does not enforce primary key constraints. For example, the following statement</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
 <span class="w">        </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">,</span>
 <span class="w">        </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span>
 <span class="w">    </span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 </div>
 <p>returns an error similar to the following:</p>
 <p><code class="docutils literal notranslate"><span class="pre">Query</span> <span class="pre">20240322_095447_00010_syzb3</span> <span class="pre">failed:</span> <span class="pre">line</span> <span class="pre">2:19:</span> <span class="pre">mismatched</span> <span class="pre">input</span> <span class="pre">'PRIMARY'.</span> <span class="pre">Expecting:</span> <span class="pre">')',</span> <span class="pre">','</span></code></p>
 </div>
-</section>
-<section id="create-table-as-select">
 <h3 id="create-table-as-select">CREATE TABLE AS SELECT<a class="headerlink" href="#create-table-as-select" title="Link to this heading">¶</a></h3>
 <p>Create a new table <code class="docutils literal notranslate"><span class="pre">new_table</span></code> from an existing table <code class="docutils literal notranslate"><span class="pre">renamed_table</span></code>:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">new_table</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">renamed_table</span><span class="p">;</span>
-</pre></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">new_table</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">renamed_table</span><span class="p">;</span>
+</code></pre></div>
 </div>
-</section>
-<section id="describe">
 <h3 id="describe">DESCRIBE<a class="headerlink" href="#describe" title="Link to this heading">¶</a></h3>
 <p>To see a list of the columns in the <code class="docutils literal notranslate"><span class="pre">clicks</span></code> table in the <code class="docutils literal notranslate"><span class="pre">web</span></code> database,
 use either of the following:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DESCRIBE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="n">web</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">DESCRIBE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="n">web</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
 <span class="k">SHOW</span><span class="w"> </span><span class="n">COLUMNS</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="n">web</span><span class="p">.</span><span class="n">clicks</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 </div>
-</section>
-<section id="insert-into">
 <h3 id="insert-into">INSERT INTO<a class="headerlink" href="#insert-into" title="Link to this heading">¶</a></h3>
 <p>Insert data into the <code class="docutils literal notranslate"><span class="pre">renamed_table</span></code> table:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">renamed_table</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">'Test'</span><span class="p">);</span>
-</pre></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">renamed_table</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Test&#39;</span><span class="p">);</span>
+</code></pre></div>
 </div>
-</section>
-<section id="select">
 <h3 id="select">SELECT<a class="headerlink" href="#select" title="Link to this heading">¶</a></h3>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">test_integer</span><span class="p">;</span>
-</pre></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">test_integer</span><span class="p">;</span>
+</code></pre></div>
 </div>
-</section>
-<section id="show-schemas">
 <h3 id="show-schemas">SHOW SCHEMAS<a class="headerlink" href="#show-schemas" title="Link to this heading">¶</a></h3>
 <p>To see the available PostgreSQL schemas:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">SCHEMAS</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">;</span>
-</pre></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">SCHEMAS</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">;</span>
+</code></pre></div>
 </div>
-</section>
-<section id="show-tables">
 <h3 id="show-tables">SHOW TABLES<a class="headerlink" href="#show-tables" title="Link to this heading">¶</a></h3>
 <p>To view the tables in a PostgreSQL schema named <code class="docutils literal notranslate"><span class="pre">web</span></code>:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="n">web</span><span class="p">;</span>
-</pre></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="n">web</span><span class="p">;</span>
+</code></pre></div>
 </div>
-</section>
-<section id="truncate">
 <h3 id="truncate">TRUNCATE<a class="headerlink" href="#truncate" title="Link to this heading">¶</a></h3>
 <p>Delete all of the data from the table <code class="docutils literal notranslate"><span class="pre">renamed_table</span></code> without dropping the table:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">renamed_table</span><span class="p">;</span>
-</pre></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">postgresql</span><span class="p">.</span><span class="k">public</span><span class="p">.</span><span class="n">renamed_table</span><span class="p">;</span>
+</code></pre></div>
 </div>
-</section>
-</section>
-<section id="postgresql-connector-limitations">
 <h2 id="postgresql-connector-limitations">PostgreSQL Connector Limitations<a class="headerlink" href="#postgresql-connector-limitations" title="Link to this heading">¶</a></h2>
 <p>The following SQL statements are not supported:</p>
 <ul class="simple">
@@ -1131,60 +1849,105 @@ use either of the following:</p>
 <li><p><a class="reference internal" href="../sql/show-roles.html"><span class="doc">SHOW ROLES</span></a></p></li>
 <li><p><a class="reference internal" href="../sql/update.html"><span class="doc">UPDATE</span></a></p></li>
 </ul>
-</section>
-</section>
 
 
-          </article>
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
-      </div>
-    </main>
-  </div>
-  <footer class="md-footer">
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-          
-            <a href="pinot.html" title="Apache Pinot Connector"
-               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
-               rel="prev">
-              <div class="md-flex__cell md-flex__cell--shrink">
-                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-              </div>
-              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-                <span class="md-flex__ellipsis">
-                  <span
-                      class="md-footer-nav__direction"> Previous </span> Apache Pinot Connector </span>
-              </div>
-            </a>
-          
-          
-            <a href="prometheus.html" title="Prometheus Connector"
-               class="md-flex md-footer-nav__link md-footer-nav__link--next"
-               rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
-                class="md-flex__ellipsis"> <span
-                class="md-footer-nav__direction"> Next </span> Prometheus Connector </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink"><i
-                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          
-        </a>
         
-      </nav>
-    </div>
-    <div class="md-footer-meta md-typeset">
-      <div class="md-footer-meta__inner md-grid">
-        <div class="md-footer-copyright">
-          <div class="md-footer-copyright__highlight">
-              &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
-              
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="pinot.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Apache Pinot Connector" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
-        </div>
-      </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Apache Pinot Connector
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="prometheus.html" class="md-footer__link md-footer__link--next" aria-label="Next: Prometheus Connector" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Prometheus Connector
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
     </div>
-  </footer>
-  <script src="../_static/javascripts/application.js"></script>
-  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    
   </body>
 </html>
