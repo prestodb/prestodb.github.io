@@ -1,0 +1,636 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="374665">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  <script>
+      window.ga = window.ga || function () {
+          (ga.q = ga.q || []).push(arguments)
+      };
+      ga.l = +new Date;
+      ga('create', 'UA-82811140-44', 'auto');
+      ga('send', 'pageview');
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  
+  
+    <title>Authorization &#8212; Presto 0.256 Documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/material.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/presto.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Administration" href="../admin.html" />
+    <link rel="prev" title="Secure Internal Communication" href="internal-communication.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=grey data-md-color-accent=blue>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#security/authorization" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="Presto 0.256 Documentation"
+           class="md-header-nav__button md-logo">
+          
+              <img src="../_static/logo.png" height="26"
+                   alt="Presto 0.256 Documentation logo">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Presto 0.256 Documentation</span>
+          <span class="md-header-nav__topic"> Authorization </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="GET" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder="Search"
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    <!-- empty -->
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="Presto 0.256 Documentation" class="md-nav__button md-logo">
+      
+        <img src="../_static/logo.png" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="Presto 0.256 Documentation">Presto 0.256 Documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="../overview.html" class="md-nav__link">Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../installation.html" class="md-nav__link">Installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../security.html" class="md-nav__link">Security</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="server.html" class="md-nav__link">Coordinator Kerberos Authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="cli.html" class="md-nav__link">CLI Kerberos Authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="ldap.html" class="md-nav__link">LDAP Authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="password-file.html" class="md-nav__link">Password File Authentication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="tls.html" class="md-nav__link">Java Keystores and Truststores</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="built-in-system-access-control.html" class="md-nav__link">Built-in System Access Control</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="internal-communication.html" class="md-nav__link">Secure Internal Communication</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Authorization </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Authorization</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#security-authorization--page-root" class="md-nav__link">Authorization</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#role-based-access-control" class="md-nav__link">Role Based Access Control</a>
+        </li>
+        <li class="md-nav__item"><a href="#enabling-authorization" class="md-nav__link">Enabling Authorization</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#enable-authentication" class="md-nav__link">Enable Authentication</a>
+        </li>
+        <li class="md-nav__item"><a href="#configure-authorizer" class="md-nav__link">Configure Authorizer</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#configuration-based-authorizer" class="md-nav__link">Configuration-based Authorizer</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#configure-authorization-settings" class="md-nav__link">Configure Authorization Settings</a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../admin.html" class="md-nav__link">Administration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../cache.html" class="md-nav__link">Cache</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../optimizer.html" class="md-nav__link">Query Optimizer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../connector.html" class="md-nav__link">Connectors</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../functions.html" class="md-nav__link">Functions and Operators</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../language.html" class="md-nav__link">SQL Language</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../sql.html" class="md-nav__link">SQL Statement Syntax</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../migration.html" class="md-nav__link">Migration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../develop.html" class="md-nav__link">Developer Guide</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../release.html" class="md-nav__link">Release Notes</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#security-authorization--page-root" class="md-nav__link">Authorization</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#role-based-access-control" class="md-nav__link">Role Based Access Control</a>
+        </li>
+        <li class="md-nav__item"><a href="#enabling-authorization" class="md-nav__link">Enabling Authorization</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#enable-authentication" class="md-nav__link">Enable Authentication</a>
+        </li>
+        <li class="md-nav__item"><a href="#configure-authorizer" class="md-nav__link">Configure Authorizer</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#configuration-based-authorizer" class="md-nav__link">Configuration-based Authorizer</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#configure-authorization-settings" class="md-nav__link">Configure Authorization Settings</a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="authorization">
+<h1 id="security-authorization--page-root">Authorization<a class="headerlink" href="#security-authorization--page-root" title="Permalink to this headline">#</a></h1>
+<p>Presto can be configured to enable authorization support for HTTP endpoints to
+allow system administrators to control access to different HTTP endpoints in
+Presto.</p>
+<section id="role-based-access-control">
+<h2 id="role-based-access-control">Role Based Access Control<a class="headerlink" href="#role-based-access-control" title="Permalink to this headline">#</a></h2>
+<p>Every HTTP endpoint in Presto is secured by a set of roles and can only be
+accessed by identities that belong to one of those roles. There are three
+roles defined in Presto:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">user</span></code>: Users who should have access to external endpoints like those needed
+to launch queries, check status, get output data and provides data for UI.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">internal</span></code>: Internal components of Presto (like coordinator and worker)
+which will have access to endpoints like launching tasks on workers and
+fetching exchange data from another worker.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">admin</span></code>: System administrators who will have access to internal service
+endpoints like those to get node status.</p></li>
+</ul>
+</section>
+<section id="enabling-authorization">
+<h2 id="enabling-authorization">Enabling Authorization<a class="headerlink" href="#enabling-authorization" title="Permalink to this headline">#</a></h2>
+<p>The following steps need to be taken in order to enable authorization:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><a class="reference internal" href="#enable-authentication"><span class="std std-ref">Enable Authentication</span></a></p></li>
+<li><p><a class="reference internal" href="#configure-authorizer"><span class="std std-ref">Configure Authorizer</span></a></p></li>
+<li><p><a class="reference internal" href="#configure-authorization-settings"><span class="std std-ref">Configure Authorization Settings</span></a></p></li>
+</ol>
+</div></blockquote>
+<section id="enable-authentication">
+<span id="id1"></span><h3 id="enable-authentication">Enable Authentication<a class="headerlink" href="#enable-authentication" title="Permalink to this headline">#</a></h3>
+<p>Presto authorization requires authentication to get the accessor’s principal,
+so make sure you have authentication enabled.</p>
+<blockquote>
+<div><ul>
+<li><p>If TLS/SSL is configured properly, we can just use the certificate to
+identify the accessor.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>http-server.authentication.type=CERTIFICATE
+</pre></div>
+</div>
+</li>
+<li><p>It is also possible to specify other authentication types such as
+<code class="docutils literal notranslate"><span class="pre">KERBEROS</span></code>, <code class="docutils literal notranslate"><span class="pre">PASSWORD</span></code> and <code class="docutils literal notranslate"><span class="pre">JWT</span></code>. Additional configuration may be
+needed.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>node.internal-address=&lt;authentication type&gt;
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="configure-authorizer">
+<span id="id2"></span><h3 id="configure-authorizer">Configure Authorizer<a class="headerlink" href="#configure-authorizer" title="Permalink to this headline">#</a></h3>
+<p>To enable authorization, the interface
+<code class="docutils literal notranslate"><span class="pre">com.facebook.airlift.http.server.Authorizer</span></code> must be implemented and bound.
+It performs the actual authorization check based on the principal of incoming
+request and the allowed roles of endpoint being requested.</p>
+<p>You can either use the preset <code class="docutils literal notranslate"><span class="pre">ConfigurationBasedAuthorizer</span></code> or implement
+your own.</p>
+<section id="configuration-based-authorizer">
+<h4 id="configuration-based-authorizer">Configuration-based Authorizer<a class="headerlink" href="#configuration-based-authorizer" title="Permalink to this headline">#</a></h4>
+<p>This plugin allows you to turn on authorization support by specifying a mapping
+from roles to a regex for matching identities. Use the following steps to start using
+Configuration-based authorizer:</p>
+<ol class="arabic">
+<li><p>Create a role to identity regex mapping and store it in a file.</p>
+<blockquote>
+<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>user=.*
+internal=coordinator
+admin=su.*
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Specify the path to the mapping file in <code class="docutils literal notranslate"><span class="pre">config.properties</span></code> file:</p>
+<blockquote>
+<div><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>configuration-based-authorizer.role-regex-map.file-path=&lt;path to mapping file&gt;
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install the Guice module
+<code class="docutils literal notranslate"><span class="pre">com.facebook.airlift.http.server.ConfigurationBasedAuthorizerModule</span></code>.</p></li>
+</ol>
+</section>
+</section>
+<section id="configure-authorization-settings">
+<span id="id3"></span><h3 id="configure-authorization-settings">Configure Authorization Settings<a class="headerlink" href="#configure-authorization-settings" title="Permalink to this headline">#</a></h3>
+<p>Authorization settings is configured in the <code class="docutils literal notranslate"><span class="pre">config.properties</span></code> file. The
+authorization on the worker and coordinator nodes are configured using the same
+set of properties.</p>
+<p>The following is an example of the properties that need to be added to the
+<code class="docutils literal notranslate"><span class="pre">config.properties</span></code> file:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>http-server.authorization.enabled=true
+http-server.authorization.default-policy=ALLOW
+http-server.authorization.default-allowed-roles=USER,ADMIN
+http-server.authorization.allow-unsecured-requests=false
+</pre></div>
+</div>
+<table>
+<colgroup>
+<col style="width: 50%"/>
+<col style="width: 50%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authorization.enabled</span></code></p></td>
+<td><p>Enable authorization for the Presto.
+Should be set to <code class="docutils literal notranslate"><span class="pre">true</span></code>. Default value is
+<code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authorization.default-policy</span></code></p></td>
+<td><p>The default authorization policy applies to endpoints
+without allowed roles specified. Can be set to
+<code class="docutils literal notranslate"><span class="pre">ALLOW</span></code>, <code class="docutils literal notranslate"><span class="pre">DENY</span></code> and <code class="docutils literal notranslate"><span class="pre">DEFAULT_ROLES</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authorization.default-allowed-roles</span></code></p></td>
+<td><p>The roles allowed to access the endpoints without
+explicitly specified when default-policy is set to
+<code class="docutils literal notranslate"><span class="pre">DEFAULT_ROLES</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">http-server.authorization.allow-unsecured-requests</span></code></p></td>
+<td><p>Skip authorization check for unsecured requests.
+Default value is <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">http-server.authorization.allow-unsecured-requests</span></code> is provided as a way to
+transition from HTTP to HTTPS with authorization and is a security hole
+since it allows unauthenticated requests to skip authorization checks. Only
+enable during the transition period and disable this setting once you have
+completed migrated to using HTTPS.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="internal-communication.html" title="Secure Internal Communication"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Secure Internal Communication </span>
+              </div>
+            </a>
+          
+          
+            <a href="../admin.html" title="Administration"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Administration </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
