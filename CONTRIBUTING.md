@@ -33,3 +33,4 @@ who have committer rights to this repository:
 
 * [Ariel Weisberg](https://github.com/aweisberg)
 * [Ali LeClerc](https://github.com/alileclerc)
+* [Steve Burnett](https://github.com/steveburnett)
