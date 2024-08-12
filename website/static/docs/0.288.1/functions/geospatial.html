@@ -1,0 +1,3466 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Geospatial Functions - Presto 0.288.1 Documentation</title>
+      
+    
+    
+      
+        
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.359ec555e2989f00f.min.css?v=b000af5c" />
+        <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-K7GB6F0LBZ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#constructors" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.288.1 Documentation" class="md-header__button md-logo" aria-label="Presto 0.288.1 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.288.1 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Geospatial Functions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.288.1 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.288.1 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.288.1 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        <span class="md-ellipsis">Overview</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        <span class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto Clients</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        <span class="md-ellipsis">Security</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        <span class="md-ellipsis">Administration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        <span class="md-ellipsis">Cache</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        <span class="md-ellipsis">Query Optimizer</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        <span class="md-ellipsis">Connectors</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        <span class="md-ellipsis">Plugins</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" checked>
+      
+      
+      
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../functions.html"><span class="md-ellipsis">Functions and Operators</span></a>
+          
+            <label for="__nav_10">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Functions and Operators" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          <span class="md-ellipsis">Functions and Operators</span>
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logical.html" class="md-nav__link">
+        <span class="md-ellipsis">Logical Operators</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="comparison.html" class="md-nav__link">
+        <span class="md-ellipsis">Comparison Functions and Operators</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conditional.html" class="md-nav__link">
+        <span class="md-ellipsis">Conditional Expressions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lambda.html" class="md-nav__link">
+        <span class="md-ellipsis">Lambda Expressions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="conversion.html" class="md-nav__link">
+        <span class="md-ellipsis">Conversion Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="math.html" class="md-nav__link">
+        <span class="md-ellipsis">Mathematical Functions and Operators</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bitwise.html" class="md-nav__link">
+        <span class="md-ellipsis">Bitwise Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="decimal.html" class="md-nav__link">
+        <span class="md-ellipsis">Decimal Functions and Operators</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="string.html" class="md-nav__link">
+        <span class="md-ellipsis">String Functions and Operators</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="regexp.html" class="md-nav__link">
+        <span class="md-ellipsis">Regular Expression Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="binary.html" class="md-nav__link">
+        <span class="md-ellipsis">Binary Functions and Operators</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="json.html" class="md-nav__link">
+        <span class="md-ellipsis">JSON Functions and Operators</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="datetime.html" class="md-nav__link">
+        <span class="md-ellipsis">Date and Time Functions and Operators</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aggregate.html" class="md-nav__link">
+        <span class="md-ellipsis">Aggregate Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="noisy.html" class="md-nav__link">
+        <span class="md-ellipsis">Noisy Aggregate Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="window.html" class="md-nav__link">
+        <span class="md-ellipsis">Window Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="array.html" class="md-nav__link">
+        <span class="md-ellipsis">Array Functions and Operators</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="map.html" class="md-nav__link">
+        <span class="md-ellipsis">Map Functions and Operators</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="url.html" class="md-nav__link">
+        <span class="md-ellipsis">URL Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ip.html" class="md-nav__link">
+        <span class="md-ellipsis">IP Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span class="md-ellipsis">Geospatial Functions</span>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        <span class="md-ellipsis">Geospatial Functions</span>
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/functions/geospatial.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/functions/geospatial.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#constructors" class="md-nav__link">
+    <span class="md-ellipsis">Constructors</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constructors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ST_AsBinary-Geometry-varbinary" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_AsBinary(Geometry) -&gt; varbinary (JavaScript function)" class="md-ellipsis">ST_<wbr>As<wbr>Binary<wbr>(Geometry) -<wbr>&gt; varbinary</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_AsText-Geometry-varchar" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_AsText(Geometry) -&gt; varchar (JavaScript function)" class="md-ellipsis">ST_<wbr>As<wbr>Text<wbr>(Geometry) -<wbr>&gt; varchar</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_GeometryFromText-varchar-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_GeometryFromText(varchar) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Geometry<wbr>From<wbr>Text<wbr>(varchar) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_GeomFromBinary-varbinary-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_GeomFromBinary(varbinary) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Geom<wbr>From<wbr>Binary<wbr>(varbinary) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_LineFromText-varchar-LineString" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_LineFromText(varchar) -&gt; LineString (JavaScript function)" class="md-ellipsis">ST_<wbr>Line<wbr>From<wbr>Text<wbr>(varchar) -<wbr>&gt; Line<wbr>String</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_LineString-array-Point-LineString" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_LineString(array(Point)) -&gt; LineString (JavaScript function)" class="md-ellipsis">ST_<wbr>Line<wbr>String<wbr>(array<wbr>(Point)) -<wbr>&gt; Line<wbr>String</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_MultiPoint-array-Point-MultiPoint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_MultiPoint(array(Point)) -&gt; MultiPoint (JavaScript function)" class="md-ellipsis">ST_<wbr>Multi<wbr>Point<wbr>(array<wbr>(Point)) -<wbr>&gt; Multi<wbr>Point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Point-x-y-Point" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Point(x, y) -&gt; Point (JavaScript function)" class="md-ellipsis">ST_<wbr>Point<wbr>(x, y) -<wbr>&gt; Point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Polygon-varchar-Polygon" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Polygon(varchar) -&gt; Polygon (JavaScript function)" class="md-ellipsis">ST_<wbr>Polygon<wbr>(varchar) -<wbr>&gt; Polygon</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to_spherical_geography-Geometry-SphericalGeography" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="to_spherical_geography(Geometry) -&gt; SphericalGeography (JavaScript function)" class="md-ellipsis">to_<wbr>spherical_<wbr>geography<wbr>(Geometry) -<wbr>&gt; Spherical<wbr>Geography</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to_geometry-SphericalGeography-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="to_geometry(SphericalGeography) -&gt; Geometry (JavaScript function)" class="md-ellipsis">to_<wbr>geometry<wbr>(Spherical<wbr>Geography) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#relationship-tests" class="md-nav__link">
+    <span class="md-ellipsis">Relationship Tests</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relationship Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ST_Contains-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Contains(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Contains<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Crosses-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Crosses(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Crosses<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Disjoint-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Disjoint(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Disjoint<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Equals-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Equals(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Equals<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Intersects-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Intersects(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Intersects<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Overlaps-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Overlaps(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Overlaps<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Relate-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Relate(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Relate<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Touches-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Touches(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Touches<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Within-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Within(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Within<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">Operations</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geometry_union-array-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_union(array(Geometry)) -&gt; Geometry (JavaScript function)" class="md-ellipsis">geometry_<wbr>union<wbr>(array<wbr>(Geometry)) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Boundary-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Boundary(Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Boundary<wbr>(Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Buffer-Geometry-distance-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Buffer(Geometry, distance) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Buffer<wbr>(Geometry, distance) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Difference-Geometry-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Difference(Geometry, Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Difference<wbr>(Geometry, Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Envelope-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Envelope(Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Envelope<wbr>(Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_EnvelopeAsPts" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_EnvelopeAsPts (JavaScript function)" class="md-ellipsis">ST_<wbr>Envelope<wbr>As<wbr>Pts</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expand_envelope-Geometry-double-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="expand_envelope(Geometry, double) -&gt; Geometry (JavaScript function)" class="md-ellipsis">expand_<wbr>envelope<wbr>(Geometry, double) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_ExteriorRing-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_ExteriorRing(Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Exterior<wbr>Ring<wbr>(Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Intersection-Geometry-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Intersection(Geometry, Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Intersection<wbr>(Geometry, Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_SymDifference-Geometry-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_SymDifference(Geometry, Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Sym<wbr>Difference<wbr>(Geometry, Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Union-Geometry-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Union(Geometry, Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Union<wbr>(Geometry, Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#accessors" class="md-nav__link">
+    <span class="md-ellipsis">Accessors</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ST_Area-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Area(Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Area<wbr>(Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Area-SphericalGeography-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Area(SphericalGeography) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Area<wbr>(Spherical<wbr>Geography) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Centroid-Geometry-Point" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Centroid(Geometry) -&gt; Point (JavaScript function)" class="md-ellipsis">ST_<wbr>Centroid<wbr>(Geometry) -<wbr>&gt; Point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Centroid-SphericalGeography-Point" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Centroid(SphericalGeography) -&gt; Point (JavaScript function)" class="md-ellipsis">ST_<wbr>Centroid<wbr>(Spherical<wbr>Geography) -<wbr>&gt; Point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_ConvexHull-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_ConvexHull(Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Convex<wbr>Hull<wbr>(Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_CoordDim-Geometry-bigint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_CoordDim(Geometry) -&gt; bigint (JavaScript function)" class="md-ellipsis">ST_<wbr>Coord<wbr>Dim<wbr>(Geometry) -<wbr>&gt; bigint</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Dimension-Geometry-bigint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Dimension(Geometry) -&gt; bigint (JavaScript function)" class="md-ellipsis">ST_<wbr>Dimension<wbr>(Geometry) -<wbr>&gt; bigint</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Distance-Geometry-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Distance(Geometry, Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Distance<wbr>(Geometry, Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Distance-SphericalGeography-SphericalGeography-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Distance(SphericalGeography, SphericalGeography) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Distance<wbr>(Spherical<wbr>Geography, Spherical<wbr>Geography) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_nearest_points" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_nearest_points (JavaScript function)" class="md-ellipsis">geometry_<wbr>nearest_<wbr>points</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_GeometryN-Geometry-index-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_GeometryN(Geometry, index) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Geometry<wbr>N<wbr>(Geometry, index) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_InteriorRingN-Geometry-index-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_InteriorRingN(Geometry, index) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Interior<wbr>Ring<wbr>N<wbr>(Geometry, index) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_GeometryType-Geometry-varchar" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_GeometryType(Geometry) -&gt; varchar (JavaScript function)" class="md-ellipsis">ST_<wbr>Geometry<wbr>Type<wbr>(Geometry) -<wbr>&gt; varchar</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_IsClosed-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_IsClosed(Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Is<wbr>Closed<wbr>(Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_IsEmpty-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_IsEmpty(Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Is<wbr>Empty<wbr>(Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_IsSimple-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_IsSimple(Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Is<wbr>Simple<wbr>(Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_IsRing-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_IsRing(Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Is<wbr>Ring<wbr>(Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_IsValid-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_IsValid(Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Is<wbr>Valid<wbr>(Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Length-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Length(Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Length<wbr>(Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Length-SphericalGeography-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Length(SphericalGeography) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Length<wbr>(Spherical<wbr>Geography) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_PointN-LineString-index-Point" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_PointN(LineString, index) -&gt; Point (JavaScript function)" class="md-ellipsis">ST_<wbr>Point<wbr>N<wbr>(Line<wbr>String, index) -<wbr>&gt; Point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Points" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Points (JavaScript function)" class="md-ellipsis">ST_<wbr>Points</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_XMax-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_XMax(Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>XMax<wbr>(Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_YMax-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_YMax(Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>YMax<wbr>(Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_XMin-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_XMin(Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>XMin<wbr>(Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_YMin-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_YMin(Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>YMin<wbr>(Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_StartPoint-Geometry-point" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_StartPoint(Geometry) -&gt; point (JavaScript function)" class="md-ellipsis">ST_<wbr>Start<wbr>Point<wbr>(Geometry) -<wbr>&gt; point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_EndPoint-Geometry-point" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_EndPoint(Geometry) -&gt; point (JavaScript function)" class="md-ellipsis">ST_<wbr>End<wbr>Point<wbr>(Geometry) -<wbr>&gt; point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_X-Point-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_X(Point) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>X<wbr>(Point) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Y-Point-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Y(Point) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Y<wbr>(Point) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_InteriorRings" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_InteriorRings (JavaScript function)" class="md-ellipsis">ST_<wbr>Interior<wbr>Rings</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_NumGeometries-Geometry-bigint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_NumGeometries(Geometry) -&gt; bigint (JavaScript function)" class="md-ellipsis">ST_<wbr>Num<wbr>Geometries<wbr>(Geometry) -<wbr>&gt; bigint</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Geometries" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Geometries (JavaScript function)" class="md-ellipsis">ST_<wbr>Geometries</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flatten_geometry_collections" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="flatten_geometry_collections (JavaScript function)" class="md-ellipsis">flatten_<wbr>geometry_<wbr>collections</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_NumPoints-Geometry-bigint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_NumPoints(Geometry) -&gt; bigint (JavaScript function)" class="md-ellipsis">ST_<wbr>Num<wbr>Points<wbr>(Geometry) -<wbr>&gt; bigint</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_NumInteriorRing-Geometry-bigint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_NumInteriorRing(Geometry) -&gt; bigint (JavaScript function)" class="md-ellipsis">ST_<wbr>Num<wbr>Interior<wbr>Ring<wbr>(Geometry) -<wbr>&gt; bigint</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplify_geometry-Geometry-double-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="simplify_geometry(Geometry, double) -&gt; Geometry (JavaScript function)" class="md-ellipsis">simplify_<wbr>geometry<wbr>(Geometry, double) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line_locate_point-LineString-Point-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="line_locate_point(LineString, Point) -&gt; double (JavaScript function)" class="md-ellipsis">line_<wbr>locate_<wbr>point<wbr>(Line<wbr>String, Point) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line_interpolate_point-LineString-double-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="line_interpolate_point(LineString, double) -&gt; Geometry (JavaScript function)" class="md-ellipsis">line_<wbr>interpolate_<wbr>point<wbr>(Line<wbr>String, double) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_invalid_reason-Geometry-varchar" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_invalid_reason(Geometry) -&gt; varchar (JavaScript function)" class="md-ellipsis">geometry_<wbr>invalid_<wbr>reason<wbr>(Geometry) -<wbr>&gt; varchar</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#great_circle_distance-latitude1-longitude1-latitude2-longitude2-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="great_circle_distance(latitude1, longitude1, latitude2, longitude2) -&gt; double (JavaScript function)" class="md-ellipsis">great_<wbr>circle_<wbr>distance<wbr>(latitude1, longitude1, latitude2, longitude2) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_as_geojson-Geometry-varchar" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_as_geojson(Geometry) -&gt; varchar (JavaScript function)" class="md-ellipsis">geometry_<wbr>as_<wbr>geojson<wbr>(Geometry) -<wbr>&gt; varchar</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_from_geojson-varchar-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_from_geojson(varchar) -&gt; Geometry (JavaScript function)" class="md-ellipsis">geometry_<wbr>from_<wbr>geojson<wbr>(varchar) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#aggregations" class="md-nav__link">
+    <span class="md-ellipsis">Aggregations</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aggregations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convex_hull_agg-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="convex_hull_agg(Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">convex_<wbr>hull_<wbr>agg<wbr>(Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_union_agg-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_union_agg(Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">geometry_<wbr>union_<wbr>agg<wbr>(Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#bing-tiles" class="md-nav__link">
+    <span class="md-ellipsis">Bing Tiles</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bing Tiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile-x-y-zoom_level-BingTile" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile(x, y, zoom_level) -&gt; BingTile (JavaScript function)" class="md-ellipsis">bing_<wbr>tile<wbr>(x, y, zoom_<wbr>level) -<wbr>&gt; Bing<wbr>Tile</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile-quadKey-BingTile" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile(quadKey) -&gt; BingTile (JavaScript function)" class="md-ellipsis">bing_<wbr>tile<wbr>(quad<wbr>Key) -<wbr>&gt; Bing<wbr>Tile</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_parent-tile-BingTile" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_parent(tile) -&gt; BingTile (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>parent<wbr>(tile) -<wbr>&gt; Bing<wbr>Tile</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_parent-tile-newZoom-BingTile" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_parent(tile, newZoom) -&gt; BingTile (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>parent<wbr>(tile, new<wbr>Zoom) -<wbr>&gt; Bing<wbr>Tile</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_children" class="md-nav__link">
+    <span class="md-ellipsis">bing_<wbr>tile_<wbr>children</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id0" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_children (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>children</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_at-latitude-longitude-zoom_level-BingTile" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_at(latitude, longitude, zoom_level) -&gt; BingTile (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>at<wbr>(latitude, longitude, zoom_<wbr>level) -<wbr>&gt; Bing<wbr>Tile</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tiles_around" class="md-nav__link">
+    <span class="md-ellipsis">bing_<wbr>tiles_<wbr>around</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id2" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tiles_around (JavaScript function)" class="md-ellipsis">bing_<wbr>tiles_<wbr>around</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_coordinates-tile-row-x-y" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_coordinates(tile) -&gt; row&lt;x, y&gt; (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>coordinates<wbr>(tile) -<wbr>&gt; row&lt;x, y&gt;</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_polygon-tile-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_polygon(tile) -&gt; Geometry (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>polygon<wbr>(tile) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_quadkey-tile-varchar" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_quadkey(tile) -&gt; varchar (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>quadkey<wbr>(tile) -<wbr>&gt; varchar</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_zoom_level-tile-tinyint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_zoom_level(tile) -&gt; tinyint (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>zoom_<wbr>level<wbr>(tile) -<wbr>&gt; tinyint</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_to_bing_tiles" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_to_bing_tiles (JavaScript function)" class="md-ellipsis">geometry_<wbr>to_<wbr>bing_<wbr>tiles</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_to_dissolved_bing_tiles" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_to_dissolved_bing_tiles (JavaScript function)" class="md-ellipsis">geometry_<wbr>to_<wbr>dissolved_<wbr>bing_<wbr>tiles</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hyperloglog.html" class="md-nav__link">
+        <span class="md-ellipsis">Hyper<wbr>Log<wbr>Log Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="khyperloglog.html" class="md-nav__link">
+        <span class="md-ellipsis">KHyper<wbr>Log<wbr>Log Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="qdigest.html" class="md-nav__link">
+        <span class="md-ellipsis">Quantile Digest Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uuid.html" class="md-nav__link">
+        <span class="md-ellipsis">UUID functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tdigest.html" class="md-nav__link">
+        <span class="md-ellipsis">T-<wbr>Digest Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="color.html" class="md-nav__link">
+        <span class="md-ellipsis">Color Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        <span class="md-ellipsis">Session Information</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="teradata.html" class="md-nav__link">
+        <span class="md-ellipsis">Teradata Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="internationalization.html" class="md-nav__link">
+        <span class="md-ellipsis">Internationalization Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setdigest.html" class="md-nav__link">
+        <span class="md-ellipsis">Set Digest functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sketch.html" class="md-nav__link">
+        <span class="md-ellipsis">Sketch Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pinot.html" class="md-nav__link">
+        <span class="md-ellipsis">Pinot Functions</span>
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Language</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Statement Syntax</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        <span class="md-ellipsis">Migration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        <span class="md-ellipsis">REST API</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        <span class="md-ellipsis">Ecosystem</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        <span class="md-ellipsis">Router</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        <span class="md-ellipsis">Developer Guide</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presto-cpp.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto C++</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        <span class="md-ellipsis">Release Notes</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/functions/geospatial.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/functions/geospatial.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#constructors" class="md-nav__link">
+    <span class="md-ellipsis">Constructors</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constructors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ST_AsBinary-Geometry-varbinary" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_AsBinary(Geometry) -&gt; varbinary (JavaScript function)" class="md-ellipsis">ST_<wbr>As<wbr>Binary<wbr>(Geometry) -<wbr>&gt; varbinary</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_AsText-Geometry-varchar" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_AsText(Geometry) -&gt; varchar (JavaScript function)" class="md-ellipsis">ST_<wbr>As<wbr>Text<wbr>(Geometry) -<wbr>&gt; varchar</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_GeometryFromText-varchar-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_GeometryFromText(varchar) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Geometry<wbr>From<wbr>Text<wbr>(varchar) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_GeomFromBinary-varbinary-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_GeomFromBinary(varbinary) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Geom<wbr>From<wbr>Binary<wbr>(varbinary) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_LineFromText-varchar-LineString" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_LineFromText(varchar) -&gt; LineString (JavaScript function)" class="md-ellipsis">ST_<wbr>Line<wbr>From<wbr>Text<wbr>(varchar) -<wbr>&gt; Line<wbr>String</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_LineString-array-Point-LineString" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_LineString(array(Point)) -&gt; LineString (JavaScript function)" class="md-ellipsis">ST_<wbr>Line<wbr>String<wbr>(array<wbr>(Point)) -<wbr>&gt; Line<wbr>String</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_MultiPoint-array-Point-MultiPoint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_MultiPoint(array(Point)) -&gt; MultiPoint (JavaScript function)" class="md-ellipsis">ST_<wbr>Multi<wbr>Point<wbr>(array<wbr>(Point)) -<wbr>&gt; Multi<wbr>Point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Point-x-y-Point" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Point(x, y) -&gt; Point (JavaScript function)" class="md-ellipsis">ST_<wbr>Point<wbr>(x, y) -<wbr>&gt; Point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Polygon-varchar-Polygon" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Polygon(varchar) -&gt; Polygon (JavaScript function)" class="md-ellipsis">ST_<wbr>Polygon<wbr>(varchar) -<wbr>&gt; Polygon</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to_spherical_geography-Geometry-SphericalGeography" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="to_spherical_geography(Geometry) -&gt; SphericalGeography (JavaScript function)" class="md-ellipsis">to_<wbr>spherical_<wbr>geography<wbr>(Geometry) -<wbr>&gt; Spherical<wbr>Geography</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#to_geometry-SphericalGeography-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="to_geometry(SphericalGeography) -&gt; Geometry (JavaScript function)" class="md-ellipsis">to_<wbr>geometry<wbr>(Spherical<wbr>Geography) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#relationship-tests" class="md-nav__link">
+    <span class="md-ellipsis">Relationship Tests</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Relationship Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ST_Contains-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Contains(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Contains<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Crosses-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Crosses(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Crosses<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Disjoint-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Disjoint(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Disjoint<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Equals-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Equals(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Equals<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Intersects-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Intersects(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Intersects<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Overlaps-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Overlaps(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Overlaps<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Relate-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Relate(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Relate<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Touches-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Touches(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Touches<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Within-Geometry-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Within(Geometry, Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Within<wbr>(Geometry, Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">Operations</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geometry_union-array-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_union(array(Geometry)) -&gt; Geometry (JavaScript function)" class="md-ellipsis">geometry_<wbr>union<wbr>(array<wbr>(Geometry)) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Boundary-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Boundary(Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Boundary<wbr>(Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Buffer-Geometry-distance-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Buffer(Geometry, distance) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Buffer<wbr>(Geometry, distance) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Difference-Geometry-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Difference(Geometry, Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Difference<wbr>(Geometry, Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Envelope-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Envelope(Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Envelope<wbr>(Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_EnvelopeAsPts" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_EnvelopeAsPts (JavaScript function)" class="md-ellipsis">ST_<wbr>Envelope<wbr>As<wbr>Pts</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expand_envelope-Geometry-double-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="expand_envelope(Geometry, double) -&gt; Geometry (JavaScript function)" class="md-ellipsis">expand_<wbr>envelope<wbr>(Geometry, double) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_ExteriorRing-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_ExteriorRing(Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Exterior<wbr>Ring<wbr>(Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Intersection-Geometry-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Intersection(Geometry, Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Intersection<wbr>(Geometry, Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_SymDifference-Geometry-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_SymDifference(Geometry, Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Sym<wbr>Difference<wbr>(Geometry, Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Union-Geometry-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Union(Geometry, Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Union<wbr>(Geometry, Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#accessors" class="md-nav__link">
+    <span class="md-ellipsis">Accessors</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ST_Area-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Area(Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Area<wbr>(Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Area-SphericalGeography-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Area(SphericalGeography) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Area<wbr>(Spherical<wbr>Geography) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Centroid-Geometry-Point" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Centroid(Geometry) -&gt; Point (JavaScript function)" class="md-ellipsis">ST_<wbr>Centroid<wbr>(Geometry) -<wbr>&gt; Point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Centroid-SphericalGeography-Point" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Centroid(SphericalGeography) -&gt; Point (JavaScript function)" class="md-ellipsis">ST_<wbr>Centroid<wbr>(Spherical<wbr>Geography) -<wbr>&gt; Point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_ConvexHull-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_ConvexHull(Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Convex<wbr>Hull<wbr>(Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_CoordDim-Geometry-bigint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_CoordDim(Geometry) -&gt; bigint (JavaScript function)" class="md-ellipsis">ST_<wbr>Coord<wbr>Dim<wbr>(Geometry) -<wbr>&gt; bigint</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Dimension-Geometry-bigint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Dimension(Geometry) -&gt; bigint (JavaScript function)" class="md-ellipsis">ST_<wbr>Dimension<wbr>(Geometry) -<wbr>&gt; bigint</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Distance-Geometry-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Distance(Geometry, Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Distance<wbr>(Geometry, Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Distance-SphericalGeography-SphericalGeography-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Distance(SphericalGeography, SphericalGeography) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Distance<wbr>(Spherical<wbr>Geography, Spherical<wbr>Geography) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_nearest_points" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_nearest_points (JavaScript function)" class="md-ellipsis">geometry_<wbr>nearest_<wbr>points</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_GeometryN-Geometry-index-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_GeometryN(Geometry, index) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Geometry<wbr>N<wbr>(Geometry, index) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_InteriorRingN-Geometry-index-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_InteriorRingN(Geometry, index) -&gt; Geometry (JavaScript function)" class="md-ellipsis">ST_<wbr>Interior<wbr>Ring<wbr>N<wbr>(Geometry, index) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_GeometryType-Geometry-varchar" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_GeometryType(Geometry) -&gt; varchar (JavaScript function)" class="md-ellipsis">ST_<wbr>Geometry<wbr>Type<wbr>(Geometry) -<wbr>&gt; varchar</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_IsClosed-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_IsClosed(Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Is<wbr>Closed<wbr>(Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_IsEmpty-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_IsEmpty(Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Is<wbr>Empty<wbr>(Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_IsSimple-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_IsSimple(Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Is<wbr>Simple<wbr>(Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_IsRing-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_IsRing(Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Is<wbr>Ring<wbr>(Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_IsValid-Geometry-boolean" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_IsValid(Geometry) -&gt; boolean (JavaScript function)" class="md-ellipsis">ST_<wbr>Is<wbr>Valid<wbr>(Geometry) -<wbr>&gt; boolean</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Length-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Length(Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Length<wbr>(Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Length-SphericalGeography-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Length(SphericalGeography) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Length<wbr>(Spherical<wbr>Geography) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_PointN-LineString-index-Point" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_PointN(LineString, index) -&gt; Point (JavaScript function)" class="md-ellipsis">ST_<wbr>Point<wbr>N<wbr>(Line<wbr>String, index) -<wbr>&gt; Point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Points" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Points (JavaScript function)" class="md-ellipsis">ST_<wbr>Points</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_XMax-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_XMax(Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>XMax<wbr>(Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_YMax-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_YMax(Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>YMax<wbr>(Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_XMin-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_XMin(Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>XMin<wbr>(Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_YMin-Geometry-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_YMin(Geometry) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>YMin<wbr>(Geometry) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_StartPoint-Geometry-point" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_StartPoint(Geometry) -&gt; point (JavaScript function)" class="md-ellipsis">ST_<wbr>Start<wbr>Point<wbr>(Geometry) -<wbr>&gt; point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_EndPoint-Geometry-point" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_EndPoint(Geometry) -&gt; point (JavaScript function)" class="md-ellipsis">ST_<wbr>End<wbr>Point<wbr>(Geometry) -<wbr>&gt; point</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_X-Point-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_X(Point) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>X<wbr>(Point) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Y-Point-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Y(Point) -&gt; double (JavaScript function)" class="md-ellipsis">ST_<wbr>Y<wbr>(Point) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_InteriorRings" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_InteriorRings (JavaScript function)" class="md-ellipsis">ST_<wbr>Interior<wbr>Rings</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_NumGeometries-Geometry-bigint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_NumGeometries(Geometry) -&gt; bigint (JavaScript function)" class="md-ellipsis">ST_<wbr>Num<wbr>Geometries<wbr>(Geometry) -<wbr>&gt; bigint</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_Geometries" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_Geometries (JavaScript function)" class="md-ellipsis">ST_<wbr>Geometries</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flatten_geometry_collections" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="flatten_geometry_collections (JavaScript function)" class="md-ellipsis">flatten_<wbr>geometry_<wbr>collections</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_NumPoints-Geometry-bigint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_NumPoints(Geometry) -&gt; bigint (JavaScript function)" class="md-ellipsis">ST_<wbr>Num<wbr>Points<wbr>(Geometry) -<wbr>&gt; bigint</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ST_NumInteriorRing-Geometry-bigint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="ST_NumInteriorRing(Geometry) -&gt; bigint (JavaScript function)" class="md-ellipsis">ST_<wbr>Num<wbr>Interior<wbr>Ring<wbr>(Geometry) -<wbr>&gt; bigint</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplify_geometry-Geometry-double-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="simplify_geometry(Geometry, double) -&gt; Geometry (JavaScript function)" class="md-ellipsis">simplify_<wbr>geometry<wbr>(Geometry, double) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line_locate_point-LineString-Point-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="line_locate_point(LineString, Point) -&gt; double (JavaScript function)" class="md-ellipsis">line_<wbr>locate_<wbr>point<wbr>(Line<wbr>String, Point) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#line_interpolate_point-LineString-double-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="line_interpolate_point(LineString, double) -&gt; Geometry (JavaScript function)" class="md-ellipsis">line_<wbr>interpolate_<wbr>point<wbr>(Line<wbr>String, double) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_invalid_reason-Geometry-varchar" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_invalid_reason(Geometry) -&gt; varchar (JavaScript function)" class="md-ellipsis">geometry_<wbr>invalid_<wbr>reason<wbr>(Geometry) -<wbr>&gt; varchar</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#great_circle_distance-latitude1-longitude1-latitude2-longitude2-double" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="great_circle_distance(latitude1, longitude1, latitude2, longitude2) -&gt; double (JavaScript function)" class="md-ellipsis">great_<wbr>circle_<wbr>distance<wbr>(latitude1, longitude1, latitude2, longitude2) -<wbr>&gt; double</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_as_geojson-Geometry-varchar" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_as_geojson(Geometry) -&gt; varchar (JavaScript function)" class="md-ellipsis">geometry_<wbr>as_<wbr>geojson<wbr>(Geometry) -<wbr>&gt; varchar</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_from_geojson-varchar-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_from_geojson(varchar) -&gt; Geometry (JavaScript function)" class="md-ellipsis">geometry_<wbr>from_<wbr>geojson<wbr>(varchar) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#aggregations" class="md-nav__link">
+    <span class="md-ellipsis">Aggregations</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aggregations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convex_hull_agg-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="convex_hull_agg(Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">convex_<wbr>hull_<wbr>agg<wbr>(Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_union_agg-Geometry-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_union_agg(Geometry) -&gt; Geometry (JavaScript function)" class="md-ellipsis">geometry_<wbr>union_<wbr>agg<wbr>(Geometry) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#bing-tiles" class="md-nav__link">
+    <span class="md-ellipsis">Bing Tiles</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bing Tiles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile-x-y-zoom_level-BingTile" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile(x, y, zoom_level) -&gt; BingTile (JavaScript function)" class="md-ellipsis">bing_<wbr>tile<wbr>(x, y, zoom_<wbr>level) -<wbr>&gt; Bing<wbr>Tile</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile-quadKey-BingTile" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile(quadKey) -&gt; BingTile (JavaScript function)" class="md-ellipsis">bing_<wbr>tile<wbr>(quad<wbr>Key) -<wbr>&gt; Bing<wbr>Tile</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_parent-tile-BingTile" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_parent(tile) -&gt; BingTile (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>parent<wbr>(tile) -<wbr>&gt; Bing<wbr>Tile</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_parent-tile-newZoom-BingTile" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_parent(tile, newZoom) -&gt; BingTile (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>parent<wbr>(tile, new<wbr>Zoom) -<wbr>&gt; Bing<wbr>Tile</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_children" class="md-nav__link">
+    <span class="md-ellipsis">bing_<wbr>tile_<wbr>children</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id0" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_children (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>children</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_at-latitude-longitude-zoom_level-BingTile" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_at(latitude, longitude, zoom_level) -&gt; BingTile (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>at<wbr>(latitude, longitude, zoom_<wbr>level) -<wbr>&gt; Bing<wbr>Tile</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tiles_around" class="md-nav__link">
+    <span class="md-ellipsis">bing_<wbr>tiles_<wbr>around</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id2" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tiles_around (JavaScript function)" class="md-ellipsis">bing_<wbr>tiles_<wbr>around</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_coordinates-tile-row-x-y" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_coordinates(tile) -&gt; row&lt;x, y&gt; (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>coordinates<wbr>(tile) -<wbr>&gt; row&lt;x, y&gt;</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_polygon-tile-Geometry" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_polygon(tile) -&gt; Geometry (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>polygon<wbr>(tile) -<wbr>&gt; Geometry</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_quadkey-tile-varchar" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_quadkey(tile) -&gt; varchar (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>quadkey<wbr>(tile) -<wbr>&gt; varchar</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bing_tile_zoom_level-tile-tinyint" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="bing_tile_zoom_level(tile) -&gt; tinyint (JavaScript function)" class="md-ellipsis">bing_<wbr>tile_<wbr>zoom_<wbr>level<wbr>(tile) -<wbr>&gt; tinyint</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_to_bing_tiles" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_to_bing_tiles (JavaScript function)" class="md-ellipsis">geometry_<wbr>to_<wbr>bing_<wbr>tiles</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometry_to_dissolved_bing_tiles" class="md-nav__link">
+    <span aria-label="JavaScript function" class="objinfo-icon objinfo-icon__procedure" title="JavaScript function">M</span><span title="geometry_to_dissolved_bing_tiles (JavaScript function)" class="md-ellipsis">geometry_<wbr>to_<wbr>dissolved_<wbr>bing_<wbr>tiles</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+  <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/functions/geospatial.rst" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+<h1 id="geospatial-functions">Geospatial Functions<a class="headerlink" href="#geospatial-functions" title="Link to this heading">¶</a></h1>
+<p>Presto Geospatial functions that begin with the <code class="docutils literal notranslate"><span class="pre">ST_</span></code> prefix support the
+SQL/MM specification and are compliant with the Open Geospatial Consortium’s
+(OGC) OpenGIS Specifications.  As such, many Presto Geospatial functions
+require, or more accurately, assume that geometries that are operated on are
+both simple and valid. For example, it does not make sense to calculate the
+area of a polygon that has a hole defined outside of the polygon, or to
+construct a polygon from a non-simple boundary line.</p>
+<p>Presto Geospatial functions support the Well-Known Text (WKT) and Well-Known
+Binary (WKB) form of spatial objects:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">POINT</span> <span class="pre">(0</span> <span class="pre">0)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LINESTRING</span> <span class="pre">(0</span> <span class="pre">0,</span> <span class="pre">1</span> <span class="pre">1,</span> <span class="pre">1</span> <span class="pre">2)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">POLYGON</span> <span class="pre">((0</span> <span class="pre">0,</span> <span class="pre">4</span> <span class="pre">0,</span> <span class="pre">4</span> <span class="pre">4,</span> <span class="pre">0</span> <span class="pre">4,</span> <span class="pre">0</span> <span class="pre">0),</span> <span class="pre">(1</span> <span class="pre">1,</span> <span class="pre">2</span> <span class="pre">1,</span> <span class="pre">2</span> <span class="pre">2,</span> <span class="pre">1</span> <span class="pre">2,</span> <span class="pre">1</span> <span class="pre">1))</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MULTIPOINT</span> <span class="pre">(0</span> <span class="pre">0,</span> <span class="pre">1</span> <span class="pre">2)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MULTILINESTRING</span> <span class="pre">((0</span> <span class="pre">0,</span> <span class="pre">1</span> <span class="pre">1,</span> <span class="pre">1</span> <span class="pre">2),</span> <span class="pre">(2</span> <span class="pre">3,</span> <span class="pre">3</span> <span class="pre">2,</span> <span class="pre">5</span> <span class="pre">4))</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MULTIPOLYGON</span> <span class="pre">(((0</span> <span class="pre">0,</span> <span class="pre">4</span> <span class="pre">0,</span> <span class="pre">4</span> <span class="pre">4,</span> <span class="pre">0</span> <span class="pre">4,</span> <span class="pre">0</span> <span class="pre">0),</span> <span class="pre">(1</span> <span class="pre">1,</span> <span class="pre">2</span> <span class="pre">1,</span> <span class="pre">2</span> <span class="pre">2,</span> <span class="pre">1</span> <span class="pre">2,</span> <span class="pre">1</span> <span class="pre">1)),</span> <span class="pre">((-1</span> <span class="pre">-1,</span> <span class="pre">-1</span> <span class="pre">-2,</span> <span class="pre">-2</span> <span class="pre">-2,</span> <span class="pre">-2</span> <span class="pre">-1,</span> <span class="pre">-1</span> <span class="pre">-1)))</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GEOMETRYCOLLECTION</span> <span class="pre">(POINT(2</span> <span class="pre">3),</span> <span class="pre">LINESTRING</span> <span class="pre">(2</span> <span class="pre">3,</span> <span class="pre">3</span> <span class="pre">4))</span></code></p></li>
+</ul>
+<p>Use <code class="docutils literal notranslate"><span class="pre">ST_GeometryFromText</span></code> and <code class="docutils literal notranslate"><span class="pre">ST_GeomFromBinary</span></code> functions to create
+geometry objects from WKT or WKB.  In WKT/WKB, the coordinate order is
+<code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>.  For spherical/geospatial uses, this implies
+<code class="docutils literal notranslate"><span class="pre">(longitude,</span> <span class="pre">latitude)</span></code> instead of <code class="docutils literal notranslate"><span class="pre">(latitude,</span> <span class="pre">longitude)</span></code>.</p>
+<p>The basis for the <code class="docutils literal notranslate"><span class="pre">Geometry</span></code> type is a plane. The shortest path between two
+points on the plane is a straight line. That means calculations on geometries
+(areas, distances, lengths, intersections, etc) can be calculated using
+cartesian mathematics and straight line vectors.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">SphericalGeography</span></code> type provides native support for spatial features
+represented on “geographic” coordinates (sometimes called “geodetic”
+coordinates, or “lat/lon”, or “lon/lat”). Geographic coordinates are spherical
+coordinates expressed in angular units (degrees).</p>
+<p>The basis for the <code class="docutils literal notranslate"><span class="pre">SphericalGeography</span></code> type is a sphere. The shortest path
+between two points on the sphere is a great circle arc. That means that
+calculations on geographies (areas, distances, lengths, intersections, etc)
+must be calculated on the sphere, using more complicated mathematics. More
+accurate measurements that take the actual spheroidal shape of the world into
+account are not supported.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">SphericalGeography</span></code> objects, values returned by the measurement functions
+<code class="docutils literal notranslate"><span class="pre">ST_Distance</span></code> and <code class="docutils literal notranslate"><span class="pre">ST_Length</span></code> are in the unit of meters; values returned by
+<code class="docutils literal notranslate"><span class="pre">ST_Area</span></code> are in square meters.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">to_spherical_geography()</span></code> function to convert a geometry object to
+geography object.  For example,
+<code class="docutils literal notranslate"><span class="pre">ST_Distance(ST_Point(-71.0882,</span> <span class="pre">42.3607),</span> <span class="pre">ST_Point(-74.1197,</span> <span class="pre">40.6976))</span></code>
+returns 3.4577 in the unit of the passed-in values on the euclidean plane,
+while
+<code class="docutils literal notranslate"><span class="pre">ST_Distance(to_spherical_geography(ST_Point(-71.0882,</span> <span class="pre">42.3607)),</span> <span class="pre">to_spherical_geography(ST_Point(-74.1197,</span> <span class="pre">40.6976)))</span></code>
+returns 312822.179 in meters.</p>
+<h2 id="constructors">Constructors<a class="headerlink" href="#constructors" title="Link to this heading">¶</a></h2>
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_AsBinary-Geometry-varbinary">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_AsBinary(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">varbinary</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_AsBinary-Geometry-varbinary" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the WKB representation of the geometry.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_AsText-Geometry-varchar">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_AsText(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">varchar</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_AsText-Geometry-varchar" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the WKT representation of the geometry. For empty geometries,
+<code class="docutils literal notranslate"><span class="pre">ST_AsText(ST_LineFromText('LINESTRING</span> <span class="pre">EMPTY'))</span></code> will produce
+<code class="docutils literal notranslate"><span class="pre">'MULTILINESTRING</span> <span class="pre">EMPTY'</span></code> and <code class="docutils literal notranslate"><span class="pre">ST_AsText(ST_Polygon('POLYGON</span> <span class="pre">EMPTY'))</span></code>
+will produce <code class="docutils literal notranslate"><span class="pre">'MULTIPOLYGON</span> <span class="pre">EMPTY'</span></code>.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_GeometryFromText-varchar-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_GeometryFromText(varchar)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_GeometryFromText-varchar-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a geometry type object from WKT representation.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_GeomFromBinary-varbinary-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_GeomFromBinary(varbinary)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_GeomFromBinary-varbinary-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a geometry type object from WKB representation.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_LineFromText-varchar-LineString">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_LineFromText(varchar)</span> <span class="pre">-&gt;</span> <span class="pre">LineString</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_LineFromText-varchar-LineString" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a geometry type linestring object from WKT representation.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_LineString-array-Point-LineString">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_LineString(array(Point))</span> <span class="pre">-&gt;</span> <span class="pre">LineString</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_LineString-array-Point-LineString" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a LineString formed from an array of points. If there are fewer
+than two non-empty points in the input array, an empty LineString will be
+returned.  Throws an exception if any element in the array is <code class="docutils literal notranslate"><span class="pre">null</span></code> or
+empty or same as the previous one.  The returned geometry may not be
+simple, e.g. may self-intersect or may contain duplicate vertexes depending
+on the input.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_MultiPoint-array-Point-MultiPoint">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_MultiPoint(array(Point))</span> <span class="pre">-&gt;</span> <span class="pre">MultiPoint</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_MultiPoint-array-Point-MultiPoint" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a MultiPoint geometry object formed from the specified points.
+Return <code class="docutils literal notranslate"><span class="pre">null</span></code> if input array is empty.  Throws an exception if any element
+in the array is <code class="docutils literal notranslate"><span class="pre">null</span></code> or empty.  The returned geometry may not be simple
+and may contain duplicate points if input array has duplicates.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Point-x-y-Point">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Point(x,</span> <span class="pre">y)</span> <span class="pre">-&gt;</span> <span class="pre">Point</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Point-x-y-Point" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a geometry type point object with the given coordinate values.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Polygon-varchar-Polygon">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Polygon(varchar)</span> <span class="pre">-&gt;</span> <span class="pre">Polygon</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Polygon-varchar-Polygon" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a geometry type polygon object from WKT representation.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="to_spherical_geography-Geometry-SphericalGeography">
+<span class="sig-name descname"><span class="n"><span class="pre">to_spherical_geography(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">SphericalGeography</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#to_spherical_geography-Geometry-SphericalGeography" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a Geometry object to a SphericalGeography object on the sphere of
+the Earth’s radius. This function is only applicable to <code class="docutils literal notranslate"><span class="pre">POINT</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MULTIPOINT</span></code>, <code class="docutils literal notranslate"><span class="pre">LINESTRING</span></code>, <code class="docutils literal notranslate"><span class="pre">MULTILINESTRING</span></code>, <code class="docutils literal notranslate"><span class="pre">POLYGON</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MULTIPOLYGON</span></code> geometries defined in 2D space, or <code class="docutils literal notranslate"><span class="pre">GEOMETRYCOLLECTION</span></code>
+of such geometries. For each point of the input geometry, it verifies that
+point.x is within [-180.0, 180.0] and point.y is within [-90.0, 90.0], and
+uses them as (longitude, latitude) degrees to construct the shape of the
+<code class="docutils literal notranslate"><span class="pre">SphericalGeography</span></code> result.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="to_geometry-SphericalGeography-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">to_geometry(SphericalGeography)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#to_geometry-SphericalGeography-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a SphericalGeography object to a Geometry object.</p>
+</dd></dl>
+
+<h2 id="relationship-tests">Relationship Tests<a class="headerlink" href="#relationship-tests" title="Link to this heading">¶</a></h2>
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Contains-Geometry-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Contains(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Contains-Geometry-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if and only if no points of the second geometry lie in the
+exterior of the first geometry, and at least one point of the interior of
+the first geometry lies in the interior of the second geometry.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Crosses-Geometry-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Crosses(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Crosses-Geometry-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the supplied geometries have some, but not all,
+interior points in common.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Disjoint-Geometry-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Disjoint(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Disjoint-Geometry-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the give geometries do not <em>spatially intersect</em> – if
+they do not share any space together.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Equals-Geometry-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Equals(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Equals-Geometry-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the given geometries represent the same geometry.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Intersects-Geometry-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Intersects(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Intersects-Geometry-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the given geometries spatially intersect in two
+dimensions (share any portion of space) and <code class="docutils literal notranslate"><span class="pre">false</span></code> if they do not (they
+are disjoint).</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Overlaps-Geometry-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Overlaps(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Overlaps-Geometry-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the given geometries share space, are of the same
+dimension, but are not completely contained by each other.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Relate-Geometry-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Relate(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Relate-Geometry-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if first geometry is spatially related to second geometry.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Touches-Geometry-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Touches(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Touches-Geometry-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the given geometries have at least one point in common,
+but their interiors do not intersect.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Within-Geometry-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Within(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Within-Geometry-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if first geometry is completely inside second geometry.</p>
+</dd></dl>
+
+<h2 id="operations">Operations<a class="headerlink" href="#operations" title="Link to this heading">¶</a></h2>
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="geometry_union-array-Geometry-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">geometry_union(array(Geometry))</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geometry_union-array-Geometry-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a geometry that represents the point set union of the input
+geometries. Performance of this function, in conjunction with
+<code class="xref js js-func docutils literal notranslate"><span class="pre">array_agg()</span></code> to first aggregate the input geometries, may be better
+than <code class="xref js js-func docutils literal notranslate"><span class="pre">geometry_union_agg()</span></code>, at the expense of higher memory
+utilization.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Boundary-Geometry-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Boundary(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Boundary-Geometry-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the closure of the combinatorial boundary of this geometry.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Buffer-Geometry-distance-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Buffer(Geometry,</span> <span class="pre">distance)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Buffer-Geometry-distance-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the geometry that represents all points whose distance from the
+specified geometry is less than or equal to the specified distance.  If the
+points of the geometry are extremely close together (<code class="docutils literal notranslate"><span class="pre">delta</span> <span class="pre">&lt;</span> <span class="pre">1e-8</span></code>), this
+might return an empty geometry.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Difference-Geometry-Geometry-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Difference(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Difference-Geometry-Geometry-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the geometry value that represents the point set difference of the
+given geometries.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Envelope-Geometry-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Envelope(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Envelope-Geometry-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the bounding rectangular polygon of a geometry.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_EnvelopeAsPts">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_EnvelopeAsPts</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">array(Geometry</span></span></em></span><span class="sig-paren">)</span><a class="headerlink" href="#ST_EnvelopeAsPts" title="Link to this definition">¶</a></dt>
+<dd><p>Returns an array of two points: the lower left and upper right corners of
+the bounding rectangular polygon of a geometry. Returns <code class="docutils literal notranslate"><span class="pre">null</span></code> if input
+geometry is empty.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="expand_envelope-Geometry-double-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">expand_envelope(Geometry,</span> <span class="pre">double)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#expand_envelope-Geometry-double-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the bounding rectangular polygon of a geometry, expanded by a
+distance. Empty geometries will return an empty polygon.  Negative or NaN
+distances will return an error.  Positive infinity distances may lead to
+undefined results.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_ExteriorRing-Geometry-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_ExteriorRing(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_ExteriorRing-Geometry-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a line string representing the exterior ring of the input polygon.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Intersection-Geometry-Geometry-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Intersection(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Intersection-Geometry-Geometry-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the geometry value that represents the point set intersection of
+two geometries.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_SymDifference-Geometry-Geometry-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_SymDifference(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_SymDifference-Geometry-Geometry-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the geometry value that represents the point set symmetric
+difference of two geometries.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Union-Geometry-Geometry-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Union(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Union-Geometry-Geometry-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a geometry that represents the point set union of the input
+geometries.</p>
+<p>See also:  <code class="xref js js-func docutils literal notranslate"><span class="pre">geometry_union()</span></code>, <code class="xref js js-func docutils literal notranslate"><span class="pre">geometry_union_agg()</span></code></p>
+</dd></dl>
+
+<h2 id="accessors">Accessors<a class="headerlink" href="#accessors" title="Link to this heading">¶</a></h2>
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Area-Geometry-double">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Area(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Area-Geometry-double" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the 2D Euclidean area of a geometry.</p>
+<p>For Point and LineString types, returns 0.0.
+For GeometryCollection types, returns the sum of the areas of the individual
+geometries.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Area-SphericalGeography-double">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Area(SphericalGeography)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Area-SphericalGeography-double" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the area of a polygon or multi-polygon in square meters using a spherical model for Earth.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Centroid-Geometry-Point">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Centroid(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">Point</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Centroid-Geometry-Point" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the point value that is the mathematical centroid of a geometry.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Centroid-SphericalGeography-Point">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Centroid(SphericalGeography)</span> <span class="pre">-&gt;</span> <span class="pre">Point</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Centroid-SphericalGeography-Point" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the point value that is the mathematical centroid of a spherical geometry.</p>
+<p>It supports Points and MultiPoints as input and returns the three-dimensional centroid
+projected onto the surface of the (spherical) Earth
+e.g. MULTIPOINT (0 -45, 0 45, 30 0, -30 0) returns Point(0, 0)
+Note: In the case that the three-dimensional centroid is at (0, 0, 0), the spherical centroid
+is undefined and an arbitrary point will be returned
+e.g. MULTIPOINT (0 0, -180 0) returns Point(-90, 45)</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_ConvexHull-Geometry-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_ConvexHull(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_ConvexHull-Geometry-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the minimum convex geometry that encloses all input geometries.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_CoordDim-Geometry-bigint">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_CoordDim(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">bigint</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_CoordDim-Geometry-bigint" title="Link to this definition">¶</a></dt>
+<dd><p>Return the coordinate dimension of the geometry.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Dimension-Geometry-bigint">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Dimension(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">bigint</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Dimension-Geometry-bigint" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the inherent dimension of this geometry object, which must be
+less than or equal to the coordinate dimension.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Distance-Geometry-Geometry-double">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Distance(Geometry,</span> <span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Distance-Geometry-Geometry-double" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the 2-dimensional cartesian minimum distance (based on spatial ref)
+between two geometries in projected units.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Distance-SphericalGeography-SphericalGeography-double">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Distance(SphericalGeography,</span> <span class="pre">SphericalGeography)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Distance-SphericalGeography-SphericalGeography-double" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the great-circle distance in meters between two SphericalGeography points.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="geometry_nearest_points">
+<span class="sig-name descname"><span class="n"><span class="pre">geometry_nearest_points</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">Geometry</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">array(Point</span></span></em></span><span class="sig-paren">)</span><a class="headerlink" href="#geometry_nearest_points" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the points on each geometry nearest the other.  If either geometry
+is empty, return <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.  Otherwise, return an array of two Points that have
+the minimum distance of any two points on the geometries.  The first Point
+will be from the first Geometry argument, the second from the second Geometry
+argument.  If there are multiple pairs with the minimum distance, one pair
+is chosen arbitrarily.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_GeometryN-Geometry-index-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_GeometryN(Geometry,</span> <span class="pre">index)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_GeometryN-Geometry-index-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the geometry element at a given index (indices start at 1).
+If the geometry is a collection of geometries (e.g., GEOMETRYCOLLECTION or MULTI*),
+returns the geometry at a given index.
+If the given index is less than 1 or greater than the total number of elements in the collection,
+returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.
+Use :func:<code class="docutils literal notranslate"><span class="pre">ST_NumGeometries</span></code> to find out the total number of elements.
+Singular geometries (e.g., POINT, LINESTRING, POLYGON), are treated as collections of one element.
+Empty geometries are treated as empty collections.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_InteriorRingN-Geometry-index-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_InteriorRingN(Geometry,</span> <span class="pre">index)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_InteriorRingN-Geometry-index-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the interior ring element at the specified index (indices start at 1). If
+the given index is less than 1 or greater than the total number of interior rings
+in the input geometry, returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. Throws an error if the input geometry is
+not a polygon.
+Use :func:<code class="docutils literal notranslate"><span class="pre">ST_NumInteriorRing</span></code> to find out the total number of elements.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_GeometryType-Geometry-varchar">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_GeometryType(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">varchar</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_GeometryType-Geometry-varchar" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the type of the geometry.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_IsClosed-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_IsClosed(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_IsClosed-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the linestring’s start and end points are coincident.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_IsEmpty-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_IsEmpty(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_IsEmpty-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if this Geometry is an empty geometrycollection, polygon, point etc.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_IsSimple-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_IsSimple(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_IsSimple-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if this Geometry has no anomalous geometric points, such as self intersection or self tangency.
+Use <code class="xref js js-func docutils literal notranslate"><span class="pre">geometry_invalid_reason()</span></code> to determine why the geometry is not simple.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_IsRing-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_IsRing(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_IsRing-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if and only if the line is closed and simple.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_IsValid-Geometry-boolean">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_IsValid(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">boolean</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_IsValid-Geometry-boolean" title="Link to this definition">¶</a></dt>
+<dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if and only if the input geometry is well formed.
+Use <code class="xref js js-func docutils literal notranslate"><span class="pre">geometry_invalid_reason()</span></code> to determine why the geometry is not well formed.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Length-Geometry-double">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Length(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Length-Geometry-double" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the length of a linestring or multi-linestring using Euclidean measurement on a
+two dimensional plane (based on spatial ref) in projected units.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Length-SphericalGeography-double">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Length(SphericalGeography)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Length-SphericalGeography-double" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the length of a linestring or multi-linestring on a spherical model of the Earth.
+This is equivalent to the sum of great-circle distances between adjacent points on the linestring.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_PointN-LineString-index-Point">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_PointN(LineString,</span> <span class="pre">index)</span> <span class="pre">-&gt;</span> <span class="pre">Point</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_PointN-LineString-index-Point" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the vertex of a linestring at a given index (indices start at 1).
+If the given index is less than 1 or greater than the total number of elements in the collection,
+returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.
+Use :func:<code class="docutils literal notranslate"><span class="pre">ST_NumPoints</span></code> to find out the total number of elements.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Points">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Points</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">array(Point</span></span></em></span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Points" title="Link to this definition">¶</a></dt>
+<dd><p>Returns an array of points in a linestring.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_XMax-Geometry-double">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_XMax(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_XMax-Geometry-double" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the X maximum of the geometry’s bounding box.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_YMax-Geometry-double">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_YMax(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_YMax-Geometry-double" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the Y maximum of the geometry’s bounding box.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_XMin-Geometry-double">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_XMin(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_XMin-Geometry-double" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the X minimum of the geometry’s bounding box.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_YMin-Geometry-double">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_YMin(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_YMin-Geometry-double" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the Y minimum of the geometry’s bounding box.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_StartPoint-Geometry-point">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_StartPoint(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">point</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_StartPoint-Geometry-point" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the first point of a LineString geometry as a Point.
+This is a shortcut for <code class="docutils literal notranslate"><span class="pre">ST_PointN(geometry,</span> <span class="pre">1)</span></code>.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_EndPoint-Geometry-point">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_EndPoint(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">point</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_EndPoint-Geometry-point" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the last point of a LineString geometry as a Point.
+This is a shortcut for <code class="docutils literal notranslate"><span class="pre">ST_PointN(geometry,</span> <span class="pre">ST_NumPoints(geometry))</span></code>.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_X-Point-double">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_X(Point)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_X-Point-double" title="Link to this definition">¶</a></dt>
+<dd><p>Return the X coordinate of the point.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Y-Point-double">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Y(Point)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Y-Point-double" title="Link to this definition">¶</a></dt>
+<dd><p>Return the Y coordinate of the point.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_InteriorRings">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_InteriorRings</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">array(Geometry</span></span></em></span><span class="sig-paren">)</span><a class="headerlink" href="#ST_InteriorRings" title="Link to this definition">¶</a></dt>
+<dd><p>Returns an array of all interior rings found in the input geometry, or an empty
+array if the polygon has no interior rings. Returns <code class="docutils literal notranslate"><span class="pre">null</span></code> if the input geometry
+is empty. Throws an error if the input geometry is not a polygon.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_NumGeometries-Geometry-bigint">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_NumGeometries(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">bigint</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_NumGeometries-Geometry-bigint" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the number of geometries in the collection.
+If the geometry is a collection of geometries (e.g., GEOMETRYCOLLECTION or
+MULTI*), returns the number of geometries, for single geometries returns 1,
+for empty geometries returns 0.  Note that empty geometries inside of a
+GEOMETRYCOLLECTION will count as a geometry; eg
+<code class="docutils literal notranslate"><span class="pre">ST_NumGeometries(ST_GeometryFromText('GEOMETRYCOLLECTION(MULTIPOINT</span> <span class="pre">EMPTY)'))</span></code>
+will evaluate to 1.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_Geometries">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_Geometries</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">array(Geometry</span></span></em></span><span class="sig-paren">)</span><a class="headerlink" href="#ST_Geometries" title="Link to this definition">¶</a></dt>
+<dd><p>Returns an array of geometries in the specified collection. Returns a one-element array
+if the input geometry is not a multi-geometry. Returns <code class="docutils literal notranslate"><span class="pre">null</span></code> if input geometry is empty.</p>
+<p>For example, a MultiLineString will create an array of LineStrings.  A GeometryCollection
+will produce an un-flattened array of its constituents:
+<code class="docutils literal notranslate"><span class="pre">GEOMETRYCOLLECTION(MULTIPOINT(0</span> <span class="pre">0,</span> <span class="pre">1</span> <span class="pre">1),</span> <span class="pre">GEOMETRYCOLLECTION(MULTILINESTRING((2</span> <span class="pre">2,</span> <span class="pre">3</span> <span class="pre">3))))</span></code>
+would produce <code class="docutils literal notranslate"><span class="pre">array[MULTIPOINT(0</span> <span class="pre">0,</span> <span class="pre">1</span> <span class="pre">1),</span> <span class="pre">GEOMETRYCOLLECTION(MULTILINESTRING((2</span> <span class="pre">2,</span> <span class="pre">3</span> <span class="pre">3)))]</span></code>.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="flatten_geometry_collections">
+<span class="sig-name descname"><span class="n"><span class="pre">flatten_geometry_collections</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">array(Geometry</span></span></em></span><span class="sig-paren">)</span><a class="headerlink" href="#flatten_geometry_collections" title="Link to this definition">¶</a></dt>
+<dd><p>Recursively flattens any GeometryCollections in Geometry, returning an array
+of constituent non-GeometryCollection geometries.  The order of the array is
+arbitrary and should not be relied upon.  Examples:</p>
+<p><code class="docutils literal notranslate"><span class="pre">POINT</span> <span class="pre">(0</span> <span class="pre">0)</span> <span class="pre">-&gt;</span> <span class="pre">[POINT</span> <span class="pre">(0</span> <span class="pre">0)]</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MULTIPOINT</span> <span class="pre">(0</span> <span class="pre">0,</span> <span class="pre">1</span> <span class="pre">1)</span> <span class="pre">-&gt;</span> <span class="pre">[MULTIPOINT</span> <span class="pre">(0</span> <span class="pre">0,</span> <span class="pre">1</span> <span class="pre">1)]</span></code>,
+<code class="docutils literal notranslate"><span class="pre">GEOMETRYCOLLECTION</span> <span class="pre">(POINT</span> <span class="pre">(0</span> <span class="pre">0),</span> <span class="pre">GEOMETRYCOLLECTION</span> <span class="pre">(POINT</span> <span class="pre">(1</span> <span class="pre">1)))</span> <span class="pre">-&gt;</span> <span class="pre">[POINT</span> <span class="pre">(0</span> <span class="pre">0),</span> <span class="pre">POINT</span> <span class="pre">(1</span> <span class="pre">1)]</span></code>,
+<code class="docutils literal notranslate"><span class="pre">GEOMETRYCOLLECTION</span> <span class="pre">EMPTY</span> <span class="pre">-&gt;</span> <span class="pre">[]</span></code>.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_NumPoints-Geometry-bigint">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_NumPoints(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">bigint</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_NumPoints-Geometry-bigint" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the number of points in a geometry. This is an extension to the SQL/MM
+<code class="docutils literal notranslate"><span class="pre">ST_NumPoints</span></code> function which only applies to point and linestring.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="ST_NumInteriorRing-Geometry-bigint">
+<span class="sig-name descname"><span class="n"><span class="pre">ST_NumInteriorRing(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">bigint</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ST_NumInteriorRing-Geometry-bigint" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the cardinality of the collection of interior rings of a polygon.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="simplify_geometry-Geometry-double-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">simplify_geometry(Geometry,</span> <span class="pre">double)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#simplify_geometry-Geometry-double-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a “simplified” version of the input geometry using the Douglas-Peucker algorithm.
+Will avoid creating derived geometries (polygons in particular) that are invalid.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="line_locate_point-LineString-Point-double">
+<span class="sig-name descname"><span class="n"><span class="pre">line_locate_point(LineString,</span> <span class="pre">Point)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#line_locate_point-LineString-Point-double" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a float between 0 and 1 representing the location of the closest point on
+the LineString to the given Point, as a fraction of total 2d line length.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">null</span></code> if a LineString or a Point is empty or <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="line_interpolate_point-LineString-double-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">line_interpolate_point(LineString,</span> <span class="pre">double)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#line_interpolate_point-LineString-double-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the Point on the LineString at a fractional distance given by the
+double argument.  Throws an exception if the distance is not between 0 and 1.</p>
+<p>Returns an empty Point if the LineString is empty.  Returns <code class="docutils literal notranslate"><span class="pre">null</span></code> if
+either the LineString or double is null.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="geometry_invalid_reason-Geometry-varchar">
+<span class="sig-name descname"><span class="n"><span class="pre">geometry_invalid_reason(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">varchar</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geometry_invalid_reason-Geometry-varchar" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the reason for why the input geometry is not valid or not simple.
+If the geometry is neither valid no simple, it will only give the reason
+for invalidity.
+Returns <code class="docutils literal notranslate"><span class="pre">null</span></code> if the input is valid and simple.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight sig-wrap js" id="great_circle_distance-latitude1-longitude1-latitude2-longitude2-double">
+<span class="sig-name descname"><span class="n"><span class="pre">great_circle_distance(latitude1,</span> <span class="pre">longitude1,</span> <span class="pre">latitude2,</span> <span class="pre">longitude2)</span> <span class="pre">-&gt;</span> <span class="pre">double</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#great_circle_distance-latitude1-longitude1-latitude2-longitude2-double" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the great-circle distance between two points on Earth’s surface in kilometers.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="geometry_as_geojson-Geometry-varchar">
+<span class="sig-name descname"><span class="n"><span class="pre">geometry_as_geojson(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">varchar</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geometry_as_geojson-Geometry-varchar" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the GeoJSON encoded defined by the input geometry.
+If the geometry is atomic (non-multi) empty, this function would return null.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="geometry_from_geojson-varchar-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">geometry_from_geojson(varchar)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geometry_from_geojson-varchar-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the geometry type object from the GeoJSON representation.
+The geometry cannot be empty if it is an atomic (non-multi) geometry type.</p>
+</dd></dl>
+
+<h2 id="aggregations">Aggregations<a class="headerlink" href="#aggregations" title="Link to this heading">¶</a></h2>
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="convex_hull_agg-Geometry-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">convex_hull_agg(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#convex_hull_agg-Geometry-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the minimum convex geometry that encloses all input geometries.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="geometry_union_agg-Geometry-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">geometry_union_agg(Geometry)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#geometry_union_agg-Geometry-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a geometry that represents the point set union of all input geometries.</p>
+</dd></dl>
+
+<h2 id="bing-tiles">Bing Tiles<a class="headerlink" href="#bing-tiles" title="Link to this heading">¶</a></h2>
+<p>These functions convert between geometries and
+<a class="reference external" href="https://msdn.microsoft.com/en-us/library/bb259689.aspx">Bing tiles</a>.  For
+Bing tiles, <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> refer to <code class="docutils literal notranslate"><span class="pre">tile_x</span></code> and <code class="docutils literal notranslate"><span class="pre">tile_y</span></code>.  Bing Tiles
+can be cast to and from BigInts, using an internal representation that encodes
+the <code class="docutils literal notranslate"><span class="pre">zoom</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span></code>, and <code class="docutils literal notranslate"><span class="pre">y</span></code> efficiently:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">cast</span><span class="p">(</span><span class="k">cast</span><span class="p">(</span><span class="n">tile</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">BIGINT</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">BINGTILE</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>While every tile can be cast to a bigint, casting from a bigint that does not
+represent a valid tile will raise an exception.</p>
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="bing_tile-x-y-zoom_level-BingTile">
+<span class="sig-name descname"><span class="n"><span class="pre">bing_tile(x,</span> <span class="pre">y,</span> <span class="pre">zoom_level)</span> <span class="pre">-&gt;</span> <span class="pre">BingTile</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bing_tile-x-y-zoom_level-BingTile" title="Link to this definition">¶</a></dt>
+<dd><p>Creates a Bing tile object from XY coordinates and a zoom level.
+Zoom levels from 1 to 23 are supported.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="bing_tile-quadKey-BingTile">
+<span class="sig-name descname"><span class="n"><span class="pre">bing_tile(quadKey)</span> <span class="pre">-&gt;</span> <span class="pre">BingTile</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bing_tile-quadKey-BingTile" title="Link to this definition">¶</a></dt>
+<dd><p>Creates a Bing tile object from a quadkey.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="bing_tile_parent-tile-BingTile">
+<span class="sig-name descname"><span class="n"><span class="pre">bing_tile_parent(tile)</span> <span class="pre">-&gt;</span> <span class="pre">BingTile</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bing_tile_parent-tile-BingTile" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the parent of the Bing tile at one lower zoom level.
+Throws an exception if tile is at zoom level 0.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="bing_tile_parent-tile-newZoom-BingTile">
+<span class="sig-name descname"><span class="n"><span class="pre">bing_tile_parent(tile,</span> <span class="pre">newZoom)</span> <span class="pre">-&gt;</span> <span class="pre">BingTile</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bing_tile_parent-tile-newZoom-BingTile" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the parent of the Bing tile at the specified lower zoom level.
+Throws an exception if newZoom is less than 0, or newZoom is greater than
+the tile’s zoom.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="bing_tile_children">
+<span class="sig-name descname"><span class="n"><span class="pre">bing_tile_children</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">tile)</span> <span class="pre">-&gt;</span> <span class="pre">array(BingTile</span></span></em></span><span class="sig-paren">)</span><a class="headerlink" href="#bing_tile_children" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the children of the Bing tile at one higher zoom level.
+Throws an exception if tile is at max zoom level.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="id0">
+<span class="sig-name descname"><span class="n"><span class="pre">bing_tile_children</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">tile</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">newZoom)</span> <span class="pre">-&gt;</span> <span class="pre">array(BingTile</span></span></em></span><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the children of the Bing tile at the specified higher zoom level.
+Throws an exception if newZoom is greater than the max zoom level, or
+newZoom is less than the tile’s zoom.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="bing_tile_at-latitude-longitude-zoom_level-BingTile">
+<span class="sig-name descname"><span class="n"><span class="pre">bing_tile_at(latitude,</span> <span class="pre">longitude,</span> <span class="pre">zoom_level)</span> <span class="pre">-&gt;</span> <span class="pre">BingTile</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bing_tile_at-latitude-longitude-zoom_level-BingTile" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a Bing tile at a given zoom level containing a point at a given latitude
+and longitude. Latitude must be within <code class="docutils literal notranslate"><span class="pre">[-85.05112878,</span> <span class="pre">85.05112878]</span></code> range.
+Longitude must be within <code class="docutils literal notranslate"><span class="pre">[-180,</span> <span class="pre">180]</span></code> range. Zoom levels from 1 to 23 are supported.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight sig-wrap js" id="bing_tiles_around">
+<span class="sig-name descname"><span class="n"><span class="pre">bing_tiles_around</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">zoom_level)</span> <span class="pre">-&gt;</span> <span class="pre">array(BingTile</span></span></em></span><span class="sig-paren">)</span><a class="headerlink" href="#bing_tiles_around" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a collection of Bing tiles that surround the point specified
+by the latitude and longitude arguments at a given zoom level.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight sig-wrap js" id="id2">
+<span class="sig-name descname"><span class="n"><span class="pre">bing_tiles_around</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">zoom_level</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">radius_in_km)</span> <span class="pre">-&gt;</span> <span class="pre">array(BingTile</span></span></em></span><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a minimum set of Bing tiles at specified zoom level that cover a circle of specified
+radius in km around a specified (latitude, longitude) point.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="bing_tile_coordinates-tile-row-x-y">
+<span class="sig-name descname"><span class="n"><span class="pre">bing_tile_coordinates(tile)</span> <span class="pre">-&gt;</span> <span class="pre">row&lt;x,</span> <span class="pre">y&gt;</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bing_tile_coordinates-tile-row-x-y" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the XY coordinates of a given Bing tile.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="bing_tile_polygon-tile-Geometry">
+<span class="sig-name descname"><span class="n"><span class="pre">bing_tile_polygon(tile)</span> <span class="pre">-&gt;</span> <span class="pre">Geometry</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bing_tile_polygon-tile-Geometry" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the polygon representation of a given Bing tile.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="bing_tile_quadkey-tile-varchar">
+<span class="sig-name descname"><span class="n"><span class="pre">bing_tile_quadkey(tile)</span> <span class="pre">-&gt;</span> <span class="pre">varchar</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bing_tile_quadkey-tile-varchar" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the quadkey of a given Bing tile.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="bing_tile_zoom_level-tile-tinyint">
+<span class="sig-name descname"><span class="n"><span class="pre">bing_tile_zoom_level(tile)</span> <span class="pre">-&gt;</span> <span class="pre">tinyint</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bing_tile_zoom_level-tile-tinyint" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the zoom level of a given Bing tile.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight js" id="geometry_to_bing_tiles">
+<span class="sig-name descname"><span class="n"><span class="pre">geometry_to_bing_tiles</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">zoom_level)</span> <span class="pre">-&gt;</span> <span class="pre">array(BingTile</span></span></em></span><span class="sig-paren">)</span><a class="headerlink" href="#geometry_to_bing_tiles" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the minimum set of Bing tiles that fully covers a given geometry at
+a given zoom level. Zoom levels from 1 to 23 are supported.</p>
+</dd></dl>
+
+<dl class="js function objdesc">
+<dt class="sig sig-object highlight sig-wrap js" id="geometry_to_dissolved_bing_tiles">
+<span class="sig-name descname"><span class="n"><span class="pre">geometry_to_dissolved_bing_tiles</span></span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="n"><span class="pre">max_zoom_level)</span> <span class="pre">-&gt;</span> <span class="pre">array(BingTile</span></span></em></span><span class="sig-paren">)</span><a class="headerlink" href="#geometry_to_dissolved_bing_tiles" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the minimum set of Bing tiles that fully covers a given geometry at
+a given zoom level, recursively dissolving full sets of children into parents.
+This results in a smaller array of tiles of different zoom levels. For example,
+if the non-dissolved covering is [“00”, “01”, “02”, “03”, “10”], the dissolved
+covering would be [“0”, “10”]. Zoom levels from 1 to 23 are supported.</p>
+</dd></dl>
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="ip.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: IP Functions" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              IP Functions
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="hyperloglog.html" class="md-footer__link md-footer__link--next" aria-label="Next: HyperLogLog Functions" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              HyperLogLog Functions
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    
+  </body>
+</html>

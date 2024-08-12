@@ -1,0 +1,1674 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Presto C++ Features - Presto 0.288.1 Documentation</title>
+      
+    
+    
+      
+        
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.359ec555e2989f00f.min.css?v=b000af5c" />
+        <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-K7GB6F0LBZ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#endpoints" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.288.1 Documentation" class="md-header__button md-logo" aria-label="Presto 0.288.1 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.288.1 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Presto C++ Features
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.288.1 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.288.1 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.288.1 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        <span class="md-ellipsis">Overview</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        <span class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto Clients</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        <span class="md-ellipsis">Security</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        <span class="md-ellipsis">Administration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        <span class="md-ellipsis">Cache</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        <span class="md-ellipsis">Query Optimizer</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        <span class="md-ellipsis">Connectors</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        <span class="md-ellipsis">Plugins</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        <span class="md-ellipsis">Functions and Operators</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Language</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Statement Syntax</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        <span class="md-ellipsis">Migration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        <span class="md-ellipsis">REST API</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        <span class="md-ellipsis">Ecosystem</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        <span class="md-ellipsis">Router</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        <span class="md-ellipsis">Developer Guide</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_18" type="checkbox" id="__nav_18" checked>
+      
+      
+      
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../presto-cpp.html"><span class="md-ellipsis">Presto C++</span></a>
+          
+            <label for="__nav_18">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Presto C++" data-md-level="1">
+        <label class="md-nav__title" for="__nav_18">
+          <span class="md-nav__icon md-icon"></span>
+          <span class="md-ellipsis">Presto C++</span>
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span class="md-ellipsis">Presto C++ Features</span>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        <span class="md-ellipsis">Presto C++ Features</span>
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/presto_cpp/features.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/presto_cpp/features.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">Endpoints</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#remote-function-execution" class="md-nav__link">
+    <span class="md-ellipsis">Remote Function Execution</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Remote Function Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-server-signature-files-directory-path" class="md-nav__link">
+    <span class="md-ellipsis">remote-<wbr>function-<wbr>server.<wbr>signature.<wbr>files.<wbr>directory.<wbr>path</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-server-catalog-name" class="md-nav__link">
+    <span class="md-ellipsis">remote-<wbr>function-<wbr>server.<wbr>catalog-<wbr>name</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-server-serde" class="md-nav__link">
+    <span class="md-ellipsis">remote-<wbr>function-<wbr>server.<wbr>serde</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-server-thrift-address" class="md-nav__link">
+    <span class="md-ellipsis">remote-<wbr>function-<wbr>server.<wbr>thrift.<wbr>address</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-server-thrift-port" class="md-nav__link">
+    <span class="md-ellipsis">remote-<wbr>function-<wbr>server.<wbr>thrift.<wbr>port</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-server-thrift-uds-path" class="md-nav__link">
+    <span class="md-ellipsis">remote-<wbr>function-<wbr>server.<wbr>thrift.<wbr>uds-<wbr>path</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#jwt-authentication-support" class="md-nav__link">
+    <span class="md-ellipsis">JWT authentication support</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JWT authentication support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#internal-communication-jwt-expiration-seconds" class="md-nav__link">
+    <span class="md-ellipsis">internal-<wbr>communication.<wbr>jwt.<wbr>expiration-<wbr>seconds</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#async-data-cache-and-prefetching" class="md-nav__link">
+    <span class="md-ellipsis">Async Data Cache and Prefetching</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Async Data Cache and Prefetching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connector-num-io-threads-hw-multiplier" class="md-nav__link">
+    <span class="md-ellipsis">connector.<wbr>num-<wbr>io-<wbr>threads-<wbr>hw-<wbr>multiplier</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-data-cache-enabled" class="md-nav__link">
+    <span class="md-ellipsis">async-<wbr>data-<wbr>cache-<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-ssd-gb" class="md-nav__link">
+    <span class="md-ellipsis">async-<wbr>cache-<wbr>ssd-<wbr>gb</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-old-task-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">enable-<wbr>old-<wbr>task-<wbr>cleanup</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#old-task-cleanup-ms" class="md-nav__link">
+    <span class="md-ellipsis">old-<wbr>task-<wbr>cleanup-<wbr>ms</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#session-properties" class="md-nav__link">
+    <span class="md-ellipsis">Session Properties</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#driver-cpu-time-slice-limit-ms" class="md-nav__link">
+    <span class="md-ellipsis">driver_<wbr>cpu_<wbr>time_<wbr>slice_<wbr>limit_<wbr>ms</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legacy-timestamp" class="md-nav__link">
+    <span class="md-ellipsis">legacy_<wbr>timestamp</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-aggregation-spill-memory-threshold" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>aggregation_<wbr>spill_<wbr>memory_<wbr>threshold</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-debug-validate-output-from-operators" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>debug_<wbr>validate_<wbr>output_<wbr>from_<wbr>operators</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-join-spill-enabled" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>join_<wbr>spill_<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-join-spill-memory-threshold" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>join_<wbr>spill_<wbr>memory_<wbr>threshold</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-join-spiller-partition-bits" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>join_<wbr>spiller_<wbr>partition_<wbr>bits</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-max-spill-file-size" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>max_<wbr>spill_<wbr>file_<wbr>size</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-max-spill-level" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>max_<wbr>spill_<wbr>level</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-order-by-spill-memory-threshold" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>order_<wbr>by_<wbr>spill_<wbr>memory_<wbr>threshold</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-row-number-spill-enabled" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>row_<wbr>number_<wbr>spill_<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-simplified-expression-evaluation-enabled" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>simplified_<wbr>expression_<wbr>evaluation_<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-spill-compression-codec" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>spill_<wbr>compression_<wbr>codec</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-spill-file-create-config" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>spill_<wbr>file_<wbr>create_<wbr>config</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-spill-write-buffer-size" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>spill_<wbr>write_<wbr>buffer_<wbr>size</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-topn-row-number-spill-enabled" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>topn_<wbr>row_<wbr>number_<wbr>spill_<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-window-spill-enabled" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>window_<wbr>spill_<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-writer-spill-enabled" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>writer_<wbr>spill_<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="limitations.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto C++ Limitations</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="properties.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto C++ Properties Reference</span>
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        <span class="md-ellipsis">Release Notes</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/presto_cpp/features.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/presto_cpp/features.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">Endpoints</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#remote-function-execution" class="md-nav__link">
+    <span class="md-ellipsis">Remote Function Execution</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Remote Function Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-server-signature-files-directory-path" class="md-nav__link">
+    <span class="md-ellipsis">remote-<wbr>function-<wbr>server.<wbr>signature.<wbr>files.<wbr>directory.<wbr>path</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-server-catalog-name" class="md-nav__link">
+    <span class="md-ellipsis">remote-<wbr>function-<wbr>server.<wbr>catalog-<wbr>name</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-server-serde" class="md-nav__link">
+    <span class="md-ellipsis">remote-<wbr>function-<wbr>server.<wbr>serde</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-server-thrift-address" class="md-nav__link">
+    <span class="md-ellipsis">remote-<wbr>function-<wbr>server.<wbr>thrift.<wbr>address</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-server-thrift-port" class="md-nav__link">
+    <span class="md-ellipsis">remote-<wbr>function-<wbr>server.<wbr>thrift.<wbr>port</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-server-thrift-uds-path" class="md-nav__link">
+    <span class="md-ellipsis">remote-<wbr>function-<wbr>server.<wbr>thrift.<wbr>uds-<wbr>path</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#jwt-authentication-support" class="md-nav__link">
+    <span class="md-ellipsis">JWT authentication support</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JWT authentication support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#internal-communication-jwt-expiration-seconds" class="md-nav__link">
+    <span class="md-ellipsis">internal-<wbr>communication.<wbr>jwt.<wbr>expiration-<wbr>seconds</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#async-data-cache-and-prefetching" class="md-nav__link">
+    <span class="md-ellipsis">Async Data Cache and Prefetching</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Async Data Cache and Prefetching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connector-num-io-threads-hw-multiplier" class="md-nav__link">
+    <span class="md-ellipsis">connector.<wbr>num-<wbr>io-<wbr>threads-<wbr>hw-<wbr>multiplier</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-data-cache-enabled" class="md-nav__link">
+    <span class="md-ellipsis">async-<wbr>data-<wbr>cache-<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-ssd-gb" class="md-nav__link">
+    <span class="md-ellipsis">async-<wbr>cache-<wbr>ssd-<wbr>gb</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-old-task-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">enable-<wbr>old-<wbr>task-<wbr>cleanup</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#old-task-cleanup-ms" class="md-nav__link">
+    <span class="md-ellipsis">old-<wbr>task-<wbr>cleanup-<wbr>ms</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#session-properties" class="md-nav__link">
+    <span class="md-ellipsis">Session Properties</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#driver-cpu-time-slice-limit-ms" class="md-nav__link">
+    <span class="md-ellipsis">driver_<wbr>cpu_<wbr>time_<wbr>slice_<wbr>limit_<wbr>ms</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legacy-timestamp" class="md-nav__link">
+    <span class="md-ellipsis">legacy_<wbr>timestamp</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-aggregation-spill-memory-threshold" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>aggregation_<wbr>spill_<wbr>memory_<wbr>threshold</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-debug-validate-output-from-operators" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>debug_<wbr>validate_<wbr>output_<wbr>from_<wbr>operators</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-join-spill-enabled" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>join_<wbr>spill_<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-join-spill-memory-threshold" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>join_<wbr>spill_<wbr>memory_<wbr>threshold</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-join-spiller-partition-bits" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>join_<wbr>spiller_<wbr>partition_<wbr>bits</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-max-spill-file-size" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>max_<wbr>spill_<wbr>file_<wbr>size</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-max-spill-level" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>max_<wbr>spill_<wbr>level</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-order-by-spill-memory-threshold" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>order_<wbr>by_<wbr>spill_<wbr>memory_<wbr>threshold</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-row-number-spill-enabled" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>row_<wbr>number_<wbr>spill_<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-simplified-expression-evaluation-enabled" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>simplified_<wbr>expression_<wbr>evaluation_<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-spill-compression-codec" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>spill_<wbr>compression_<wbr>codec</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-spill-file-create-config" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>spill_<wbr>file_<wbr>create_<wbr>config</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-spill-write-buffer-size" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>spill_<wbr>write_<wbr>buffer_<wbr>size</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-topn-row-number-spill-enabled" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>topn_<wbr>row_<wbr>number_<wbr>spill_<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-window-spill-enabled" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>window_<wbr>spill_<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-writer-spill-enabled" class="md-nav__link">
+    <span class="md-ellipsis">native_<wbr>writer_<wbr>spill_<wbr>enabled</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+  <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/presto_cpp/features.rst" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+<h1 id="presto-c-features">Presto C++ Features<a class="headerlink" href="#presto-c-features" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#endpoints" id="id1">Endpoints</a></p></li>
+<li><p><a class="reference internal" href="#remote-function-execution" id="id2">Remote Function Execution</a></p></li>
+<li><p><a class="reference internal" href="#jwt-authentication-support" id="id3">JWT authentication support</a></p></li>
+<li><p><a class="reference internal" href="#async-data-cache-and-prefetching" id="id4">Async Data Cache and Prefetching</a></p></li>
+<li><p><a class="reference internal" href="#session-properties" id="id5">Session Properties</a></p></li>
+</ul>
+</nav>
+<h2 id="endpoints">Endpoints<a class="headerlink" href="#endpoints" title="Link to this heading">¶</a></h2>
+<p>HTTP endpoints related to tasks are registered to Proxygen in
+<cite>TaskResource.cpp</cite>. Important endpoints implemented include:</p>
+<ul class="simple">
+<li><p>POST: v1/task: This processes a <cite>TaskUpdateRequest</cite></p></li>
+<li><p>GET: v1/task: This returns a serialized <cite>TaskInfo</cite> (used for comprehensive
+metrics, may be reported less frequently)</p></li>
+<li><p>GET: v1/task/status: This returns
+a serialized <cite>TaskStatus</cite> (used for query progress tracking, must be reported
+frequently)</p></li>
+</ul>
+<p>Other HTTP endpoints include:</p>
+<ul class="simple">
+<li><p>POST: v1/memory
+* Reports memory, but no assignments are adjusted unlike in Java workers.</p></li>
+<li><p>GET: v1/info</p></li>
+<li><p>GET: v1/status</p></li>
+</ul>
+<p>The request/response flow of Presto C++ is identical to Java workers. The
+tasks or new splits are registered via <cite>TaskUpdateRequest</cite>. Resource
+utilization and query progress are sent to the coordinator via task endpoints.</p>
+<h2 id="remote-function-execution">Remote Function Execution<a class="headerlink" href="#remote-function-execution" title="Link to this heading">¶</a></h2>
+<p>Presto C++ supports remote execution of scalar functions. This feature is
+useful for cases when the function code is not written in C++, or if for
+security or flexibility reasons, the function code cannot be linked to the same
+executable as the main engine.</p>
+<p>Remote function signatures need to be provided using a JSON file, following
+the format implemented by <a class="reference external" href="https://github.com/prestodb/presto/blob/master/presto-function-namespace-managers/src/main/java/com/facebook/presto/functionNamespace/json/JsonFileBasedFunctionNamespaceManager.java">JsonFileBasedFunctionNamespaceManager</a>.
+The following properties allow the configuration of remote function execution:</p>
+<h3 id="remote-function-server-signature-files-directory-path"><code class="docutils literal notranslate"><span class="pre">remote-function-server.signature.files.directory.path</span></code><a class="headerlink" href="#remote-function-server-signature-files-directory-path" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></li>
+</ul>
+<p>The local filesystem path where JSON files containing remote function
+signatures are located. If not empty, the Presto native worker will
+recursively search, open, parse, and register function definitions from
+these JSON files.</p>
+<h3 id="remote-function-server-catalog-name"><code class="docutils literal notranslate"><span class="pre">remote-function-server.catalog-name</span></code><a class="headerlink" href="#remote-function-server-catalog-name" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></li>
+</ul>
+<p>The catalog name to be added as a prefix to the function names registered
+in Velox. The function name pattern registered is
+<code class="docutils literal notranslate"><span class="pre">catalog.schema.function_name</span></code>, where <code class="docutils literal notranslate"><span class="pre">catalog</span></code> is defined by this
+parameter, and <code class="docutils literal notranslate"><span class="pre">schema</span></code> and <code class="docutils literal notranslate"><span class="pre">function_name</span></code> are read from the input
+JSON file.</p>
+<p>If empty, the function is registered as <code class="docutils literal notranslate"><span class="pre">schema.function_name</span></code>.</p>
+<h3 id="remote-function-server-serde"><code class="docutils literal notranslate"><span class="pre">remote-function-server.serde</span></code><a class="headerlink" href="#remote-function-server-serde" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">&quot;presto_page&quot;</span></code></p></li>
+</ul>
+<p>The serialization/deserialization method to use when communicating with
+the remote function server. Supported values are <code class="docutils literal notranslate"><span class="pre">presto_page</span></code> or
+<code class="docutils literal notranslate"><span class="pre">spark_unsafe_row</span></code>.</p>
+<h3 id="remote-function-server-thrift-address"><code class="docutils literal notranslate"><span class="pre">remote-function-server.thrift.address</span></code><a class="headerlink" href="#remote-function-server-thrift-address" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></li>
+</ul>
+<p>The location (ip address or hostname) that hosts the remote function
+server, if any remote functions were registered using
+<code class="docutils literal notranslate"><span class="pre">remote-function-server.signature.files.directory.path</span></code>.
+If not specified, falls back to the loopback interface (<code class="docutils literal notranslate"><span class="pre">::1</span></code>)</p>
+<h3 id="remote-function-server-thrift-port"><code class="docutils literal notranslate"><span class="pre">remote-function-server.thrift.port</span></code><a class="headerlink" href="#remote-function-server-thrift-port" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+</ul>
+<p>The port that hosts the remote function server. If not specified and remote
+functions are trying to be registered, an exception is thrown.</p>
+<h3 id="remote-function-server-thrift-uds-path"><code class="docutils literal notranslate"><span class="pre">remote-function-server.thrift.uds-path</span></code><a class="headerlink" href="#remote-function-server-thrift-uds-path" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></li>
+</ul>
+<p>The UDS (unix domain socket) path to communicate with a local remote
+function server. If specified, takes precedence over
+<code class="docutils literal notranslate"><span class="pre">remote-function-server.thrift.address</span></code> and
+<code class="docutils literal notranslate"><span class="pre">remote-function-server.thrift.port</span></code>.</p>
+<h2 id="jwt-authentication-support">JWT authentication support<a class="headerlink" href="#jwt-authentication-support" title="Link to this heading">¶</a></h2>
+<p>C++ based Presto supports JWT authentication for internal communication.
+For details on the generally supported parameters visit <a class="reference external" href="../security/internal-communication.html#jwt">JWT</a>.</p>
+<p>There is also an additional parameter:</p>
+<h3 id="internal-communication-jwt-expiration-seconds"><code class="docutils literal notranslate"><span class="pre">internal-communication.jwt.expiration-seconds</span></code><a class="headerlink" href="#internal-communication-jwt-expiration-seconds" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">300</span></code></p></li>
+</ul>
+<p>There is a time period between creating the JWT on the client
+and verification by the server.
+If the time period is less than or equal to the parameter value, the request
+is valid.
+If the time period exceeds the parameter value, the request is rejected as
+authentication failure (HTTP 401).</p>
+<h2 id="async-data-cache-and-prefetching">Async Data Cache and Prefetching<a class="headerlink" href="#async-data-cache-and-prefetching" title="Link to this heading">¶</a></h2>
+<h3 id="connector-num-io-threads-hw-multiplier"><code class="docutils literal notranslate"><span class="pre">connector.num-io-threads-hw-multiplier</span></code><a class="headerlink" href="#connector-num-io-threads-hw-multiplier" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type</strong> <code class="docutils literal notranslate"><span class="pre">double</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">1.0</span></code></p></li>
+<li><p><strong>Presto on Spark default value:</strong> <code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></li>
+</ul>
+<p>Size of IO executor for connectors to do preload/prefetch.  Prefetch is
+disabled if <code class="docutils literal notranslate"><span class="pre">connector.num-io-threads-hw-multiplier</span></code> is set to zero.</p>
+<h3 id="async-data-cache-enabled"><code class="docutils literal notranslate"><span class="pre">async-data-cache-enabled</span></code><a class="headerlink" href="#async-data-cache-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type</strong> <code class="docutils literal notranslate"><span class="pre">bool</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><strong>Presto on Spark default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Whether async data cache is enabled.</p>
+<h3 id="async-cache-ssd-gb"><code class="docutils literal notranslate"><span class="pre">async-cache-ssd-gb</span></code><a class="headerlink" href="#async-cache-ssd-gb" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+</ul>
+<p>Size of the SSD cache when async data cache is enabled.</p>
+<h3 id="enable-old-task-cleanup"><code class="docutils literal notranslate"><span class="pre">enable-old-task-cleanup</span></code><a class="headerlink" href="#enable-old-task-cleanup" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type</strong> <code class="docutils literal notranslate"><span class="pre">bool</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+<li><p><strong>Presto on Spark default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Enable periodic clean up of old tasks. The default value is <code class="docutils literal notranslate"><span class="pre">true</span></code> for Presto C++.
+For Presto on Spark this property defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>, as zombie or stuck tasks
+are handled by Spark by speculative execution.</p>
+<h3 id="old-task-cleanup-ms"><code class="docutils literal notranslate"><span class="pre">old-task-cleanup-ms</span></code><a class="headerlink" href="#old-task-cleanup-ms" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">60000</span></code></p></li>
+</ul>
+<p>Duration after which a task should be considered as old and will be eligible
+for cleanup. Only applicable when <code class="docutils literal notranslate"><span class="pre">enable-old-task-cleanup</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.
+Old task is defined as a PrestoTask which has not received heartbeat for at least
+<code class="docutils literal notranslate"><span class="pre">old-task-cleanup-ms</span></code>, or is not running and has an end time more than
+<code class="docutils literal notranslate"><span class="pre">old-task-cleanup-ms</span></code> ago.</p>
+<h2 id="session-properties">Session Properties<a class="headerlink" href="#session-properties" title="Link to this heading">¶</a></h2>
+<p>The following are the native session properties for C++ based Presto.</p>
+<h3 id="driver-cpu-time-slice-limit-ms"><code class="docutils literal notranslate"><span class="pre">driver_cpu_time_slice_limit_ms</span></code><a class="headerlink" href="#driver-cpu-time-slice-limit-ms" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">1000</span></code></p></li>
+</ul>
+<p>Native Execution only. Defines the maximum CPU time in milliseconds that a driver thread
+is permitted to run before it must yield to other threads,facilitating fair CPU usage across
+multiple threads.</p>
+<p>A positive value enforces this limit, ensuring threads do not monopolize CPU resources.</p>
+<p>Negative values are considered invalid and are treated as a request to use the system default setting,
+which is <code class="docutils literal notranslate"><span class="pre">1000</span></code> ms in this case.</p>
+<p>Note: Setting the property to <code class="docutils literal notranslate"><span class="pre">0</span></code> allows a thread to run indefinitely
+without yielding, which is not recommended in a shared environment as it can lead to
+resource contention.</p>
+<h3 id="legacy-timestamp"><code class="docutils literal notranslate"><span class="pre">legacy_timestamp</span></code><a class="headerlink" href="#legacy-timestamp" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>Native Execution only. Use legacy TIME and TIMESTAMP semantics.</p>
+<h3 id="native-aggregation-spill-memory-threshold"><code class="docutils literal notranslate"><span class="pre">native_aggregation_spill_memory_threshold</span></code><a class="headerlink" href="#native-aggregation-spill-memory-threshold" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+</ul>
+<p>Native Execution only. Specifies the maximum memory in bytes
+that a final aggregation operation can utilize before it starts spilling to disk.
+If set to <code class="docutils literal notranslate"><span class="pre">0</span></code>, there is no limit, allowing the aggregation to consume unlimited memory resources,
+which may impact system performance.</p>
+<h3 id="native-debug-validate-output-from-operators"><code class="docutils literal notranslate"><span class="pre">native_debug_validate_output_from_operators</span></code><a class="headerlink" href="#native-debug-validate-output-from-operators" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>If set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, then during the execution of tasks, the output vectors of every operator are validated for consistency.
+It can help identify issues where a malformed vector causes failures or crashes, facilitating the debugging of operator output issues.</p>
+<p>Note: This is an expensive check and should only be used for debugging purposes.</p>
+<h3 id="native-join-spill-enabled"><code class="docutils literal notranslate"><span class="pre">native_join_spill_enabled</span></code><a class="headerlink" href="#native-join-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>Native Execution only. Enable join spilling on native engine.</p>
+<h3 id="native-join-spill-memory-threshold"><code class="docutils literal notranslate"><span class="pre">native_join_spill_memory_threshold</span></code><a class="headerlink" href="#native-join-spill-memory-threshold" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+</ul>
+<p>Native Execution only. Specifies the maximum memory, in bytes, that a hash join operation can use before starting to spill to disk.
+A value of <code class="docutils literal notranslate"><span class="pre">0</span></code> indicates no limit, permitting the join operation to use unlimited memory resources, which might affect overall system performance.</p>
+<h3 id="native-join-spiller-partition-bits"><code class="docutils literal notranslate"><span class="pre">native_join_spiller_partition_bits</span></code><a class="headerlink" href="#native-join-spiller-partition-bits" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+</ul>
+<p>Native Execution only. Specifies the number of bits (N)
+used to calculate the spilling partition number for hash join and RowNumber operations.
+The partition number is determined as <code class="docutils literal notranslate"><span class="pre">2</span></code> raised to the power of N, defining how data is partitioned during the spill process.</p>
+<h3 id="native-max-spill-file-size"><code class="docutils literal notranslate"><span class="pre">native_max_spill_file_size</span></code><a class="headerlink" href="#native-max-spill-file-size" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+</ul>
+<p>Specifies the maximum allowed spill file size in bytes. If set to <code class="docutils literal notranslate"><span class="pre">0</span></code>, there is no limit on the spill file size,
+allowing spill files to grow as large as necessary based on available disk space.
+Use <code class="docutils literal notranslate"><span class="pre">native_max_spill_file_size</span></code> to manage disk space usage during operations that require spilling to disk.</p>
+<h3 id="native-max-spill-level"><code class="docutils literal notranslate"><span class="pre">native_max_spill_level</span></code><a class="headerlink" href="#native-max-spill-level" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">4</span></code></p></li>
+</ul>
+<p>Native Execution only. The maximum allowed spilling level for hash join build.
+<code class="docutils literal notranslate"><span class="pre">0</span></code> is the initial spilling level, <code class="docutils literal notranslate"><span class="pre">-1</span></code> means unlimited.</p>
+<h3 id="native-order-by-spill-memory-threshold"><code class="docutils literal notranslate"><span class="pre">native_order_by_spill_memory_threshold</span></code><a class="headerlink" href="#native-order-by-spill-memory-threshold" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+</ul>
+<p>Native Execution only. Specifies the maximum memory, in bytes, that the <cite>ORDER BY</cite> operation can utilize before starting to spill data to disk.
+If set to <code class="docutils literal notranslate"><span class="pre">0</span></code>, there is no limit on memory usage, potentially leading to large memory allocations for sorting operations.
+Use this threshold to manage memory usage more efficiently during <cite>ORDER BY</cite> operations.</p>
+<h3 id="native-row-number-spill-enabled"><code class="docutils literal notranslate"><span class="pre">native_row_number_spill_enabled</span></code><a class="headerlink" href="#native-row-number-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>Native Execution only. Enable row number spilling on native engine.</p>
+<h3 id="native-simplified-expression-evaluation-enabled"><code class="docutils literal notranslate"><span class="pre">native_simplified_expression_evaluation_enabled</span></code><a class="headerlink" href="#native-simplified-expression-evaluation-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Native Execution only. Enable simplified path in expression evaluation.</p>
+<h3 id="native-spill-compression-codec"><code class="docutils literal notranslate"><span class="pre">native_spill_compression_codec</span></code><a class="headerlink" href="#native-spill-compression-codec" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">varchar</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">none</span></code></p></li>
+</ul>
+<p>Native Execution only. Specifies the compression CODEC used to compress spilled data.
+Supported compression CODECs are: ZLIB, SNAPPY, LZO, ZSTD, LZ4, and GZIP.
+Setting this property to <code class="docutils literal notranslate"><span class="pre">none</span></code> disables compression.</p>
+<h3 id="native-spill-file-create-config"><code class="docutils literal notranslate"><span class="pre">native_spill_file_create_config</span></code><a class="headerlink" href="#native-spill-file-create-config" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">varchar</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p></li>
+</ul>
+<p>Native Execution only. Specifies the configuration parameters used to create spill files.
+These parameters are provided to the underlying file system, allowing for customizable spill file creation based on the requirements of the environment.
+The format and options of these parameters are determined by the capabilities of the underlying file system
+and may include settings such as file location, size limits, and file system-specific optimizations.</p>
+<h3 id="native-spill-write-buffer-size"><code class="docutils literal notranslate"><span class="pre">native_spill_write_buffer_size</span></code><a class="headerlink" href="#native-spill-write-buffer-size" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">bigint</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">1048576</span></code></p></li>
+</ul>
+<p>Native Execution only. The maximum size in bytes to buffer the serialized spill data before writing to disk for IO efficiency.
+If set to <code class="docutils literal notranslate"><span class="pre">0</span></code>, buffering is disabled.</p>
+<h3 id="native-topn-row-number-spill-enabled"><code class="docutils literal notranslate"><span class="pre">native_topn_row_number_spill_enabled</span></code><a class="headerlink" href="#native-topn-row-number-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>Native Execution only. Enable topN row number spilling on native engine.</p>
+<h3 id="native-window-spill-enabled"><code class="docutils literal notranslate"><span class="pre">native_window_spill_enabled</span></code><a class="headerlink" href="#native-window-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>Native Execution only. Enable window spilling on native engine.</p>
+<h3 id="native-writer-spill-enabled"><code class="docutils literal notranslate"><span class="pre">native_writer_spill_enabled</span></code><a class="headerlink" href="#native-writer-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>Native Execution only. Enable writer spilling on native engine.</p>
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../presto-cpp.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Presto C++" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Presto C++
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="limitations.html" class="md-footer__link md-footer__link--next" aria-label="Next: Presto C++ Limitations" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Presto C++ Limitations
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    
+  </body>
+</html>
