@@ -1,0 +1,1725 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Resource Groups - Presto 0.288.1 Documentation</title>
+      
+    
+    
+      
+        
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.359ec555e2989f00f.min.css?v=b000af5c" />
+        <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-K7GB6F0LBZ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#resource-usage-limits" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.288.1 Documentation" class="md-header__button md-logo" aria-label="Presto 0.288.1 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.288.1 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Resource Groups
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.288.1 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.288.1 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.288.1 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        <span class="md-ellipsis">Overview</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        <span class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto Clients</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        <span class="md-ellipsis">Security</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../admin.html"><span class="md-ellipsis">Administration</span></a>
+          
+            <label for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Administration" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          <span class="md-ellipsis">Administration</span>
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="web-interface.html" class="md-nav__link">
+        <span class="md-ellipsis">Web Interface</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tuning.html" class="md-nav__link">
+        <span class="md-ellipsis">Tuning Presto</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="properties.html" class="md-nav__link">
+        <span class="md-ellipsis">Properties Reference</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="spill.html" class="md-nav__link">
+        <span class="md-ellipsis">Spill to Disk</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exchange-materialization.html" class="md-nav__link">
+        <span class="md-ellipsis">Exchange Materialization</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cte-materialization.html" class="md-nav__link">
+        <span class="md-ellipsis">CTE Materialization</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span class="md-ellipsis">Resource Groups</span>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        <span class="md-ellipsis">Resource Groups</span>
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/admin/resource-groups.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/admin/resource-groups.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#resource-usage-limits" class="md-nav__link">
+    <span class="md-ellipsis">Resource Usage Limits</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#resource-consumption" class="md-nav__link">
+    <span class="md-ellipsis">Resource Consumption</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#sub-groups-and-query-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">Sub-<wbr>Groups and Query Acceptance</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sub-Groups and Query Acceptance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-based-resource-management" class="md-nav__link">
+    <span class="md-ellipsis">File-<wbr>Based Resource Management</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-based-resource-management" class="md-nav__link">
+    <span class="md-ellipsis">Database-<wbr>Based Resource Management</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#file-resource-group-manager" class="md-nav__link">
+    <span class="md-ellipsis">File Resource Group Manager</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#database-resource-group-manager" class="md-nav__link">
+    <span class="md-ellipsis">Database Resource Group Manager</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Resource Group Manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-resource-group-manager-properties" class="md-nav__link">
+    <span class="md-ellipsis">Database Resource Group Manager Properties</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#resource-group-properties" class="md-nav__link">
+    <span class="md-ellipsis">Resource Group Properties</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Group Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scheduling-weight-example" class="md-nav__link">
+    <span class="md-ellipsis">Scheduling Weight Example</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#selector-rules" class="md-nav__link">
+    <span class="md-ellipsis">Selector Rules</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#global-properties" class="md-nav__link">
+    <span class="md-ellipsis">Global Properties</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#providing-selector-properties" class="md-nav__link">
+    <span class="md-ellipsis">Providing Selector Properties</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">Example</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id2" class="md-nav__link">
+    <span class="md-ellipsis">File Resource Group Manager</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id3" class="md-nav__link">
+    <span class="md-ellipsis">Database Resource Group Manager</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session-property-managers.html" class="md-nav__link">
+        <span class="md-ellipsis">Session Property Managers</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="function-namespace-managers.html" class="md-nav__link">
+        <span class="md-ellipsis">Function Namespace Managers</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dist-sort.html" class="md-nav__link">
+        <span class="md-ellipsis">Distributed sort</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verifier.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto Verifier</span>
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        <span class="md-ellipsis">Cache</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        <span class="md-ellipsis">Query Optimizer</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        <span class="md-ellipsis">Connectors</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        <span class="md-ellipsis">Plugins</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        <span class="md-ellipsis">Functions and Operators</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Language</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Statement Syntax</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        <span class="md-ellipsis">Migration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        <span class="md-ellipsis">REST API</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        <span class="md-ellipsis">Ecosystem</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        <span class="md-ellipsis">Router</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        <span class="md-ellipsis">Developer Guide</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presto-cpp.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto C++</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        <span class="md-ellipsis">Release Notes</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/admin/resource-groups.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/admin/resource-groups.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#resource-usage-limits" class="md-nav__link">
+    <span class="md-ellipsis">Resource Usage Limits</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#resource-consumption" class="md-nav__link">
+    <span class="md-ellipsis">Resource Consumption</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#sub-groups-and-query-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">Sub-<wbr>Groups and Query Acceptance</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sub-Groups and Query Acceptance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-based-resource-management" class="md-nav__link">
+    <span class="md-ellipsis">File-<wbr>Based Resource Management</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-based-resource-management" class="md-nav__link">
+    <span class="md-ellipsis">Database-<wbr>Based Resource Management</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#file-resource-group-manager" class="md-nav__link">
+    <span class="md-ellipsis">File Resource Group Manager</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#database-resource-group-manager" class="md-nav__link">
+    <span class="md-ellipsis">Database Resource Group Manager</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Resource Group Manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-resource-group-manager-properties" class="md-nav__link">
+    <span class="md-ellipsis">Database Resource Group Manager Properties</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#resource-group-properties" class="md-nav__link">
+    <span class="md-ellipsis">Resource Group Properties</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resource Group Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scheduling-weight-example" class="md-nav__link">
+    <span class="md-ellipsis">Scheduling Weight Example</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#selector-rules" class="md-nav__link">
+    <span class="md-ellipsis">Selector Rules</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#global-properties" class="md-nav__link">
+    <span class="md-ellipsis">Global Properties</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#providing-selector-properties" class="md-nav__link">
+    <span class="md-ellipsis">Providing Selector Properties</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">Example</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id2" class="md-nav__link">
+    <span class="md-ellipsis">File Resource Group Manager</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id3" class="md-nav__link">
+    <span class="md-ellipsis">Database Resource Group Manager</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+  <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/admin/resource-groups.rst" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+<h1 id="resource-groups">Resource Groups<a class="headerlink" href="#resource-groups" title="Link to this heading">¶</a></h1>
+<p>Resource groups place limits on resource usage, and can enforce queueing policies on
+queries that run within them or divide their resources among sub-groups. A query
+belongs to a single resource group, and consumes resources from that group (and its ancestors).
+Except for the limit on queued queries, when a resource group runs out of a resource
+it does not cause running queries to fail; instead new queries become queued.
+A resource group may have sub-groups or may accept queries, but may not do both.</p>
+<p>In PrestoDB, Resource Groups are a powerful tool for managing query execution and resource allocation.
+They allow administrators to control how resources are allocated and utilized on a Presto cluster.</p>
+<h2 id="resource-usage-limits">Resource Usage Limits<a class="headerlink" href="#resource-usage-limits" title="Link to this heading">¶</a></h2>
+<p>Resource Groups can set limits on resource usage, such as CPU time, memory usage, or total
+number of queries. This is particularly useful in multi-tenant environments where you want to ensure that no single user
+or query monopolizes the system resources.</p>
+<h2 id="resource-consumption">Resource Consumption<a class="headerlink" href="#resource-consumption" title="Link to this heading">¶</a></h2>
+<p>A query belongs to a single resource group, and it consumes resources from that group,
+as well as its parent groups. If a resource group runs out of a certain resource, it does not cause running
+queries to fail. Instead, new queries will be queued until resources become available again.</p>
+<h2 id="sub-groups-and-query-acceptance">Sub-Groups and Query Acceptance<a class="headerlink" href="#sub-groups-and-query-acceptance" title="Link to this heading">¶</a></h2>
+<p>Sub-groups allow for hierarchical resource allocation, where each sub-group can have its own resource limits and
+queueing policies. A resource group that accepts queries directly is a leaf group, and it executes queries using
+its allocated resources.</p>
+<p>The resource groups and associated selection rules are configured by a manager, which is pluggable.
+Presto resource management can be done in two ways:</p>
+<h3 id="file-based-resource-management">File-Based Resource Management<a class="headerlink" href="#file-based-resource-management" title="Link to this heading">¶</a></h3>
+<p>In a file-based resource manager, configuration information about the resource groups is stored in a JSON file.
+This file contains definitions of all resource groups and the rules to select them.
+The configuration file is loaded and used at the start of the Presto server.
+Any changes to the file require a restart of the Presto server to take effect.</p>
+<h3 id="database-based-resource-management">Database-Based Resource Management<a class="headerlink" href="#database-based-resource-management" title="Link to this heading">¶</a></h3>
+<p>In a database-based resource manager, configuration information about the resource groups is stored in a relational
+database. The database contains definitions of all resource groups and the rules to select them.
+Unlike the file-based resource manager, changes to the configuration in the database take effect
+immediately and do not require a restart of the Presto server.</p>
+<p>Both methods have their pros and cons. File-based resource management is simpler to set up but less flexible,
+while database-based resource management is more complex to set up but offers more flexibility and dynamic changes.</p>
+<h2 id="file-resource-group-manager">File Resource Group Manager<a class="headerlink" href="#file-resource-group-manager" title="Link to this heading">¶</a></h2>
+<p>The file resource group manager in PrestoDB is a way to manage resources using a JSON configuration file.
+This file contains definitions of all resource groups and rules for selecting the appropriate resource group
+for a given query.</p>
+<p>To set up a file-based resource group manager:</p>
+<ol class="arabic">
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">etc/resource-groups.properties</span></code>.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">etc/resource-groups.properties</span></code>, set the <code class="docutils literal notranslate"><span class="pre">resource-groups.configuration-manager</span></code> property to <code class="docutils literal notranslate"><span class="pre">file</span></code>
+using the following code example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code>resource-groups.configuration-manager=file
+</code></pre></div>
+</div>
+</li>
+<li><p>Create a JSON file in <code class="docutils literal notranslate"><span class="pre">etc</span></code> named <code class="docutils literal notranslate"><span class="pre">resource-groups.json</span></code>. This file should contain the definitions
+for the resource groups. Each resource group can specify things like the maximum memory, the
+maximum queued queries, and the maximum running queries.</p>
+<p>For information on creating resource group definitions, see <a class="reference internal" href="#resource-group-properties">Resource Group Properties</a>.
+For an example of a resource-groups.json file, see <a class="reference external" href="resource-groups.html#id2">File Resource Group Manager</a>.</p>
+</li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">etc/resource-groups.properties</span></code>, add a line that specifies the location of the JSON file using the
+following code example. Set the <code class="docutils literal notranslate"><span class="pre">resource-groups.config-file</span></code> property to <code class="docutils literal notranslate"><span class="pre">&lt;file_path&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;file_path&gt;</span></code>
+is the path to the JSON file.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code>resource-groups.config-file=etc/resource-groups.json
+</code></pre></div>
+</div>
+</li>
+<li><p>Restart the Presto server. The new resource groups take effect immediately after the restart.</p></li>
+</ol>
+<h2 id="database-resource-group-manager">Database Resource Group Manager<a class="headerlink" href="#database-resource-group-manager" title="Link to this heading">¶</a></h2>
+<p>The database resource group manager in PrestoDB is a way to manage resources using a relational database.</p>
+<p>To set up a database-based resource group manager:</p>
+<ol class="arabic">
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">etc/resource-groups.properties</span></code>.</p></li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">resource-groups.configuration-manager</span></code> property to <code class="docutils literal notranslate"><span class="pre">db</span></code>.</p></li>
+<li><p>Set up a relational database: The database should be accessible by Presto.
+It will be used to store the configurations of the resource groups.</p></li>
+<li><p>Create tables for resource groups and selection rules: You need to create tables in the
+database that will store the definitions of the resource groups and the rules for selecting
+the appropriate resource group for a given query.</p></li>
+<li><p>To specify the database in the Presto configuration, add a line in <code class="docutils literal notranslate"><span class="pre">etc/resource-groups.properties</span></code> that
+specifies the JDBC URL of the database: <code class="docutils literal notranslate"><span class="pre">resource-groups.config-db-url</span> <span class="pre">=</span> <span class="pre">&lt;jdbc_url&gt;</span></code>, where <code class="docutils literal notranslate"><span class="pre">&lt;jdbc_url&gt;</span></code> is the
+JDBC URL of the database.</p>
+<p>Note : Currently only MySQL is supported.</p>
+</li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">etc/resource-groups.properties</span></code> should be similar to this following example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code>resource-groups.configuration-manager=db
+resource-groups.config-db-url=jdbc:mysql://localhost:3306/resource_groups?user=&lt;user&gt;&amp;password=&lt;password&gt;
+</code></pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;password&gt;</span></code> with the actual username and password.</p>
+<p>With the Database Resource Group Manager, changes to the configuration in the database take effect immediately
+and do not require a restart of the Presto server. This allows for more flexibility and
+dynamic changes to the resource group configurations.</p>
+<p>The resource group configuration must be populated through tables
+<code class="docutils literal notranslate"><span class="pre">resource_groups_global_properties</span></code>, <code class="docutils literal notranslate"><span class="pre">resource_groups</span></code>, and <code class="docutils literal notranslate"><span class="pre">selectors</span></code>. If any of the tables
+do not exist when Presto starts, they are created automatically.</p>
+<p>The rules in the <code class="docutils literal notranslate"><span class="pre">selectors</span></code> table are processed in descending order of the values in the
+<code class="docutils literal notranslate"><span class="pre">priority</span></code> field.</p>
+<h3 id="database-resource-group-manager-properties">Database Resource Group Manager Properties<a class="headerlink" href="#database-resource-group-manager-properties" title="Link to this heading">¶</a></h3>
+<table class="docutils data align-default" id="id4">
+<caption><span class="caption-text">Database resource group manager properties</span><a class="headerlink" href="#id4" title="Link to this table">¶</a></caption>
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 50.0%" />
+<col style="width: 10.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">resource-groups.config-db-url</span></code></p></td>
+<td><p>Database URL to load configuration from.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">resource-groups.max-refresh-interval</span></code></p></td>
+<td><p>The maximum time period for which the cluster will continue to accept
+queries after refresh failures, causing configuration to become stale.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1h</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">resource-groups.exact-match-selector-enabled</span></code></p></td>
+<td><p>Setting this flag enables usage of an additional
+<code class="docutils literal notranslate"><span class="pre">exact_match_source_selectors</span></code> table to configure resource group
+selection rules defined exact name based matches for source, environment
+and query type. By default, the rules are only loaded from the
+<code class="docutils literal notranslate"><span class="pre">selectors</span></code> table, with a regex-based filter for <code class="docutils literal notranslate"><span class="pre">source</span></code>, among
+other filters.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="resource-group-properties">Resource Group Properties<a class="headerlink" href="#resource-group-properties" title="Link to this heading">¶</a></h2>
+<p>Resource Groups are defined using a set of properties that determine how resources are allocated and used.
+Here are the key properties that can be set for a Resource Group:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (required): The name of the resource group. This is a mandatory property.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxQueued</span></code> (required): The maximum number of queries that can be queued in the resource group.
+If this limit is reached, new queries will be rejected.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hardCpuLimit</span></code> (optional): maximum amount of CPU time this
+group may use in a period.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">softMemoryLimit</span></code> (required): The maximum amount of memory that the resource group can use.
+This can be specified in absolute terms (like “10GB”) or as a percentage of the total available
+memory (like “50%”).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hardConcurrencyLimit</span></code> (required): The maximum number of queries that the resource group
+can run concurrently.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">softConcurrencyLimit</span></code> (optional): The soft limit on the number of concurrent queries.
+If this limit is exceeded, the scheduler will try to prevent new queries from starting,
+but it won’t force running queries to stop.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">softCpuLimit</span></code> (optional): maximum amount of CPU time this
+group may use in a period (see <code class="docutils literal notranslate"><span class="pre">cpuQuotaPeriod</span></code>), before a penalty is applied to
+the maximum number of running queries. <code class="docutils literal notranslate"><span class="pre">hardCpuLimit</span></code> must also be specified.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">schedulingPolicy</span></code> (optional): The policy that determines how queries are scheduled within the resource group.
+This can be set to one of the four values <code class="docutils literal notranslate"><span class="pre">fair</span></code>, <code class="docutils literal notranslate"><span class="pre">weighted</span></code>, <code class="docutils literal notranslate"><span class="pre">weighted_fair</span></code> or <code class="docutils literal notranslate"><span class="pre">query_priority</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">fair</span></code> (default): queued queries are processed first-in-first-out, and sub-groups
+must take turns starting new queries, if they have any queued.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weighted_fair</span></code>: sub-groups are selected based on their <code class="docutils literal notranslate"><span class="pre">schedulingWeight</span></code> and the number of
+queries they are already running concurrently. The expected share of running queries for a
+sub-group is computed based on the weights for all currently eligible sub-groups. The sub-group
+with the least concurrency relative to its share is selected to start the next query.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weighted</span></code>: queued queries are selected stochastically in proportion to their priority,
+specified via the <code class="docutils literal notranslate"><span class="pre">query_priority</span></code> {doc} <code class="docutils literal notranslate"><span class="pre">session</span> <span class="pre">property</span> <span class="pre">&lt;/sql/set-session&gt;</span></code>. Sub groups are selected
+to start new queries in proportion to their <code class="docutils literal notranslate"><span class="pre">schedulingWeight</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">query_priority</span></code>: all sub-groups must also be configured with <code class="docutils literal notranslate"><span class="pre">query_priority</span></code>.
+Queued queries are selected strictly according to their priority.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">schedulingWeight</span></code> (optional): The weight for the resource group when the parent group uses the <code class="docutils literal notranslate"><span class="pre">weighted</span></code>
+scheduling policy. A higher weight means that the group gets a larger share of the parent group’s
+resources.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jmxExport</span></code> (optional):  If set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, the statistics of the resource group will be exported via JMX.
+Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">perQueryLimits</span></code> (optional): specifies max resources that each query in a
+resource group may consume before being killed. These limits are not inherited from parent groups.
+May set three types of limits:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">executionTimeLimit</span></code> (optional): Specify an absolute value (for example, <code class="docutils literal notranslate"><span class="pre">1h</span></code>)
+for the maximum time a query may take to execute.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">totalMemoryLimit</span></code> (optional): Specify an absolute value (for example, <code class="docutils literal notranslate"><span class="pre">1GB</span></code>)
+for the maximum distributed memory a query may consume.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cpuTimeLimit</span></code> (optional): Specify Specify an absolute value (for example, <code class="docutils literal notranslate"><span class="pre">1h</span></code>)
+for the maximum CPU time a query may use.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">workerPerQueryLimit</span></code> (optional): specifies the minimum number of workers that have to
+be available for each query. Intended to be used in elastic clusters where number of workers
+varies over time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subGroups</span></code> (optional): list of sub-groups. A list of sub-groups within the resource group.
+Each sub-group can have its own set of properties.</p></li>
+</ul>
+<h3 id="scheduling-weight-example"><span id="scheduleweight-example"></span>Scheduling Weight Example<a class="headerlink" href="#scheduling-weight-example" title="Link to this heading">¶</a></h3>
+<p>Schedule weighting is a method of assigning a priority to a resource. Sub-groups
+with a higher scheduling weight are given higher priority. For example, to
+ensure timely execution of scheduled pipeline queries, weight them higher than
+adhoc queries.</p>
+<p>Here’s an example:</p>
+<p>If you have a root resource group <code class="docutils literal notranslate"><span class="pre">global</span></code> with two subgroups: <code class="docutils literal notranslate"><span class="pre">engineering</span></code> and <code class="docutils literal notranslate"><span class="pre">marketing</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">engineering</span></code> subgroup has a scheduling weight of 3, and the <code class="docutils literal notranslate"><span class="pre">marketing</span></code> subgroup has a
+scheduling weight of 1. In this setup, the <code class="docutils literal notranslate"><span class="pre">engineering</span></code> subgroup will get 75% of the
+parent group’s resources (because 3 is 75% of the total weight of 4), and the <code class="docutils literal notranslate"><span class="pre">marketing</span></code> subgroup will
+get 25% of the parent group’s resources (because 1 is 25% of the total weight of 4).</p>
+<p>Schedule weighting allows you to prioritize certain subgroups over others in terms of resource allocation.
+In this example, queries from the <code class="docutils literal notranslate"><span class="pre">engineering</span></code> subgroup will be prioritized over queries
+from the <code class="docutils literal notranslate"><span class="pre">marketing</span></code> subgroup.</p>
+<h2 id="selector-rules">Selector Rules<a class="headerlink" href="#selector-rules" title="Link to this heading">¶</a></h2>
+<p>Here are the key components of selector rules in PrestoDB:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">group</span></code> (required): The group these queries will run in.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">user</span></code> (optional): This is a regular expression that matches the user who is submitting the query.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code> (optional): This matches the source of the query, which is typically the
+application submitting the query.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">queryType</span></code> (optional): String to match against the type of the query submitted:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">SELECT</span></code>: <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> queries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EXPLAIN</span></code>: <code class="docutils literal notranslate"><span class="pre">EXPLAIN</span></code> queries (but not <code class="docutils literal notranslate"><span class="pre">EXPLAIN</span> <span class="pre">ANALYZE</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DESCRIBE</span></code>: <code class="docutils literal notranslate"><span class="pre">DESCRIBE</span></code>, <code class="docutils literal notranslate"><span class="pre">DESCRIBE</span> <span class="pre">INPUT</span></code>, <code class="docutils literal notranslate"><span class="pre">DESCRIBE</span> <span class="pre">OUTPUT</span></code>, and <code class="docutils literal notranslate"><span class="pre">SHOW</span></code> queries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INSERT</span></code>: <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>, <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">AS</span></code>, and <code class="docutils literal notranslate"><span class="pre">REFRESH</span> <span class="pre">MATERIALIZED</span> <span class="pre">VIEW</span></code> queries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>: <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> queries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DELETE</span></code>: <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> queries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ANALYZE</span></code>: <code class="docutils literal notranslate"><span class="pre">ANALYZE</span></code> queries.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DATA_DEFINITION</span></code>: Queries that alter/create/drop the metadata of schemas/tables/views,
+and that manage prepared statements, privileges, sessions, and transactions.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clientTags</span></code> (optional): List of tags. To match, every tag in this list must be in the list of
+client-provided tags associated with the query.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">selectorResourceEstimate</span></code> (optional): Resource Group Selection based on resource estimates.</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">executionTime</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">peakMemory</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cpuTime</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clientInfo</span></code> (optional): String to match against client info.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">principal</span></code> (optional): This is a regular expression that matches the principal who is submitting the query.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">schema</span></code> (optional): This matches the session schema of the query.</p></li>
+</ul>
+<p>Selectors are processed sequentially and the first one that matches will be used.</p>
+<h2 id="global-properties">Global Properties<a class="headerlink" href="#global-properties" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cpuQuotaPeriod</span></code> (optional): the period in which cpu quotas are enforced.
+The <code class="docutils literal notranslate"><span class="pre">cpuQuotaPeriod</span></code> is a global property often used in container-based environments to control the amount
+of CPU resources that a container can use in a specified period.</p></li>
+</ul>
+<p>Please note that the exact implementation and naming of these properties can
+vary between different container runtimes and orchestration systems.</p>
+<h2 id="providing-selector-properties">Providing Selector Properties<a class="headerlink" href="#providing-selector-properties" title="Link to this heading">¶</a></h2>
+<p>The source name can be set as follows:</p>
+<ul class="simple">
+<li><p>CLI: use the <code class="docutils literal notranslate"><span class="pre">--source</span></code> option.</p></li>
+<li><p>JDBC driver when used in client apps: add the <code class="docutils literal notranslate"><span class="pre">source</span></code> property to the
+connection configuration and set the value when using a Java application that
+uses the JDBC Driver.</p></li>
+<li><p>JDBC driver used with Java programs: add a property with the key <code class="docutils literal notranslate"><span class="pre">source</span></code>
+and the value on the <code class="docutils literal notranslate"><span class="pre">Connection</span></code> instance as shown in <span class="xref std std-ref">the example</span>.</p></li>
+</ul>
+<p>Client tags can be set as follows:</p>
+<ul class="simple">
+<li><p>CLI: use the <code class="docutils literal notranslate"><span class="pre">--client-tags</span></code> option.</p></li>
+<li><p>JDBC driver when used in client apps: add the <code class="docutils literal notranslate"><span class="pre">clientTags</span></code> property to the
+connection configuration and set the value when using a Java application that
+uses the JDBC Driver.</p></li>
+<li><p>JDBC driver used with Java programs: add a property with the key
+<code class="docutils literal notranslate"><span class="pre">clientTags</span></code> and the value on the <code class="docutils literal notranslate"><span class="pre">Connection</span></code> instance as shown in
+<span class="xref std std-ref">the example</span>.</p></li>
+</ul>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
+<p>In the example configuration below, there are several resource groups, some of which are templates.
+Templates allow administrators to construct resource group trees dynamically. For example, in
+the <code class="docutils literal notranslate"><span class="pre">pipeline_${USER}</span></code> group, <code class="docutils literal notranslate"><span class="pre">${USER}</span></code> is expanded to the name of the user that submitted
+the query. <code class="docutils literal notranslate"><span class="pre">${SOURCE}</span></code> is also supported, which is expanded to the source that submitted the
+query. You may also use custom named variables in the <code class="docutils literal notranslate"><span class="pre">source</span></code> and <code class="docutils literal notranslate"><span class="pre">user</span></code> regular expressions.</p>
+<p>There are four selectors, that define which queries run in which resource group:</p>
+<ul>
+<li><p>The first selector matches queries from <code class="docutils literal notranslate"><span class="pre">bob</span></code> and places them in the admin group.</p></li>
+<li><p>The second selector matches all data definition (DDL) queries from a source name that includes <code class="docutils literal notranslate"><span class="pre">pipeline</span></code>
+and places them in the <code class="docutils literal notranslate"><span class="pre">global.data_definition</span></code> group. This could help reduce queue times for this
+class of queries, since they are expected to be fast.</p></li>
+<li><p>The third selector matches queries from a source name that includes <code class="docutils literal notranslate"><span class="pre">pipeline</span></code>, and places them in a
+dynamically-created per-user pipeline group under the <code class="docutils literal notranslate"><span class="pre">global.pipeline</span></code> group.</p></li>
+<li><p>The fourth selector matches queries that come from BI tools which have a source matching the regular
+expression <code class="docutils literal notranslate"><span class="pre">jdbc#(?&lt;toolname&gt;.*)</span></code>, and have client provided tags that are a superset of <code class="docutils literal notranslate"><span class="pre">hi-pri</span></code>.
+These are placed in a dynamically-created sub-group under the <code class="docutils literal notranslate"><span class="pre">global.pipeline.tools</span></code> group. The dynamic
+sub-group is created based on the named variable <code class="docutils literal notranslate"><span class="pre">toolname</span></code>, which is extracted from the
+regular expression for source.</p>
+<p>Consider a query with a source <code class="docutils literal notranslate"><span class="pre">jdbc#powerfulbi</span></code>, user <code class="docutils literal notranslate"><span class="pre">kayla</span></code>, and
+client tags <code class="docutils literal notranslate"><span class="pre">hipri</span></code> and <code class="docutils literal notranslate"><span class="pre">fast</span></code>. This query is routed to the <code class="docutils literal notranslate"><span class="pre">global.pipeline.bi-powerfulbi.kayla</span></code>
+resource group.</p>
+</li>
+<li><p>The last selector is a catch-all, which places all queries that have not yet been matched into a per-user
+adhoc group.</p></li>
+</ul>
+<p>Together, these selectors implement the following policy:</p>
+<ul class="simple">
+<li><p>The user <code class="docutils literal notranslate"><span class="pre">bob</span></code> is an admin and can run up to 50 concurrent queries.
+Queries will be run based on user-provided priority.</p></li>
+</ul>
+<p>For the remaining users:</p>
+<ul class="simple">
+<li><p>No more than 100 total queries may run concurrently.</p></li>
+<li><p>Up to 5 concurrent DDL queries with a source <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> can run. Queries are run in FIFO order.</p></li>
+<li><p>Non-DDL queries will run under the <code class="docutils literal notranslate"><span class="pre">global.pipeline</span></code> group, with a total concurrency of 45, and a per-user
+concurrency of 5. Queries are run in FIFO order.</p></li>
+<li><p>For BI tools, each tool can run up to 10 concurrent queries, and each user can run up to 3. If the total demand
+exceeds the limit of 10, the user with the fewest running queries gets the next concurrency slot. This policy
+results in fairness when under contention.</p></li>
+<li><p>All remaining queries are placed into a per-user group under <code class="docutils literal notranslate"><span class="pre">global.adhoc.other</span></code> that behaves similarly.</p></li>
+</ul>
+<h3 id="id2">File Resource Group Manager<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;rootGroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;global&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;80%&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;hardConcurrencyLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;schedulingPolicy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;weighted&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;jmxExport&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;subGroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data_definition&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10%&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;hardConcurrencyLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;schedulingWeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;adhoc&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10%&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;hardConcurrencyLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;schedulingWeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;subGroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;other&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10%&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;hardConcurrencyLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;schedulingWeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;schedulingPolicy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;weighted_fair&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;subGroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${USER}&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10%&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;hardConcurrencyLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">              </span><span class="p">]</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bi-${toolname}&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10%&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;hardConcurrencyLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;schedulingWeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;schedulingPolicy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;weighted_fair&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;subGroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${USER}&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10%&quot;</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;hardConcurrencyLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">              </span><span class="p">]</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pipeline&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;80%&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;hardConcurrencyLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;schedulingWeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;jmxExport&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;subGroups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pipeline_${USER}&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;50%&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;hardConcurrencyLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;softMemoryLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;100%&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;hardConcurrencyLimit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;maxQueued&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;schedulingPolicy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;query_priority&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;jmxExport&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;selectors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;user&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bob&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.*pipeline.*&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;queryType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DATA_DEFINITION&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;global.data_definition&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;.*pipeline.*&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;global.pipeline.pipeline_${USER}&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jdbc#(?&lt;toolname&gt;.*)&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;clientTags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;hipri&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;global.adhoc.bi-${toolname}.${USER}&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;global.adhoc.other.${USER}&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;cpuQuotaPeriod&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1h&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<h3 id="id3">Database Resource Group Manager<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="c1">-- global properties</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">resource_groups_global_properties</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;cpu_quota_period&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1h&#39;</span><span class="p">);</span>
+
+<span class="c1">-- Every row in resource_groups table indicates a resource group.</span>
+<span class="c1">-- The enviroment name is &#39;test_environment&#39;, make sure it matches `node.environment` in your cluster.</span>
+<span class="c1">-- The parent-child relationship is indicated by the ID in &#39;parent&#39; column.</span>
+
+<span class="c1">-- create a root group &#39;global&#39; with NULL parent</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">soft_memory_limit</span><span class="p">,</span><span class="w"> </span><span class="n">hard_concurrency_limit</span><span class="p">,</span><span class="w"> </span><span class="n">max_queued</span><span class="p">,</span><span class="w"> </span><span class="n">scheduling_policy</span><span class="p">,</span><span class="w"> </span><span class="n">jmx_export</span><span class="p">,</span><span class="w"> </span><span class="n">environment</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;global&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;80%&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;weighted&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test_environment&#39;</span><span class="p">);</span>
+
+<span class="c1">-- get ID of &#39;global&#39; group</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">resource_group_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;global&#39;</span><span class="p">;</span><span class="w">  </span><span class="c1">-- 1</span>
+<span class="c1">-- create two new groups with &#39;global&#39; as parent</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">soft_memory_limit</span><span class="p">,</span><span class="w"> </span><span class="n">hard_concurrency_limit</span><span class="p">,</span><span class="w"> </span><span class="n">max_queued</span><span class="p">,</span><span class="w"> </span><span class="n">scheduling_weight</span><span class="p">,</span><span class="w"> </span><span class="n">environment</span><span class="p">,</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;data_definition&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;10%&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test_environment&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">soft_memory_limit</span><span class="p">,</span><span class="w"> </span><span class="n">hard_concurrency_limit</span><span class="p">,</span><span class="w"> </span><span class="n">max_queued</span><span class="p">,</span><span class="w"> </span><span class="n">scheduling_weight</span><span class="p">,</span><span class="w"> </span><span class="n">environment</span><span class="p">,</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;adhoc&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;10%&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test_environment&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">-- get ID of &#39;adhoc&#39; group</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">resource_group_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;adhoc&#39;</span><span class="p">;</span><span class="w">   </span><span class="c1">-- 3</span>
+<span class="c1">-- create &#39;other&#39; group with &#39;adhoc&#39; as parent</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">soft_memory_limit</span><span class="p">,</span><span class="w"> </span><span class="n">hard_concurrency_limit</span><span class="p">,</span><span class="w"> </span><span class="n">max_queued</span><span class="p">,</span><span class="w"> </span><span class="n">scheduling_weight</span><span class="p">,</span><span class="w"> </span><span class="n">scheduling_policy</span><span class="p">,</span><span class="w"> </span><span class="n">environment</span><span class="p">,</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;other&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;10%&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;weighted_fair&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test_environment&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+
+<span class="c1">-- get ID of &#39;other&#39; group</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">resource_group_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;other&#39;</span><span class="p">;</span><span class="w">  </span><span class="c1">-- 4</span>
+<span class="c1">-- create &#39;${USER}&#39; group with &#39;other&#39; as parent.</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">soft_memory_limit</span><span class="p">,</span><span class="w"> </span><span class="n">hard_concurrency_limit</span><span class="p">,</span><span class="w"> </span><span class="n">max_queued</span><span class="p">,</span><span class="w"> </span><span class="n">environment</span><span class="p">,</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;${USER}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;10%&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test_environment&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+
+<span class="c1">-- create &#39;bi-${toolname}&#39; group with &#39;adhoc&#39; as parent</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">soft_memory_limit</span><span class="p">,</span><span class="w"> </span><span class="n">hard_concurrency_limit</span><span class="p">,</span><span class="w"> </span><span class="n">max_queued</span><span class="p">,</span><span class="w"> </span><span class="n">scheduling_weight</span><span class="p">,</span><span class="w"> </span><span class="n">scheduling_policy</span><span class="p">,</span><span class="w"> </span><span class="n">environment</span><span class="p">,</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;bi-${toolname}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;10%&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;weighted_fair&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test_environment&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+
+<span class="c1">-- create &#39;pipeline&#39; group with &#39;global&#39; as parent</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">soft_memory_limit</span><span class="p">,</span><span class="w"> </span><span class="n">hard_concurrency_limit</span><span class="p">,</span><span class="w"> </span><span class="n">max_queued</span><span class="p">,</span><span class="w"> </span><span class="n">scheduling_weight</span><span class="p">,</span><span class="w"> </span><span class="n">jmx_export</span><span class="p">,</span><span class="w"> </span><span class="n">environment</span><span class="p">,</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;pipeline&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;80%&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test_environment&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">-- get ID of &#39;pipeline&#39; group</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">resource_group_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pipeline&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 7</span>
+<span class="c1">-- create &#39;pipeline_${USER}&#39; group with &#39;pipeline&#39; as parent</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">soft_memory_limit</span><span class="p">,</span><span class="w"> </span><span class="n">hard_concurrency_limit</span><span class="p">,</span><span class="w"> </span><span class="n">max_queued</span><span class="p">,</span><span class="w">  </span><span class="n">environment</span><span class="p">,</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;pipeline_${USER}&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;50%&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test_environment&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span>
+
+<span class="c1">-- create a root group &#39;admin&#39; with NULL parent</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">soft_memory_limit</span><span class="p">,</span><span class="w"> </span><span class="n">hard_concurrency_limit</span><span class="p">,</span><span class="w"> </span><span class="n">max_queued</span><span class="p">,</span><span class="w"> </span><span class="n">scheduling_policy</span><span class="p">,</span><span class="w"> </span><span class="n">environment</span><span class="p">,</span><span class="w"> </span><span class="n">jmx_export</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;100%&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;query_priority&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test_environment&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">true</span><span class="p">);</span>
+
+
+<span class="c1">-- Selectors</span>
+
+<span class="c1">-- use ID of &#39;admin&#39; resource group for selector</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">selectors</span><span class="w"> </span><span class="p">(</span><span class="n">resource_group_id</span><span class="p">,</span><span class="w"> </span><span class="n">user_regex</span><span class="p">,</span><span class="w"> </span><span class="n">priority</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">((</span><span class="k">SELECT</span><span class="w"> </span><span class="n">resource_group_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;admin&#39;</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;bob&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
+
+<span class="c1">-- use ID of &#39;global.data_definition&#39; resource group for selector</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">selectors</span><span class="w"> </span><span class="p">(</span><span class="n">resource_group_id</span><span class="p">,</span><span class="w"> </span><span class="n">source_regex</span><span class="p">,</span><span class="w"> </span><span class="n">query_type</span><span class="p">,</span><span class="w"> </span><span class="n">priority</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">((</span><span class="k">SELECT</span><span class="w"> </span><span class="n">resource_group_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;data_definition&#39;</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;.*pipeline.*&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;DATA_DEFINITION&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+
+<span class="c1">-- use ID of &#39;global.pipeline.pipeline_${USER}&#39; resource group for selector</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">selectors</span><span class="w"> </span><span class="p">(</span><span class="n">resource_group_id</span><span class="p">,</span><span class="w"> </span><span class="n">source_regex</span><span class="p">,</span><span class="w"> </span><span class="n">priority</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">((</span><span class="k">SELECT</span><span class="w"> </span><span class="n">resource_group_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pipeline_${USER}&#39;</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;.*pipeline.*&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+
+<span class="c1">-- get ID of &#39;global.adhoc.other.${USER}&#39; resource group for by disambiguating group name using parent ID</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">resource_group_id</span><span class="w"> </span><span class="n">self_id</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">.</span><span class="n">resource_group_id</span><span class="w"> </span><span class="n">parent_id</span><span class="p">,</span><span class="w"> </span><span class="n">concat</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="n">name_with_parent</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">resource_groups</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">B</span><span class="p">.</span><span class="n">resource_group_id</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;${USER}&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">B</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;other&#39;</span><span class="p">;</span>
+<span class="c1">-- |       5 |         4 | other.${USER}    |</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">selectors</span><span class="w"> </span><span class="p">(</span><span class="n">resource_group_id</span><span class="p">,</span><span class="w"> </span><span class="n">priority</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</code></pre></div>
+</div>
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="cte-materialization.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: CTE Materialization" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              CTE Materialization
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="session-property-managers.html" class="md-footer__link md-footer__link--next" aria-label="Next: Session Property Managers" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Session Property Managers
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    
+  </body>
+</html>

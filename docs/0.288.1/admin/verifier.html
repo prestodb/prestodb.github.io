@@ -1,0 +1,1720 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Presto Verifier - Presto 0.288.1 Documentation</title>
+      
+    
+    
+      
+        
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.359ec555e2989f00f.min.css?v=b000af5c" />
+        <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-K7GB6F0LBZ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-verifier" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.288.1 Documentation" class="md-header__button md-logo" aria-label="Presto 0.288.1 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.288.1 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Presto Verifier
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.288.1 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.288.1 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.288.1 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        <span class="md-ellipsis">Overview</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        <span class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto Clients</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        <span class="md-ellipsis">Security</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../admin.html"><span class="md-ellipsis">Administration</span></a>
+          
+            <label for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Administration" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          <span class="md-ellipsis">Administration</span>
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="web-interface.html" class="md-nav__link">
+        <span class="md-ellipsis">Web Interface</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tuning.html" class="md-nav__link">
+        <span class="md-ellipsis">Tuning Presto</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="properties.html" class="md-nav__link">
+        <span class="md-ellipsis">Properties Reference</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="spill.html" class="md-nav__link">
+        <span class="md-ellipsis">Spill to Disk</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exchange-materialization.html" class="md-nav__link">
+        <span class="md-ellipsis">Exchange Materialization</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cte-materialization.html" class="md-nav__link">
+        <span class="md-ellipsis">CTE Materialization</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="resource-groups.html" class="md-nav__link">
+        <span class="md-ellipsis">Resource Groups</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session-property-managers.html" class="md-nav__link">
+        <span class="md-ellipsis">Session Property Managers</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="function-namespace-managers.html" class="md-nav__link">
+        <span class="md-ellipsis">Function Namespace Managers</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dist-sort.html" class="md-nav__link">
+        <span class="md-ellipsis">Distributed sort</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span class="md-ellipsis">Presto Verifier</span>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        <span class="md-ellipsis">Presto Verifier</span>
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/admin/verifier.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/admin/verifier.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#using-verifier" class="md-nav__link">
+    <span class="md-ellipsis">Using Verifier</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#verifier-procedures" class="md-nav__link">
+    <span class="md-ellipsis">Verifier Procedures</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#column-checksums" class="md-nav__link">
+    <span class="md-ellipsis">Column Checksums</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#determinism" class="md-nav__link">
+    <span class="md-ellipsis">Determinism</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#failure-resolution" class="md-nav__link">
+    <span class="md-ellipsis">Failure Resolution</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#explain-mode" class="md-nav__link">
+    <span class="md-ellipsis">Explain Mode</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#extending-verifier" class="md-nav__link">
+    <span class="md-ellipsis">Extending Verifier</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#configuration-reference" class="md-nav__link">
+    <span class="md-ellipsis">Configuration Reference</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-configuration" class="md-nav__link">
+    <span class="md-ellipsis">General Configuration</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-override-configuration" class="md-nav__link">
+    <span class="md-ellipsis">Query Override Configuration</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-execution-configuration" class="md-nav__link">
+    <span class="md-ellipsis">Query Execution Configuration</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#determinism-analyzer-configuration" class="md-nav__link">
+    <span class="md-ellipsis">Determinism Analyzer Configuration</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failure-resolution-configuration" class="md-nav__link">
+    <span class="md-ellipsis">Failure Resolution Configuration</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        <span class="md-ellipsis">Cache</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        <span class="md-ellipsis">Query Optimizer</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        <span class="md-ellipsis">Connectors</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        <span class="md-ellipsis">Plugins</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        <span class="md-ellipsis">Functions and Operators</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Language</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Statement Syntax</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        <span class="md-ellipsis">Migration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        <span class="md-ellipsis">REST API</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        <span class="md-ellipsis">Ecosystem</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        <span class="md-ellipsis">Router</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        <span class="md-ellipsis">Developer Guide</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presto-cpp.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto C++</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        <span class="md-ellipsis">Release Notes</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/admin/verifier.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/admin/verifier.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#using-verifier" class="md-nav__link">
+    <span class="md-ellipsis">Using Verifier</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#verifier-procedures" class="md-nav__link">
+    <span class="md-ellipsis">Verifier Procedures</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#column-checksums" class="md-nav__link">
+    <span class="md-ellipsis">Column Checksums</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#determinism" class="md-nav__link">
+    <span class="md-ellipsis">Determinism</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#failure-resolution" class="md-nav__link">
+    <span class="md-ellipsis">Failure Resolution</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#explain-mode" class="md-nav__link">
+    <span class="md-ellipsis">Explain Mode</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#extending-verifier" class="md-nav__link">
+    <span class="md-ellipsis">Extending Verifier</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#configuration-reference" class="md-nav__link">
+    <span class="md-ellipsis">Configuration Reference</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-configuration" class="md-nav__link">
+    <span class="md-ellipsis">General Configuration</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-override-configuration" class="md-nav__link">
+    <span class="md-ellipsis">Query Override Configuration</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-execution-configuration" class="md-nav__link">
+    <span class="md-ellipsis">Query Execution Configuration</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#determinism-analyzer-configuration" class="md-nav__link">
+    <span class="md-ellipsis">Determinism Analyzer Configuration</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failure-resolution-configuration" class="md-nav__link">
+    <span class="md-ellipsis">Failure Resolution Configuration</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+  <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/admin/verifier.rst" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+<h1 id="presto-verifier">Presto Verifier<a class="headerlink" href="#presto-verifier" title="Link to this heading">¶</a></h1>
+<p>Presto Verifier is a tool to run queries and verify correctness. It can be used to test whether a
+new Presto version produces the correct query results, or to test if pairs of Presto queries have
+the same semantics.</p>
+<p>During each Presto release, Verifier is run to ensure that there is no correctness regression.</p>
+<h2 id="using-verifier">Using Verifier<a class="headerlink" href="#using-verifier" title="Link to this heading">¶</a></h2>
+<p>In a MySQL database, create the following table and load it with the queries you would like to run:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">verifier_queries</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">suite</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">control_catalog</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">control_schema</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">control_query</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">control_username</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">control_password</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">control_session_properties</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">test_catalog</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">test_schema</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">test_query</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">test_username</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">test_password</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">test_session_properties</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">NULL</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>Next, create a <code class="docutils literal notranslate"><span class="pre">config.properties</span></code> file:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><code>source-query.suites=suite
+source-query.database=jdbc:mysql://localhost:3306/mydb?user=my_username&amp;password=my_password
+control.hosts=127.0.0.1
+control.http-port=8080
+control.jdbc-port=8080
+control.application-name=verifier-test
+test.hosts=127.0.0.1
+test.http-port=8081
+test.jdbc-port=8081
+test.application-name=verifier-test
+test-id=1
+</code></pre></div>
+</div>
+<p>Verifier can run in either <code class="docutils literal notranslate"><span class="pre">query-bank</span></code> or <code class="docutils literal notranslate"><span class="pre">control-test</span></code> mode by setting configuration
+<code class="docutils literal notranslate"><span class="pre">running-mode</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">control-test</span></code>: this is the default mode. Both the control query and the test query are
+executed and their result checksums are compared.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">query-bank</span></code>: in this mode, the control query is skipped and the comparison is done between
+a saved snapshot result and the test result.</p></li>
+</ul>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">verifier_snapshots</span></code> table:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">verifier_snapshots</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">suite</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">is_explain</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">false</span><span class="p">,</span>
+<span class="w">    </span><span class="n">snapshot</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated_at</span><span class="w"> </span><span class="n">datetime</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">now</span><span class="p">(),</span>
+<span class="w">    </span><span class="k">UNIQUE</span><span class="p">(</span><span class="n">suite</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">is_explain</span><span class="p">));</span>
+</code></pre></div>
+</div>
+<p>Download <a class="reference external" href="https://repo1.maven.org/maven2/com/facebook/presto/presto-verifier/0.288.1/presto-verifier-0.288.1-executable.jar">presto-verifier-0.288.1-executable.jar</a> and rename it to <code class="docutils literal notranslate"><span class="pre">verifier.jar</span></code>. To run the Verifier:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><code>java -Xmx1G -jar verifier.jar verify config.properties
+</code></pre></div>
+</div>
+<p>Before running in <code class="docutils literal notranslate"><span class="pre">query-bank</span></code> mode, snapshots must be saved. Add configurations:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><code>running-mode=query-bank
+save-snapshot=true
+</code></pre></div>
+</div>
+<p>Run the verifier and the snapshots will be saved to the table <code class="docutils literal notranslate"><span class="pre">verifier_snapshots</span></code>.</p>
+<p>To run in <code class="docutils literal notranslate"><span class="pre">query-bank</span></code> mode, set <code class="docutils literal notranslate"><span class="pre">save-snapshot=false</span></code> or just delete it:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><code>running-mode=query-bank
+#save-snapshot=true
+</code></pre></div>
+</div>
+<h2 id="verifier-procedures">Verifier Procedures<a class="headerlink" href="#verifier-procedures" title="Link to this heading">¶</a></h2>
+<p>The following steps summarize the workflow of Verifier.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Importing Source Queries</strong></dt><dd><ul>
+<li><p>Reads the list of source queries (query pairs with configuration) from the MySQL table.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Query Pre-processing and Filtering</strong></dt><dd><ul>
+<li><p>Applies overrides to the catalog, schema, username, and password of each query.</p></li>
+<li><p>Filters queries according to whitelist and blacklist. Whitelist is applied before blacklist.</p></li>
+<li><p>Filters out queries with invalid syntax.</p></li>
+<li><p>Filters out queries not supported for validation. <code class="docutils literal notranslate"><span class="pre">Select</span></code>, <code class="docutils literal notranslate"><span class="pre">Insert</span></code>,
+<code class="docutils literal notranslate"><span class="pre">CreateTableAsSelect</span></code>, <code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">table</span></code> and <code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">view</span></code> are supported.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Query rewriting</strong></dt><dd><ul>
+<li><p>Rewrites queries before execution to ensure that production data is not modified.</p></li>
+<li><dl class="simple">
+<dt>Rewrites <code class="docutils literal notranslate"><span class="pre">Select</span></code> queries to <code class="docutils literal notranslate"><span class="pre">CreateTableAsSelect</span></code></dt><dd><ul>
+<li><p>Column names are determined by running the <code class="docutils literal notranslate"><span class="pre">Select</span></code> query with <code class="docutils literal notranslate"><span class="pre">LIMIT</span> <span class="pre">0</span></code>.</p></li>
+<li><p>Artificial names are used for unnamed columns.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Rewrites <code class="docutils literal notranslate"><span class="pre">Insert</span></code> and <code class="docutils literal notranslate"><span class="pre">CreateTableAsSelect</span></code> queries to have their table names replaced.</dt><dd><ul>
+<li><p>Constructs a setup query to create the table necessary for an <code class="docutils literal notranslate"><span class="pre">Insert</span></code> query.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Rewrites function calls according to <code class="docutils literal notranslate"><span class="pre">nondeterministic-function-substitutes</span></code>
+if the configuration is set.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Query Execution</strong></dt><dd><ul>
+<li><p>Conceptually, Verifier is configured with a control cluster and a test cluster. However, they
+may be pointed to the same Presto cluster for certain tests. In <code class="docutils literal notranslate"><span class="pre">Query-bank</span></code> mode, the control
+cluster is skipped and a saved snapshot is used instead.</p></li>
+<li><dl class="simple">
+<dt>For each source query, executes the following queries in order.</dt><dd><ul>
+<li><p>Control setup queries</p></li>
+<li><p>Control query</p></li>
+<li><p>Test setup queries</p></li>
+<li><p>Test query</p></li>
+<li><p>Control and test teardown queries</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Queries are subject to timeouts and retries.</dt><dd><ul>
+<li><p>Cluster connection failures and transient Presto failures are retried.</p></li>
+<li><p>Query retries may conceal reliability issues, and therefore Verifier records all
+occurred Presto query failures, including the retries.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Certain query failures are automatically submitted for re-validation, such as partition
+dropped or table dropped during query.</p></li>
+<li><p>See <a class="reference internal" href="#failure-resolution">Failure Resolution</a> for auto-resolving of query failures.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Results Comparison</strong></dt><dd><ul>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">Select</span></code>, <code class="docutils literal notranslate"><span class="pre">Insert</span></code>, and <code class="docutils literal notranslate"><span class="pre">CreateTableAsSelect</span></code> queries, results are written into
+temporary tables.</p></li>
+<li><p>Constructs and runs the checksum queries for both control and test. If running in
+<code class="docutils literal notranslate"><span class="pre">query-bank</span></code> mode, Control checksums will be restored from snapshots saved in <code class="docutils literal notranslate"><span class="pre">mysql</span></code>
+database.</p></li>
+<li><p>Control checksums will be saved to <code class="docutils literal notranslate"><span class="pre">mysql</span></code> database if configuration <code class="docutils literal notranslate"><span class="pre">save-snapshot</span></code> is
+set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p>Verifies table schema and row count are the same for the control and the test result table.</p></li>
+<li><p>Verifies checksums are matching for each column. See <a class="reference internal" href="#column-checksums">Column Checksums</a> for special handling
+of different column types.</p></li>
+<li><p>See <a class="reference internal" href="#determinism">Determinism</a> for handling of non-deterministic queries.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Emitting Results</strong></dt><dd><ul>
+<li><p>Verification results can be exported as <code class="docutils literal notranslate"><span class="pre">JSON</span></code>, or human readable text.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<h2 id="column-checksums">Column Checksums<a class="headerlink" href="#column-checksums" title="Link to this heading">¶</a></h2>
+<p>For each column in the control/test query, one or more columns are generated in the checksum
+queries.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Floating Point Columns</strong></dt><dd><ul>
+<li><dl class="simple">
+<dt>For <code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code> and <code class="docutils literal notranslate"><span class="pre">REAL</span></code> columns, 4 columns are generated for verification:</dt><dd><ul>
+<li><p>Sum of the finite values of the column</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NAN</span></code> count of the column</p></li>
+<li><p>Positive infinity count of the column</p></li>
+<li><p>Negative infinity count of the column</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Checks if <code class="docutils literal notranslate"><span class="pre">NAN</span></code> count, positive and negative infinity count matches.</p></li>
+<li><p>Checks the nullity of control sum and test sum.</p></li>
+<li><p>If either control mean or test mean very close 0, checks if both are close to 0.</p></li>
+<li><p>Checks the relative error between control sum and test sum.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Array Columns</strong></dt><dd><ul>
+<li><dl class="simple">
+<dt>2 columns are generated for verification:</dt><dd><ul>
+<li><p>Sum of the cardinality</p></li>
+<li><p>Array checksum</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>For an array column <code class="docutils literal notranslate"><span class="pre">arr</span></code> of type <code class="docutils literal notranslate"><span class="pre">array(E)</span></code>:</dt><dd><ul>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">E</span></code> is not orderable, array checksum is <code class="docutils literal notranslate"><span class="pre">checksum(arr)</span></code>.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">E</span></code> is orderable, array checksum <code class="docutils literal notranslate"><span class="pre">coalesce(checksum(try(array_sort(arr))),</span> <span class="pre">checksum(arr))</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Map Columns</strong></dt><dd><ul>
+<li><dl class="simple">
+<dt>4 columns are generated for verification:</dt><dd><ul>
+<li><p>Sum of the cardinality</p></li>
+<li><p>Checksum of the map</p></li>
+<li><p>Array checksum of the key set</p></li>
+<li><p>Array checksum of the value set</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Row Columns</strong></dt><dd><ul>
+<li><p>Checksums row fields recursively according to the type of the fields.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>For all other column types, generates a simple checksum using the <code class="xref js js-func docutils literal notranslate"><span class="pre">checksum()</span></code> function.</p></li>
+</ul>
+<h2 id="determinism">Determinism<a class="headerlink" href="#determinism" title="Link to this heading">¶</a></h2>
+<p>A result mismatch, either a row count mismatch or a column mismatch, can be caused by
+non-deterministic query features. To avoid false alerts, we perform determinism analysis
+for the control query. If a query is found non-deterministic, we skip the verification as it
+does not provide insights.</p>
+<p>Determinism analysis follows the following steps. If a query is found non-deterministic at any
+point, the analysis will conclude.</p>
+<ul class="simple">
+<li><p>Non-deterministic catalogs can be specified with <code class="docutils literal notranslate"><span class="pre">determinism.non-deterministic-catalog</span></code>.
+If a query references any table from those catalogs, the query is considered non-deterministic.</p></li>
+<li><p>Runs the control query again and compares the results with the initial control query run.</p></li>
+<li><dl class="simple">
+<dt>If a query has a <code class="docutils literal notranslate"><span class="pre">LIMIT</span> <span class="pre">n</span></code> clause but no <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause at the top level:</dt><dd><ul>
+<li><p>Runs a query to count the number of rows produced by the control query without the <code class="docutils literal notranslate"><span class="pre">LIMIT</span></code>
+clause.</p></li>
+<li><p>If the resulting row count is greater than <code class="docutils literal notranslate"><span class="pre">n</span></code>, treats the control query as
+non-deterministic.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<h2 id="failure-resolution">Failure Resolution<a class="headerlink" href="#failure-resolution" title="Link to this heading">¶</a></h2>
+<p>The differences in configuration, including cluster size, can cause a query to succeed on the
+control cluster but fail on the test cluster. A checksum query can also fail, which may be due to
+limitation of Presto or Presto Verifier. Thus, we allow Verifier to automatically resolve certain
+query failures.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">EXCEEDED_GLOBAL_MEMORY_LIMIT</span></code>: Resolves if the control query uses more memory than the test
+query.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EXCEEDED_TIME_LIMIT</span></code>: Resolves unconditionally.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TOO_MANY_HIVE_PARTITIONS</span></code>: Resolves if the test cluster does not have enough workers to make
+sure the number of partitions assigned to each worker stays within the limit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COMPILER_ERROR</span></code>, <code class="docutils literal notranslate"><span class="pre">GENERATED_BYTECODE_TOO_LARGE</span></code>: Resolves if the control checksum query
+fails with this error. If the control query has too many columns, generated checksum queries
+might be too large in certain cases.</p></li>
+</ul>
+<p>In cases of result mismatches, Verifier may be giving noisy signals, and we allow Verifier to
+automatically resolve certain mismatches.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Structured-typed Columns</strong>: If array element or map key/value contains floating point types, column checksum is unlikely to match.</dt><dd><ul>
+<li><p>For an array column, resolve if the element type contains floating point types and the
+cardinality checksum matches.</p></li>
+<li><dl class="simple">
+<dt>For a map column, resolve the mismatch when both of the following conditions are true:</dt><dd><ul>
+<li><p>The cardinality checksum matches.</p></li>
+<li><p>The checksum of the key or value that does not contains floating point types matches.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Resolve a test case only when all columns are resolved.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Resolved Functions</strong>: In the case of a results mismatch, if the query uses a function in a</dt><dd><p>specified list, the test case is marked as resolved.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<h2 id="explain-mode">Explain Mode<a class="headerlink" href="#explain-mode" title="Link to this heading">¶</a></h2>
+<p>In explain mode, Verifier checks whether source queries can be explained instead of whether
+they produces the same results. Verification is marked as succeeded when both control query
+and test query can be explained.</p>
+<p>The field <code class="docutils literal notranslate"><span class="pre">matchType</span></code> in the output event can be used as an indicator whether there are
+plan differences between the control run and the test run.</p>
+<p>For non-DML queries, the control query and the plan comparison are skipped.</p>
+<h2 id="extending-verifier">Extending Verifier<a class="headerlink" href="#extending-verifier" title="Link to this heading">¶</a></h2>
+<p>Verifier can be extended for further behavioral changes in addition to configuration properties.</p>
+<p><a class="reference external" href="https://github.com/prestodb/presto/blob/master/presto-verifier/src/main/java/com/facebook/presto/verifier/framework/AbstractVerifyCommand.java">AbstractVerifyCommand</a>
+shows the components that be extended. Implement the abstract class and create a command line wrapper similar to
+<a class="reference external" href="https://github.com/prestodb/presto/blob/master/presto-verifier/src/main/java/com/facebook/presto/verifier/PrestoVerifier.java">PrestoVerifier</a>.</p>
+<h2 id="configuration-reference">Configuration Reference<a class="headerlink" href="#configuration-reference" title="Link to this heading">¶</a></h2>
+<h3 id="general-configuration">General Configuration<a class="headerlink" href="#general-configuration" title="Link to this heading">¶</a></h3>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">whitelist</span></code></p></td>
+<td><p>A comma-separated list specifying the names of the queries within the suite
+to verify.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">blacklist</span></code></p></td>
+<td><p>A comma-separated list specifying the names of the queries to be excluded
+from the suite. <code class="docutils literal notranslate"><span class="pre">blacklist</span></code> is applied after <code class="docutils literal notranslate"><span class="pre">whitelist</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">source-query-supplier</span></code></p></td>
+<td><p>The name of the source query supplier. Supports <code class="docutils literal notranslate"><span class="pre">mysql</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">source-query.table-name</span></code></p></td>
+<td><p>The name of the table that holds verifier queries. Available only when
+<code class="docutils literal notranslate"><span class="pre">source-query-supplier</span></code> is <code class="docutils literal notranslate"><span class="pre">mysql</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">event-clients</span></code></p></td>
+<td><p>A comma-separated list specifying where the output events should be emitted.
+Supports <code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">human-readable</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">json.log-file</span></code></p></td>
+<td><p>The output files of <code class="docutils literal notranslate"><span class="pre">JSON</span></code> events. If not set, <code class="docutils literal notranslate"><span class="pre">JSON</span></code> events are emitted to
+<code class="docutils literal notranslate"><span class="pre">stdout</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">human-readable.log-file</span></code></p></td>
+<td><p>The output files for human-readable events. If not set, human-readable events
+are emitted to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">control.table-prefix</span></code></p></td>
+<td><p>The table prefix to be appended to the control target table.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">test.table-prefix</span></code></p></td>
+<td><p>The table prefix to be appended to the test target table.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">test-id</span></code></p></td>
+<td><p>A string to be attached to output events.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">max-concurrency</span></code></p></td>
+<td><p>Maximum number of concurrent verifications.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">suite-repetition</span></code></p></td>
+<td><p>How many times a suite is verified.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">query-repetition</span></code></p></td>
+<td><p>How many times a source query is verified.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">relative-error-margin</span></code></p></td>
+<td><p>Maximum tolerable relative error between control sum and test sum of a
+floating point column.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">absolute-error-margin</span></code></p></td>
+<td><p>Floating point averages that are below this threshold are treated as <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">run-teardown-on-result-mismatch</span></code></p></td>
+<td><p>Whether to run teardown query in case of result mismatch.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">verification-resubmission.limit</span></code></p></td>
+<td><p>A limit on how many times a source query can be re-submitted for verification.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">running-mode</span></code></p></td>
+<td><p>Set to <code class="docutils literal notranslate"><span class="pre">query-bank</span></code> to make the Verifier run in <code class="docutils literal notranslate"><span class="pre">query-bank</span></code> mode. Supports
+<code class="docutils literal notranslate"><span class="pre">query-bank</span></code> and <code class="docutils literal notranslate"><span class="pre">control-test</span></code>. Defaults to <code class="docutils literal notranslate"><span class="pre">control-test</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">save-snapshot</span></code></p></td>
+<td><p>Set to <code class="docutils literal notranslate"><span class="pre">true</span></code> to save checksums to <code class="docutils literal notranslate"><span class="pre">mysql</span></code> database.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">extended-verification</span></code></p></td>
+<td><p>Set to <code class="docutils literal notranslate"><span class="pre">true</span></code> to run extended table layout verification for written tables.
+It only applies to <code class="docutils literal notranslate"><span class="pre">Insert</span></code> and <code class="docutils literal notranslate"><span class="pre">CreateTableAsSelect</span></code> queries.
+It would verify each partition’s data checksum if the inserted table is partitioned.
+It would verify each bucket’s data checksum if the inserted table is bucketed.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">function-substitutes</span></code></p></td>
+<td><p>Specification of function substitutions, in the format of
+<code class="docutils literal notranslate"><span class="pre">/foo(c0,_)/bar(c0)/,/fred(c0,c1)/baz(qux(c1,c0))/,/foobar(c0)/if(qux(c1),bar(c0),baz(c1))/,...</span></code>,
+where <code class="docutils literal notranslate"><span class="pre">foo(c0,</span> <span class="pre">_)</span></code> would be substituted by <code class="docutils literal notranslate"><span class="pre">bar(c0)</span></code>,
+with the declared arguments applied to the corresponding positions.</p>
+<p>Concatenate function substitutions with a comma.</p>
+<p>Select a function substitute that has the return type and argument types
+compatible with those of the original function, to produce a valid source query. For
+example, <code class="docutils literal notranslate"><span class="pre">/array_agg(z)/array_sort(array_agg(z))/,/approx_percentile(x,y)/avg(x)/</span></code>.</p>
+<p>Declare the function arguments as identifiers if they need to be applied to
+the function substitute.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="query-override-configuration">Query Override Configuration<a class="headerlink" href="#query-override-configuration" title="Link to this heading">¶</a></h3>
+<p>The following configurations control the behavior of query metadata modification before verification starts.
+Counterparts are also available for test queries with prefix <code class="docutils literal notranslate"><span class="pre">control</span></code> being replaced with <code class="docutils literal notranslate"><span class="pre">test</span></code>.</p>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">control.catalog-override</span></code></p></td>
+<td><p>The catalog to be applied to all queries if specified.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">control.schema-override</span></code></p></td>
+<td><p>The schema to be applied to all queries if specified.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">control.username-override</span></code></p></td>
+<td><p>The username to be applied to all queries if specified.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">control.password-override</span></code></p></td>
+<td><p>The password to be applied to all queries if specified.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">control.session-properties-override-strategy</span></code></p></td>
+<td><p>Supports 3 values. <code class="docutils literal notranslate"><span class="pre">NO_ACTION</span></code>: Use the session properties as specified for
+each query. <code class="docutils literal notranslate"><span class="pre">OVERRIDE</span></code>: Merge the session properties of each query with the
+override, with override being the dominant. <code class="docutils literal notranslate"><span class="pre">SUBSTITUTE</span></code>, The session
+properties of each query is replaced with the override.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">control.session-properties-override</span></code></p></td>
+<td><p>The session property to be applied to all queries.</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="query-execution-configuration">Query Execution Configuration<a class="headerlink" href="#query-execution-configuration" title="Link to this heading">¶</a></h3>
+<p>The following configurations control the behavior of query execution on the control cluster.
+Counterparts are also available for test clusters with prefix <code class="docutils literal notranslate"><span class="pre">control</span></code> being replaced with <code class="docutils literal notranslate"><span class="pre">test</span></code>.</p>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">control.hosts</span></code></p></td>
+<td><p>Comma-separated list of the control cluster hostnames or IP addresses.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">control.jdbc-port</span></code></p></td>
+<td><p>JDBC port of the control cluster.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">control.http-host</span></code></p></td>
+<td><p>HTTP port of the control cluster.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">control.jdbc-url-parameters</span></code></p></td>
+<td><p>A <code class="docutils literal notranslate"><span class="pre">JSON</span></code> map representing the additional URL parameters for control JDBC.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">control.query-timeout</span></code></p></td>
+<td><p>The execution time limit of the control and the test queries.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">control.metadata-timeout</span></code></p></td>
+<td><p>The execution time limit of <code class="docutils literal notranslate"><span class="pre">DESC</span></code> queries and <code class="docutils literal notranslate"><span class="pre">LIMIT</span> <span class="pre">0</span></code> queries.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">control.checksum-timeout</span></code></p></td>
+<td><p>The execution time limit of checksum queries.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">control.application-name</span></code></p></td>
+<td><p>ApplicationName to be passed in ClientInfo. Can be used to set source.</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="determinism-analyzer-configuration">Determinism Analyzer Configuration<a class="headerlink" href="#determinism-analyzer-configuration" title="Link to this heading">¶</a></h3>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">determinism.run-teardown</span></code></p></td>
+<td><p>Whether to run teardown queries for tables produced in determinism analysis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">determinism.max-analysis-runs</span></code></p></td>
+<td><p>Maximum number of additional control runs to check for the determinism of the
+control query.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">determinism.handle-limit-query</span></code></p></td>
+<td><p>Whether to enable the special handling for queries with a top level <code class="docutils literal notranslate"><span class="pre">LIMIT</span></code>
+clause.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">determinism.non-deterministic-catalogs</span></code></p></td>
+<td><p>A comma-separated list of non-deterministic catalogs. Queries referencing table
+from those catalogs are treated as non-deterministic.</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="failure-resolution-configuration">Failure Resolution Configuration<a class="headerlink" href="#failure-resolution-configuration" title="Link to this heading">¶</a></h3>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">exceeded-global-memory-limit.failure-resolver.enabled</span></code></p></td>
+<td><p>Whether to enable the failure resolver for test query failures with
+<code class="docutils literal notranslate"><span class="pre">EXCEEDED_GLOBAL_MEMORY_LIMIT</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">exceeded-time-limit.failure-resolver.enabled</span></code></p></td>
+<td><p>Whether to enable the failure resolver for test query failures with
+<code class="docutils literal notranslate"><span class="pre">EXCEEDED_TIME_LIMIT</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">verifier-limitation.failure-resolver.enabled</span></code></p></td>
+<td><p>Whether to enable the failure resolver for failures due to Verifier
+limitations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">too-many-open-partitions.failure-resolver.enabled</span></code></p></td>
+<td><p>Whether to enable the failure resolver for test query failures with
+<code class="docutils literal notranslate"><span class="pre">HIVE_TOO_MANY_OPEN_PARTITIONS</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">too-many-open-partitions.max-buckets-per-writer</span></code></p></td>
+<td><p>The maximum buckets count per writer configured on the control and the
+test cluster.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">too-many-open-partitions.cluster-size-expiration</span></code></p></td>
+<td><p>The time limit of the test cluster size being cached.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">structured-column.failure-resolver.enabled</span></code></p></td>
+<td><p>Whether to enable the failure resolver for column mismatches of
+structured-type columns.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ignored-functions.failure-resolver.enabled</span></code></p></td>
+<td><p>Whether to enable the <code class="docutils literal notranslate"><span class="pre">IgnoredFunctions</span></code> result mismatch failure
+resolver.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ignored-functions.functions</span></code></p></td>
+<td><p>A comma-separated list of functions. Resolves mismatches if a query
+uses any functions in the list.</p></td>
+</tr>
+</tbody>
+</table>
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="dist-sort.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Distributed sort" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Distributed sort
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../cache.html" class="md-footer__link md-footer__link--next" aria-label="Next: Cache" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Cache
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    
+  </body>
+</html>
