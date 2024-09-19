@@ -1,0 +1,1929 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Thrift Connector - Presto 0.289 Documentation</title>
+      
+    
+    
+      
+        
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.37dfeca1a5899a14e.min.css?v=e07098ad" />
+        <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-K7GB6F0LBZ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.289 Documentation" class="md-header__button md-logo" aria-label="Presto 0.289 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.289 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Thrift Connector
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.289 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.289 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.289 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        <span class="md-ellipsis">Overview</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        <span class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto Clients</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        <span class="md-ellipsis">Security</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        <span class="md-ellipsis">Administration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        <span class="md-ellipsis">Cache</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        <span class="md-ellipsis">Query Optimizer</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+      
+      
+      
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../connector.html"><span class="md-ellipsis">Connectors</span></a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Connectors" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          <span class="md-ellipsis">Connectors</span>
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="accumulo.html" class="md-nav__link">
+        <span class="md-ellipsis">Accumulo Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bigquery.html" class="md-nav__link">
+        <span class="md-ellipsis">Big<wbr>Query Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blackhole.html" class="md-nav__link">
+        <span class="md-ellipsis">Black Hole Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cassandra.html" class="md-nav__link">
+        <span class="md-ellipsis">Cassandra Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="clickhouse.html" class="md-nav__link">
+        <span class="md-ellipsis">Click<wbr>House connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deltalake.html" class="md-nav__link">
+        <span class="md-ellipsis">Delta Lake Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="druid.html" class="md-nav__link">
+        <span class="md-ellipsis">Druid Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="elasticsearch.html" class="md-nav__link">
+        <span class="md-ellipsis">Elasticsearch Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="googlesheets.html" class="md-nav__link">
+        <span class="md-ellipsis">Google Sheets connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hana.html" class="md-nav__link">
+        <span class="md-ellipsis">HANA Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hive.html" class="md-nav__link">
+        <span class="md-ellipsis">Hive Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hive-security.html" class="md-nav__link">
+        <span class="md-ellipsis">Hive Security Configuration</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hudi.html" class="md-nav__link">
+        <span class="md-ellipsis">Hudi Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iceberg.html" class="md-nav__link">
+        <span class="md-ellipsis">Iceberg Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="jmx.html" class="md-nav__link">
+        <span class="md-ellipsis">JMX Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kafka.html" class="md-nav__link">
+        <span class="md-ellipsis">Kafka Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kafka-tutorial.html" class="md-nav__link">
+        <span class="md-ellipsis">Kafka Connector Tutorial</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kudu.html" class="md-nav__link">
+        <span class="md-ellipsis">Kudu Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="larksheets.html" class="md-nav__link">
+        <span class="md-ellipsis">Lark Sheets connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localfile.html" class="md-nav__link">
+        <span class="md-ellipsis">Local File Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="memory.html" class="md-nav__link">
+        <span class="md-ellipsis">Memory Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mongodb.html" class="md-nav__link">
+        <span class="md-ellipsis">Mongo<wbr>DB Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mysql.html" class="md-nav__link">
+        <span class="md-ellipsis">My<wbr>SQL Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="oracle.html" class="md-nav__link">
+        <span class="md-ellipsis">Oracle Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pinot.html" class="md-nav__link">
+        <span class="md-ellipsis">Apache Pinot Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="postgresql.html" class="md-nav__link">
+        <span class="md-ellipsis">Postgre<wbr>SQL Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prometheus.html" class="md-nav__link">
+        <span class="md-ellipsis">Prometheus Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        <span class="md-ellipsis">Redis Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redshift.html" class="md-nav__link">
+        <span class="md-ellipsis">Redshift Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scylladb.html" class="md-nav__link">
+        <span class="md-ellipsis">Scylla<wbr>DB Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="singlestore.html" class="md-nav__link">
+        <span class="md-ellipsis">Single<wbr>Store Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sqlserver.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Server Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="system.html" class="md-nav__link">
+        <span class="md-ellipsis">System Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span class="md-ellipsis">Thrift Connector</span>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        <span class="md-ellipsis">Thrift Connector</span>
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/connector/thrift.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/connector/thrift.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">Configuration</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-thrift-systems" class="md-nav__link">
+    <span class="md-ellipsis">Multiple Thrift Systems</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#configuration-properties" class="md-nav__link">
+    <span class="md-ellipsis">Configuration Properties</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-thrift-client-addresses" class="md-nav__link">
+    <span class="md-ellipsis">presto.<wbr>thrift.<wbr>client.<wbr>addresses</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-thrift-max-response-size" class="md-nav__link">
+    <span class="md-ellipsis">presto-<wbr>thrift.<wbr>max-<wbr>response-<wbr>size</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-thrift-metadata-refresh-threads" class="md-nav__link">
+    <span class="md-ellipsis">presto-<wbr>thrift.<wbr>metadata-<wbr>refresh-<wbr>threads</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#thrift-idl-file" class="md-nav__link">
+    <span class="md-ellipsis">Thrift IDL File</span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tpcds.html" class="md-nav__link">
+        <span class="md-ellipsis">TPCDS Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tpch.html" class="md-nav__link">
+        <span class="md-ellipsis">TPCH Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        <span class="md-ellipsis">Plugins</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        <span class="md-ellipsis">Functions and Operators</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Language</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Statement Syntax</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        <span class="md-ellipsis">Migration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        <span class="md-ellipsis">REST API</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        <span class="md-ellipsis">Ecosystem</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        <span class="md-ellipsis">Router</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        <span class="md-ellipsis">Developer Guide</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presto-cpp.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto C++</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        <span class="md-ellipsis">Release Notes</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/connector/thrift.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/connector/thrift.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">Configuration</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-thrift-systems" class="md-nav__link">
+    <span class="md-ellipsis">Multiple Thrift Systems</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#configuration-properties" class="md-nav__link">
+    <span class="md-ellipsis">Configuration Properties</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-thrift-client-addresses" class="md-nav__link">
+    <span class="md-ellipsis">presto.<wbr>thrift.<wbr>client.<wbr>addresses</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-thrift-max-response-size" class="md-nav__link">
+    <span class="md-ellipsis">presto-<wbr>thrift.<wbr>max-<wbr>response-<wbr>size</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-thrift-metadata-refresh-threads" class="md-nav__link">
+    <span class="md-ellipsis">presto-<wbr>thrift.<wbr>metadata-<wbr>refresh-<wbr>threads</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#thrift-idl-file" class="md-nav__link">
+    <span class="md-ellipsis">Thrift IDL File</span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+  <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/connector/thrift.rst" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+<h1 id="thrift-connector">Thrift Connector<a class="headerlink" href="#thrift-connector" title="Link to this heading">¶</a></h1>
+<p>The Thrift connector makes it possible to integrate with external storage systems
+without a custom Presto connector implementation.</p>
+<p>In order to use the Thrift connector with an external system, you need to implement
+the <code class="docutils literal notranslate"><span class="pre">PrestoThriftService</span></code> interface, found below. Next, you configure the Thrift connector
+to point to a set of machines, called Thrift servers, that implement the interface.
+As part of the interface implementation, the Thrift servers will provide metadata,
+splits and data. The connector will randomly choose a server to talk to from the available
+instances for metadata calls, or for data calls unless the splits include a list of addresses.
+All requests are assumed to be idempotent and can be retried freely among any server.</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
+<p>To configure the Thrift connector, create a catalog properties file
+<code class="docutils literal notranslate"><span class="pre">etc/catalog/thrift.properties</span></code> with the following content,
+replacing the properties as appropriate:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><code>connector.name=presto-thrift
+presto.thrift.client.addresses=host:port,host:port
+</code></pre></div>
+</div>
+<h3 id="multiple-thrift-systems">Multiple Thrift Systems<a class="headerlink" href="#multiple-thrift-systems" title="Link to this heading">¶</a></h3>
+<p>You can have as many catalogs as you need, so if you have additional
+Thrift systems to connect to, simply add another properties file to <code class="docutils literal notranslate"><span class="pre">etc/catalog</span></code>
+with a different name (making sure it ends in <code class="docutils literal notranslate"><span class="pre">.properties</span></code>).</p>
+<h2 id="configuration-properties">Configuration Properties<a class="headerlink" href="#configuration-properties" title="Link to this heading">¶</a></h2>
+<p>The following configuration properties are available:</p>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">presto.thrift.client.addresses</span></code></p></td>
+<td><p>Location of Thrift servers</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">presto-thrift.max-response-size</span></code></p></td>
+<td><p>Maximum size of data returned from Thrift server</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">presto-thrift.metadata-refresh-threads</span></code></p></td>
+<td><p>Number of refresh threads for metadata cache</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">presto.thrift.client.max-retries</span></code></p></td>
+<td><p>Maximum number of retries for failed Thrift requests</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">presto.thrift.client.max-backoff-delay</span></code></p></td>
+<td><p>Maximum interval between retry attempts</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">presto.thrift.client.min-backoff-delay</span></code></p></td>
+<td><p>Minimum interval between retry attempts</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">presto.thrift.client.max-retry-time</span></code></p></td>
+<td><p>Maximum duration across all attempts of a Thrift request</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">presto.thrift.client.backoff-scale-factor</span></code></p></td>
+<td><p>Scale factor for exponential back off</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">presto.thrift.client.connect-timeout</span></code></p></td>
+<td><p>Connect timeout</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">presto.thrift.client.request-timeout</span></code></p></td>
+<td><p>Request timeout</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">presto.thrift.client.socks-proxy</span></code></p></td>
+<td><p>SOCKS proxy address</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">presto.thrift.client.max-frame-size</span></code></p></td>
+<td><p>Maximum size of a raw Thrift response</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">presto.thrift.client.transport</span></code></p></td>
+<td><p>Thrift transport type (<code class="docutils literal notranslate"><span class="pre">UNFRAMED</span></code>, <code class="docutils literal notranslate"><span class="pre">FRAMED</span></code>, <code class="docutils literal notranslate"><span class="pre">HEADER</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">presto.thrift.client.protocol</span></code></p></td>
+<td><p>Thrift protocol type (<code class="docutils literal notranslate"><span class="pre">BINARY</span></code>, <code class="docutils literal notranslate"><span class="pre">COMPACT</span></code>, <code class="docutils literal notranslate"><span class="pre">FB_COMPACT</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="presto-thrift-client-addresses"><code class="docutils literal notranslate"><span class="pre">presto.thrift.client.addresses</span></code><a class="headerlink" href="#presto-thrift-client-addresses" title="Link to this heading">¶</a></h3>
+<p>Comma-separated list of thrift servers in the form of <code class="docutils literal notranslate"><span class="pre">host:port</span></code>. For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><code>presto.thrift.client.addresses=192.0.2.3:7777,192.0.2.4:7779
+</code></pre></div>
+</div>
+<p>This property is required; there is no default.</p>
+<h3 id="presto-thrift-max-response-size"><code class="docutils literal notranslate"><span class="pre">presto-thrift.max-response-size</span></code><a class="headerlink" href="#presto-thrift-max-response-size" title="Link to this heading">¶</a></h3>
+<p>Maximum size of a data response that the connector accepts. This value is sent
+by the connector to the Thrift server when requesting data, allowing it to size
+the response appropriately.</p>
+<p>This property is optional; the default is <code class="docutils literal notranslate"><span class="pre">16MB</span></code>.</p>
+<h3 id="presto-thrift-metadata-refresh-threads"><code class="docutils literal notranslate"><span class="pre">presto-thrift.metadata-refresh-threads</span></code><a class="headerlink" href="#presto-thrift-metadata-refresh-threads" title="Link to this heading">¶</a></h3>
+<p>Number of refresh threads for metadata cache.</p>
+<p>This property is optional; the default is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<h2 id="thrift-idl-file">Thrift IDL File<a class="headerlink" href="#thrift-idl-file" title="Link to this heading">¶</a></h2>
+<p>The following IDL describes the <code class="docutils literal notranslate"><span class="pre">PrestoThriftService</span></code> that must be implemented:</p>
+<div class="highlight-thrift notranslate"><div class="highlight"><pre><span></span><code><span class="kd">enum</span><span class="w"> </span><span class="nc">PrestoThriftBound</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">BELOW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">EXACTLY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ABOVE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">exception</span><span class="w"> </span><span class="nc">PrestoThriftServiceException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">message</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">retryable</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftNullableSchemaName</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">schemaName</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftSchemaTableName</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">schemaName</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">tableName</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftTableMetadata</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftSchemaTableName</span><span class="w"> </span><span class="n">schemaTableName</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="n">PrestoThriftColumnMetadata</span><span class="p">&gt;</span><span class="w"> </span><span class="n">columns</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">comment</span><span class="p">;</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * Returns a list of key sets which can be used for index lookups.</span>
+<span class="cm">   * The list is expected to have only unique key sets.</span>
+<span class="cm">   * {@code set&lt;set&lt;string&gt;&gt;} is not used here because some languages (like php) don&#39;t support it.</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">set</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;&gt;</span><span class="w"> </span><span class="n">indexableKeys</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftColumnMetadata</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">type</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">comment</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">hidden</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftNullableColumnSet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">set</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span><span class="w"> </span><span class="n">columns</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftTupleDomain</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * Return a map of column names to constraints.</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">map</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="n">PrestoThriftDomain</span><span class="p">&gt;</span><span class="w"> </span><span class="n">domains</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Set that either includes all values, or excludes all values.</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftAllOrNoneValueSet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">all</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * A set containing values that are uniquely identifiable.</span>
+<span class="cm"> * Assumes an infinite number of possible values. The values may be collectively included (aka whitelist)</span>
+<span class="cm"> * or collectively excluded (aka !whitelist).</span>
+<span class="cm"> * This structure is used with comparable, but not orderable types like &quot;json&quot;, &quot;map&quot;.</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftEquatableValueSet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">whiteList</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="n">PrestoThriftBlock</span><span class="p">&gt;</span><span class="w"> </span><span class="n">values</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Elements of {@code nulls} array determine if a value for a corresponding row is null.</span>
+<span class="cm"> * Elements of {@code ints} array are values for each row. If row is null then value is ignored.</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftInteger</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span><span class="w"> </span><span class="n">nulls</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">i32</span><span class="p">&gt;</span><span class="w"> </span><span class="n">ints</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Elements of {@code nulls} array determine if a value for a corresponding row is null.</span>
+<span class="cm"> * Elements of {@code longs} array are values for each row. If row is null then value is ignored.</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftBigint</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span><span class="w"> </span><span class="n">nulls</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">i64</span><span class="p">&gt;</span><span class="w"> </span><span class="n">longs</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Elements of {@code nulls} array determine if a value for a corresponding row is null.</span>
+<span class="cm"> * Elements of {@code doubles} array are values for each row. If row is null then value is ignored.</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftDouble</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span><span class="w"> </span><span class="n">nulls</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">double</span><span class="p">&gt;</span><span class="w"> </span><span class="n">doubles</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Elements of {@code nulls} array determine if a value for a corresponding row is null.</span>
+<span class="cm"> * Each elements of {@code sizes} array contains the length in bytes for the corresponding element.</span>
+<span class="cm"> * If row is null then the corresponding element in {@code sizes} is ignored.</span>
+<span class="cm"> * {@code bytes} array contains UTF-8 encoded byte values.</span>
+<span class="cm"> * Values for all rows are written to {@code bytes} array one after another.</span>
+<span class="cm"> * The total number of bytes must be equal to the sum of all sizes.</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftVarchar</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span><span class="w"> </span><span class="n">nulls</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">i32</span><span class="p">&gt;</span><span class="w"> </span><span class="n">sizes</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">binary</span><span class="w"> </span><span class="n">bytes</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Elements of {@code nulls} array determine if a value for a corresponding row is null.</span>
+<span class="cm"> * Elements of {@code booleans} array are values for each row. If row is null then value is ignored.</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftBoolean</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span><span class="w"> </span><span class="n">nulls</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span><span class="w"> </span><span class="n">booleans</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Elements of {@code nulls} array determine if a value for a corresponding row is null.</span>
+<span class="cm"> * Elements of {@code dates} array are date values for each row represented as the number</span>
+<span class="cm"> * of days passed since 1970-01-01.</span>
+<span class="cm"> * If row is null then value is ignored.</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftDate</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span><span class="w"> </span><span class="n">nulls</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">i32</span><span class="p">&gt;</span><span class="w"> </span><span class="n">dates</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Elements of {@code nulls} array determine if a value for a corresponding row is null.</span>
+<span class="cm"> * Elements of {@code timestamps} array are values for each row represented as the number</span>
+<span class="cm"> * of milliseconds passed since 1970-01-01T00:00:00 UTC.</span>
+<span class="cm"> * If row is null then value is ignored.</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftTimestamp</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span><span class="w"> </span><span class="n">nulls</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">i64</span><span class="p">&gt;</span><span class="w"> </span><span class="n">timestamps</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Elements of {@code nulls} array determine if a value for a corresponding row is null.</span>
+<span class="cm"> * Each elements of {@code sizes} array contains the length in bytes for the corresponding element.</span>
+<span class="cm"> * If row is null then the corresponding element in {@code sizes} is ignored.</span>
+<span class="cm"> * {@code bytes} array contains UTF-8 encoded byte values for string representation of json.</span>
+<span class="cm"> * Values for all rows are written to {@code bytes} array one after another.</span>
+<span class="cm"> * The total number of bytes must be equal to the sum of all sizes.</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftJson</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span><span class="w"> </span><span class="n">nulls</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">i32</span><span class="p">&gt;</span><span class="w"> </span><span class="n">sizes</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">binary</span><span class="w"> </span><span class="n">bytes</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Elements of {@code nulls} array determine if a value for a corresponding row is null.</span>
+<span class="cm"> * Each elements of {@code sizes} array contains the length in bytes for the corresponding element.</span>
+<span class="cm"> * If row is null then the corresponding element in {@code sizes} is ignored.</span>
+<span class="cm"> * {@code bytes} array contains encoded byte values for HyperLogLog representation as defined in</span>
+<span class="cm"> * Airlift specification: href=&quot;https://github.com/airlift/airlift/blob/master/stats/docs/hll.md</span>
+<span class="cm"> * Values for all rows are written to {@code bytes} array one after another.</span>
+<span class="cm"> * The total number of bytes must be equal to the sum of all sizes.</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftHyperLogLog</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span><span class="w"> </span><span class="n">nulls</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">i32</span><span class="p">&gt;</span><span class="w"> </span><span class="n">sizes</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">binary</span><span class="w"> </span><span class="n">bytes</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Elements of {@code nulls} array determine if a value for a corresponding row is null.</span>
+<span class="cm"> * Each elements of {@code sizes} array contains the number of elements in the corresponding values array.</span>
+<span class="cm"> * If row is null then the corresponding element in {@code sizes} is ignored.</span>
+<span class="cm"> * {@code values} is a bigint block containing array elements one after another for all rows.</span>
+<span class="cm"> * The total number of elements in bigint block must be equal to the sum of all sizes.</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftBigintArray</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">bool</span><span class="p">&gt;</span><span class="w"> </span><span class="n">nulls</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">i32</span><span class="p">&gt;</span><span class="w"> </span><span class="n">sizes</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftBigint</span><span class="w"> </span><span class="n">values</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * A set containing zero or more Ranges of the same type over a continuous space of possible values.</span>
+<span class="cm"> * Ranges are coalesced into the most compact representation of non-overlapping Ranges.</span>
+<span class="cm"> * This structure is used with comparable and orderable types like bigint, integer, double, varchar, etc.</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftRangeValueSet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="n">PrestoThriftRange</span><span class="p">&gt;</span><span class="w"> </span><span class="n">ranges</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftId</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="kt">binary</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftSplitBatch</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="n">PrestoThriftSplit</span><span class="p">&gt;</span><span class="w"> </span><span class="n">splits</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftId</span><span class="w"> </span><span class="n">nextToken</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftSplit</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * Encodes all the information needed to identify a batch of rows to return to Presto.</span>
+<span class="cm">   * For a basic scan, includes schema name, table name, and output constraint.</span>
+<span class="cm">   * For an index scan, includes schema name, table name, set of keys to lookup and output constraint.</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftId</span><span class="w"> </span><span class="n">splitId</span><span class="p">;</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * Identifies the set of hosts on which the rows are available. If empty, then the rows</span>
+<span class="cm">   * are expected to be available on any host. The hosts in this list may be independent</span>
+<span class="cm">   * from the hosts used to serve metadata requests.</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="n">PrestoThriftHostAddress</span><span class="p">&gt;</span><span class="w"> </span><span class="n">hosts</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftHostAddress</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">host</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="n">port</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftPageResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * Returns data in a columnar format.</span>
+<span class="cm">   * Columns in this list must be in the order they were requested by the engine.</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="n">PrestoThriftBlock</span><span class="p">&gt;</span><span class="w"> </span><span class="n">columnBlocks</span><span class="p">;</span>
+
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="n">rowCount</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftId</span><span class="w"> </span><span class="n">nextToken</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftNullableTableMetadata</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftTableMetadata</span><span class="w"> </span><span class="n">tableMetadata</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftValueSet</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftAllOrNoneValueSet</span><span class="w"> </span><span class="n">allOrNoneValueSet</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftEquatableValueSet</span><span class="w"> </span><span class="n">equatableValueSet</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftRangeValueSet</span><span class="w"> </span><span class="n">rangeValueSet</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftBlock</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftInteger</span><span class="w"> </span><span class="n">integerData</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftBigint</span><span class="w"> </span><span class="n">bigintData</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftDouble</span><span class="w"> </span><span class="n">doubleData</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftVarchar</span><span class="w"> </span><span class="n">varcharData</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">5</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftBoolean</span><span class="w"> </span><span class="n">booleanData</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">6</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftDate</span><span class="w"> </span><span class="n">dateData</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">7</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftTimestamp</span><span class="w"> </span><span class="n">timestampData</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">8</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftJson</span><span class="w"> </span><span class="n">jsonData</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">9</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftHyperLogLog</span><span class="w"> </span><span class="n">hyperLogLogData</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">10</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftBigintArray</span><span class="w"> </span><span class="n">bigintArrayData</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * LOWER UNBOUNDED is specified with an empty value and an ABOVE bound</span>
+<span class="cm"> * UPPER UNBOUNDED is specified with an empty value and a BELOW bound</span>
+<span class="cm"> */</span>
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftMarker</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftBlock</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftBound</span><span class="w"> </span><span class="n">bound</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftNullableToken</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="n">PrestoThriftId</span><span class="w"> </span><span class="n">token</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftDomain</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftValueSet</span><span class="w"> </span><span class="n">valueSet</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">nullAllowed</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span><span class="w"> </span><span class="nc">PrestoThriftRange</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftMarker</span><span class="w"> </span><span class="n">low</span><span class="p">;</span>
+<span class="w">  </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftMarker</span><span class="w"> </span><span class="n">high</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Presto Thrift service definition.</span>
+<span class="cm"> * This thrift service needs to be implemented in order to be used with Thrift Connector.</span>
+<span class="cm"> */</span>
+<span class="kd">service</span><span class="w"> </span><span class="nc">PrestoThriftService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * Returns available schema names.</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span><span class="w"> </span><span class="nf">prestoListSchemaNames</span><span class="o">(</span><span class="p">)</span>
+<span class="w">    </span><span class="k">throws</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftServiceException</span><span class="w"> </span><span class="n">ex1</span><span class="p">);</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * Returns tables for the given schema name.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param schemaNameOrNull a structure containing schema name or {@literal null}</span>
+<span class="cm">   * @return a list of table names with corresponding schemas. If schema name is null then returns</span>
+<span class="cm">   * a list of tables for all schemas. Returns an empty list if a schema does not exist</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="kt">list</span><span class="p">&lt;</span><span class="n">PrestoThriftSchemaTableName</span><span class="p">&gt;</span><span class="w"> </span><span class="nf">prestoListTables</span><span class="o">(</span>
+<span class="w">      </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftNullableSchemaName</span><span class="w"> </span><span class="n">schemaNameOrNull</span><span class="p">)</span>
+<span class="w">    </span><span class="k">throws</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftServiceException</span><span class="w"> </span><span class="n">ex1</span><span class="p">);</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * Returns metadata for a given table.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param schemaTableName schema and table name</span>
+<span class="cm">   * @return metadata for a given table, or a {@literal null} value inside if it does not exist</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">PrestoThriftNullableTableMetadata</span><span class="w"> </span><span class="nf">prestoGetTableMetadata</span><span class="o">(</span>
+<span class="w">      </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftSchemaTableName</span><span class="w"> </span><span class="n">schemaTableName</span><span class="p">)</span>
+<span class="w">    </span><span class="k">throws</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftServiceException</span><span class="w"> </span><span class="n">ex1</span><span class="p">);</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * Returns a batch of splits.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param schemaTableName schema and table name</span>
+<span class="cm">   * @param desiredColumns a superset of columns to return; empty set means &quot;no columns&quot;, {@literal null} set means &quot;all columns&quot;</span>
+<span class="cm">   * @param outputConstraint constraint on the returned data</span>
+<span class="cm">   * @param maxSplitCount maximum number of splits to return</span>
+<span class="cm">   * @param nextToken token from a previous split batch or {@literal null} if it is the first call</span>
+<span class="cm">   * @return a batch of splits</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">PrestoThriftSplitBatch</span><span class="w"> </span><span class="nf">prestoGetSplits</span><span class="o">(</span>
+<span class="w">      </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftSchemaTableName</span><span class="w"> </span><span class="n">schemaTableName</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftNullableColumnSet</span><span class="w"> </span><span class="n">desiredColumns</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftTupleDomain</span><span class="w"> </span><span class="n">outputConstraint</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="n">maxSplitCount</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">5</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftNullableToken</span><span class="w"> </span><span class="n">nextToken</span><span class="p">)</span>
+<span class="w">    </span><span class="k">throws</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftServiceException</span><span class="w"> </span><span class="n">ex1</span><span class="p">);</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * Returns a batch of index splits for the given batch of keys.</span>
+<span class="cm">   * This method is called if index join strategy is chosen for a query.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param schemaTableName schema and table name</span>
+<span class="cm">   * @param indexColumnNames specifies columns and their order for keys</span>
+<span class="cm">   * @param outputColumnNames a list of column names to return</span>
+<span class="cm">   * @param keys keys for which records need to be returned; includes only unique and non-null values</span>
+<span class="cm">   * @param outputConstraint constraint on the returned data</span>
+<span class="cm">   * @param maxSplitCount maximum number of splits to return</span>
+<span class="cm">   * @param nextToken token from a previous split batch or {@literal null} if it is the first call</span>
+<span class="cm">   * @return a batch of splits</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">PrestoThriftSplitBatch</span><span class="w"> </span><span class="nf">prestoGetIndexSplits</span><span class="o">(</span>
+<span class="w">      </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftSchemaTableName</span><span class="w"> </span><span class="n">schemaTableName</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span><span class="w"> </span><span class="n">indexColumnNames</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span><span class="w"> </span><span class="n">outputColumnNames</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftPageResult</span><span class="w"> </span><span class="n">keys</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">5</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftTupleDomain</span><span class="w"> </span><span class="n">outputConstraint</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">6</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="n">maxSplitCount</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">7</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftNullableToken</span><span class="w"> </span><span class="n">nextToken</span><span class="p">)</span>
+<span class="w">    </span><span class="k">throws</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftServiceException</span><span class="w"> </span><span class="n">ex1</span><span class="p">);</span>
+
+<span class="w">  </span><span class="cm">/**</span>
+<span class="cm">   * Returns a batch of rows for the given split.</span>
+<span class="cm">   *</span>
+<span class="cm">   * @param splitId split id as returned in split batch</span>
+<span class="cm">   * @param columns a list of column names to return</span>
+<span class="cm">   * @param maxBytes maximum size of returned data in bytes</span>
+<span class="cm">   * @param nextToken token from a previous batch or {@literal null} if it is the first call</span>
+<span class="cm">   * @return a batch of table data</span>
+<span class="cm">   */</span>
+<span class="w">  </span><span class="n">PrestoThriftPageResult</span><span class="w"> </span><span class="nf">prestoGetRows</span><span class="o">(</span>
+<span class="w">      </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftId</span><span class="w"> </span><span class="n">splitId</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="kt">list</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span><span class="w"> </span><span class="n">columns</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="kt">i64</span><span class="w"> </span><span class="n">maxBytes</span><span class="p">,</span>
+<span class="w">      </span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftNullableToken</span><span class="w"> </span><span class="n">nextToken</span><span class="p">)</span>
+<span class="w">    </span><span class="k">throws</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">PrestoThriftServiceException</span><span class="w"> </span><span class="n">ex1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="system.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: System Connector" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              System Connector
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="tpcds.html" class="md-footer__link md-footer__link--next" aria-label="Next: TPCDS Connector" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              TPCDS Connector
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    
+  </body>
+</html>
