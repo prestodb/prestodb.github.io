@@ -1,0 +1,2304 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Kafka Connector - Presto 0.289 Documentation</title>
+      
+    
+    
+      
+        
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.37dfeca1a5899a14e.min.css?v=e07098ad" />
+        <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-K7GB6F0LBZ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.289 Documentation" class="md-header__button md-logo" aria-label="Presto 0.289 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.289 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Kafka Connector
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.289 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.289 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.289 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        <span class="md-ellipsis">Overview</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        <span class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto Clients</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        <span class="md-ellipsis">Security</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        <span class="md-ellipsis">Administration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        <span class="md-ellipsis">Cache</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        <span class="md-ellipsis">Query Optimizer</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+      
+      
+      
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../connector.html"><span class="md-ellipsis">Connectors</span></a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Connectors" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          <span class="md-ellipsis">Connectors</span>
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="accumulo.html" class="md-nav__link">
+        <span class="md-ellipsis">Accumulo Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="bigquery.html" class="md-nav__link">
+        <span class="md-ellipsis">Big<wbr>Query Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blackhole.html" class="md-nav__link">
+        <span class="md-ellipsis">Black Hole Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cassandra.html" class="md-nav__link">
+        <span class="md-ellipsis">Cassandra Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="clickhouse.html" class="md-nav__link">
+        <span class="md-ellipsis">Click<wbr>House connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deltalake.html" class="md-nav__link">
+        <span class="md-ellipsis">Delta Lake Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="druid.html" class="md-nav__link">
+        <span class="md-ellipsis">Druid Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="elasticsearch.html" class="md-nav__link">
+        <span class="md-ellipsis">Elasticsearch Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="googlesheets.html" class="md-nav__link">
+        <span class="md-ellipsis">Google Sheets connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hana.html" class="md-nav__link">
+        <span class="md-ellipsis">HANA Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hive.html" class="md-nav__link">
+        <span class="md-ellipsis">Hive Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hive-security.html" class="md-nav__link">
+        <span class="md-ellipsis">Hive Security Configuration</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hudi.html" class="md-nav__link">
+        <span class="md-ellipsis">Hudi Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iceberg.html" class="md-nav__link">
+        <span class="md-ellipsis">Iceberg Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="jmx.html" class="md-nav__link">
+        <span class="md-ellipsis">JMX Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span class="md-ellipsis">Kafka Connector</span>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        <span class="md-ellipsis">Kafka Connector</span>
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/connector/kafka.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/connector/kafka.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">Overview</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">Configuration</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-kafka-clusters" class="md-nav__link">
+    <span class="md-ellipsis">Multiple Kafka Clusters</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#configuration-properties" class="md-nav__link">
+    <span class="md-ellipsis">Configuration Properties</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kafka-table-names" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>table-<wbr>names</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-default-schema" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>default-<wbr>schema</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-nodes" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>nodes</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-connect-timeout" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>connect-<wbr>timeout</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-max-poll-records" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>max-<wbr>poll-<wbr>records</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-max-partition-fetch-bytes" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>max-<wbr>partition-<wbr>fetch-<wbr>bytes``</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-table-description-dir" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>table-<wbr>description-<wbr>dir</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-hide-internal-columns" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>hide-<wbr>internal-<wbr>columns</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#internal-columns" class="md-nav__link">
+    <span class="md-ellipsis">Internal Columns</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#table-definition-files" class="md-nav__link">
+    <span class="md-ellipsis">Table Definition Files</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#key-and-message-in-kafka" class="md-nav__link">
+    <span class="md-ellipsis">Key and Message in Kafka</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#row-decoding" class="md-nav__link">
+    <span class="md-ellipsis">Row Decoding</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Row Decoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-decoder" class="md-nav__link">
+    <span class="md-ellipsis">raw Decoder</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-decoder" class="md-nav__link">
+    <span class="md-ellipsis">csv Decoder</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-decoder" class="md-nav__link">
+    <span class="md-ellipsis">json Decoder</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-field-decoder" class="md-nav__link">
+    <span class="md-ellipsis">Default Field decoder</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date-and-time-decoders" class="md-nav__link">
+    <span class="md-ellipsis">Date and Time Decoders</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avro-decoder" class="md-nav__link">
+    <span class="md-ellipsis">avro Decoder</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="avro Decoder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#avro-schema-evolution" class="md-nav__link">
+    <span class="md-ellipsis">Avro schema evolution</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kafka-tutorial.html" class="md-nav__link">
+        <span class="md-ellipsis">Kafka Connector Tutorial</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kudu.html" class="md-nav__link">
+        <span class="md-ellipsis">Kudu Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="larksheets.html" class="md-nav__link">
+        <span class="md-ellipsis">Lark Sheets connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localfile.html" class="md-nav__link">
+        <span class="md-ellipsis">Local File Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="memory.html" class="md-nav__link">
+        <span class="md-ellipsis">Memory Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mongodb.html" class="md-nav__link">
+        <span class="md-ellipsis">Mongo<wbr>DB Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mysql.html" class="md-nav__link">
+        <span class="md-ellipsis">My<wbr>SQL Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="oracle.html" class="md-nav__link">
+        <span class="md-ellipsis">Oracle Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pinot.html" class="md-nav__link">
+        <span class="md-ellipsis">Apache Pinot Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="postgresql.html" class="md-nav__link">
+        <span class="md-ellipsis">Postgre<wbr>SQL Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prometheus.html" class="md-nav__link">
+        <span class="md-ellipsis">Prometheus Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        <span class="md-ellipsis">Redis Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redshift.html" class="md-nav__link">
+        <span class="md-ellipsis">Redshift Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scylladb.html" class="md-nav__link">
+        <span class="md-ellipsis">Scylla<wbr>DB Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="singlestore.html" class="md-nav__link">
+        <span class="md-ellipsis">Single<wbr>Store Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sqlserver.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Server Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="system.html" class="md-nav__link">
+        <span class="md-ellipsis">System Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="thrift.html" class="md-nav__link">
+        <span class="md-ellipsis">Thrift Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tpcds.html" class="md-nav__link">
+        <span class="md-ellipsis">TPCDS Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tpch.html" class="md-nav__link">
+        <span class="md-ellipsis">TPCH Connector</span>
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        <span class="md-ellipsis">Plugins</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        <span class="md-ellipsis">Functions and Operators</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Language</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Statement Syntax</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        <span class="md-ellipsis">Migration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        <span class="md-ellipsis">REST API</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        <span class="md-ellipsis">Ecosystem</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        <span class="md-ellipsis">Router</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        <span class="md-ellipsis">Developer Guide</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presto-cpp.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto C++</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        <span class="md-ellipsis">Release Notes</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/connector/kafka.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/connector/kafka.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">Overview</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">Configuration</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-kafka-clusters" class="md-nav__link">
+    <span class="md-ellipsis">Multiple Kafka Clusters</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#configuration-properties" class="md-nav__link">
+    <span class="md-ellipsis">Configuration Properties</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kafka-table-names" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>table-<wbr>names</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-default-schema" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>default-<wbr>schema</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-nodes" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>nodes</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-connect-timeout" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>connect-<wbr>timeout</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-max-poll-records" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>max-<wbr>poll-<wbr>records</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-max-partition-fetch-bytes" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>max-<wbr>partition-<wbr>fetch-<wbr>bytes``</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-table-description-dir" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>table-<wbr>description-<wbr>dir</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-hide-internal-columns" class="md-nav__link">
+    <span class="md-ellipsis">kafka.<wbr>hide-<wbr>internal-<wbr>columns</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#internal-columns" class="md-nav__link">
+    <span class="md-ellipsis">Internal Columns</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#table-definition-files" class="md-nav__link">
+    <span class="md-ellipsis">Table Definition Files</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#key-and-message-in-kafka" class="md-nav__link">
+    <span class="md-ellipsis">Key and Message in Kafka</span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#row-decoding" class="md-nav__link">
+    <span class="md-ellipsis">Row Decoding</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Row Decoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-decoder" class="md-nav__link">
+    <span class="md-ellipsis">raw Decoder</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-decoder" class="md-nav__link">
+    <span class="md-ellipsis">csv Decoder</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-decoder" class="md-nav__link">
+    <span class="md-ellipsis">json Decoder</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-field-decoder" class="md-nav__link">
+    <span class="md-ellipsis">Default Field decoder</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date-and-time-decoders" class="md-nav__link">
+    <span class="md-ellipsis">Date and Time Decoders</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avro-decoder" class="md-nav__link">
+    <span class="md-ellipsis">avro Decoder</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="avro Decoder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#avro-schema-evolution" class="md-nav__link">
+    <span class="md-ellipsis">Avro schema evolution</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+  <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/connector/kafka.rst" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+<h1 id="kafka-connector">Kafka Connector<a class="headerlink" href="#kafka-connector" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+<li><p><a class="reference internal" href="#configuration" id="id2">Configuration</a></p></li>
+<li><p><a class="reference internal" href="#configuration-properties" id="id3">Configuration Properties</a></p></li>
+<li><p><a class="reference internal" href="#internal-columns" id="id4">Internal Columns</a></p></li>
+<li><p><a class="reference internal" href="#table-definition-files" id="id5">Table Definition Files</a></p></li>
+<li><p><a class="reference internal" href="#key-and-message-in-kafka" id="id6">Key and Message in Kafka</a></p></li>
+<li><p><a class="reference internal" href="#row-decoding" id="id7">Row Decoding</a></p></li>
+</ul>
+</nav>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>This connector allows the use of Apache Kafka topics as tables in Presto.
+Each message is presented as a row in Presto.</p>
+<p>Topics can be live: rows will appear as data arrives and disappear as
+messages get dropped. This can result in strange behavior if accessing the
+same table multiple times in a single query (e.g., performing a self join).</p>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>Apache Kafka 2.3.1+ is supported.</p>
+</div>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
+<p>To configure the Kafka connector, create a catalog properties file
+<code class="docutils literal notranslate"><span class="pre">etc/catalog/kafka.properties</span></code> with the following contents,
+replacing the properties as appropriate:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><code>connector.name=kafka
+kafka.table-names=table1,table2
+kafka.nodes=host1:port,host2:port
+</code></pre></div>
+</div>
+<h3 id="multiple-kafka-clusters">Multiple Kafka Clusters<a class="headerlink" href="#multiple-kafka-clusters" title="Link to this heading">¶</a></h3>
+<p>You can have as many catalogs as you need, so if you have additional
+Kafka clusters, simply add another properties file to <code class="docutils literal notranslate"><span class="pre">etc/catalog</span></code>
+with a different name (making sure it ends in <code class="docutils literal notranslate"><span class="pre">.properties</span></code>). For
+example, if you name the property file <code class="docutils literal notranslate"><span class="pre">sales.properties</span></code>, Presto
+will create a catalog named <code class="docutils literal notranslate"><span class="pre">sales</span></code> using the configured connector.</p>
+<h2 id="configuration-properties">Configuration Properties<a class="headerlink" href="#configuration-properties" title="Link to this heading">¶</a></h2>
+<p>The following configuration properties are available:</p>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kafka.table-names</span></code></p></td>
+<td><p>List of all tables provided by the catalog</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kafka.default-schema</span></code></p></td>
+<td><p>Default schema name for tables</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kafka.nodes</span></code></p></td>
+<td><p>List of nodes in the Kafka cluster</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kafka.connect-timeout</span></code></p></td>
+<td><p>Timeout for connecting to the Kafka cluster</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kafka.max-poll-records</span></code></p></td>
+<td><p>Maximum number of records per poll</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kafka.max-partition-fetch-bytes</span></code></p></td>
+<td><p>Maximum number of bytes from one partition per poll</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kafka.table-description-dir</span></code></p></td>
+<td><p>Directory containing topic description files</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kafka.hide-internal-columns</span></code></p></td>
+<td><p>Controls whether internal columns are part of the table schema or not</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="kafka-table-names"><code class="docutils literal notranslate"><span class="pre">kafka.table-names</span></code><a class="headerlink" href="#kafka-table-names" title="Link to this heading">¶</a></h3>
+<p>Comma-separated list of all tables provided by this catalog. A table name
+can be unqualified (simple name) and will be put into the default schema
+(see below) or qualified with a schema name (<code class="docutils literal notranslate"><span class="pre">&lt;schema-name&gt;.&lt;table-name&gt;</span></code>).</p>
+<p>For each table defined here, a table description file (see below) may
+exist. If no table description file exists, the table name is used as the
+topic name on Kafka and no data columns are mapped into the table. The
+table will still contain all internal columns (see below).</p>
+<p>This property is required; there is no default and at least one table must be defined.</p>
+<h3 id="kafka-default-schema"><code class="docutils literal notranslate"><span class="pre">kafka.default-schema</span></code><a class="headerlink" href="#kafka-default-schema" title="Link to this heading">¶</a></h3>
+<p>Defines the schema which will contain all tables that were defined without
+a qualifying schema name.</p>
+<p>This property is optional; the default is <code class="docutils literal notranslate"><span class="pre">default</span></code>.</p>
+<h3 id="kafka-nodes"><code class="docutils literal notranslate"><span class="pre">kafka.nodes</span></code><a class="headerlink" href="#kafka-nodes" title="Link to this heading">¶</a></h3>
+<p>A comma separated list of <code class="docutils literal notranslate"><span class="pre">hostname:port</span></code> pairs for the Kafka data nodes.</p>
+<p>This property is required; there is no default and at least one node must be defined.</p>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>Presto must still be able to connect to all nodes of the cluster
+even if only a subset is specified here as messages may be
+located only on a specific node.</p>
+</div>
+<h3 id="kafka-connect-timeout"><code class="docutils literal notranslate"><span class="pre">kafka.connect-timeout</span></code><a class="headerlink" href="#kafka-connect-timeout" title="Link to this heading">¶</a></h3>
+<p>Timeout for connecting to a data node. A busy Kafka cluster may take quite
+some time before accepting a connection; when seeing failed queries due to
+timeouts, increasing this value is a good strategy.</p>
+<p>This property is optional; the default is 10 seconds (<code class="docutils literal notranslate"><span class="pre">10s</span></code>).</p>
+<h3 id="kafka-max-poll-records"><code class="docutils literal notranslate"><span class="pre">kafka.max-poll-records</span></code><a class="headerlink" href="#kafka-max-poll-records" title="Link to this heading">¶</a></h3>
+<p>The maximum number of records per poll() from Kafka.</p>
+<p>This property is optional; the default is <code class="docutils literal notranslate"><span class="pre">500</span></code>.</p>
+<h3 id="kafka-max-partition-fetch-bytes">kafka.max-partition-fetch-bytes``<a class="headerlink" href="#kafka-max-partition-fetch-bytes" title="Link to this heading">¶</a></h3>
+<p>Maximum number of bytes from one partition per poll</p>
+<p>This property is optional; the default is <code class="docutils literal notranslate"><span class="pre">1MB</span></code>.</p>
+<h3 id="kafka-table-description-dir"><code class="docutils literal notranslate"><span class="pre">kafka.table-description-dir</span></code><a class="headerlink" href="#kafka-table-description-dir" title="Link to this heading">¶</a></h3>
+<p>References a folder within Presto deployment that holds one or more JSON
+files (must end with <code class="docutils literal notranslate"><span class="pre">.json</span></code>) which contain table description files.</p>
+<p>This property is optional; the default is <code class="docutils literal notranslate"><span class="pre">etc/kafka</span></code>.</p>
+<h3 id="kafka-hide-internal-columns"><code class="docutils literal notranslate"><span class="pre">kafka.hide-internal-columns</span></code><a class="headerlink" href="#kafka-hide-internal-columns" title="Link to this heading">¶</a></h3>
+<p>In addition to the data columns defined in a table description file, the
+connector maintains a number of additional columns for each table. If
+these columns are hidden, they can still be used in queries but do not
+show up in <code class="docutils literal notranslate"><span class="pre">DESCRIBE</span> <span class="pre">&lt;table-name&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code>.</p>
+<p>This property is optional; the default is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<h2 id="internal-columns">Internal Columns<a class="headerlink" href="#internal-columns" title="Link to this heading">¶</a></h2>
+<p>For each defined table, the connector maintains the following columns:</p>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Column name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_partition_id</span></code></p></td>
+<td><p>BIGINT</p></td>
+<td><p>ID of the Kafka partition which contains this row.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_partition_offset</span></code></p></td>
+<td><p>BIGINT</p></td>
+<td><p>Offset within the Kafka partition for this row.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_message_corrupt</span></code></p></td>
+<td><p>BOOLEAN</p></td>
+<td><p>True if the decoder could not decode the message for this row. When true, data columns mapped from the message should be treated as invalid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_message</span></code></p></td>
+<td><p>VARCHAR</p></td>
+<td><p>Message bytes as an UTF-8 encoded string. This is only useful for a text topic.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_message_length</span></code></p></td>
+<td><p>BIGINT</p></td>
+<td><p>Number of bytes in the message.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_key_corrupt</span></code></p></td>
+<td><p>BOOLEAN</p></td>
+<td><p>True if the key decoder could not decode the key for this row. When true, data columns mapped from the key should be treated as invalid.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">_key</span></code></p></td>
+<td><p>VARCHAR</p></td>
+<td><p>Key bytes as an UTF-8 encoded string. This is only useful for textual keys.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">_key_length</span></code></p></td>
+<td><p>BIGINT</p></td>
+<td><p>Number of bytes in the key.</p></td>
+</tr>
+</tbody>
+</table>
+<p>For tables without a table definition file, the <code class="docutils literal notranslate"><span class="pre">_key_corrupt</span></code> and
+<code class="docutils literal notranslate"><span class="pre">_message_corrupt</span></code> columns will always be <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<h2 id="table-definition-files">Table Definition Files<a class="headerlink" href="#table-definition-files" title="Link to this heading">¶</a></h2>
+<p>Kafka maintains topics only as byte messages and leaves it to producers
+and consumers to define how a message should be interpreted. For Presto,
+this data must be mapped into columns to allow queries against the data.</p>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>For textual topics that contain JSON data, it is entirely possible to not
+use any table definition files, but instead use the Presto
+<a class="reference internal" href="../functions/json.html"><span class="doc">JSON Functions and Operators</span></a> to parse the <code class="docutils literal notranslate"><span class="pre">_message</span></code> column which contains
+the bytes mapped into an UTF-8 string. This is, however, pretty
+cumbersome and makes it difficult to write SQL queries.</p>
+</div>
+<p>A table definition file consists of a JSON definition for a table. The
+name of the file can be arbitrary but must end in <code class="docutils literal notranslate"><span class="pre">.json</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><code>{
+    &quot;tableName&quot;: ...,
+    &quot;schemaName&quot;: ...,
+    &quot;topicName&quot;: ...,
+    &quot;key&quot;: {
+        &quot;dataFormat&quot;: ...,
+        &quot;fields&quot;: [
+            ...
+        ]
+    },
+    &quot;message&quot;: {
+        &quot;dataFormat&quot;: ...,
+        &quot;fields&quot;: [
+            ...
+       ]
+    }
+}
+</code></pre></div>
+</div>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tableName</span></code></p></td>
+<td><p>required</p></td>
+<td><p>string</p></td>
+<td><p>Presto table name defined by this file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">schemaName</span></code></p></td>
+<td><p>optional</p></td>
+<td><p>string</p></td>
+<td><p>Schema which will contain the table. If omitted, the default schema name is used.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">topicName</span></code></p></td>
+<td><p>required</p></td>
+<td><p>string</p></td>
+<td><p>Kafka topic that is mapped.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">key</span></code></p></td>
+<td><p>optional</p></td>
+<td><p>JSON object</p></td>
+<td><p>Field definitions for data columns mapped to the message key.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">message</span></code></p></td>
+<td><p>optional</p></td>
+<td><p>JSON object</p></td>
+<td><p>Field definitions for data columns mapped to the message itself.</p></td>
+</tr>
+</tbody>
+</table>
+<h2 id="key-and-message-in-kafka">Key and Message in Kafka<a class="headerlink" href="#key-and-message-in-kafka" title="Link to this heading">¶</a></h2>
+<p>Starting with Kafka 0.8, each message in a topic can have an optional key.
+A table definition file contains sections for both key and message to map
+the data onto table columns.</p>
+<p>Each of the <code class="docutils literal notranslate"><span class="pre">key</span></code> and <code class="docutils literal notranslate"><span class="pre">message</span></code> fields in the table definition is a
+JSON object that must contain two fields:</p>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dataFormat</span></code></p></td>
+<td><p>required</p></td>
+<td><p>string</p></td>
+<td><p>Selects the decoder for this group of fields.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fields</span></code></p></td>
+<td><p>required</p></td>
+<td><p>JSON array</p></td>
+<td><p>A list of field definitions. Each field definition creates a new column in the Presto table.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Each field definition is a JSON object:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><code>{
+    &quot;name&quot;: ...,
+    &quot;type&quot;: ...,
+    &quot;dataFormat&quot;: ...,
+    &quot;mapping&quot;: ...,
+    &quot;formatHint&quot;: ...,
+    &quot;hidden&quot;: ...,
+    &quot;comment&quot;: ...
+}
+</code></pre></div>
+</div>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>required</p></td>
+<td><p>string</p></td>
+<td><p>Name of the column in the Presto table.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">type</span></code></p></td>
+<td><p>required</p></td>
+<td><p>string</p></td>
+<td><p>Presto type of the column.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dataFormat</span></code></p></td>
+<td><p>optional</p></td>
+<td><p>string</p></td>
+<td><p>Selects the column decoder for this field. Defaults to the default decoder for this row data format and column type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dataSchema</span></code></p></td>
+<td><p>optional</p></td>
+<td><p>string</p></td>
+<td><p>The path or URL where the Avro schema resides. Used only for Avro decoder.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mapping</span></code></p></td>
+<td><p>optional</p></td>
+<td><p>string</p></td>
+<td><p>Mapping information for the column. This is decoder specific, see below.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">formatHint</span></code></p></td>
+<td><p>optional</p></td>
+<td><p>string</p></td>
+<td><p>Sets a column specific format hint to the column decoder.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hidden</span></code></p></td>
+<td><p>optional</p></td>
+<td><p>boolean</p></td>
+<td><p>Hides the column from <code class="docutils literal notranslate"><span class="pre">DESCRIBE</span> <span class="pre">&lt;table</span> <span class="pre">name&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code>. Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">comment</span></code></p></td>
+<td><p>optional</p></td>
+<td><p>string</p></td>
+<td><p>Adds a column comment which is shown with <code class="docutils literal notranslate"><span class="pre">DESCRIBE</span> <span class="pre">&lt;table</span> <span class="pre">name&gt;</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>There is no limit on field descriptions for either key or message.</p>
+<h2 id="row-decoding">Row Decoding<a class="headerlink" href="#row-decoding" title="Link to this heading">¶</a></h2>
+<p>For key and message, a decoder is used to map message and key data onto table columns.</p>
+<p>The Kafka connector contains the following decoders:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">raw</span></code> - Kafka message is not interpreted, ranges of raw message bytes are mapped to table columns</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">csv</span></code> - Kafka message is interpreted as comma separated message, and fields are mapped to table columns</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">json</span></code> - Kafka message is parsed as JSON and JSON fields are mapped to table columns</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">avro</span></code> - Kafka message is parsed based on an Avro schema and Avro fields are mapped to table columns</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>If no table definition file exists for a table, the <code class="docutils literal notranslate"><span class="pre">dummy</span></code> decoder is used,
+which does not expose any columns.</p>
+</div>
+<h3 id="raw-decoder"><code class="docutils literal notranslate"><span class="pre">raw</span></code> Decoder<a class="headerlink" href="#raw-decoder" title="Link to this heading">¶</a></h3>
+<p>The raw decoder supports reading of raw (byte based) values from Kafka message
+or key and converting it into Presto columns.</p>
+<p>For fields, the following attributes are supported:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dataFormat</span></code> - selects the width of the data type converted</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> - Presto data type (see table below for list of supported data types)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mapping</span></code> - <code class="docutils literal notranslate"><span class="pre">&lt;start&gt;[:&lt;end&gt;]</span></code>; start and end position of bytes to convert (optional)</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">dataFormat</span></code> attribute selects the number of bytes converted.
+If absent, <code class="docutils literal notranslate"><span class="pre">BYTE</span></code> is assumed. All values are signed.</p>
+<p>Supported values are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BYTE</span></code> - one byte</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHORT</span></code> - two bytes (big-endian)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INT</span></code> - four bytes (big-endian)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LONG</span></code> - eight bytes (big-endian)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FLOAT</span></code> - four bytes (IEEE 754 format)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code> - eight bytes (IEEE 754 format)</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> attribute defines the Presto data type on which the value is mapped.</p>
+<p>Depending on Presto type assigned to column different values of dataFormat can be used:</p>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Presto data type</p></th>
+<th class="head"><p>Allowed <code class="docutils literal notranslate"><span class="pre">dataFormat</span></code> values</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BYTE</span></code>, <code class="docutils literal notranslate"><span class="pre">SHORT</span></code>, <code class="docutils literal notranslate"><span class="pre">INT</span></code>, <code class="docutils literal notranslate"><span class="pre">LONG</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">INTEGER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BYTE</span></code>, <code class="docutils literal notranslate"><span class="pre">SHORT</span></code>, <code class="docutils literal notranslate"><span class="pre">INT</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BYTE</span></code>, <code class="docutils literal notranslate"><span class="pre">SHORT</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TINYINT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BYTE</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code>, <code class="docutils literal notranslate"><span class="pre">FLOAT</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BOOLEAN</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BYTE</span></code>, <code class="docutils literal notranslate"><span class="pre">SHORT</span></code>, <code class="docutils literal notranslate"><span class="pre">INT</span></code>, <code class="docutils literal notranslate"><span class="pre">LONG</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code> / <code class="docutils literal notranslate"><span class="pre">VARCHAR(x)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BYTE</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">mapping</span></code> attribute specifies the range of the bytes in a key or
+message used for decoding. It can be one or two numbers separated by a colon (<code class="docutils literal notranslate"><span class="pre">&lt;start&gt;[:&lt;end&gt;]</span></code>).</p>
+<p>If only a start position is given:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For fixed width types the column will use the appropriate number of bytes for the specified <code class="docutils literal notranslate"><span class="pre">dataFormat</span></code> (see above).</p></li>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code> value is decoded all bytes from start position till the end of the message will be used.</p></li>
+</ul>
+</div></blockquote>
+<p>If start and end position are given, then:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For fixed width types the size must be equal to number of bytes used by specified <code class="docutils literal notranslate"><span class="pre">dataFormat</span></code>.</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code> all bytes between start (inclusive) and end (exclusive) are used.</p></li>
+</ul>
+</div></blockquote>
+<p>If no <code class="docutils literal notranslate"><span class="pre">mapping</span></code> attribute is specified it is equivalent to setting start position to 0 and leaving end position undefined.</p>
+<p>Decoding scheme of numeric data types (<code class="docutils literal notranslate"><span class="pre">BIGINT</span></code>, <code class="docutils literal notranslate"><span class="pre">INTEGER</span></code>, <code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code>, <code class="docutils literal notranslate"><span class="pre">TINYINT</span></code>, <code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code>) is straightforward.
+A sequence of bytes is read from input message and decoded according to either:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>big-endian encoding (for integer types)</p></li>
+<li><p>IEEE 754 format for (for <code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code>).</p></li>
+</ul>
+</div></blockquote>
+<p>Length of decoded byte sequence is implied by the <code class="docutils literal notranslate"><span class="pre">dataFormat</span></code>.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code> data type a sequence of bytes is interpreted according to UTF-8 encoding.</p>
+<h3 id="csv-decoder"><code class="docutils literal notranslate"><span class="pre">csv</span></code> Decoder<a class="headerlink" href="#csv-decoder" title="Link to this heading">¶</a></h3>
+<p>The CSV decoder converts the bytes representing a message or key into a
+string using UTF-8 encoding and then interprets the result as a CSV
+(comma-separated value) line.</p>
+<p>For fields, the <code class="docutils literal notranslate"><span class="pre">type</span></code> and <code class="docutils literal notranslate"><span class="pre">mapping</span></code> attributes must be defined:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> - Presto data type (see table below for list of supported data types)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mapping</span></code> - the index of the field in the CSV record</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">dataFormat</span></code> and <code class="docutils literal notranslate"><span class="pre">formatHint</span></code> are not supported and must be omitted.</p>
+<p>Table below lists supported Presto types which can be used in <code class="docutils literal notranslate"><span class="pre">type</span></code> and decoding scheme:</p>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Presto data type</p></th>
+<th class="head"><p>Decoding rules</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">INTEGER</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">TINYINT</span></code></div>
+</div>
+</td>
+<td><p>Decoded using Java <code class="docutils literal notranslate"><span class="pre">Long.parseLong()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code></p></td>
+<td><p>Decoded using Java <code class="docutils literal notranslate"><span class="pre">Double.parseDouble()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BOOLEAN</span></code></p></td>
+<td><p>“true” character sequence maps to <code class="docutils literal notranslate"><span class="pre">true</span></code>;
+Other character sequences map to <code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code> / <code class="docutils literal notranslate"><span class="pre">VARCHAR(x)</span></code></p></td>
+<td><p>Used as is</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="json-decoder"><code class="docutils literal notranslate"><span class="pre">json</span></code> Decoder<a class="headerlink" href="#json-decoder" title="Link to this heading">¶</a></h3>
+<p>The JSON decoder converts the bytes representing a message or key into a
+JSON according to <span class="target" id="index-0"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc4627.html"><strong>RFC 4627</strong></a>. Note that the message or key <em>MUST</em> convert
+into a JSON object, not an array or simple type.</p>
+<p>For fields, the following attributes are supported:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> - Presto type of column.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataFormat</span></code> - Field decoder to be used for column.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mapping</span></code> - slash-separated list of field names to select a field from the JSON object</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">formatHint</span></code> - only for <code class="docutils literal notranslate"><span class="pre">custom-date-time</span></code>, see below</p></li>
+</ul>
+<p>The JSON decoder supports multiple field decoders, with <code class="docutils literal notranslate"><span class="pre">_default</span></code> being
+used for standard table columns and a number of decoders for date and time
+based types.</p>
+<p>Table below lists Presto data types which can be used as in <code class="docutils literal notranslate"><span class="pre">type</span></code> and matching field decoders
+which can be specified via <code class="docutils literal notranslate"><span class="pre">dataFormat</span></code> attribute</p>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Presto data type</p></th>
+<th class="head"><p>Allowed <code class="docutils literal notranslate"><span class="pre">dataFormat</span></code> values</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">INTEGER</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">TINYINT</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">BOOLEAN</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">VARCHAR(x)</span></code></div>
+</div>
+</td>
+<td><p>Default field decoder (omitted <code class="docutils literal notranslate"><span class="pre">dataFormat</span></code> attribute)</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">TIME</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code></div>
+</div>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">custom-date-time</span></code>, <code class="docutils literal notranslate"><span class="pre">iso8601</span></code>, <code class="docutils literal notranslate"><span class="pre">rfc2822</span></code>,
+<code class="docutils literal notranslate"><span class="pre">milliseconds-since-epoch</span></code>, <code class="docutils literal notranslate"><span class="pre">seconds-since-epoch</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DATE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">custom-date-time</span></code>, <code class="docutils literal notranslate"><span class="pre">iso8601</span></code>, <code class="docutils literal notranslate"><span class="pre">rfc2822</span></code>,</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="default-field-decoder">Default Field decoder<a class="headerlink" href="#default-field-decoder" title="Link to this heading">¶</a></h3>
+<p>This is the standard field decoder supporting all the Presto physical data
+types. A field value will be coerced by JSON conversion rules into
+boolean, long, double or string values. For non-date/time based columns,
+this decoder should be used.</p>
+<h3 id="date-and-time-decoders">Date and Time Decoders<a class="headerlink" href="#date-and-time-decoders" title="Link to this heading">¶</a></h3>
+<p>To convert values from JSON objects into Presto <code class="docutils literal notranslate"><span class="pre">DATE</span></code>, <code class="docutils literal notranslate"><span class="pre">TIME</span></code>, <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE`,</span>
+<span class="pre">``TIMESTAMP</span></code> or <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code> columns, special decoders must be selected using the
+<code class="docutils literal notranslate"><span class="pre">dataFormat</span></code> attribute of a field definition.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">iso8601</span></code> - text based, parses a text field as an ISO 8601 timestamp.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rfc2822</span></code> - text based, parses a text field as an <span class="target" id="index-1"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc2822.html"><strong>RFC 2822</strong></a> timestamp.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">custom-date-time</span></code> - text based, parses a text field according to Joda format pattern</dt><dd><p>specified via <code class="docutils literal notranslate"><span class="pre">formatHint</span></code> attribute. Format pattern should conform
+to <a class="reference external" href="https://www.joda.org/joda-time/apidocs/org/joda/time/format/DateTimeFormat.html">https://www.joda.org/joda-time/apidocs/org/joda/time/format/DateTimeFormat.html</a>.</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">milliseconds-since-epoch</span></code> - number based, interprets a text or number as number of milliseconds since the epoch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">seconds-since-epoch</span></code> - number based, interprets a text or number as number of milliseconds since the epoch.</p></li>
+</ul>
+<p>For <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code> and <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code> data types, if timezone information is present in decoded value, it will
+be used in Presto value. Otherwise result time zone will be set to <code class="docutils literal notranslate"><span class="pre">UTC</span></code>.</p>
+<h3 id="avro-decoder"><code class="docutils literal notranslate"><span class="pre">avro</span></code> Decoder<a class="headerlink" href="#avro-decoder" title="Link to this heading">¶</a></h3>
+<p>The Avro decoder converts the bytes representing a message or key in
+Avro format based on a schema. The message must have the Avro schema embedded.
+Presto does not support schema-less Avro decoding.</p>
+<p>For key/message, using <code class="docutils literal notranslate"><span class="pre">avro</span></code> decoder, the <code class="docutils literal notranslate"><span class="pre">dataSchema</span></code> must be defined.
+This should point to the location of a valid Avro schema file of the message which needs to be decoded. This location can be a remote web server
+(e.g.: <code class="docutils literal notranslate"><span class="pre">dataSchema:</span> <span class="pre">'http://example.org/schema/avro_data.avsc'</span></code>) or local file system(e.g.: <code class="docutils literal notranslate"><span class="pre">dataSchema:</span> <span class="pre">'/usr/local/schema/avro_data.avsc'</span></code>).
+The decoder will fail if this location is not accessible from the Presto coordinator node.</p>
+<p>For fields, the following attributes are supported:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> - Name of the column in the Presto table.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> - Presto type of column.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mapping</span></code> - slash-separated list of field names to select a field from the Avro schema. If field specified in <code class="docutils literal notranslate"><span class="pre">mapping</span></code> does not exist in the original Avro schema then a read operation will return NULL.</p></li>
+</ul>
+<p>Table below lists supported Presto types which can be used in <code class="docutils literal notranslate"><span class="pre">type</span></code> for the equivalent Avro field type/s.</p>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Presto data type</p></th>
+<th class="head"><p>Allowed Avro data type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INT</span></code>, <code class="docutils literal notranslate"><span class="pre">LONG</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code>, <code class="docutils literal notranslate"><span class="pre">FLOAT</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BOOLEAN</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BOOLEAN</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code> / <code class="docutils literal notranslate"><span class="pre">VARCHAR(x)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">STRING</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">VARBINARY</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FIXED</span></code>, <code class="docutils literal notranslate"><span class="pre">BYTES</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ARRAY</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ARRAY</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MAP</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MAP</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<h4 id="avro-schema-evolution">Avro schema evolution<a class="headerlink" href="#avro-schema-evolution" title="Link to this heading">¶</a></h4>
+<p>The Avro decoder supports schema evolution feature with backward compatibility. With backward compatibility,
+a newer schema can be used to read Avro data created with an older schema. Any change in the Avro schema must also be
+reflected in Presto’s topic definition file. Newly added/renamed fields <em>must</em> have a default value in the Avro schema file.</p>
+<p>The schema evolution behavior is as follows:</p>
+<ul class="simple">
+<li><p>Column added in new schema:
+Data created with an older schema will produce a <em>default</em> value when table is using the new schema.</p></li>
+<li><p>Column removed in new schema:
+Data created with an older schema will no longer output the data from the column that was removed.</p></li>
+<li><p>Column is renamed in the new schema:
+This is equivalent to removing the column and adding a new one, and data created with an older schema
+will produce a <em>default</em> value when table is using the new schema.</p></li>
+<li><p>Changing type of column in the new schema:
+If the type coercion is supported by Avro, then the conversion happens. An error is thrown for incompatible types.</p></li>
+</ul>
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="jmx.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: JMX Connector" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              JMX Connector
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="kafka-tutorial.html" class="md-footer__link md-footer__link--next" aria-label="Next: Kafka Connector Tutorial" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Kafka Connector Tutorial
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    
+  </body>
+</html>
