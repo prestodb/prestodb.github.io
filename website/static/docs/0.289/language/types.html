@@ -1,0 +1,2016 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Data Types - Presto 0.289 Documentation</title>
+      
+    
+    
+      
+        
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.37dfeca1a5899a14e.min.css?v=e07098ad" />
+        <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-K7GB6F0LBZ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#boolean" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.289 Documentation" class="md-header__button md-logo" aria-label="Presto 0.289 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.289 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Types
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.289 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.289 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.289 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        <span class="md-ellipsis">Overview</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        <span class="md-ellipsis">Installation</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto Clients</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        <span class="md-ellipsis">Security</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        <span class="md-ellipsis">Administration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        <span class="md-ellipsis">Cache</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        <span class="md-ellipsis">Query Optimizer</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        <span class="md-ellipsis">Connectors</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        <span class="md-ellipsis">Plugins</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        <span class="md-ellipsis">Functions and Operators</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" checked>
+      
+      
+      
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../language.html"><span class="md-ellipsis">SQL Language</span></a>
+          
+            <label for="__nav_11">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="SQL Language" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          <span class="md-ellipsis">SQL Language</span>
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span class="md-ellipsis">Data Types</span>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        <span class="md-ellipsis">Data Types</span>
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/language/types.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/language/types.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#boolean" class="md-nav__link">
+    <span class="md-ellipsis">Boolean</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boolean">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id1" class="md-nav__link">
+    <span class="md-ellipsis">BOOLEAN</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#integer" class="md-nav__link">
+    <span class="md-ellipsis">Integer</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tinyint" class="md-nav__link">
+    <span class="md-ellipsis">TINYINT</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smallint" class="md-nav__link">
+    <span class="md-ellipsis">SMALLINT</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id2" class="md-nav__link">
+    <span class="md-ellipsis">INTEGER</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigint" class="md-nav__link">
+    <span class="md-ellipsis">BIGINT</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#floating-point" class="md-nav__link">
+    <span class="md-ellipsis">Floating-<wbr>Point</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Floating-Point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real" class="md-nav__link">
+    <span class="md-ellipsis">REAL</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#double" class="md-nav__link">
+    <span class="md-ellipsis">DOUBLE</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#fixed-precision" class="md-nav__link">
+    <span class="md-ellipsis">Fixed-<wbr>Precision</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fixed-Precision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decimal" class="md-nav__link">
+    <span class="md-ellipsis">DECIMAL</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    <span class="md-ellipsis">String</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="String">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#varchar" class="md-nav__link">
+    <span class="md-ellipsis">VARCHAR</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char" class="md-nav__link">
+    <span class="md-ellipsis">CHAR</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#varbinary" class="md-nav__link">
+    <span class="md-ellipsis">VARBINARY</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">JSON</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#date-and-time" class="md-nav__link">
+    <span class="md-ellipsis">Date and Time</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Date and Time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#date" class="md-nav__link">
+    <span class="md-ellipsis">DATE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time" class="md-nav__link">
+    <span class="md-ellipsis">TIME</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-with-time-zone" class="md-nav__link">
+    <span class="md-ellipsis">TIME WITH TIME ZONE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timestamp" class="md-nav__link">
+    <span class="md-ellipsis">TIMESTAMP</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timestamp-with-time-zone" class="md-nav__link">
+    <span class="md-ellipsis">TIMESTAMP WITH TIME ZONE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interval-year-to-month" class="md-nav__link">
+    <span class="md-ellipsis">INTERVAL YEAR TO MONTH</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interval-day-to-second" class="md-nav__link">
+    <span class="md-ellipsis">INTERVAL DAY TO SECOND</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#structural" class="md-nav__link">
+    <span class="md-ellipsis">Structural</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Structural">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#array" class="md-nav__link">
+    <span class="md-ellipsis">ARRAY</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    <span class="md-ellipsis">MAP</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#row" class="md-nav__link">
+    <span class="md-ellipsis">ROW</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#network-address" class="md-nav__link">
+    <span class="md-ellipsis">Network Address</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Network Address">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ipaddress" class="md-nav__link">
+    <span class="md-ellipsis">IPADDRESS</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipprefix" class="md-nav__link">
+    <span class="md-ellipsis">IPPREFIX</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#uuid" class="md-nav__link">
+    <span class="md-ellipsis">UUID</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UUID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uuid-type" class="md-nav__link">
+    <span title="uuid_type (reference label)" class="md-ellipsis">UUID</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#hyperloglog" class="md-nav__link">
+    <span class="md-ellipsis">Hyper<wbr>Log<wbr>Log</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HyperLogLog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hyperloglog-type" class="md-nav__link">
+    <span title="hyperloglog_type (reference label)" class="md-ellipsis">Hyper<wbr>Log<wbr>Log</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p4hyperloglog" class="md-nav__link">
+    <span class="md-ellipsis">P4Hyper<wbr>Log<wbr>Log</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#khyperloglog" class="md-nav__link">
+    <span class="md-ellipsis">KHyper<wbr>Log<wbr>Log</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="KHyperLogLog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#khyperloglog-type" class="md-nav__link">
+    <span title="khyperloglog_type (reference label)" class="md-ellipsis">KHyper<wbr>Log<wbr>Log</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#setdigest" class="md-nav__link">
+    <span class="md-ellipsis">Set<wbr>Digest</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SetDigest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setdigest-type" class="md-nav__link">
+    <span title="setdigest_type (reference label)" class="md-ellipsis">Set<wbr>Digest</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#sfm-sketch" class="md-nav__link">
+    <span class="md-ellipsis">SFM Sketch</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SFM Sketch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sfmsketch" class="md-nav__link">
+    <span class="md-ellipsis">Sfm<wbr>Sketch</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#quantile-digest" class="md-nav__link">
+    <span class="md-ellipsis">Quantile Digest</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantile Digest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qdigest" class="md-nav__link">
+    <span class="md-ellipsis">QDigest</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#t-digest" class="md-nav__link">
+    <span class="md-ellipsis">T-<wbr>Digest</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="T-Digest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tdigest" class="md-nav__link">
+    <span class="md-ellipsis">TDigest</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#kll-sketch" class="md-nav__link">
+    <span class="md-ellipsis">KLL Sketch</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="KLL Sketch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kll-sketch-type" class="md-nav__link">
+    <span title="kll_sketch_type (reference label)" class="md-ellipsis">KLL Sketch</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#geospatial" class="md-nav__link">
+    <span class="md-ellipsis">Geospatial</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Geospatial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geospatial-type" class="md-nav__link">
+    <span title="geospatial_type (reference label)" class="md-ellipsis">Geospatial</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reserved.html" class="md-nav__link">
+        <span class="md-ellipsis">Reserved Keywords</span>
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        <span class="md-ellipsis">SQL Statement Syntax</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        <span class="md-ellipsis">Migration</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        <span class="md-ellipsis">REST API</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        <span class="md-ellipsis">Ecosystem</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        <span class="md-ellipsis">Router</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        <span class="md-ellipsis">Developer Guide</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presto-cpp.html" class="md-nav__link">
+        <span class="md-ellipsis">Presto C++</span>
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        <span class="md-ellipsis">Release Notes</span>
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/language/types.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/language/types.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6H6m7 1.5L18.5 9H13V3.5m7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1-2.1-2.1Z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zm24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#boolean" class="md-nav__link">
+    <span class="md-ellipsis">Boolean</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Boolean">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id1" class="md-nav__link">
+    <span class="md-ellipsis">BOOLEAN</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#integer" class="md-nav__link">
+    <span class="md-ellipsis">Integer</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tinyint" class="md-nav__link">
+    <span class="md-ellipsis">TINYINT</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smallint" class="md-nav__link">
+    <span class="md-ellipsis">SMALLINT</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id2" class="md-nav__link">
+    <span class="md-ellipsis">INTEGER</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigint" class="md-nav__link">
+    <span class="md-ellipsis">BIGINT</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#floating-point" class="md-nav__link">
+    <span class="md-ellipsis">Floating-<wbr>Point</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Floating-Point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real" class="md-nav__link">
+    <span class="md-ellipsis">REAL</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#double" class="md-nav__link">
+    <span class="md-ellipsis">DOUBLE</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#fixed-precision" class="md-nav__link">
+    <span class="md-ellipsis">Fixed-<wbr>Precision</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fixed-Precision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decimal" class="md-nav__link">
+    <span class="md-ellipsis">DECIMAL</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    <span class="md-ellipsis">String</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="String">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#varchar" class="md-nav__link">
+    <span class="md-ellipsis">VARCHAR</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char" class="md-nav__link">
+    <span class="md-ellipsis">CHAR</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#varbinary" class="md-nav__link">
+    <span class="md-ellipsis">VARBINARY</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">JSON</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#date-and-time" class="md-nav__link">
+    <span class="md-ellipsis">Date and Time</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Date and Time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#date" class="md-nav__link">
+    <span class="md-ellipsis">DATE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time" class="md-nav__link">
+    <span class="md-ellipsis">TIME</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-with-time-zone" class="md-nav__link">
+    <span class="md-ellipsis">TIME WITH TIME ZONE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timestamp" class="md-nav__link">
+    <span class="md-ellipsis">TIMESTAMP</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timestamp-with-time-zone" class="md-nav__link">
+    <span class="md-ellipsis">TIMESTAMP WITH TIME ZONE</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interval-year-to-month" class="md-nav__link">
+    <span class="md-ellipsis">INTERVAL YEAR TO MONTH</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interval-day-to-second" class="md-nav__link">
+    <span class="md-ellipsis">INTERVAL DAY TO SECOND</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#structural" class="md-nav__link">
+    <span class="md-ellipsis">Structural</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Structural">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#array" class="md-nav__link">
+    <span class="md-ellipsis">ARRAY</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    <span class="md-ellipsis">MAP</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#row" class="md-nav__link">
+    <span class="md-ellipsis">ROW</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#network-address" class="md-nav__link">
+    <span class="md-ellipsis">Network Address</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Network Address">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ipaddress" class="md-nav__link">
+    <span class="md-ellipsis">IPADDRESS</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipprefix" class="md-nav__link">
+    <span class="md-ellipsis">IPPREFIX</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#uuid" class="md-nav__link">
+    <span class="md-ellipsis">UUID</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UUID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uuid-type" class="md-nav__link">
+    <span title="uuid_type (reference label)" class="md-ellipsis">UUID</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#hyperloglog" class="md-nav__link">
+    <span class="md-ellipsis">Hyper<wbr>Log<wbr>Log</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HyperLogLog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hyperloglog-type" class="md-nav__link">
+    <span title="hyperloglog_type (reference label)" class="md-ellipsis">Hyper<wbr>Log<wbr>Log</span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p4hyperloglog" class="md-nav__link">
+    <span class="md-ellipsis">P4Hyper<wbr>Log<wbr>Log</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#khyperloglog" class="md-nav__link">
+    <span class="md-ellipsis">KHyper<wbr>Log<wbr>Log</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="KHyperLogLog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#khyperloglog-type" class="md-nav__link">
+    <span title="khyperloglog_type (reference label)" class="md-ellipsis">KHyper<wbr>Log<wbr>Log</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#setdigest" class="md-nav__link">
+    <span class="md-ellipsis">Set<wbr>Digest</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SetDigest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setdigest-type" class="md-nav__link">
+    <span title="setdigest_type (reference label)" class="md-ellipsis">Set<wbr>Digest</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#sfm-sketch" class="md-nav__link">
+    <span class="md-ellipsis">SFM Sketch</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SFM Sketch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sfmsketch" class="md-nav__link">
+    <span class="md-ellipsis">Sfm<wbr>Sketch</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#quantile-digest" class="md-nav__link">
+    <span class="md-ellipsis">Quantile Digest</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quantile Digest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qdigest" class="md-nav__link">
+    <span class="md-ellipsis">QDigest</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#t-digest" class="md-nav__link">
+    <span class="md-ellipsis">T-<wbr>Digest</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="T-Digest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tdigest" class="md-nav__link">
+    <span class="md-ellipsis">TDigest</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#kll-sketch" class="md-nav__link">
+    <span class="md-ellipsis">KLL Sketch</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="KLL Sketch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kll-sketch-type" class="md-nav__link">
+    <span title="kll_sketch_type (reference label)" class="md-ellipsis">KLL Sketch</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#geospatial" class="md-nav__link">
+    <span class="md-ellipsis">Geospatial</span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Geospatial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geospatial-type" class="md-nav__link">
+    <span title="geospatial_type (reference label)" class="md-ellipsis">Geospatial</span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+  <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/language/types.rst" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+<h1 id="data-types">Data Types<a class="headerlink" href="#data-types" title="Link to this heading">¶</a></h1>
+<p>Presto has a set of built-in data types, described below.
+Additional types can be provided by plugins.</p>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>Connectors are not required to support all types.
+See connector documentation for details on supported types.</p>
+</div>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#boolean" id="id10">Boolean</a></p></li>
+<li><p><a class="reference internal" href="#integer" id="id11">Integer</a></p></li>
+<li><p><a class="reference internal" href="#floating-point" id="id12">Floating-Point</a></p></li>
+<li><p><a class="reference internal" href="#fixed-precision" id="id13">Fixed-Precision</a></p></li>
+<li><p><a class="reference internal" href="#string" id="id14">String</a></p></li>
+<li><p><a class="reference internal" href="#date-and-time" id="id15">Date and Time</a></p></li>
+<li><p><a class="reference internal" href="#structural" id="id16">Structural</a></p></li>
+<li><p><a class="reference internal" href="#network-address" id="id17">Network Address</a></p></li>
+<li><p><a class="reference internal" href="#uuid" id="id18">UUID</a></p></li>
+<li><p><a class="reference internal" href="#hyperloglog" id="id19">HyperLogLog</a></p></li>
+<li><p><a class="reference internal" href="#khyperloglog" id="id20">KHyperLogLog</a></p></li>
+<li><p><a class="reference internal" href="#setdigest" id="id21">SetDigest</a></p></li>
+<li><p><a class="reference internal" href="#sfm-sketch" id="id22">SFM Sketch</a></p></li>
+<li><p><a class="reference internal" href="#quantile-digest" id="id23">Quantile Digest</a></p></li>
+<li><p><a class="reference internal" href="#t-digest" id="id24">T-Digest</a></p></li>
+<li><p><a class="reference internal" href="#kll-sketch" id="id25">KLL Sketch</a></p></li>
+<li><p><a class="reference internal" href="#geospatial" id="id26">Geospatial</a></p></li>
+</ul>
+</nav>
+<h2 id="boolean">Boolean<a class="headerlink" href="#boolean" title="Link to this heading">¶</a></h2>
+<h3 id="id1"><code class="docutils literal notranslate"><span class="pre">BOOLEAN</span></code><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>This type captures boolean values <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<h2 id="integer">Integer<a class="headerlink" href="#integer" title="Link to this heading">¶</a></h2>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>Cast conversion functions allow leading and trailing spaces when casting
+a string to <code class="docutils literal notranslate"><span class="pre">TINYINT</span></code>, <code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code>, <code class="docutils literal notranslate"><span class="pre">INTEGER</span></code>, or <code class="docutils literal notranslate"><span class="pre">BIGINT</span></code>.</p>
+</div>
+<h3 id="tinyint"><code class="docutils literal notranslate"><span class="pre">TINYINT</span></code><a class="headerlink" href="#tinyint" title="Link to this heading">¶</a></h3>
+<p>A 8-bit signed two’s complement integer with a minimum value of
+<code class="docutils literal notranslate"><span class="pre">-2^7</span></code> and a maximum value of <code class="docutils literal notranslate"><span class="pre">2^7</span> <span class="pre">-</span> <span class="pre">1</span></code>.</p>
+<h3 id="smallint"><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code><a class="headerlink" href="#smallint" title="Link to this heading">¶</a></h3>
+<p>A 16-bit signed two’s complement integer with a minimum value of
+<code class="docutils literal notranslate"><span class="pre">-2^15</span></code> and a maximum value of <code class="docutils literal notranslate"><span class="pre">2^15</span> <span class="pre">-</span> <span class="pre">1</span></code>.</p>
+<h3 id="id2"><code class="docutils literal notranslate"><span class="pre">INTEGER</span></code><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<p>A 32-bit signed two’s complement integer with a minimum value of
+<code class="docutils literal notranslate"><span class="pre">-2^31</span></code> and a maximum value of <code class="docutils literal notranslate"><span class="pre">2^31</span> <span class="pre">-</span> <span class="pre">1</span></code>.  The name <code class="docutils literal notranslate"><span class="pre">INT</span></code> is
+also available for this type.</p>
+<h3 id="bigint"><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code><a class="headerlink" href="#bigint" title="Link to this heading">¶</a></h3>
+<p>A 64-bit signed two’s complement integer with a minimum value of
+<code class="docutils literal notranslate"><span class="pre">-2^63</span></code> and a maximum value of <code class="docutils literal notranslate"><span class="pre">2^63</span> <span class="pre">-</span> <span class="pre">1</span></code>.</p>
+<h2 id="floating-point">Floating-Point<a class="headerlink" href="#floating-point" title="Link to this heading">¶</a></h2>
+<h3 id="real"><code class="docutils literal notranslate"><span class="pre">REAL</span></code><a class="headerlink" href="#real" title="Link to this heading">¶</a></h3>
+<p>A real is a 32-bit inexact, variable-precision implementing the
+IEEE Standard 754 for Binary Floating-Point Arithmetic.</p>
+<p>Presto strays from the IEEE standard when handling NaNs.
+In Presto, NaN is considered larger than any other value for
+all comparison and sorting operations. Additionally, NaN=NaN will
+be true for all equality and distinctness purposes.</p>
+<h3 id="double"><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code><a class="headerlink" href="#double" title="Link to this heading">¶</a></h3>
+<p>A double is a 64-bit inexact, variable-precision implementing the
+IEEE Standard 754 for Binary Floating-Point Arithmetic.</p>
+<p>Presto strays from the IEEE standard when handling NaNs.
+In Presto, NaN is considered larger than any other value for
+all comparison and sorting operations. Additionally, NaN=NaN will
+be true for all equality and distinctness purposes.</p>
+<h2 id="fixed-precision">Fixed-Precision<a class="headerlink" href="#fixed-precision" title="Link to this heading">¶</a></h2>
+<h3 id="decimal"><code class="docutils literal notranslate"><span class="pre">DECIMAL</span></code><a class="headerlink" href="#decimal" title="Link to this heading">¶</a></h3>
+<p>A fixed precision decimal number. Precision up to 38 digits is supported
+but performance is best up to 18 digits.</p>
+<p>The decimal type takes two literal parameters:</p>
+<ul class="simple">
+<li><p><strong>precision</strong> - total number of digits</p></li>
+<li><p><strong>scale</strong> - number of digits in fractional part. Scale is optional and defaults to 0.</p></li>
+</ul>
+<p>Example type definitions: <code class="docutils literal notranslate"><span class="pre">DECIMAL(10,3)</span></code>, <code class="docutils literal notranslate"><span class="pre">DECIMAL(20)</span></code></p>
+<p>Example literals: <code class="docutils literal notranslate"><span class="pre">DECIMAL</span> <span class="pre">'10.3'</span></code>, <code class="docutils literal notranslate"><span class="pre">DECIMAL</span> <span class="pre">'1234567890'</span></code>, <code class="docutils literal notranslate"><span class="pre">1.1</span></code></p>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>For compatibility reasons decimal literals without explicit type specifier (e.g. <code class="docutils literal notranslate"><span class="pre">1.2</span></code>)
+are treated as values of the <code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code> type by default up to version 0.198.
+After 0.198 they are parsed as DECIMAL.</p>
+<ul class="simple">
+<li><p>System wide property: <code class="docutils literal notranslate"><span class="pre">parse-decimal-literals-as-double</span></code></p></li>
+<li><p>Session wide property: <code class="docutils literal notranslate"><span class="pre">parse_decimal_literals_as_double</span></code></p></li>
+</ul>
+</div>
+<h2 id="string">String<a class="headerlink" href="#string" title="Link to this heading">¶</a></h2>
+<h3 id="varchar"><code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code><a class="headerlink" href="#varchar" title="Link to this heading">¶</a></h3>
+<p>Variable length character data with an optional maximum length.</p>
+<p>Example type definitions: <code class="docutils literal notranslate"><span class="pre">varchar</span></code>, <code class="docutils literal notranslate"><span class="pre">varchar(20)</span></code>.</p>
+<dl class="simple">
+<dt>SQL supports simple and Unicode string literals:</dt><dd><ul class="simple">
+<li><p>Literal string : <code class="docutils literal notranslate"><span class="pre">'Hello</span> <span class="pre">winter</span> <span class="pre">!'</span></code></p></li>
+<li><p>Unicode string with default escape character: <code class="docutils literal notranslate"><span class="pre">U&amp;'Hello</span> <span class="pre">winter</span> <span class="pre">\2603</span> <span class="pre">!'</span></code></p></li>
+<li><p>Unicode string with custom escape character: <code class="docutils literal notranslate"><span class="pre">U&amp;'Hello</span> <span class="pre">winter</span> <span class="pre">#2603</span> <span class="pre">!'</span> <span class="pre">UESCAPE</span> <span class="pre">'#'</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>A Unicode string is prefixed with <code class="docutils literal notranslate"><span class="pre">U&amp;</span></code> and requires an escape character
+before any Unicode character usage with 4 digits. In these examples
+<code class="docutils literal notranslate"><span class="pre">\2603</span></code> and <code class="docutils literal notranslate"><span class="pre">#2603</span></code> represent a snowman character. Long Unicode codes
+with 6 digits require a plus symbol <code class="docutils literal notranslate"><span class="pre">+</span></code> before the code. For example,
+use <code class="docutils literal notranslate"><span class="pre">\+01F600</span></code> for a grinning face emoji.</p>
+<p>Single quotes in string literals can be escaped by using another single quote: <code class="docutils literal notranslate"><span class="pre">'It''s</span> <span class="pre">a</span> <span class="pre">beautiful</span> <span class="pre">day!'</span></code></p>
+<h3 id="char"><code class="docutils literal notranslate"><span class="pre">CHAR</span></code><a class="headerlink" href="#char" title="Link to this heading">¶</a></h3>
+<p>Fixed length character data. A <cite>CHAR</cite> type without length specified has a
+default length of 1. A <cite>CHAR(x)</cite> value always has <cite>x</cite> characters. For example,
+casting <cite>dog</cite> to <cite>CHAR(7)</cite> adds 4 implicit trailing spaces. Leading and trailing
+spaces are included in comparisons of <cite>CHAR</cite> values. As a result, two character
+values with different lengths (<cite>CHAR(x)</cite> and <cite>CHAR(y)</cite> where <cite>x != y</cite>) are never
+equal, but comparison of such values implicitly converts the types to the same
+length and pads with spaces so that the following query returns <cite>true</cite>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">cast('example'</span> <span class="pre">AS</span> <span class="pre">char(20))</span> <span class="pre">=</span> <span class="pre">cast('example</span>&#160;&#160;&#160; <span class="pre">'</span> <span class="pre">AS</span> <span class="pre">char(25));</span></code></p>
+<p>As with <cite>VARCHAR</cite>, a single quote in a <cite>CHAR</cite>
+literal can be escaped with another single quote:</p>
+<p><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">CHAR</span> <span class="pre">'All</span> <span class="pre">right,</span> <span class="pre">Mr.</span> <span class="pre">DeMille,</span> <span class="pre">I''m</span> <span class="pre">ready</span> <span class="pre">for</span> <span class="pre">my</span> <span class="pre">close-up.'</span></code></p>
+<h3 id="varbinary"><code class="docutils literal notranslate"><span class="pre">VARBINARY</span></code><a class="headerlink" href="#varbinary" title="Link to this heading">¶</a></h3>
+<p>Variable length binary data.</p>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>Binary strings with length are not yet supported: <code class="docutils literal notranslate"><span class="pre">varbinary(n)</span></code></p>
+</div>
+<h3 id="json"><code class="docutils literal notranslate"><span class="pre">JSON</span></code><a class="headerlink" href="#json" title="Link to this heading">¶</a></h3>
+<p>JSON value type, which can be a JSON object, a JSON array, a JSON number, a JSON string,
+<code class="docutils literal notranslate"><span class="pre">true</span></code>, <code class="docutils literal notranslate"><span class="pre">false</span></code> or <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
+<h2 id="date-and-time">Date and Time<a class="headerlink" href="#date-and-time" title="Link to this heading">¶</a></h2>
+<h3 id="date"><code class="docutils literal notranslate"><span class="pre">DATE</span></code><a class="headerlink" href="#date" title="Link to this heading">¶</a></h3>
+<p>Calendar date (year, month, day).</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">DATE</span> <span class="pre">'2001-08-22'</span></code></p>
+<h3 id="time"><code class="docutils literal notranslate"><span class="pre">TIME</span></code><a class="headerlink" href="#time" title="Link to this heading">¶</a></h3>
+<p>Time of day (hour, minute, second, millisecond) without a time zone.
+Values of this type are parsed and rendered in the session time zone.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">'01:02:03.456'</span></code></p>
+<h3 id="time-with-time-zone"><code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code><a class="headerlink" href="#time-with-time-zone" title="Link to this heading">¶</a></h3>
+<p>Time of day (hour, minute, second, millisecond) with a time zone.
+Values of this type are rendered using the time zone from the value.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">'01:02:03.456</span> <span class="pre">America/Los_Angeles'</span></code></p>
+<h3 id="timestamp"><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code><a class="headerlink" href="#timestamp" title="Link to this heading">¶</a></h3>
+<p>Instant in time that includes the date and time of day without a time zone.
+Values of this type are parsed and rendered in the session time zone.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span> <span class="pre">'2001-08-22</span> <span class="pre">03:04:05.321'</span></code></p>
+<h3 id="timestamp-with-time-zone"><code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code><a class="headerlink" href="#timestamp-with-time-zone" title="Link to this heading">¶</a></h3>
+<p>Instant in time that includes the date and time of day with a time zone.
+Values of this type are rendered using the time zone from the value.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span> <span class="pre">'2001-08-22</span> <span class="pre">03:04:05.321</span> <span class="pre">America/Los_Angeles'</span></code></p>
+<h3 id="interval-year-to-month"><code class="docutils literal notranslate"><span class="pre">INTERVAL</span> <span class="pre">YEAR</span> <span class="pre">TO</span> <span class="pre">MONTH</span></code><a class="headerlink" href="#interval-year-to-month" title="Link to this heading">¶</a></h3>
+<p>Span of years and months.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">INTERVAL</span> <span class="pre">'3'</span> <span class="pre">MONTH</span></code></p>
+<h3 id="interval-day-to-second"><code class="docutils literal notranslate"><span class="pre">INTERVAL</span> <span class="pre">DAY</span> <span class="pre">TO</span> <span class="pre">SECOND</span></code><a class="headerlink" href="#interval-day-to-second" title="Link to this heading">¶</a></h3>
+<p>Span of days, hours, minutes, seconds and milliseconds.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">INTERVAL</span> <span class="pre">'2'</span> <span class="pre">DAY</span></code></p>
+<h2 id="structural">Structural<a class="headerlink" href="#structural" title="Link to this heading">¶</a></h2>
+<h3 id="array"><span id="array-type"></span><code class="docutils literal notranslate"><span class="pre">ARRAY</span></code><a class="headerlink" href="#array" title="Link to this heading">¶</a></h3>
+<p>An array of the given component type.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">ARRAY[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code></p>
+<h3 id="map"><span id="map-type"></span><code class="docutils literal notranslate"><span class="pre">MAP</span></code><a class="headerlink" href="#map" title="Link to this heading">¶</a></h3>
+<p>A map between the given component types.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">MAP(ARRAY['foo',</span> <span class="pre">'bar'],</span> <span class="pre">ARRAY[1,</span> <span class="pre">2])</span></code></p>
+<h3 id="row"><span id="row-type"></span><code class="docutils literal notranslate"><span class="pre">ROW</span></code><a class="headerlink" href="#row" title="Link to this heading">¶</a></h3>
+<p>A structure made up of named fields. The fields may be of any SQL type, and are
+accessed with field reference operator <code class="docutils literal notranslate"><span class="pre">.</span></code></p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">CAST(ROW(1,</span> <span class="pre">2.0)</span> <span class="pre">AS</span> <span class="pre">ROW(x</span> <span class="pre">BIGINT,</span> <span class="pre">y</span> <span class="pre">DOUBLE))</span></code></p>
+<h2 id="network-address">Network Address<a class="headerlink" href="#network-address" title="Link to this heading">¶</a></h2>
+<h3 id="ipaddress"><span id="ipaddress-type"></span><code class="docutils literal notranslate"><span class="pre">IPADDRESS</span></code><a class="headerlink" href="#ipaddress" title="Link to this heading">¶</a></h3>
+<p>An IP address that can represent either an IPv4 or IPv6 address.</p>
+<p>Internally, the type is a pure IPv6 address. Support for IPv4 is handled
+using the <em>IPv4-mapped IPv6 address</em> range (<span class="target" id="index-0"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc4291.html#section-2.5.5.2"><strong>RFC 4291#section-2.5.5.2</strong></a>).
+When creating an <code class="docutils literal notranslate"><span class="pre">IPADDRESS</span></code>, IPv4 addresses will be mapped into that range.</p>
+<p>When formatting an <code class="docutils literal notranslate"><span class="pre">IPADDRESS</span></code>, any address within the mapped range will
+be formatted as an IPv4 address. Other addresses will be formatted as IPv6
+using the canonical format defined in <span class="target" id="index-1"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5952.html"><strong>RFC 5952</strong></a>.</p>
+<p>Examples: <code class="docutils literal notranslate"><span class="pre">IPADDRESS</span> <span class="pre">'10.0.0.1'</span></code>, <code class="docutils literal notranslate"><span class="pre">IPADDRESS</span> <span class="pre">'2001:db8::1'</span></code></p>
+<h3 id="ipprefix"><span id="ipprefix-type"></span><code class="docutils literal notranslate"><span class="pre">IPPREFIX</span></code><a class="headerlink" href="#ipprefix" title="Link to this heading">¶</a></h3>
+<p>An IP routing prefix that can represent either an IPv4 or IPv6 address.</p>
+<p>Internally, an address is a pure IPv6 address. Support for IPv4 is handled
+using the <em>IPv4-mapped IPv6 address</em> range (<span class="target" id="index-2"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc4291.html#section-2.5.5.2"><strong>RFC 4291#section-2.5.5.2</strong></a>).
+When creating an <code class="docutils literal notranslate"><span class="pre">IPPREFIX</span></code>, IPv4 addresses will be mapped into that range.
+Additionally, addresses will be reduced to the first address of a network.</p>
+<p><code class="docutils literal notranslate"><span class="pre">IPPREFIX</span></code> values will be formatted in CIDR notation, written as an IP
+address, a slash (‘/’) character, and the bit-length of the prefix. Any
+address within the IPv4-mapped IPv6 address range will be formatted as an
+IPv4 address. Other addresses will be formatted as IPv6 using the canonical
+format defined in <span class="target" id="index-3"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc5952.html"><strong>RFC 5952</strong></a>.</p>
+<p>Examples: <code class="docutils literal notranslate"><span class="pre">IPPREFIX</span> <span class="pre">'10.0.1.0/24'</span></code>, <code class="docutils literal notranslate"><span class="pre">IPPREFIX</span> <span class="pre">'2001:db8::/48'</span></code></p>
+<h2 id="uuid">UUID<a class="headerlink" href="#uuid" title="Link to this heading">¶</a></h2>
+<h3 id="uuid-type"><span id="id3"></span><code class="docutils literal notranslate"><span class="pre">UUID</span></code><a class="headerlink" href="#uuid-type" title="Link to this heading">¶</a></h3>
+<p>This type represents a UUID (Universally Unique IDentifier), also known as a
+GUID (Globally Unique IDentifier), using the format defined in <span class="target" id="index-4"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc4122.html"><strong>RFC 4122</strong></a>.</p>
+<p>Example: <code class="docutils literal notranslate"><span class="pre">UUID</span> <span class="pre">'12151fd2-7586-11e9-8f9e-2a86e4085a59'</span></code></p>
+<h2 id="hyperloglog">HyperLogLog<a class="headerlink" href="#hyperloglog" title="Link to this heading">¶</a></h2>
+<p>Calculating the approximate distinct count can be done much more cheaply than an exact count using the
+<a class="reference external" href="https://en.wikipedia.org/wiki/HyperLogLog">HyperLogLog</a> data sketch. See <a class="reference internal" href="../functions/hyperloglog.html"><span class="doc">HyperLogLog Functions</span></a>.</p>
+<h3 id="hyperloglog-type"><span id="id4"></span><code class="docutils literal notranslate"><span class="pre">HyperLogLog</span></code><a class="headerlink" href="#hyperloglog-type" title="Link to this heading">¶</a></h3>
+<p>A HyperLogLog sketch allows efficient computation of <code class="xref js js-func docutils literal notranslate"><span class="pre">approx_distinct()</span></code>. It starts as a
+sparse representation, switching to a dense representation when it becomes more efficient.</p>
+<h3 id="p4hyperloglog"><span id="p4hyperloglog-type"></span><code class="docutils literal notranslate"><span class="pre">P4HyperLogLog</span></code><a class="headerlink" href="#p4hyperloglog" title="Link to this heading">¶</a></h3>
+<p>A P4HyperLogLog sketch is similar to <a class="reference internal" href="#hyperloglog-type"><span class="std std-ref">HyperLogLog</span></a>, but it starts (and remains)
+in the dense representation.</p>
+<h2 id="khyperloglog">KHyperLogLog<a class="headerlink" href="#khyperloglog" title="Link to this heading">¶</a></h2>
+<h3 id="khyperloglog-type"><span id="id5"></span><code class="docutils literal notranslate"><span class="pre">KHyperLogLog</span></code><a class="headerlink" href="#khyperloglog-type" title="Link to this heading">¶</a></h3>
+<p>A KHyperLogLog is a data sketch that can be used to compactly represents the association of two
+columns. See <a class="reference internal" href="../functions/khyperloglog.html"><span class="doc">KHyperLogLog Functions</span></a>.</p>
+<h2 id="setdigest">SetDigest<a class="headerlink" href="#setdigest" title="Link to this heading">¶</a></h2>
+<h3 id="setdigest-type"><span id="id6"></span><code class="docutils literal notranslate"><span class="pre">SetDigest</span></code><a class="headerlink" href="#setdigest-type" title="Link to this heading">¶</a></h3>
+<p>A SetDigest (setdigest) is a data sketch structure used
+in calculating <a class="reference external" href="https://wikipedia.org/wiki/Jaccard_index">Jaccard similarity coefficient</a>
+between two sets.</p>
+<p>SetDigest encapsulates the following components:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wikipedia.org/wiki/HyperLogLog">HyperLogLog</a></p></li>
+<li><p><a class="reference external" href="http://wikipedia.org/wiki/MinHash#Variant_with_a_single_hash_function">MinHash with a single hash function</a></p></li>
+</ul>
+<p>The HyperLogLog structure is used for the approximation of the distinct elements
+in the original set.</p>
+<p>The MinHash structure is used to store a low memory footprint signature of the original set.
+The similarity of any two sets is estimated by comparing their signatures.</p>
+<p>SetDigests are additive, meaning they can be merged together.</p>
+<h2 id="sfm-sketch">SFM Sketch<a class="headerlink" href="#sfm-sketch" title="Link to this heading">¶</a></h2>
+<h3 id="sfmsketch"><span id="sfmsketch-type"></span><code class="docutils literal notranslate"><span class="pre">SfmSketch</span></code><a class="headerlink" href="#sfmsketch" title="Link to this heading">¶</a></h3>
+<p>The Sketch-Flip-Merge (SFM) data sketch is a noisy, random distinct-counting
+sketch similar to <a class="reference internal" href="#hyperloglog-type"><span class="std std-ref">HyperLogLog</span></a>. See <code class="xref js js-func docutils literal notranslate"><span class="pre">noisy_approx_set_sfm()</span></code>.</p>
+<h2 id="quantile-digest">Quantile Digest<a class="headerlink" href="#quantile-digest" title="Link to this heading">¶</a></h2>
+<h3 id="qdigest"><span id="qdigest-type"></span><code class="docutils literal notranslate"><span class="pre">QDigest</span></code><a class="headerlink" href="#qdigest" title="Link to this heading">¶</a></h3>
+<p>A quantile digest (qdigest) is a summary structure which captures the approximate
+distribution of data for a given input set, and can be queried to retrieve approximate
+quantile values from the distribution.  The level of accuracy for a qdigest
+is tunable, allowing for more precise results at the expense of space.</p>
+<p>A qdigest can be used to give approximate answer to queries asking for what value
+belongs at a certain quantile.  A useful property of qdigests is that they are
+additive, meaning they can be merged together without losing precision.</p>
+<p>A qdigest may be helpful whenever the partial results of <code class="docutils literal notranslate"><span class="pre">approx_percentile</span></code>
+can be reused.  For example, one may be interested in a daily reading of the 99th
+percentile values that are read over the course of a week.  Instead of calculating
+the past week of data with <code class="docutils literal notranslate"><span class="pre">approx_percentile</span></code>, <code class="docutils literal notranslate"><span class="pre">qdigest</span></code>s could be stored
+daily, and quickly merged to retrieve the 99th percentile value.</p>
+<p>See <a class="reference internal" href="../functions/qdigest.html"><span class="doc">Quantile Digest Functions</span></a>.</p>
+<h2 id="t-digest">T-Digest<a class="headerlink" href="#t-digest" title="Link to this heading">¶</a></h2>
+<h3 id="tdigest"><span id="tdigest-type"></span><code class="docutils literal notranslate"><span class="pre">TDigest</span></code><a class="headerlink" href="#tdigest" title="Link to this heading">¶</a></h3>
+<p>A t-digest is similar to <a class="reference internal" href="#qdigest-type"><span class="std std-ref">qdigest</span></a>, but it uses <a class="reference external" href="http://dx.doi.org/10.1145/347090.347195">a different algorithm</a> to represent the approximate distribution of a set
+of numbers. T-digest has better performance than quantile digests but only supports the
+<code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code> type. See <a class="reference internal" href="../functions/tdigest.html"><span class="doc">T-Digest Functions</span></a>.</p>
+<h2 id="kll-sketch">KLL Sketch<a class="headerlink" href="#kll-sketch" title="Link to this heading">¶</a></h2>
+<h3 id="kll-sketch-type"><span id="id8"></span><code class="docutils literal notranslate"><span class="pre">KLL</span> <span class="pre">Sketch</span></code><a class="headerlink" href="#kll-sketch-type" title="Link to this heading">¶</a></h3>
+<p>A KLL sketch is similar to the <a class="reference internal" href="#qdigest-type"><span class="std std-ref">qdigest</span></a>, but, like the
+T-Digest uses a <a class="reference external" href="https://datasketches.apache.org/docs/KLL/KLLSketch.html">different algorithm</a> to represent the
+approximate distribution of a set of values. The KLL sketch in Presto
+supports int, bigint, double, varchar, and boolean types. See
+<a class="reference internal" href="../functions/sketch.html"><span class="doc">Sketch Functions</span></a> for more information. In serialized form, the
+<code class="docutils literal notranslate"><span class="pre">kllsketch</span></code> type stored by Presto can be read directly by any other
+application which utilizes the Apache DataSketches library to read KLL
+sketches.</p>
+<h2 id="geospatial">Geospatial<a class="headerlink" href="#geospatial" title="Link to this heading">¶</a></h2>
+<h3 id="geospatial-type"><span id="id9"></span><code class="docutils literal notranslate"><span class="pre">Geospatial</span></code><a class="headerlink" href="#geospatial-type" title="Link to this heading">¶</a></h3>
+<p>Geospatial types in Presto are designed to handle and analyze spatial data efficiently,
+adhering to the SQL/MM specification and the Open Geospatial Consortium standards.
+These types include <code class="docutils literal notranslate"><span class="pre">POINT</span></code>, <code class="docutils literal notranslate"><span class="pre">LINESTRING</span></code>, <code class="docutils literal notranslate"><span class="pre">POLYGON</span></code>, <code class="docutils literal notranslate"><span class="pre">MULTIPOINT</span></code>, <code class="docutils literal notranslate"><span class="pre">MULTILINESTRING</span></code>, <code class="docutils literal notranslate"><span class="pre">MULTIPOLYGON</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">GEOMETRYCOLLECTION</span></code>, which can be expressed in Well-Known Text (WKT) and Well-Known Binary (WKB) formats.
+The types support operations such as spatial measurements and relationship checks,
+crucial for geographic information systems (GIS) and other applications requiring spatial data manipulation.
+The geospatial types ensure data integrity and provide robust tools for complex spatial querying and analysis.</p>
+<p>See <a class="reference internal" href="../functions/geospatial.html"><span class="doc">Geospatial Functions</span></a>.</p>
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../language.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: SQL Language" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              SQL Language
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="reserved.html" class="md-footer__link md-footer__link--next" aria-label="Next: Reserved Keywords" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Reserved Keywords
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.f9d9eeeb247ace16c.min.js?v=8ec58cb5"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    
+  </body>
+</html>
