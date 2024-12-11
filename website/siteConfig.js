@@ -165,6 +165,7 @@ const siteConfig = {
     "static/material.css",
     "static/sphinx_immaterial_theme.359ec555e2989f00f.min.css",
     "static/sphinx_immaterial_theme.37dfeca1a5899a14e.min.css",
+    "static/sphinx_immaterial_theme.1c495b8425a51fa92.min.css",
     "static/presto.css",
     "static/pygments.css",
     "static/fonts/material-icons.css",
