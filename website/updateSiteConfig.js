@@ -66,3 +66,4 @@ async function updateSphinxThemeFiles() {
 }
 
 updateSphinxThemeFiles().catch(console.error);
+
