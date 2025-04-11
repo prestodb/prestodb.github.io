@@ -943,6 +943,58 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Supported Use Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hive-connector" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto-cpp:hive connector (reference label)">Hive Connector</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hive Connector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hive-table-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto-cpp:hive table support (reference label)">Hive Table Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iceberg-table-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto-cpp:iceberg table support (reference label)">Iceberg Table Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tpch-connector" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto-cpp:tpch connector (reference label)">TPCH Connector</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
     </ul>
@@ -1094,6 +1146,58 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Supported Use Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hive-connector" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto-cpp:hive connector (reference label)">Hive Connector</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hive Connector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hive-table-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto-cpp:hive table support (reference label)">Hive Table Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iceberg-table-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto-cpp:iceberg table support (reference label)">Iceberg Table Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tpch-connector" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto-cpp:tpch connector (reference label)">TPCH Connector</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
     </ul>
@@ -1144,14 +1248,25 @@ Presto community to focus on more features and better integration with table
 formats and other data warehousing systems.</p>
 <h2 id="supported-use-cases">Supported Use Cases<a class="headerlink" href="#supported-use-cases" title="Link to this heading">¶</a></h2>
 <p>Only specific connectors are supported in the Presto C++ evaluation engine.</p>
+<h3 id="hive-connector">Hive Connector<a class="headerlink" href="#hive-connector" title="Link to this heading">¶</a></h3>
+<h4 id="hive-table-support">Hive Table Support<a class="headerlink" href="#hive-table-support" title="Link to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Hive connector for reads and writes, including CTAS, are supported.</p></li>
-<li><p>Hive Connector supports Delta Lake table access using Symlink table in Prestissimo.
+<li><p>Hive connector supports Delta Lake table access using Symlink table in Presto C++.
 For more information about Symlink tables, see <a class="reference external" href="https://docs.delta.io/latest/presto-integration.html">Presto, Trino, and Athena to Delta Lake integration using
 manifests</a>.</p></li>
-<li><p>Iceberg tables are supported only for reads.</p></li>
-<li><p>Iceberg connector supports both V1 and V2 tables, including tables with delete files.</p></li>
-<li><p>Supports reading and writing of DWRF and PARQUET file formats, supports reading ORC file format.</p></li>
+<li><p>Supports reading and writing of DWRF and PARQUET file formats.</p></li>
+<li><p>Supports reading ORC file format.</p></li>
+</ul>
+<h4 id="iceberg-table-support">Iceberg Table Support<a class="headerlink" href="#iceberg-table-support" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Iceberg tables use the Hive connector implementation in Velox.</p></li>
+<li><p>Only read operations are supported for Iceberg tables.</p></li>
+<li><p>The Iceberg connector supports both V1 and V2 tables, including those with positional delete files, but does not support equality delete files.</p></li>
+</ul>
+<p>For more information see <a class="reference internal" href="connector/iceberg.html"><span class="doc">Iceberg Connector</span></a> documentation.</p>
+<h3 id="tpch-connector">TPCH Connector<a class="headerlink" href="#tpch-connector" title="Link to this heading">¶</a></h3>
+<ul class="simple">
 <li><p>TPCH connector, with <code class="docutils literal notranslate"><span class="pre">tpch.naming=standard</span></code> catalog property.</p></li>
 </ul>
 
