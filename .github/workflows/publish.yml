@@ -5,6 +5,8 @@ on:
     branches: [source]
   push:
     branches: [source]
+    paths:
+      - 'website/**'
 
 jobs:
   checks:
@@ -30,4 +32,6 @@ jobs:
       - name: Fetch credentials
         run: echo "machine github.com login presto-oss password ${{ secrets.PRESTOOSS_PUBLISH_TOKEN }}" > ~/.netrc
       - name: Release to GitHub Pages
-        run: cd website && yarn install && GIT_USER="presto-oss" yarn run publish-gh-pages | (head -c 32768; echo "... skipping output ..."; tail -c 32768)
+        run: |
+          set -o pipefail
+          cd website && yarn install && GIT_USER="presto-oss" yarn run publish-gh-pages | (head -c 32768; echo "... skipping output ..."; tail -c 32768)
