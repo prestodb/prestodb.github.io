@@ -13,7 +13,7 @@ export const GetStarted_Cards = [
     description: "Run queries using the CLI",
     buttonText: "presto-cli-"+presto_latest_presto_version+"-executable.jar",
     buttonLink:
-      "https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/"+presto_latest_presto_version+"/presto-cli-"+presto_latest_presto_version+"-executable.jar",
+      "https://github.com/prestodb/presto/releases/download/"+presto_latest_presto_version+"/presto-cli-"+presto_latest_presto_version+"-executable.jar",
     footer:
       'A CLI for running queries is available see <a href="https://prestodb.io/docs/current/installation/cli.html" target="_blank">Command Line Interface.</a>',
   },
