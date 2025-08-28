@@ -15,7 +15,7 @@ export const GetStarted_Cards = [
     buttonLink:
       "https://github.com/prestodb/presto/releases/download/"+presto_latest_presto_version+"/presto-cli-"+presto_latest_presto_version+"-executable.jar",
     footer:
-      'A CLI for running queries is available see <a href="https://prestodb.io/docs/current/installation/cli.html" target="_blank">Command Line Interface.</a>',
+      'A CLI for running queries is available see <a href="https://prestodb.io/docs/current/clients/presto-cli.html" target="_blank">Command Line Interface.</a>',
   },
   {
     title: "JDBC Driver",
@@ -24,7 +24,7 @@ export const GetStarted_Cards = [
     buttonLink:
       "https://repo1.maven.org/maven2/com/facebook/presto/presto-jdbc/"+presto_latest_presto_version+"/presto-jdbc-"+presto_latest_presto_version+".jar",
     footer:
-      'Visit the <a href="https://prestodb.io/docs/current/installation/jdbc.html" target="_blank">JDCB Driver docs</a>',
+      'Visit the <a href="https://prestodb.io/docs/current/clients/java.html" target="_blank">JDBC Driver docs</a>',
   },
   {
     title: "Docker Presto Sandbox Container",
