@@ -1736,7 +1736,7 @@ and specify an entry point to run the server.</p>
 <span class="k">COPY</span><span class="w"> </span>etc<span class="w"> </span>/opt/presto/etc
 
 <span class="c"># Download the Presto CLI and put it in the image</span>
-<span class="k">RUN</span><span class="w"> </span>wget<span class="w"> </span>--quiet<span class="w"> </span>https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/<span class="si">${</span><span class="nv">PRESTO_VERSION</span><span class="si">}</span>/presto-cli-<span class="si">${</span><span class="nv">PRESTO_VERSION</span><span class="si">}</span>-executable.jar
+<span class="k">RUN</span><span class="w"> </span>wget<span class="w"> </span>--quiet<span class="w"> </span>https://github.com/prestodb/presto/releases/download/<span class="si">${</span><span class="nv">PRESTO_VERSION</span><span class="si">}</span>/presto-cli-<span class="si">${</span><span class="nv">PRESTO_VERSION</span><span class="si">}</span>-executable.jar
 <span class="k">RUN</span><span class="w"> </span>mv<span class="w"> </span>presto-cli-<span class="si">${</span><span class="nv">PRESTO_VERSION</span><span class="si">}</span>-executable.jar<span class="w"> </span>/usr/local/bin/presto
 <span class="k">RUN</span><span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/presto
 
