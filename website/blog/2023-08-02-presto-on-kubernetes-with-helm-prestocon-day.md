@@ -56,7 +56,7 @@ Prerequisites:
 
 **Step 1: Add Presto Helm Chart Repository** 
 
-`helm repo add presto https://example.com/presto/charts` 
+`helm repo add presto https://prestodb.github.io/presto-helm-charts`
 
 **Step 2: Explore the Helm Chart Information** 
 
@@ -84,7 +84,7 @@ This command will show the status of the Presto Pods. Ensure that the coordinato
 
 **Step 6: Access Presto UI** 
 
-`kubectl port-forward svc/my-presto-coordinator 8080:8080` 
+`kubectl port-forward svc/my-presto 8080:8080` 
 
 This command will create a port-forwarding tunnel, allowing you to access the Presto UI at http://localhost:8080 on your local machine. 
 
@@ -108,7 +108,7 @@ Ensure that all Presto Pods are running and ready.
 
 **Step 10: Access Presto UI** 
 
-`kubectl port-forward svc/my-presto-coordinator 8080:8080` 
+`kubectl port-forward svc/my-presto 8080:8080` 
 
 Access the Presto UI at http://localhost:8080 on your local machine. 
 
@@ -126,7 +126,7 @@ Ensure all Presto Pods, including coordinators and workers, are running and read
 
 **Step 13: Access Presto UI** 
 
-`kubectl port-forward svc/my-presto-coordinator 8080:8080` 
+`kubectl port-forward svc/my-presto 8080:8080` 
 
 Access the Presto UI at http://localhost:8080 on your local machine. 
 
