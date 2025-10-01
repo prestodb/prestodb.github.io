@@ -85,7 +85,7 @@
 <li>Helm installed on your local machine.</li>
 </ul>
 <p><strong>Step 1: Add Presto Helm Chart Repository</strong></p>
-<p><code>helm repo add presto https://example.com/presto/charts</code></p>
+<p><code>helm repo add presto https://prestodb.github.io/presto-helm-charts</code></p>
 <p><strong>Step 2: Explore the Helm Chart Information</strong></p>
 <p><code>helm show chart presto/presto</code></p>
 <p>This command will display essential information about the Presto Helm chart, such as the chart version, description, and other metadata.</p>
@@ -99,7 +99,7 @@
 <p><code>kubectl get pods</code></p>
 <p>This command will show the status of the Presto Pods. Ensure that the coordinator and worker Pods are running and ready.</p>
 <p><strong>Step 6: Access Presto UI</strong></p>
-<p><code>kubectl port-forward svc/my-presto-coordinator 8080:8080</code></p>
+<p><code>kubectl port-forward svc/my-presto 8080:8080</code></p>
 <p>This command will create a port-forwarding tunnel, allowing you to access the Presto UI at <a href="http://localhost:8080">http://localhost:8080</a> on your local machine.</p>
 <p><strong>Step 7: Uninstall Presto</strong></p>
 <p><code>helm uninstall my-presto</code></p>
@@ -111,7 +111,7 @@
 <p><code>kubectl get pods</code></p>
 <p>Ensure that all Presto Pods are running and ready.</p>
 <p><strong>Step 10: Access Presto UI</strong></p>
-<p><code>kubectl port-forward svc/my-presto-coordinator 8080:8080</code></p>
+<p><code>kubectl port-forward svc/my-presto 8080:8080</code></p>
 <p>Access the Presto UI at <a href="http://localhost:8080">http://localhost:8080</a> on your local machine.</p>
 <p><strong>Step 11: Install Presto in Highly Available (HA) Cluster Mode</strong></p>
 <p><code>helm install my-presto presto/presto --set mode=ha --set coordinator.replicas=2</code></p>
@@ -120,7 +120,7 @@
 <p><code>kubectl get pods</code></p>
 <p>Ensure all Presto Pods, including coordinators and workers, are running and ready.</p>
 <p><strong>Step 13: Access Presto UI</strong></p>
-<p><code>kubectl port-forward svc/my-presto-coordinator 8080:8080</code></p>
+<p><code>kubectl port-forward svc/my-presto 8080:8080</code></p>
 <p>Access the Presto UI at <a href="http://localhost:8080">http://localhost:8080</a> on your local machine.</p>
 <p>Congratulations! You have successfully installed Presto on Kubernetes using the Helm package manager. With Presto up and running, you can now explore its powerful distributed SQL query capabilities and utilize Kubernetes' scalability and resource management features for efficient data analytics. Remember to customize the values in <code>presto-values.yaml</code> and the Helm commands according to your specific requirements and environment.</p>
 <h2><a class="anchor" aria-hidden="true" id="future-initiatives"></a><a href="#future-initiatives" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Future Initiatives</h2>
