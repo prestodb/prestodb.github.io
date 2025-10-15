@@ -1,0 +1,3055 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="plugin/function_plugin.html">
+      
+      
+        <link rel="next" href="properties-session.html">
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Presto C++ Configuration Properties - Presto 0.295 Documentation</title>
+      
+    
+    
+      
+        
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.14a9c4ab4f1ea5d49.min.css?v=1031fc17" />
+        <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-K7GB6F0LBZ",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#coordinator-properties" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.295 Documentation" class="md-header__button md-logo" aria-label="Presto 0.295 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.295 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Presto C++ Configuration Properties
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.295 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.295 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.295 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clients
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Administration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query Optimizer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Connectors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plugins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Functions and Operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Statement Syntax
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Migration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    REST API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ecosystem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Developer Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../presto-cpp.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Presto C++
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_18" id="__nav_18_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            Presto C++
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="features.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Features
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sidecar.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Sidecar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="limitations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Limitations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Plugins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Configuration Properties
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Configuration Properties
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/presto_cpp/properties.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/presto_cpp/properties.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#coordinator-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:coordinator properties (reference label)">Coordinator Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Coordinator Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#driver-max-split-preload" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``driver.max-split-preload`` (reference label)">driver.<wbr>max-<wbr>split-<wbr>preload</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#driver-cancel-tasks-with-stuck-operators-threshold-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``driver.cancel-tasks-with-stuck-operators-threshold-ms`` (reference label)">driver.<wbr>cancel-<wbr>tasks-<wbr>with-<wbr>stuck-<wbr>operators-<wbr>threshold-<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-execution-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``native-execution-enabled`` (reference label)">native-<wbr>execution-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-execution-type-rewrite-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``native-execution-type-rewrite-enabled`` (reference label)">native-<wbr>execution-<wbr>type-<wbr>rewrite-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizer-optimize-hash-generation" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``optimizer.optimize-hash-generation`` (reference label)">optimizer.<wbr>optimize-<wbr>hash-<wbr>generation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regex-library" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``regex-library`` (reference label)">regex-<wbr>library</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-alternative-function-signatures" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``use-alternative-function-signatures`` (reference label)">use-<wbr>alternative-<wbr>function-<wbr>signatures</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-default-namespace" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``presto.default-namespace`` (reference label)">presto.<wbr>default-<wbr>namespace</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#worker-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:worker properties (reference label)">Worker Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Worker Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#runtime-metrics-collection-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``runtime-metrics-collection-enabled`` (reference label)">runtime-<wbr>metrics-<wbr>collection-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-max-drivers-per-task" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``task.max-drivers-per-task`` (reference label)">task.<wbr>max-<wbr>drivers-<wbr>per-<wbr>task</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-max-memory-per-node" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``query.max-memory-per-node`` (reference label)">query.<wbr>max-<wbr>memory-<wbr>per-<wbr>node</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-memory-gb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``system-memory-gb`` (reference label)">system-<wbr>memory-<wbr>gb</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-memory-gb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``query-memory-gb`` (reference label)">query-<wbr>memory-<wbr>gb</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-spill-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``max_spill_bytes`` (reference label)">max_<wbr>spill_<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``spill-enabled`` (reference label)">spill-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``join-spill-enabled`` (reference label)">join-<wbr>spill-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``aggregation-spill-enabled`` (reference label)">aggregation-<wbr>spill-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order-by-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``order-by-spill-enabled`` (reference label)">order-<wbr>by-<wbr>spill-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-exchange-max-partition-buffer-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``local-exchange.max-partition-buffer-size`` (reference label)">local-<wbr>exchange.<wbr>max-<wbr>partition-<wbr>buffer-<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-reserved-capacity" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.reserved-capacity`` (reference label)">shared-<wbr>arbitrator.<wbr>reserved-<wbr>capacity</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-initial-capacity" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-initial-capacity`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>initial-<wbr>capacity</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-global-arbitration-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.global-arbitration-enabled`` (reference label)">shared-<wbr>arbitrator.<wbr>global-<wbr>arbitration-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-reserved-capacity" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-reserved-capacity`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>reserved-<wbr>capacity</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-transfer-capacity" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-transfer-capacity`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>transfer-<wbr>capacity</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-max-memory-arbitration-time" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.max-memory-arbitration-time`` (reference label)">shared-<wbr>arbitrator.<wbr>max-<wbr>memory-<wbr>arbitration-<wbr>time</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-fast-exponential-growth-capacity-limit" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.fast-exponential-growth-capacity-limit`` (reference label)">shared-<wbr>arbitrator.<wbr>fast-<wbr>exponential-<wbr>growth-<wbr>capacity-<wbr>limit</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-slow-capacity-grow-pct" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.slow-capacity-grow-pct`` (reference label)">shared-<wbr>arbitrator.<wbr>slow-<wbr>capacity-<wbr>grow-<wbr>pct</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-min-free-capacity" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-min-free-capacity`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>min-<wbr>free-<wbr>capacity</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-min-free-capacity-pct" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-min-free-capacity-pct`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>min-<wbr>free-<wbr>capacity-<wbr>pct</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-abort-capacity-limit" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-abort-capacity-limit`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>abort-<wbr>capacity-<wbr>limit</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-min-reclaim-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-min-reclaim-bytes`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>min-<wbr>reclaim-<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-reclaim-threads-hw-multiplier" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-reclaim-threads-hw-multiplier`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>reclaim-<wbr>threads-<wbr>hw-<wbr>multiplier</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-global-arbitration-memory-reclaim-pct" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.global-arbitration-memory-reclaim-pct`` (reference label)">shared-<wbr>arbitrator.<wbr>global-<wbr>arbitration-<wbr>memory-<wbr>reclaim-<wbr>pct</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-global-arbitration-abort-time-ratio" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.global-arbitration-abort-time-ratio`` (reference label)">shared-<wbr>arbitrator.<wbr>global-<wbr>arbitration-<wbr>abort-<wbr>time-<wbr>ratio</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-global-arbitration-without-spill" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.global-arbitration-without-spill`` (reference label)">shared-<wbr>arbitrator.<wbr>global-<wbr>arbitration-<wbr>without-<wbr>spill</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#cache-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:cache properties (reference label)">Cache Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cache Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#async-data-cache-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-data-cache-enabled`` (reference label)">async-<wbr>data-<wbr>cache-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-ssd-gb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-ssd-gb`` (reference label)">async-<wbr>cache-<wbr>ssd-<wbr>gb</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-ssd-path" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-ssd-path`` (reference label)">async-<wbr>cache-<wbr>ssd-<wbr>path</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-max-ssd-write-ratio" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-max-ssd-write-ratio`` (reference label)">async-<wbr>cache-<wbr>max-<wbr>ssd-<wbr>write-<wbr>ratio</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-ssd-savable-ratio" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-ssd-savable-ratio`` (reference label)">async-<wbr>cache-<wbr>ssd-<wbr>savable-<wbr>ratio</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-min-ssd-savable-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-min-ssd-savable-bytes`` (reference label)">async-<wbr>cache-<wbr>min-<wbr>ssd-<wbr>savable-<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-persistence-interval" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-persistence-interval`` (reference label)">async-<wbr>cache-<wbr>persistence-<wbr>interval</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-ssd-disable-file-cow" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-ssd-disable-file-cow`` (reference label)">async-<wbr>cache-<wbr>ssd-<wbr>disable-<wbr>file-<wbr>cow</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssd-cache-checksum-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``ssd-cache-checksum-enabled`` (reference label)">ssd-<wbr>cache-<wbr>checksum-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssd-cache-read-verification-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``ssd-cache-read-verification-enabled`` (reference label)">ssd-<wbr>cache-<wbr>read-<wbr>verification-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-velox-ttl-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``cache.velox.ttl-enabled`` (reference label)">cache.<wbr>velox.<wbr>ttl-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-velox-ttl-threshold" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``cache.velox.ttl-threshold`` (reference label)">cache.<wbr>velox.<wbr>ttl-<wbr>threshold</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-velox-ttl-check-interval" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``cache.velox.ttl-check-interval`` (reference label)">cache.<wbr>velox.<wbr>ttl-<wbr>check-<wbr>interval</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#exchange-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:exchange properties (reference label)">Exchange Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exchange Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exchange-http-client-request-data-sizes-max-wait-sec" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``exchange.http-client.request-data-sizes-max-wait-sec`` (reference label)">exchange.<wbr>http-<wbr>client.<wbr>request-<wbr>data-<wbr>sizes-<wbr>max-<wbr>wait-<wbr>sec</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#memory-checker-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:memory checker properties (reference label)">Memory Checker Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory Checker Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-mem-pushback-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``system-mem-pushback-enabled`` (reference label)">system-<wbr>mem-<wbr>pushback-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-mem-limit-gb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``system-mem-limit-gb`` (reference label)">system-<wbr>mem-<wbr>limit-<wbr>gb</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-mem-shrink-gb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``system-mem-shrink-gb`` (reference label)">system-<wbr>mem-<wbr>shrink-<wbr>gb</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-mem-pushback-abort-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``system-mem-pushback-abort-enabled`` (reference label)">system-<wbr>mem-<wbr>pushback-<wbr>abort-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-overloaded-threshold-mem-gb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``worker-overloaded-threshold-mem-gb`` (reference label)">worker-<wbr>overloaded-<wbr>threshold-<wbr>mem-<wbr>gb</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-overloaded-threshold-cpu-pct" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``worker-overloaded-threshold-cpu-pct`` (reference label)">worker-<wbr>overloaded-<wbr>threshold-<wbr>cpu-<wbr>pct</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-overloaded-threshold-num-queued-drivers-hw-multiplier" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``worker-overloaded-threshold-num-queued-drivers-hw-multiplier`` (reference label)">worker-<wbr>overloaded-<wbr>threshold-<wbr>num-<wbr>queued-<wbr>drivers-<wbr>hw-<wbr>multiplier</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-overloaded-cooldown-period-sec" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``worker-overloaded-cooldown-period-sec`` (reference label)">worker-<wbr>overloaded-<wbr>cooldown-<wbr>period-<wbr>sec</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-overloaded-task-queuing-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``worker-overloaded-task-queuing-enabled`` (reference label)">worker-<wbr>overloaded-<wbr>task-<wbr>queuing-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#environment-variables-as-values-for-worker-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:environment variables as values for worker properties (reference label)">Environment Variables As Values For Worker Properties</span>
+    </span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="properties-session.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Session Properties
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshoot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/presto_cpp/properties.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/presto_cpp/properties.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#coordinator-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:coordinator properties (reference label)">Coordinator Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Coordinator Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#driver-max-split-preload" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``driver.max-split-preload`` (reference label)">driver.<wbr>max-<wbr>split-<wbr>preload</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#driver-cancel-tasks-with-stuck-operators-threshold-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``driver.cancel-tasks-with-stuck-operators-threshold-ms`` (reference label)">driver.<wbr>cancel-<wbr>tasks-<wbr>with-<wbr>stuck-<wbr>operators-<wbr>threshold-<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-execution-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``native-execution-enabled`` (reference label)">native-<wbr>execution-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-execution-type-rewrite-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``native-execution-type-rewrite-enabled`` (reference label)">native-<wbr>execution-<wbr>type-<wbr>rewrite-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizer-optimize-hash-generation" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``optimizer.optimize-hash-generation`` (reference label)">optimizer.<wbr>optimize-<wbr>hash-<wbr>generation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regex-library" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``regex-library`` (reference label)">regex-<wbr>library</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-alternative-function-signatures" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``use-alternative-function-signatures`` (reference label)">use-<wbr>alternative-<wbr>function-<wbr>signatures</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-default-namespace" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``presto.default-namespace`` (reference label)">presto.<wbr>default-<wbr>namespace</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#worker-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:worker properties (reference label)">Worker Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Worker Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#runtime-metrics-collection-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``runtime-metrics-collection-enabled`` (reference label)">runtime-<wbr>metrics-<wbr>collection-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-max-drivers-per-task" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``task.max-drivers-per-task`` (reference label)">task.<wbr>max-<wbr>drivers-<wbr>per-<wbr>task</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-max-memory-per-node" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``query.max-memory-per-node`` (reference label)">query.<wbr>max-<wbr>memory-<wbr>per-<wbr>node</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-memory-gb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``system-memory-gb`` (reference label)">system-<wbr>memory-<wbr>gb</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-memory-gb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``query-memory-gb`` (reference label)">query-<wbr>memory-<wbr>gb</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-spill-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``max_spill_bytes`` (reference label)">max_<wbr>spill_<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``spill-enabled`` (reference label)">spill-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``join-spill-enabled`` (reference label)">join-<wbr>spill-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``aggregation-spill-enabled`` (reference label)">aggregation-<wbr>spill-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order-by-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``order-by-spill-enabled`` (reference label)">order-<wbr>by-<wbr>spill-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-exchange-max-partition-buffer-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``local-exchange.max-partition-buffer-size`` (reference label)">local-<wbr>exchange.<wbr>max-<wbr>partition-<wbr>buffer-<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-reserved-capacity" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.reserved-capacity`` (reference label)">shared-<wbr>arbitrator.<wbr>reserved-<wbr>capacity</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-initial-capacity" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-initial-capacity`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>initial-<wbr>capacity</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-global-arbitration-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.global-arbitration-enabled`` (reference label)">shared-<wbr>arbitrator.<wbr>global-<wbr>arbitration-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-reserved-capacity" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-reserved-capacity`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>reserved-<wbr>capacity</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-transfer-capacity" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-transfer-capacity`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>transfer-<wbr>capacity</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-max-memory-arbitration-time" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.max-memory-arbitration-time`` (reference label)">shared-<wbr>arbitrator.<wbr>max-<wbr>memory-<wbr>arbitration-<wbr>time</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-fast-exponential-growth-capacity-limit" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.fast-exponential-growth-capacity-limit`` (reference label)">shared-<wbr>arbitrator.<wbr>fast-<wbr>exponential-<wbr>growth-<wbr>capacity-<wbr>limit</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-slow-capacity-grow-pct" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.slow-capacity-grow-pct`` (reference label)">shared-<wbr>arbitrator.<wbr>slow-<wbr>capacity-<wbr>grow-<wbr>pct</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-min-free-capacity" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-min-free-capacity`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>min-<wbr>free-<wbr>capacity</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-min-free-capacity-pct" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-min-free-capacity-pct`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>min-<wbr>free-<wbr>capacity-<wbr>pct</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-abort-capacity-limit" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-abort-capacity-limit`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>abort-<wbr>capacity-<wbr>limit</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-pool-min-reclaim-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-pool-min-reclaim-bytes`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>pool-<wbr>min-<wbr>reclaim-<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-memory-reclaim-threads-hw-multiplier" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.memory-reclaim-threads-hw-multiplier`` (reference label)">shared-<wbr>arbitrator.<wbr>memory-<wbr>reclaim-<wbr>threads-<wbr>hw-<wbr>multiplier</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-global-arbitration-memory-reclaim-pct" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.global-arbitration-memory-reclaim-pct`` (reference label)">shared-<wbr>arbitrator.<wbr>global-<wbr>arbitration-<wbr>memory-<wbr>reclaim-<wbr>pct</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-global-arbitration-abort-time-ratio" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.global-arbitration-abort-time-ratio`` (reference label)">shared-<wbr>arbitrator.<wbr>global-<wbr>arbitration-<wbr>abort-<wbr>time-<wbr>ratio</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-arbitrator-global-arbitration-without-spill" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``shared-arbitrator.global-arbitration-without-spill`` (reference label)">shared-<wbr>arbitrator.<wbr>global-<wbr>arbitration-<wbr>without-<wbr>spill</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#cache-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:cache properties (reference label)">Cache Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cache Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#async-data-cache-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-data-cache-enabled`` (reference label)">async-<wbr>data-<wbr>cache-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-ssd-gb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-ssd-gb`` (reference label)">async-<wbr>cache-<wbr>ssd-<wbr>gb</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-ssd-path" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-ssd-path`` (reference label)">async-<wbr>cache-<wbr>ssd-<wbr>path</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-max-ssd-write-ratio" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-max-ssd-write-ratio`` (reference label)">async-<wbr>cache-<wbr>max-<wbr>ssd-<wbr>write-<wbr>ratio</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-ssd-savable-ratio" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-ssd-savable-ratio`` (reference label)">async-<wbr>cache-<wbr>ssd-<wbr>savable-<wbr>ratio</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-min-ssd-savable-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-min-ssd-savable-bytes`` (reference label)">async-<wbr>cache-<wbr>min-<wbr>ssd-<wbr>savable-<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-persistence-interval" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-persistence-interval`` (reference label)">async-<wbr>cache-<wbr>persistence-<wbr>interval</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-cache-ssd-disable-file-cow" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``async-cache-ssd-disable-file-cow`` (reference label)">async-<wbr>cache-<wbr>ssd-<wbr>disable-<wbr>file-<wbr>cow</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssd-cache-checksum-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``ssd-cache-checksum-enabled`` (reference label)">ssd-<wbr>cache-<wbr>checksum-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssd-cache-read-verification-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``ssd-cache-read-verification-enabled`` (reference label)">ssd-<wbr>cache-<wbr>read-<wbr>verification-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-velox-ttl-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``cache.velox.ttl-enabled`` (reference label)">cache.<wbr>velox.<wbr>ttl-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-velox-ttl-threshold" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``cache.velox.ttl-threshold`` (reference label)">cache.<wbr>velox.<wbr>ttl-<wbr>threshold</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-velox-ttl-check-interval" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``cache.velox.ttl-check-interval`` (reference label)">cache.<wbr>velox.<wbr>ttl-<wbr>check-<wbr>interval</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#exchange-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:exchange properties (reference label)">Exchange Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exchange Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exchange-http-client-request-data-sizes-max-wait-sec" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``exchange.http-client.request-data-sizes-max-wait-sec`` (reference label)">exchange.<wbr>http-<wbr>client.<wbr>request-<wbr>data-<wbr>sizes-<wbr>max-<wbr>wait-<wbr>sec</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#memory-checker-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:memory checker properties (reference label)">Memory Checker Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory Checker Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-mem-pushback-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``system-mem-pushback-enabled`` (reference label)">system-<wbr>mem-<wbr>pushback-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-mem-limit-gb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``system-mem-limit-gb`` (reference label)">system-<wbr>mem-<wbr>limit-<wbr>gb</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-mem-shrink-gb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``system-mem-shrink-gb`` (reference label)">system-<wbr>mem-<wbr>shrink-<wbr>gb</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-mem-pushback-abort-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``system-mem-pushback-abort-enabled`` (reference label)">system-<wbr>mem-<wbr>pushback-<wbr>abort-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-overloaded-threshold-mem-gb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``worker-overloaded-threshold-mem-gb`` (reference label)">worker-<wbr>overloaded-<wbr>threshold-<wbr>mem-<wbr>gb</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-overloaded-threshold-cpu-pct" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``worker-overloaded-threshold-cpu-pct`` (reference label)">worker-<wbr>overloaded-<wbr>threshold-<wbr>cpu-<wbr>pct</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-overloaded-threshold-num-queued-drivers-hw-multiplier" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``worker-overloaded-threshold-num-queued-drivers-hw-multiplier`` (reference label)">worker-<wbr>overloaded-<wbr>threshold-<wbr>num-<wbr>queued-<wbr>drivers-<wbr>hw-<wbr>multiplier</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-overloaded-cooldown-period-sec" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``worker-overloaded-cooldown-period-sec`` (reference label)">worker-<wbr>overloaded-<wbr>cooldown-<wbr>period-<wbr>sec</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#worker-overloaded-task-queuing-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:``worker-overloaded-task-queuing-enabled`` (reference label)">worker-<wbr>overloaded-<wbr>task-<wbr>queuing-<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#environment-variables-as-values-for-worker-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/properties:environment variables as values for worker properties (reference label)">Environment Variables As Values For Worker Properties</span>
+    </span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+
+  
+  
+
+<h1 id="presto-c-configuration-properties">Presto C++ Configuration Properties<a class="headerlink" href="#presto-c-configuration-properties" title="Link to this heading">¶</a></h1>
+<p>This section describes Presto C++ configuration properties.</p>
+<p>The following is not a complete list of all configuration properties,
+and does not include any connector-specific catalog configuration properties
+or session properties.</p>
+<p>For information on catalog configuration properties, see <a class="reference internal" href="../connector.html"><span class="doc">Connectors</span></a>.</p>
+<p>For information on Presto C++ session properties, see <a class="reference internal" href="properties-session.html"><span class="doc">Presto C++ Session Properties</span></a>.</p>
+<p>NOTE: While some of the configuration properties below with “-gb” in their names
+show gigabytes (gB; 1 gB equals 1000000000 B), it is actually
+gibibytes (GiB; 1 GiB equals 1073741824 B).</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#coordinator-properties" id="id1">Coordinator Properties</a></p></li>
+<li><p><a class="reference internal" href="#worker-properties" id="id2">Worker Properties</a></p></li>
+<li><p><a class="reference internal" href="#cache-properties" id="id3">Cache Properties</a></p></li>
+<li><p><a class="reference internal" href="#exchange-properties" id="id4">Exchange Properties</a></p></li>
+<li><p><a class="reference internal" href="#memory-checker-properties" id="id5">Memory Checker Properties</a></p></li>
+<li><p><a class="reference internal" href="#environment-variables-as-values-for-worker-properties" id="id6">Environment Variables As Values For Worker Properties</a></p></li>
+</ul>
+</nav>
+<h2 id="coordinator-properties">Coordinator Properties<a class="headerlink" href="#coordinator-properties" title="Link to this heading">¶</a></h2>
+<p>Set the following configuration properties for the Presto coordinator exactly
+as they are shown in this code block to enable the Presto coordinator’s use of
+Presto C++ workers.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><code>native-execution-enabled=true
+optimizer.optimize-hash-generation=false
+regex-library=RE2J
+use-alternative-function-signatures=true
+</code></pre></div>
+</div>
+<p>These Presto coordinator configuration properties are described here, in
+alphabetical order.</p>
+<h3 id="driver-max-split-preload"><code class="docutils literal notranslate"><span class="pre">driver.max-split-preload</span></code><a class="headerlink" href="#driver-max-split-preload" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">2</span></code></p>
+<p>Maximum number of splits to preload per driver.
+Set to 0 to disable preloading.</p>
+</li>
+</ul>
+<h3 id="driver-cancel-tasks-with-stuck-operators-threshold-ms"><code class="docutils literal notranslate"><span class="pre">driver.cancel-tasks-with-stuck-operators-threshold-ms</span></code><a class="headerlink" href="#driver-cancel-tasks-with-stuck-operators-threshold-ms" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">240000</span></code> (40 minutes)</p>
+<p>Cancels any task when at least one operator has been stuck for at
+least the time specified by this threshold.</p>
+<p>Set this property to <code class="docutils literal notranslate"><span class="pre">0</span></code> to disable canceling.</p>
+</li>
+</ul>
+<h3 id="native-execution-enabled"><code class="docutils literal notranslate"><span class="pre">native-execution-enabled</span></code><a class="headerlink" href="#native-execution-enabled" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+<p>This property is required when running Presto C++ workers because of
+underlying differences in behavior from Java workers.</p>
+</li>
+</ul>
+<h3 id="native-execution-type-rewrite-enabled"><code class="docutils literal notranslate"><span class="pre">native-execution-type-rewrite-enabled</span></code><a class="headerlink" href="#native-execution-type-rewrite-enabled" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+<dl class="simple">
+<dt>When set to <code class="docutils literal notranslate"><span class="pre">true</span></code>:</dt><dd><ul class="simple">
+<li><p>Custom type names are peeled in the coordinator. Only the actual base type is preserved.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CAST(col</span> <span class="pre">AS</span> <span class="pre">EnumType&lt;T&gt;)</span></code> is rewritten as <code class="docutils literal notranslate"><span class="pre">CAST(col</span> <span class="pre">AS</span> <span class="pre">&lt;T&gt;)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ENUM_KEY(EnumType&lt;T&gt;)</span></code> is rewritten as <code class="docutils literal notranslate"><span class="pre">ELEMENT_AT(MAP(&lt;T&gt;,</span> <span class="pre">VARCHAR))</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>This property can only be enabled with native execution.</p>
+</li>
+</ul>
+<h3 id="optimizer-optimize-hash-generation"><code class="docutils literal notranslate"><span class="pre">optimizer.optimize-hash-generation</span></code><a class="headerlink" href="#optimizer-optimize-hash-generation" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+<p>Set this property to <code class="docutils literal notranslate"><span class="pre">false</span></code> when running Presto C++ workers.
+Velox does not support optimized hash generation, instead using a HashTable
+with adaptive runtime optimizations that does not use extra hash fields.</p>
+</li>
+</ul>
+<h3 id="regex-library"><code class="docutils literal notranslate"><span class="pre">regex-library</span></code><a class="headerlink" href="#regex-library" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">type</span></code></p></li>
+<li><p><strong>Allowed values:</strong> <code class="docutils literal notranslate"><span class="pre">RE2J</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">JONI</span></code></p>
+<p>Only <a class="reference external" href="https://github.com/google/re2j">RE2J</a> is currently supported by Velox.</p>
+</li>
+</ul>
+<h3 id="use-alternative-function-signatures"><code class="docutils literal notranslate"><span class="pre">use-alternative-function-signatures</span></code><a class="headerlink" href="#use-alternative-function-signatures" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+<p>Some aggregation functions use generic intermediate types which are
+not compatible with Velox aggregation function intermediate types. One
+example function is <code class="docutils literal notranslate"><span class="pre">approx_distinct</span></code>, whose intermediate type is
+<code class="docutils literal notranslate"><span class="pre">VARBINARY</span></code>.
+This property provides function signatures for built-in aggregation
+functions which are compatible with Velox.</p>
+</li>
+</ul>
+<h3 id="presto-default-namespace"><code class="docutils literal notranslate"><span class="pre">presto.default-namespace</span></code><a class="headerlink" href="#presto-default-namespace" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">presto.default</span></code></p>
+<p>Specifies the namespace prefix for native C++ functions.</p>
+</li>
+</ul>
+<h2 id="worker-properties">Worker Properties<a class="headerlink" href="#worker-properties" title="Link to this heading">¶</a></h2>
+<p>The configuration properties of Presto C++ workers are described here, in alphabetical order.</p>
+<h3 id="runtime-metrics-collection-enabled"><code class="docutils literal notranslate"><span class="pre">runtime-metrics-collection-enabled</span></code><a class="headerlink" href="#runtime-metrics-collection-enabled" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+<p>Enables collection of worker level metrics.</p>
+</li>
+</ul>
+<h3 id="task-max-drivers-per-task"><code class="docutils literal notranslate"><span class="pre">task.max-drivers-per-task</span></code><a class="headerlink" href="#task-max-drivers-per-task" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">number</span> <span class="pre">of</span> <span class="pre">concurrent</span> <span class="pre">threads</span> <span class="pre">supported</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">host</span></code></p>
+<p>Number of drivers to use per task. Defaults to the number of concurrent
+threads supported by the host.</p>
+</li>
+</ul>
+<h3 id="query-max-memory-per-node"><code class="docutils literal notranslate"><span class="pre">query.max-memory-per-node</span></code><a class="headerlink" href="#query-max-memory-per-node" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">4GB</span></code></p>
+<p>Max memory usage for each query.</p>
+</li>
+</ul>
+<h3 id="system-memory-gb"><code class="docutils literal notranslate"><span class="pre">system-memory-gb</span></code><a class="headerlink" href="#system-memory-gb" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">57</span></code></p>
+<p>Memory allocation limit enforced by an internal memory allocator. It consists of two parts:
+1) Memory used by the queries as specified in <code class="docutils literal notranslate"><span class="pre">query-memory-gb</span></code>; 2) Memory used by the
+system, such as disk spilling and cache prefetch.</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">system-memory-gb</span></code> to about 90% of available machine memory of the deployment.
+This allows some buffer room to handle unaccounted memory in order to prevent out-of-memory conditions.
+The default value of 57 gb is calculated based on available machine memory of 64 gb.</p>
+</li>
+</ul>
+<h3 id="query-memory-gb"><code class="docutils literal notranslate"><span class="pre">query-memory-gb</span></code><a class="headerlink" href="#query-memory-gb" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">38</span></code></p>
+<p>Specifies the total amount of memory in GB that can be used for all queries on a
+worker node. Memory for system usage such as disk spilling and cache prefetch are
+not counted in it.</p>
+</li>
+</ul>
+<h3 id="max-spill-bytes"><code class="docutils literal notranslate"><span class="pre">max_spill_bytes</span></code><a class="headerlink" href="#max-spill-bytes" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">100UL</span> <span class="pre">&lt;&lt;</span> <span class="pre">30</span></code></p>
+<p>Specifies the max spill bytes limit set for each query. This is used to cap the
+storage used for spilling. If it is zero, then there is no limit and spilling
+might exhaust the storage or takes too long to run.</p>
+</li>
+</ul>
+<h3 id="spill-enabled"><code class="docutils literal notranslate"><span class="pre">spill-enabled</span></code><a class="headerlink" href="#spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Try spilling memory to disk to avoid exceeding memory limits for the query.</p>
+<p>Spilling works by offloading memory to disk. This process can allow a query with a large memory
+footprint to pass at the cost of slower execution times. Currently, spilling is supported only for
+aggregations and joins (inner and outer), so this property will not reduce memory usage required for
+window functions, sorting and other join types.</p>
+<h3 id="join-spill-enabled"><code class="docutils literal notranslate"><span class="pre">join-spill-enabled</span></code><a class="headerlink" href="#join-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>When <code class="docutils literal notranslate"><span class="pre">spill_enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, this determines whether Presto will try spilling memory to disk for joins to
+avoid exceeding memory limits for the query.</p>
+<h3 id="aggregation-spill-enabled"><code class="docutils literal notranslate"><span class="pre">aggregation-spill-enabled</span></code><a class="headerlink" href="#aggregation-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>When <code class="docutils literal notranslate"><span class="pre">spill_enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, this determines whether Presto will try spilling memory to disk for aggregations to
+avoid exceeding memory limits for the query.</p>
+<h3 id="order-by-spill-enabled"><code class="docutils literal notranslate"><span class="pre">order-by-spill-enabled</span></code><a class="headerlink" href="#order-by-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>When <code class="docutils literal notranslate"><span class="pre">spill_enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, this determines whether Presto will try spilling memory to disk for order by to
+avoid exceeding memory limits for the query.</p>
+<h3 id="local-exchange-max-partition-buffer-size"><code class="docutils literal notranslate"><span class="pre">local-exchange.max-partition-buffer-size</span></code><a class="headerlink" href="#local-exchange-max-partition-buffer-size" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">65536</span></code> (64KB)</p>
+<p>Specifies the maximum size in bytes to accumulate for a single partition of a local exchange before flushing.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-reserved-capacity"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.reserved-capacity</span></code><a class="headerlink" href="#shared-arbitrator-reserved-capacity" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">4GB</span></code></p>
+<p>Specifies the total amount of memory in GB reserved for the queries on
+a worker node. A query can only allocate from this reserved space if
+1) the non-reserved space in <code class="docutils literal notranslate"><span class="pre">query-memory-gb</span></code> is used up; and 2) the amount
+it tries to get is less than <code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-reserved-capacity</span></code>.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-memory-pool-initial-capacity"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-initial-capacity</span></code><a class="headerlink" href="#shared-arbitrator-memory-pool-initial-capacity" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">128MB</span></code></p>
+<p>The initial memory pool capacity in bytes allocated on creation.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-global-arbitration-enabled"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.global-arbitration-enabled</span></code><a class="headerlink" href="#shared-arbitrator-global-arbitration-enabled" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+<p>If true, it allows shared arbitrator to reclaim used memory across query
+memory pools.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-memory-pool-reserved-capacity"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-reserved-capacity</span></code><a class="headerlink" href="#shared-arbitrator-memory-pool-reserved-capacity" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">64MB</span></code></p>
+<p>The amount of memory in bytes reserved for each query memory pool. When
+a query tries to allocate memory from the reserved space whose size is
+specified by <code class="docutils literal notranslate"><span class="pre">shared-arbitrator.reserved-capacity</span></code>, it cannot allocate
+more than the value specified in <code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-reserved-capacity</span></code>.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-memory-pool-transfer-capacity"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-transfer-capacity</span></code><a class="headerlink" href="#shared-arbitrator-memory-pool-transfer-capacity" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">32MB</span></code></p>
+<p>The minimal memory capacity in bytes transferred between memory pools
+during memory arbitration.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-max-memory-arbitration-time"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.max-memory-arbitration-time</span></code><a class="headerlink" href="#shared-arbitrator-max-memory-arbitration-time" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">5m</span></code></p>
+<p>Specifies the max time to wait for memory reclaim by arbitration. The
+memory reclaim might fail if the max wait time has exceeded. If it is
+zero, then there is no timeout.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-fast-exponential-growth-capacity-limit"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.fast-exponential-growth-capacity-limit</span></code><a class="headerlink" href="#shared-arbitrator-fast-exponential-growth-capacity-limit" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">512MB</span></code></p>
+<p>When shared arbitrator grows memory pool’s capacity, the growth bytes will
+be adjusted in the following way:</p>
+<ul class="simple">
+<li><p>If 2 * current capacity is less than or equal to
+<code class="docutils literal notranslate"><span class="pre">shared-arbitrator.fast-exponential-growth-capacity-limit</span></code>, grow
+through fast path by at least doubling the current capacity, when
+conditions allow (see below NOTE section).</p></li>
+<li><p>If 2 * current capacity is greater than
+<code class="docutils literal notranslate"><span class="pre">shared-arbitrator.fast-exponential-growth-capacity-limit</span></code>, grow
+through slow path by growing capacity by at least
+<code class="docutils literal notranslate"><span class="pre">shared-arbitrator.slow-capacity-grow-pct</span></code> * current capacity if
+allowed (see below NOTE section).</p></li>
+</ul>
+<p>NOTE: If original requested growth bytes is larger than the adjusted
+growth bytes or adjusted growth bytes reaches max capacity limit, the
+adjusted growth bytes will not be respected.</p>
+<p>NOTE: Capacity growth adjust is only enabled if both
+<code class="docutils literal notranslate"><span class="pre">shared-arbitrator.fast-exponential-growth-capacity-limit</span></code> and
+<code class="docutils literal notranslate"><span class="pre">shared-arbitrator.slow-capacity-grow-pct</span></code> are set, otherwise it is
+disabled.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-slow-capacity-grow-pct"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.slow-capacity-grow-pct</span></code><a class="headerlink" href="#shared-arbitrator-slow-capacity-grow-pct" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0.25</span></code></p>
+<p>See description for <code class="docutils literal notranslate"><span class="pre">shared-arbitrator.fast-exponential-growth-capacity-limit</span></code></p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-memory-pool-min-free-capacity"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-min-free-capacity</span></code><a class="headerlink" href="#shared-arbitrator-memory-pool-min-free-capacity" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">128MB</span></code></p>
+<p>When shared arbitrator shrinks memory pool’s capacity, the shrink bytes
+will be adjusted in a way such that AFTER shrink, the stricter (whichever
+is smaller) of the following conditions is met, in order to better fit the
+pool’s current memory usage:</p>
+<ul class="simple">
+<li><p>Free capacity is greater or equal to capacity *
+<code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-min-free-capacity-pct</span></code></p></li>
+<li><p>Free capacity is greater or equal to
+<code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-min-free-capacity</span></code></p></li>
+</ul>
+<p>NOTE: In the conditions when original requested shrink bytes ends up
+with more free capacity than above two conditions, the adjusted shrink
+bytes is not respected.</p>
+<p>NOTE: Capacity shrink adjustment is enabled when both
+<code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-min-free-capacity-pct</span></code> and
+<code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-min-free-capacity</span></code> are set.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-memory-pool-min-free-capacity-pct"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-min-free-capacity-pct</span></code><a class="headerlink" href="#shared-arbitrator-memory-pool-min-free-capacity-pct" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0.25</span></code></p>
+<p>See description for <code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-min-free-capacity</span></code></p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-memory-pool-abort-capacity-limit"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-abort-capacity-limit</span></code><a class="headerlink" href="#shared-arbitrator-memory-pool-abort-capacity-limit" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">1GB</span></code></p>
+<p>Specifies the starting memory capacity limit for global arbitration to
+search for victim participant to reclaim used memory by abort. For
+participants with capacity larger than the limit, the global arbitration
+chooses to abort the youngest participant which has the largest
+participant id. This helps to let the old queries to run to completion.
+The abort capacity limit is reduced by half if could not find a victim
+participant until this reaches to zero.</p>
+<p>NOTE: the limit value must be either zero, or a power of 2.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-memory-pool-min-reclaim-bytes"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-pool-min-reclaim-bytes</span></code><a class="headerlink" href="#shared-arbitrator-memory-pool-min-reclaim-bytes" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">128MB</span></code></p>
+<p>Specifies the minimum bytes to reclaim from a participant at a time. The
+global arbitration also avoids reclaiming from a participant if its
+reclaimable used capacity is less than this threshold. This is to
+prevent inefficient memory reclaim operations on a participant with
+small reclaimable used capacity, which could cause a large number of
+small spilled files on disk.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-memory-reclaim-threads-hw-multiplier"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-reclaim-threads-hw-multiplier</span></code><a class="headerlink" href="#shared-arbitrator-memory-reclaim-threads-hw-multiplier" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0.5</span></code></p>
+<p>Floating point number used in calculating how many threads to use
+for memory reclaim execution: hw_concurrency x multiplier. 0.5 is
+default.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-global-arbitration-memory-reclaim-pct"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.global-arbitration-memory-reclaim-pct</span></code><a class="headerlink" href="#shared-arbitrator-global-arbitration-memory-reclaim-pct" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">10</span></code></p>
+<p>If not zero, specifies the minimum amount of memory to reclaim by global
+memory arbitration as percentage of total arbitrator memory capacity.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-global-arbitration-abort-time-ratio"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.global-arbitration-abort-time-ratio</span></code><a class="headerlink" href="#shared-arbitrator-global-arbitration-abort-time-ratio" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0.5</span></code></p>
+<p>The ratio used with <code class="docutils literal notranslate"><span class="pre">shared-arbitrator.memory-reclaim-max-wait-time</span></code>,
+beyond which global arbitration will no longer reclaim memory by
+spilling, but instead directly abort. It is only in effect when
+<code class="docutils literal notranslate"><span class="pre">global-arbitration-enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</li>
+</ul>
+<h3 id="shared-arbitrator-global-arbitration-without-spill"><code class="docutils literal notranslate"><span class="pre">shared-arbitrator.global-arbitration-without-spill</span></code><a class="headerlink" href="#shared-arbitrator-global-arbitration-without-spill" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+<p>If <code class="docutils literal notranslate"><span class="pre">true</span></code>, global arbitration does not reclaim memory by spilling, but
+only by aborting. This flag is only effective if
+<code class="docutils literal notranslate"><span class="pre">shared-arbitrator.global-arbitration-enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</li>
+</ul>
+<h2 id="cache-properties">Cache Properties<a class="headerlink" href="#cache-properties" title="Link to this heading">¶</a></h2>
+<p>The configuration properties of AsyncDataCache and SSD cache are described here.</p>
+<h3 id="async-data-cache-enabled"><code class="docutils literal notranslate"><span class="pre">async-data-cache-enabled</span></code><a class="headerlink" href="#async-data-cache-enabled" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+<p>In-memory cache.</p>
+</li>
+</ul>
+<h3 id="async-cache-ssd-gb"><code class="docutils literal notranslate"><span class="pre">async-cache-ssd-gb</span></code><a class="headerlink" href="#async-cache-ssd-gb" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+<p>The size of the SSD. Unit is in GiB (gibibytes).</p>
+</li>
+</ul>
+<h3 id="async-cache-ssd-path"><code class="docutils literal notranslate"><span class="pre">async-cache-ssd-path</span></code><a class="headerlink" href="#async-cache-ssd-path" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">/mnt/flash/async_cache.</span></code></p>
+<p>The path of the directory that is mounted onto the SSD.</p>
+</li>
+</ul>
+<h3 id="async-cache-max-ssd-write-ratio"><code class="docutils literal notranslate"><span class="pre">async-cache-max-ssd-write-ratio</span></code><a class="headerlink" href="#async-cache-max-ssd-write-ratio" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">double</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0.7</span></code></p>
+<p>The maximum ratio of the number of in-memory cache entries written to the SSD cache
+over the total number of cache entries. Use this to control SSD cache write rate,
+once the ratio exceeds this threshold then we stop writing to the SSD cache.</p>
+</li>
+</ul>
+<h3 id="async-cache-ssd-savable-ratio"><code class="docutils literal notranslate"><span class="pre">async-cache-ssd-savable-ratio</span></code><a class="headerlink" href="#async-cache-ssd-savable-ratio" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">double</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0.125</span></code></p>
+<p>The min ratio of SSD savable (in-memory) cache space over the total cache space.
+Once the ratio exceeds this limit, we start writing SSD savable cache entries
+into SSD cache.</p>
+</li>
+</ul>
+<h3 id="async-cache-min-ssd-savable-bytes"><code class="docutils literal notranslate"><span class="pre">async-cache-min-ssd-savable-bytes</span></code><a class="headerlink" href="#async-cache-min-ssd-savable-bytes" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">16777216</span></code></p>
+<p>Min SSD savable (in-memory) cache space to start writing SSD savable cache entries into SSD cache.</p>
+<p>The default value <code class="docutils literal notranslate"><span class="pre">16777216</span></code> is 16 MB.</p>
+<p>NOTE: we only write to SSD cache when both <code class="docutils literal notranslate"><span class="pre">async-cache-max-ssd-write-ratio</span></code> and
+<code class="docutils literal notranslate"><span class="pre">async-cache-ssd-savable-ratio</span></code> conditions are satisfied.</p>
+</li>
+</ul>
+<h3 id="async-cache-persistence-interval"><code class="docutils literal notranslate"><span class="pre">async-cache-persistence-interval</span></code><a class="headerlink" href="#async-cache-persistence-interval" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0s</span></code></p>
+<p>The interval for persisting in-memory cache to SSD. Set this configuration to a non-zero value to
+activate periodic cache persistence.</p>
+<p>The following time units are supported:</p>
+<p>ns, us, ms, s, m, h, d</p>
+</li>
+</ul>
+<h3 id="async-cache-ssd-disable-file-cow"><code class="docutils literal notranslate"><span class="pre">async-cache-ssd-disable-file-cow</span></code><a class="headerlink" href="#async-cache-ssd-disable-file-cow" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">bool</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+<p>In file systems such as btrfs that support cow (copy on write), the SSD cache can use all of the SSD
+space and stop working. To prevent that, use this option to disable cow for cache files.</p>
+</li>
+</ul>
+<h3 id="ssd-cache-checksum-enabled"><code class="docutils literal notranslate"><span class="pre">ssd-cache-checksum-enabled</span></code><a class="headerlink" href="#ssd-cache-checksum-enabled" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">bool</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+<p>When enabled, a CRC-based checksum is calculated for each cache entry written to SSD.
+The checksum is stored in the next checkpoint file.</p>
+</li>
+</ul>
+<h3 id="ssd-cache-read-verification-enabled"><code class="docutils literal notranslate"><span class="pre">ssd-cache-read-verification-enabled</span></code><a class="headerlink" href="#ssd-cache-read-verification-enabled" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">bool</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+<p>When enabled, the checksum is recalculated and verified against the stored value when
+cache data is loaded from the SSD.</p>
+</li>
+</ul>
+<h3 id="cache-velox-ttl-enabled"><code class="docutils literal notranslate"><span class="pre">cache.velox.ttl-enabled</span></code><a class="headerlink" href="#cache-velox-ttl-enabled" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">bool</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+<p>Enable TTL for AsyncDataCache and SSD cache.</p>
+</li>
+</ul>
+<h3 id="cache-velox-ttl-threshold"><code class="docutils literal notranslate"><span class="pre">cache.velox.ttl-threshold</span></code><a class="headerlink" href="#cache-velox-ttl-threshold" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">2d</span></code></p>
+<p>TTL duration for AsyncDataCache and SSD cache entries.</p>
+<p>The following time units are supported:</p>
+<p>ns, us, ms, s, m, h, d</p>
+</li>
+</ul>
+<h3 id="cache-velox-ttl-check-interval"><code class="docutils literal notranslate"><span class="pre">cache.velox.ttl-check-interval</span></code><a class="headerlink" href="#cache-velox-ttl-check-interval" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">1h</span></code></p>
+<p>The periodic duration to apply cache TTL and evict AsyncDataCache and SSD cache entries.</p>
+</li>
+</ul>
+<h2 id="exchange-properties">Exchange Properties<a class="headerlink" href="#exchange-properties" title="Link to this heading">¶</a></h2>
+<h3 id="exchange-http-client-request-data-sizes-max-wait-sec"><code class="docutils literal notranslate"><span class="pre">exchange.http-client.request-data-sizes-max-wait-sec</span></code><a class="headerlink" href="#exchange-http-client-request-data-sizes-max-wait-sec" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">10</span></code></p>
+<p>Maximum wait time for exchange request in seconds.</p>
+</li>
+</ul>
+<h2 id="memory-checker-properties">Memory Checker Properties<a class="headerlink" href="#memory-checker-properties" title="Link to this heading">¶</a></h2>
+<p>The LinuxMemoryChecker extends from PeriodicMemoryChecker and is used for Linux systems only.
+The LinuxMemoryChecker can be enabled by setting the CMake flag <code class="docutils literal notranslate"><span class="pre">PRESTO_MEMORY_CHECKER_TYPE=LINUX_MEMORY_CHECKER</span></code>.
+The following properties for PeriodicMemoryChecker are as follows:</p>
+<h3 id="system-mem-pushback-enabled"><code class="docutils literal notranslate"><span class="pre">system-mem-pushback-enabled</span></code><a class="headerlink" href="#system-mem-pushback-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>If set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, starts memory limit checker to trigger memory pushback when
+server is under low memory pressure.</p>
+<h3 id="system-mem-limit-gb"><code class="docutils literal notranslate"><span class="pre">system-mem-limit-gb</span></code><a class="headerlink" href="#system-mem-limit-gb" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">60</span></code></p></li>
+</ul>
+<p>Specifies the system memory limit that triggers the memory pushback or heap dump if
+the server memory usage is beyond this limit. A value of zero means no limit is set.
+This only applies if <code class="docutils literal notranslate"><span class="pre">system-mem-pushback-enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.
+Set <code class="docutils literal notranslate"><span class="pre">system-mem-limit-gb</span></code> to be greater than or equal to system-memory-gb but not
+higher than the available machine memory of the deployment.
+The default value of 60 gb is calculated based on available machine memory of 64 gb.</p>
+<h3 id="system-mem-shrink-gb"><code class="docutils literal notranslate"><span class="pre">system-mem-shrink-gb</span></code><a class="headerlink" href="#system-mem-shrink-gb" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">8</span></code></p></li>
+</ul>
+<p>Specifies the amount of memory to shrink when the memory pushback is
+triggered. This only applies if <code class="docutils literal notranslate"><span class="pre">system-mem-pushback-enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<h3 id="system-mem-pushback-abort-enabled"><code class="docutils literal notranslate"><span class="pre">system-mem-pushback-abort-enabled</span></code><a class="headerlink" href="#system-mem-pushback-abort-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>If true, memory pushback will abort queries with the largest memory usage under
+low memory condition. This only applies if <code class="docutils literal notranslate"><span class="pre">system-mem-pushback-enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<h3 id="worker-overloaded-threshold-mem-gb"><code class="docutils literal notranslate"><span class="pre">worker-overloaded-threshold-mem-gb</span></code><a class="headerlink" href="#worker-overloaded-threshold-mem-gb" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+</ul>
+<p>Memory threshold in GB above which the worker is considered overloaded in terms of
+memory use. Ignored if zero.</p>
+<h3 id="worker-overloaded-threshold-cpu-pct"><code class="docutils literal notranslate"><span class="pre">worker-overloaded-threshold-cpu-pct</span></code><a class="headerlink" href="#worker-overloaded-threshold-cpu-pct" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+</ul>
+<p>CPU threshold in % above which the worker is considered overloaded in terms of
+CPU use. Ignored if zero.</p>
+<h3 id="worker-overloaded-threshold-num-queued-drivers-hw-multiplier"><code class="docutils literal notranslate"><span class="pre">worker-overloaded-threshold-num-queued-drivers-hw-multiplier</span></code><a class="headerlink" href="#worker-overloaded-threshold-num-queued-drivers-hw-multiplier" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">double</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0.0</span></code></p></li>
+</ul>
+<p>Floating point number used in calculating how many drivers must be queued
+for the worker to be considered overloaded.
+Number of drivers is calculated as hw_concurrency x multiplier. Ignored if zero.</p>
+<h3 id="worker-overloaded-cooldown-period-sec"><code class="docutils literal notranslate"><span class="pre">worker-overloaded-cooldown-period-sec</span></code><a class="headerlink" href="#worker-overloaded-cooldown-period-sec" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
+</ul>
+<p>Specifies how many seconds worker has to be not overloaded (in terms of
+memory and CPU) before its status changes to not overloaded.
+This is to prevent spiky fluctuation of the overloaded status.</p>
+<h3 id="worker-overloaded-task-queuing-enabled"><code class="docutils literal notranslate"><span class="pre">worker-overloaded-task-queuing-enabled</span></code><a class="headerlink" href="#worker-overloaded-task-queuing-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>If true, the worker starts queuing new tasks when overloaded, and
+starts them gradually when it stops being overloaded.</p>
+<h2 id="environment-variables-as-values-for-worker-properties">Environment Variables As Values For Worker Properties<a class="headerlink" href="#environment-variables-as-values-for-worker-properties" title="Link to this heading">¶</a></h2>
+<p>This section applies to worker configurations in the <code class="docutils literal notranslate"><span class="pre">config.properties</span></code> file
+and catalog property files only.</p>
+<p>The value in a key-value pair can reference an environment variable by using
+a leading <cite>$</cite> followed by enclosing the environment variable name in brackets (<cite>{}</cite>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">key=${ENV_VAR_NAME}</span></code></p>
+<p>The environment variable name must match exactly with the defined variable.</p>
+<p>This allows a worker to read sensitive data such as access keys from an
+environment variable rather than having the actual value hard coded in a configuration
+file on disk, improving the security of deployments.</p>
+<p>For example, consider the hive connector’s <code class="docutils literal notranslate"><span class="pre">hive.s3.aws-access-key</span></code> property.
+This is sensitive data and can be stored in an environment variable such as
+<code class="docutils literal notranslate"><span class="pre">AWS_S3_ACCESS_KEY</span></code> which is set to the actual access key value.</p>
+<p>One mechanism is to create a preload library that is injected at the time
+presto_server is started that decrypts encrypted secrets and sets environment
+variables specific to the presto_server process. These can then be referenced
+in the properties.</p>
+<p>Once decrypted the preloaded library sets the <code class="docutils literal notranslate"><span class="pre">AWS_S3_ACCESS_KEY</span></code>
+environment variable which then can be accessed by providing it in the catalog properties:</p>
+<p><code class="docutils literal notranslate"><span class="pre">hive.s3.aws-access-key=${AWS_S3_ACCESS_KEY}</span></code></p>
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky", "content.code.copy"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    
+  </body>
+</html>

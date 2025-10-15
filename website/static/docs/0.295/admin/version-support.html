@@ -1,0 +1,1821 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="grafana-cloud.html">
+      
+      
+        <link rel="next" href="../cache.html">
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Version Support - Presto 0.295 Documentation</title>
+      
+    
+    
+      
+        
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.14a9c4ab4f1ea5d49.min.css?v=1031fc17" />
+        <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-K7GB6F0LBZ",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.295 Documentation" class="md-header__button md-logo" aria-label="Presto 0.295 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.295 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Version Support
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.295 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.295 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.295 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clients
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../admin.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Administration
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Administration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="web-interface.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tuning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tuning Presto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="benchmark-driver.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Benchmark Driver
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="properties.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto Configuration Properties
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="properties-session.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto Session Properties
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="spill.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spill to Disk
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exchange-materialization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exchange Materialization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cte-materialization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CTE Materialization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="resource-groups.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resource Groups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session-property-managers.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session Property Managers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="function-namespace-managers.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Function Namespace Managers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dist-sort.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Distributed sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="spark.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto on Spark
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verifier.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto Verifier
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="grafana-cloud.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Grafana Cloud
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Version Support
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Version Support
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/admin/version-support.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/admin/version-support.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:overview (reference label)">Overview</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#support-philosophy" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:support philosophy (reference label)">Support Philosophy</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#current-version-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="current-version-support (reference label)">Current Version Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#support-lifecycle" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:support lifecycle (reference label)">Support Lifecycle</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#types-of-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:types of support (reference label)">Types of Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#getting-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:getting support (reference label)">Getting Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#recommendations-for-production-use" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:recommendations for production use (reference label)">Recommendations for Production Use</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#contributing-to-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:contributing to support (reference label)">Contributing to Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#special-considerations" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:special considerations (reference label)">Special Considerations</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#support-expectations" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:support expectations (reference label)">Support Expectations</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:summary (reference label)">Summary</span>
+    </span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query Optimizer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Connectors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plugins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Functions and Operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Statement Syntax
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Migration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    REST API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ecosystem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Developer Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presto-cpp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshoot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/admin/version-support.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/admin/version-support.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:overview (reference label)">Overview</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#support-philosophy" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:support philosophy (reference label)">Support Philosophy</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#current-version-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="current-version-support (reference label)">Current Version Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#support-lifecycle" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:support lifecycle (reference label)">Support Lifecycle</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#types-of-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:types of support (reference label)">Types of Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#getting-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:getting support (reference label)">Getting Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#recommendations-for-production-use" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:recommendations for production use (reference label)">Recommendations for Production Use</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#contributing-to-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:contributing to support (reference label)">Contributing to Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#special-considerations" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:special considerations (reference label)">Special Considerations</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#support-expectations" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:support expectations (reference label)">Support Expectations</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/version-support:summary (reference label)">Summary</span>
+    </span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+
+  
+  
+
+<h1 id="version-support">Version Support<a class="headerlink" href="#version-support" title="Link to this heading">¶</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>Presto is maintained by volunteers. This document describes which versions receive support and what level of support to expect.</p>
+<h2 id="support-philosophy">Support Philosophy<a class="headerlink" href="#support-philosophy" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Data correctness issues are taken extremely seriously and typically fixed quickly</p></li>
+<li><p>Runtime bugs and security vulnerabilities are prioritized and addressed promptly</p></li>
+<li><p>Support depends on volunteer availability - no formal SLAs</p></li>
+<li><p>Users are encouraged to contribute fixes for issues affecting them</p></li>
+</ul>
+<h2 id="current-version-support"><span id="id1"></span>Current Version Support<a class="headerlink" href="#current-version-support" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt><strong>Latest Release</strong></dt><dd><ul class="simple">
+<li><p>Primary focus for bug fixes</p></li>
+<li><p>Recommended for new deployments after testing</p></li>
+</ul>
+</dd>
+<dt><strong>Past 4 Releases (N-1 through N-4)</strong></dt><dd><ul class="simple">
+<li><p>Critical fixes only when:</p>
+<ul>
+<li><p>Data correctness issues are found</p></li>
+<li><p>Volunteers are available to backport</p></li>
+</ul>
+</li>
+<li><p>Patch releases for severe issues only</p></li>
+<li><p>Support decreases with age</p></li>
+</ul>
+</dd>
+<dt><strong>Older Releases (N-5 and earlier)</strong></dt><dd><ul class="simple">
+<li><p>Not supported</p></li>
+<li><p>Exceptions only when:</p>
+<ul>
+<li><p>Volunteer provides the backport</p></li>
+<li><p>Fix applies cleanly</p></li>
+<li><p>Testing is available</p></li>
+</ul>
+</li>
+<li><p>Upgrade required</p></li>
+</ul>
+</dd>
+<dt><strong>Trunk/Master Branch</strong></dt><dd><ul class="simple">
+<li><p>Development branch</p></li>
+<li><p><strong>Never use in production</strong></p></li>
+<li><p>Contains experimental features and bugs</p></li>
+<li><p>For testing upcoming changes only</p></li>
+</ul>
+</dd>
+<dt><strong>Edge Releases</strong></dt><dd><ul class="simple">
+<li><p>Weekly builds from master</p></li>
+<li><p><strong>Never use in production</strong></p></li>
+<li><p><strong>Not supported</strong> - no fixes provided</p></li>
+<li><p>For testing upcoming features</p></li>
+</ul>
+</dd>
+</dl>
+<h2 id="support-lifecycle">Support Lifecycle<a class="headerlink" href="#support-lifecycle" title="Link to this heading">¶</a></h2>
+<p>Timeframes are approximate and depend on volunteer availability.</p>
+<p>A typical release follows this lifecycle:</p>
+<ol class="arabic simple">
+<li><p><strong>Release Candidates</strong> (2-4 weeks)</p>
+<ul class="simple">
+<li><p>One RC version per release</p></li>
+<li><p>Active bug fixing with fixes verified in the existing RC</p></li>
+<li><p>High community engagement</p></li>
+</ul>
+</li>
+<li><p><strong>Current Release</strong> (approximately 2 months)</p>
+<ul class="simple">
+<li><p>Primary focus for bug fixes</p></li>
+<li><p>Active monitoring for issues</p></li>
+<li><p>Most community attention</p></li>
+</ul>
+</li>
+<li><p><strong>Supported Releases</strong> (N-1 through N-4, approximately 8 months)</p>
+<ul class="simple">
+<li><p>Critical fixes only</p></li>
+<li><p>Progressively reduced community focus</p></li>
+<li><p>Patch releases for severe issues become less likely with age</p></li>
+</ul>
+</li>
+<li><p><strong>Archived</strong> (N-5 and older)</p>
+<ul class="simple">
+<li><p>No active support</p></li>
+<li><p>Users strongly encouraged to upgrade</p></li>
+<li><p>See <a class="reference internal" href="#current-version-support"><span class="std std-ref">Current Version Support</span></a> for details</p></li>
+</ul>
+</li>
+</ol>
+<h2 id="types-of-support">Types of Support<a class="headerlink" href="#types-of-support" title="Link to this heading">¶</a></h2>
+<dl>
+<dt><strong>Bug Fixes</strong></dt><dd><p>Highest priority (typically fixed very quickly):</p>
+<ul class="simple">
+<li><p>Data correctness issues - taken extremely seriously</p></li>
+</ul>
+<p>High priority:</p>
+<ul class="simple">
+<li><p>Runtime bugs and crashes</p></li>
+<li><p>Severe performance regressions</p></li>
+</ul>
+<p>Lower priority:</p>
+<ul class="simple">
+<li><p>Minor performance issues</p></li>
+<li><p>UI/cosmetic problems</p></li>
+<li><p>Feature enhancements</p></li>
+</ul>
+</dd>
+<dt><strong>Security Vulnerabilities</strong></dt><dd><ul class="simple">
+<li><p>Upgrade to latest release (default recommendation)</p></li>
+<li><p>Patches for N-1 through N-4 available upon request</p></li>
+<li><p>Backport availability depends on volunteers and severity</p></li>
+<li><p>Plan to upgrade rather than rely on backports</p></li>
+</ul>
+</dd>
+<dt><strong>Documentation</strong></dt><dd><ul class="simple">
+<li><p>Release notes and full documentation for all versions remain available</p></li>
+<li><p>Migration guides for major changes</p></li>
+<li><p>Community-contributed upgrade experiences</p></li>
+</ul>
+</dd>
+</dl>
+<h2 id="getting-support">Getting Support<a class="headerlink" href="#getting-support" title="Link to this heading">¶</a></h2>
+<p><strong>Community Channels</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://communityinviter.com/apps/prestodb/prestodb">Presto Slack</a> - Real-time community discussion</p></li>
+<li><p><a class="reference external" href="https://github.com/prestodb/presto/issues">GitHub Issues</a> - Bug reports and feature requests</p></li>
+<li><p><a class="reference external" href="https://lists.prestodb.io/g/presto-dev">Mailing List</a> - Development discussions</p></li>
+</ul>
+<p><strong>Self-Support Resources</strong></p>
+<ul class="simple">
+<li><p>Release notes and documentation</p></li>
+<li><p>Community Slack search history</p></li>
+<li><p>GitHub issues and pull requests</p></li>
+<li><p>Stack Overflow questions tagged ‘presto’</p></li>
+</ul>
+<h2 id="recommendations-for-production-use">Recommendations for Production Use<a class="headerlink" href="#recommendations-for-production-use" title="Link to this heading">¶</a></h2>
+<p><strong>Version Selection</strong></p>
+<ol class="arabic simple">
+<li><p><strong>For new deployments</strong>: Use the latest stable release after thorough testing</p></li>
+<li><p><strong>For existing deployments</strong>: Stay within 4 versions of the latest release</p></li>
+<li><p><strong>For conservative environments</strong>: Wait for at least one patch release (if any) before upgrading</p></li>
+<li><p><strong>Never use trunk/master or edge</strong> in production</p></li>
+</ol>
+<p><strong>Upgrade Strategy</strong></p>
+<ul class="simple">
+<li><p>Plan regular upgrades (every 2-4 months)</p></li>
+<li><p>Test thoroughly in staging environments</p></li>
+<li><p>Monitor community channels for known issues</p></li>
+<li><p>Maintain ability to rollback if needed</p></li>
+<li><p>Consider skipping releases if stable (but don’t fall too far behind)</p></li>
+</ul>
+<p><strong>Risk Mitigation</strong></p>
+<ul class="simple">
+<li><p>Maintain test environments matching production</p></li>
+<li><p>Participate in release candidate testing</p></li>
+<li><p>Monitor community discussions for your version</p></li>
+<li><p>Contribute test cases for critical workflows</p></li>
+</ul>
+<h2 id="contributing-to-support">Contributing to Support<a class="headerlink" href="#contributing-to-support" title="Link to this heading">¶</a></h2>
+<p>Ways to contribute:</p>
+<dl class="simple">
+<dt><strong>Report Issues</strong></dt><dd><ul class="simple">
+<li><p>File detailed bug reports with reproduction steps on <a class="reference external" href="https://github.com/prestodb/presto/issues">GitHub Issues</a></p></li>
+<li><p>Test fixes and provide feedback</p></li>
+<li><p>Share workarounds with the community</p></li>
+</ul>
+</dd>
+<dt><strong>Contribute Fixes</strong></dt><dd><ul class="simple">
+<li><p>Submit <a class="reference external" href="https://github.com/prestodb/presto/pulls">pull requests</a> for bugs affecting you</p></li>
+<li><p>Help review and test others’ fixes</p></li>
+<li><p>Backport critical fixes to versions you use</p></li>
+</ul>
+</dd>
+<dt><strong>Share Knowledge</strong></dt><dd><ul class="simple">
+<li><p>Document upgrade experiences</p></li>
+<li><p>Answer questions in <a class="reference external" href="https://communityinviter.com/apps/prestodb/prestodb">Presto Slack</a></p></li>
+<li><p>Write blog posts about solutions</p></li>
+<li><p>Contribute to <a class="reference external" href="https://github.com/prestodb/presto/tree/master/presto-docs">documentation</a></p></li>
+</ul>
+</dd>
+<dt><strong>Sponsor Development</strong></dt><dd><ul class="simple">
+<li><p>Allocate engineering resources to the project</p></li>
+<li><p>Fund specific feature development</p></li>
+<li><p>Support maintainers and release shepherds</p></li>
+</ul>
+</dd>
+</dl>
+<h2 id="special-considerations">Special Considerations<a class="headerlink" href="#special-considerations" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt><strong>Long-Term Support (LTS)</strong></dt><dd><ul class="simple">
+<li><p>Not available</p></li>
+<li><p>Volunteer model incompatible with LTS commitments</p></li>
+</ul>
+</dd>
+<dt><strong>End-of-Life Announcements</strong></dt><dd><ul class="simple">
+<li><p>No formal EOL process</p></li>
+<li><p>Versions become unsupported as community moves forward</p></li>
+<li><p>Check release announcements for migration guidance</p></li>
+</ul>
+</dd>
+<dt><strong>Compatibility</strong></dt><dd><ul class="simple">
+<li><p>Breaking changes documented in release notes</p></li>
+<li><p>Migration guides provided for major changes</p></li>
+<li><p>Test when upgrading across multiple versions</p></li>
+</ul>
+</dd>
+</dl>
+<h2 id="support-expectations">Support Expectations<a class="headerlink" href="#support-expectations" title="Link to this heading">¶</a></h2>
+<p><strong>Available:</strong></p>
+<ul class="simple">
+<li><p>Typically quick response to data correctness and runtime bugs</p></li>
+<li><p>Priority focus on critical issues</p></li>
+<li><p>Active community troubleshooting help</p></li>
+<li><p>Transparency about known issues</p></li>
+<li><p>Documentation for old versions</p></li>
+</ul>
+<p><strong>Not Available:</strong></p>
+<ul class="simple">
+<li><p>Guaranteed response times</p></li>
+<li><p>Fixes for all issues</p></li>
+<li><p>Support for old versions</p></li>
+<li><p>Feature backports</p></li>
+<li><p>24/7 support</p></li>
+</ul>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Link to this heading">¶</a></h2>
+<p>Running Presto in production requires:</p>
+<ul class="simple">
+<li><p>Regular upgrades (every 2-4 months)</p></li>
+<li><p>Thorough testing before deploying</p></li>
+<li><p>Understanding that support is volunteer-based</p></li>
+<li><p>Contributing fixes for issues you encounter</p></li>
+</ul>
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky", "content.code.copy"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+    
+  </body>
+</html>

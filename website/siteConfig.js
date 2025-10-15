@@ -169,6 +169,7 @@ const siteConfig = {
     "static/sphinx_immaterial_theme.9d9c7b7aac7cac9f3.min.css",
     "static/sphinx_immaterial_theme.8bc14be58eddc636f.min.css",
     "static/sphinx_immaterial_theme.d8e0294d85080e1cf.min.css",
+    "static/sphinx_immaterial_theme.14a9c4ab4f1ea5d49.min.css",
     "static/presto.css",
     "static/pygments.css",
     "static/fonts/material-icons.css",
