@@ -1,0 +1,2165 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="sidecar.html">
+      
+      
+        <link rel="next" href="plugin.html">
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Presto C++ Limitations - Presto 0.298 Documentation</title>
+      
+    
+    
+      
+        
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.568f84a10346378e3.min.css?v=fed7ac0f" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-K7GB6F0LBZ",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#general-limitations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.298 Documentation" class="md-header__button md-logo" aria-label="Presto 0.298 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.298 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Presto C++ Limitations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.298 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.298 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.298 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clients
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Administration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query Optimizer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Connectors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plugins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Functions and Operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Statement Syntax
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Migration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    REST API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ecosystem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Developer Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../presto-cpp.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Presto C++
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_18" id="__nav_18_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            Presto C++
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="features.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Features
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sidecar.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Sidecar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Limitations
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Limitations
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/presto_cpp/limitations.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/presto_cpp/limitations.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#general-limitations" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:general limitations (reference label)">General Limitations</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:functions (reference label)">Functions</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:aggregate functions (reference label)">Aggregate Functions</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aggregate Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reduce-agg" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:reduce_agg (reference label)">reduce_<wbr>agg</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-lambda" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:reduce lambda (reference label)">reduce lambda</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spatial-partitioning" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:spatial_partitioning (reference label)">spatial_<wbr>partitioning</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:array functions (reference label)">Array Functions</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Array Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#array-sort-with-lambda-comparator" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:array sort with lambda comparator (reference label)">Array sort with lambda comparator</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#casting" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:casting (reference label)">Casting</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date-and-time-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:date and time functions (reference label)">Date and Time Functions</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geospatial-differences" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:geospatial differences (reference label)">Geospatial Differences</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Geospatial Differences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spatial-partitions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:spatial_partitions (reference label)">spatial_<wbr>partitions</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:json functions (reference label)">JSON Functions</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JSON Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-of-functions-in-json-path" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:use of functions in json path (reference label)">Use of functions in JSON path</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-of-expressions-in-json-path" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:use of expressions in json path (reference label)">Use of expressions in JSON path</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erroring-on-invalid-json" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:erroring on invalid json (reference label)">Erroring on Invalid JSON</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canonicalization" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:canonicalization (reference label)">Canonicalization</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regex-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:regex functions (reference label)">Regex Functions</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regex Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unsupported-cases" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:unsupported cases (reference label)">Unsupported Cases</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regex-compilation-limit-in-velox" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:regex compilation limit in velox (reference label)">Regex Compilation Limit in Velox</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-and-time-with-time-zone" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:time and time with time zone (reference label)">Time and Time with Time Zone</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Time and Time with Time Zone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iana-named-timezones-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:iana named timezones support (reference label)">IANA Named Timezones Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#casting-from-timestamp-to-time" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:casting from timestamp to time (reference label)">Casting from TIMESTAMP to TIME</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dst-implications" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:dst implications (reference label)">DST Implications</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommendations" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:recommendations (reference label)">Recommendations</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:url functions (reference label)">URL Functions</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:window functions (reference label)">Window Functions</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Plugins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="properties.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Configuration Properties
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="properties-session.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Session Properties
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="metrics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Runtime Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="federation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Connector Federation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshoot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/presto_cpp/limitations.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/presto_cpp/limitations.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#general-limitations" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:general limitations (reference label)">General Limitations</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:functions (reference label)">Functions</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:aggregate functions (reference label)">Aggregate Functions</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aggregate Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reduce-agg" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:reduce_agg (reference label)">reduce_<wbr>agg</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduce-lambda" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:reduce lambda (reference label)">reduce lambda</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spatial-partitioning" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:spatial_partitioning (reference label)">spatial_<wbr>partitioning</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:array functions (reference label)">Array Functions</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Array Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#array-sort-with-lambda-comparator" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:array sort with lambda comparator (reference label)">Array sort with lambda comparator</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#casting" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:casting (reference label)">Casting</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date-and-time-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:date and time functions (reference label)">Date and Time Functions</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geospatial-differences" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:geospatial differences (reference label)">Geospatial Differences</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Geospatial Differences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spatial-partitions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:spatial_partitions (reference label)">spatial_<wbr>partitions</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:json functions (reference label)">JSON Functions</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JSON Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-of-functions-in-json-path" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:use of functions in json path (reference label)">Use of functions in JSON path</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-of-expressions-in-json-path" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:use of expressions in json path (reference label)">Use of expressions in JSON path</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erroring-on-invalid-json" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:erroring on invalid json (reference label)">Erroring on Invalid JSON</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canonicalization" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:canonicalization (reference label)">Canonicalization</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regex-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:regex functions (reference label)">Regex Functions</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regex Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unsupported-cases" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:unsupported cases (reference label)">Unsupported Cases</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regex-compilation-limit-in-velox" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:regex compilation limit in velox (reference label)">Regex Compilation Limit in Velox</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-and-time-with-time-zone" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:time and time with time zone (reference label)">Time and Time with Time Zone</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Time and Time with Time Zone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iana-named-timezones-support" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:iana named timezones support (reference label)">IANA Named Timezones Support</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#casting-from-timestamp-to-time" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:casting from timestamp to time (reference label)">Casting from TIMESTAMP to TIME</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dst-implications" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:dst implications (reference label)">DST Implications</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommendations" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:recommendations (reference label)">Recommendations</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:url functions (reference label)">URL Functions</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/limitations:window functions (reference label)">Window Functions</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+
+  
+  
+
+<h1 id="presto-c-limitations">Presto C++ Limitations<a class="headerlink" href="#presto-c-limitations" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#general-limitations" id="id2">General Limitations</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id3">Functions</a></p></li>
+</ul>
+</nav>
+<h2 id="general-limitations">General Limitations<a class="headerlink" href="#general-limitations" title="Link to this heading">¶</a></h2>
+<p>The C++ evaluation engine has a number of limitations:</p>
+<ul class="simple">
+<li><p>Not all built-in functions are implemented in C++. Attempting to use unimplemented functions results in a query failure. For supported functions, see <a class="reference external" href="https://facebookincubator.github.io/velox/functions/presto/coverage.html">Function Coverage</a>.</p></li>
+<li><p>Not all built-in types are implemented in C++. Attempting to use unimplemented types will result in a query failure.</p>
+<ul>
+<li><p>All basic and structured types in <a class="reference internal" href="../language/types.html"><span class="doc">Data Types</span></a> are supported, except for <code class="docutils literal notranslate"><span class="pre">CHAR</span></code>, <code class="docutils literal notranslate"><span class="pre">TIME</span></code>, and <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIMEZONE</span></code>. These are subsumed by <code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code>, <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> and <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span> <span class="pre">WITH</span> <span class="pre">TIMEZONE</span></code>.</p></li>
+<li><p>Presto C++ only supports unlimited length <code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code>, and does not honor the length <code class="docutils literal notranslate"><span class="pre">n</span></code> in <code class="docutils literal notranslate"><span class="pre">varchar[n]</span></code>.</p></li>
+<li><p>The following types are not supported: <code class="docutils literal notranslate"><span class="pre">IPADDRESS</span></code>, <code class="docutils literal notranslate"><span class="pre">IPPREFIX</span></code>, <code class="docutils literal notranslate"><span class="pre">KHYPERLOGLOG</span></code>, <code class="docutils literal notranslate"><span class="pre">P4HYPERLOGLOG</span></code>, <code class="docutils literal notranslate"><span class="pre">QDIGEST</span></code>, <code class="docutils literal notranslate"><span class="pre">TDIGEST</span></code>, <code class="docutils literal notranslate"><span class="pre">GEOMETRY</span></code>, <code class="docutils literal notranslate"><span class="pre">BINGTILE</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Certain parts of the plugin SPI are not used by the C++ evaluation engine. In particular, C++ workers will not load any plugin in the plugins directory, and certain plugin types are either partially or completely unsupported.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">PageSourceProvider</span></code>, <code class="docutils literal notranslate"><span class="pre">RecordSetProvider</span></code>, and <code class="docutils literal notranslate"><span class="pre">PageSinkProvider</span></code> do not work in the C++ evaluation engine.</p></li>
+<li><p>User-supplied functions, types, parametric types and block encodings are not supported.</p></li>
+<li><p>The event listener plugin does not work at the split level.</p></li>
+<li><p>User-defined functions do not work in the same way, see <a class="reference external" href="features.html#remote-function-execution">Remote Function Execution</a>.</p></li>
+</ul>
+</li>
+<li><p>Memory management works differently in the C++ evaluation engine. In particular:</p>
+<ul>
+<li><p>The OOM killer is not supported.</p></li>
+<li><p>The reserved pool is not supported.</p></li>
+<li><p>In general, queries may use more memory than they are allowed to through memory arbitration. See <a class="reference external" href="https://facebookincubator.github.io/velox/develop/memory.html">Memory Management</a>.</p></li>
+</ul>
+</li>
+</ul>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<h3 id="aggregate-functions">Aggregate Functions<a class="headerlink" href="#aggregate-functions" title="Link to this heading">¶</a></h3>
+<h4 id="reduce-agg">reduce_agg<a class="headerlink" href="#reduce-agg" title="Link to this heading">¶</a></h4>
+<p>In C++ based Presto, <code class="docutils literal notranslate"><span class="pre">reduce_agg</span></code> is not permitted to return <code class="docutils literal notranslate"><span class="pre">null</span></code> in either the
+<code class="docutils literal notranslate"><span class="pre">inputFunction</span></code> or the <code class="docutils literal notranslate"><span class="pre">combineFunction</span></code>. In Presto (Java), this is permitted
+but undefined behavior. For more information about <code class="docutils literal notranslate"><span class="pre">reduce_agg</span></code> in Presto,
+see <a class="reference internal" href="../functions/aggregate.html"><span class="doc">Aggregate Functions</span></a>.</p>
+<h4 id="reduce-lambda">reduce lambda<a class="headerlink" href="#reduce-lambda" title="Link to this heading">¶</a></h4>
+<p>For the reduce lambda function, the array size is controlled by the session property
+<code class="docutils literal notranslate"><span class="pre">native_expression_max_array_size_in_reduce</span></code>, as it is inefficient to support such
+cases for arbitrarily large arrays. This property is set at <code class="docutils literal notranslate"><span class="pre">100K</span></code>. Queries that
+fail due to this limit must be revised to meet this limit.</p>
+<h4 id="spatial-partitioning">spatial_partitioning<a class="headerlink" href="#spatial-partitioning" title="Link to this heading">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">spatial_partitioning</span></code> aggregate function is not supported in Presto C++.</p>
+<p>This function was an internal utility for spatial join optimization and was never
+fully documented or publicly supported. It generated a KD-tree representation in
+JSON format that could be used with the <code class="docutils literal notranslate"><span class="pre">spatial_partitions</span></code> scalar function
+(see <a class="reference internal" href="#geospatial-differences">Geospatial Differences</a>) to optimize spatial join queries.</p>
+<p>Due to its internal nature, lack of documentation, limited usage, and incompatibility
+with Presto’s streaming architecture, this function was not implemented in Presto C++.
+Standard spatial join operations using <a class="reference internal" href="../functions/geospatial.html"><span class="doc">Geospatial Functions</span></a> functions such as
+<code class="xref js js-func docutils literal notranslate"><span class="pre">ST_Contains()</span></code> or <code class="xref js js-func docutils literal notranslate"><span class="pre">ST_Intersects()</span></code> should be used instead.</p>
+<h3 id="array-functions">Array Functions<a class="headerlink" href="#array-functions" title="Link to this heading">¶</a></h3>
+<h4 id="array-sort-with-lambda-comparator">Array sort with lambda comparator<a class="headerlink" href="#array-sort-with-lambda-comparator" title="Link to this heading">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">Case</span></code> is not supported for the lambda comparator. Use <code class="docutils literal notranslate"><span class="pre">If</span></code> Instead. The following
+example is not supported in Presto C++:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="k">CASE</span>
+<span class="k">WHEN</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">event_time</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">event_time</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">  </span><span class="o">-</span><span class="mi">1</span>
+<span class="k">WHEN</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">event_time</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">event_time</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">  </span><span class="mi">1</span>
+<span class="w">  </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span>
+<span class="k">END</span>
+</code></pre></div>
+</div>
+<p>To work with Presto C++, the best option is to use transform lambda whenever possible.
+For example:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">event_time</span>
+</code></pre></div>
+</div>
+<p>Or, rewrite using <code class="docutils literal notranslate"><span class="pre">if</span></code> as in the following example:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">event_time</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">event_time</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+<span class="k">IF</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">event_time</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">event_time</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span>
+</code></pre></div>
+</div>
+<p>When using <code class="docutils literal notranslate"><span class="pre">If</span></code>, follow these rules when using a lambda in array sort:</p>
+<ul class="simple">
+<li><p>The lambda should use <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">else</span></code>. Case is not supported.</p></li>
+<li><p>The lambda should return <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">-1</span></code>. Cover all the cases.</p></li>
+<li><p>The lambda should use the same expression when doing the comparison.
+For example, in the above case <code class="docutils literal notranslate"><span class="pre">event_time</span></code> is used for comparison throughout the lambda.
+If we rewrote the expression as following, where <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> have different fields, it will fail:
+<code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span> <span class="pre">-&gt;</span> <span class="pre">if</span> <span class="pre">(x.event_time</span> <span class="pre">&lt;</span> <span class="pre">y.event_start_time,</span> <span class="pre">-1,</span> <span class="pre">if</span> <span class="pre">(x.event_time</span> <span class="pre">&gt;</span> <span class="pre">y.event_start_time,</span> <span class="pre">1,</span> <span class="pre">0))</span></code></p></li>
+<li><p>Any additional nesting other than the two <code class="docutils literal notranslate"><span class="pre">if</span></code> uses shown above will fail.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Array_sort</span></code> can support any transformation lambda that returns a comparable type.
+This example is not supported in Presto C++:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="ss">&quot;array_sort&quot;</span><span class="p">(</span><span class="ss">&quot;map_values&quot;</span><span class="p">(</span><span class="n">m</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">             </span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">                  </span><span class="k">WHEN</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span>
+<span class="w">                  </span><span class="k">WHEN</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="w"> </span><span class="k">THEN</span>
+<span class="w">                       </span><span class="k">IF</span><span class="p">((</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">END</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>To run in Presto C++, rewrite the query as shown in this example:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="ss">&quot;array_sort&quot;</span><span class="p">(</span><span class="ss">&quot;map_values&quot;</span><span class="p">(</span><span class="n">m</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">ROW</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+</code></pre></div>
+</div>
+<h3 id="casting">Casting<a class="headerlink" href="#casting" title="Link to this heading">¶</a></h3>
+<p>Casting of Unicode strings to digits is not supported. The following example is not supported in Presto C++:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">CAST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Ⅶ&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">integer</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h3 id="date-and-time-functions">Date and Time Functions<a class="headerlink" href="#date-and-time-functions" title="Link to this heading">¶</a></h3>
+<p>The maximum date range supported by <code class="docutils literal notranslate"><span class="pre">from_unixtime</span></code> is between (292 Million BCE, 292 Million CE).
+The exact values corresponding to this are [292,275,055-05-16 08:54:06.192 BC, +292,278,994-08-17 00:12:55.807 CE],
+corresponding to a UNIX time between [-9223372036854775, 9223372036854775].</p>
+<p>Presto and Presto C++ both support the same range but Presto queries succeed because Presto silently
+truncates. Presto C++ throws an error if the values exceed this range.</p>
+<h3 id="geospatial-differences">Geospatial Differences<a class="headerlink" href="#geospatial-differences" title="Link to this heading">¶</a></h3>
+<p>There are cosmetic representation changes as well as numerical precision differences.
+Some of these differences result in different output for spatial predicates such
+as ST_Intersects. Differences include:</p>
+<ul class="simple">
+<li><p>Equivalent but different representations for geometries. Polygons may have their rings
+rotated, EMPTY geometries may be of a different type, MULTI-types and
+GEOMETRYCOLLECTIONs may have their elements in a different order. In general,
+WKTs/WKBs may be different.</p></li>
+<li><p>Numerical precision: Differences in numerical techniques may result in different
+coordinate values, and also different results for predicates (ST_Relates and children,
+including ST_Contains, ST_Crosses, ST_Disjoint, ST_Equals, ST_Intersects,
+ST_Overlaps, ST_Relate, ST_Touches, ST_Within).</p></li>
+<li><p>ST_IsSimple, ST_IsValid, simplify_geometry and geometry_invalid_reason may give different results.</p></li>
+</ul>
+<h4 id="spatial-partitions">spatial_partitions<a class="headerlink" href="#spatial-partitions" title="Link to this heading">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">spatial_partitions</span></code> scalar function is not supported in Presto C++.</p>
+<p>This function was an internal utility for spatial join optimization and was never
+fully documented or publicly supported. It worked with the <code class="docutils literal notranslate"><span class="pre">spatial_partitioning</span></code>
+aggregate function (see <a class="reference internal" href="#aggregate-functions">Aggregate Functions</a>) by consuming a KD-tree representation
+loaded via a session property. The query optimizer would automatically use this
+function to partition data for spatial joins.</p>
+<p>Due to its internal nature, lack of documentation, limited usage, and incompatibility
+with Presto’s streaming architecture, this function was not implemented in Presto C++.
+Standard spatial join operations using <a class="reference internal" href="../functions/geospatial.html"><span class="doc">Geospatial Functions</span></a> functions such as
+<code class="xref js js-func docutils literal notranslate"><span class="pre">ST_Contains()</span></code>, <code class="xref js js-func docutils literal notranslate"><span class="pre">ST_Intersects()</span></code> should be used instead.</p>
+<h3 id="json-functions">JSON Functions<a class="headerlink" href="#json-functions" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">json_extract</span></code> has several topics to consider when rewriting Presto queries to run successfully in Presto C++.</p>
+<h4 id="use-of-functions-in-json-path">Use of functions in JSON path<a class="headerlink" href="#use-of-functions-in-json-path" title="Link to this heading">¶</a></h4>
+<p>Using functions inside a JSON path is not supported.</p>
+<p>To run queries with functions inside a JSON path in Presto C++, rewrite paths to
+use equivalent and often faster UDFs (User-Defined Functions) outside the JSON
+path, improving job portability and efficiency. Aggregates might be necessary.</p>
+<p>Generally, functions should be extracted from the JSON path for better portability.</p>
+<p>For example, this Presto query:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">CAST</span><span class="p">(</span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.table_name_to_properties.keys()&#39;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">ARRAY</span><span class="p">(</span><span class="nb">ARRAY</span><span class="p">(</span><span class="nb">VARCHAR</span><span class="p">)))</span>
+</code></pre></div>
+</div>
+<p>can be revised to work in both Presto and Presto C++ as the following:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">map_keys</span><span class="p">(</span><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="w"> </span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.table_name_to_properties&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h4 id="use-of-expressions-in-json-path">Use of expressions in JSON path<a class="headerlink" href="#use-of-expressions-in-json-path" title="Link to this heading">¶</a></h4>
+<p>Paths containing filter expressions are not supported.</p>
+<p>To run such queries in Presto C++, revise the query to do the filtering as a
+part of the SQL expression query, rather than in the JSON path.</p>
+<p>For example, consider this Presto query:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.store.book[?(@.price &gt; 10)]&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>The same query rewritten to run in Presto C++:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">filter</span><span class="p">(</span>
+<span class="k">CAST</span><span class="p">(</span><span class="n">json_extract</span><span class="p">(</span><span class="k">data</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.store.book&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">ARRAY</span><span class="o">&lt;</span><span class="n">JSON</span><span class="o">&gt;</span><span class="p">),</span>
+<span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">CAST</span><span class="p">(</span><span class="n">json_extract_scalar</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;$.price&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">DOUBLE</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+<h4 id="erroring-on-invalid-json">Erroring on Invalid JSON<a class="headerlink" href="#erroring-on-invalid-json" title="Link to this heading">¶</a></h4>
+<p>Presto can successfully run <code class="docutils literal notranslate"><span class="pre">json_extract</span></code> on certain invalid JSON, but Presto C++
+always fails. Extracting data from invalid JSON is indeterminate and relying on
+that behavior can have unintended consequences.</p>
+<p>Because Presto C++ takes the safe approach to always throw an error on invalid
+JSON, wrap calls in a try to ensure the query succeeds and validate that the
+results correspond to your expectations.</p>
+<h4 id="canonicalization">Canonicalization<a class="headerlink" href="#canonicalization" title="Link to this heading">¶</a></h4>
+<p>Presto <code class="docutils literal notranslate"><span class="pre">json_extract</span></code> can return <a class="reference external" href="https://github.com/prestodb/presto/issues/24563#issue-2852506643">JSON that is not canonicalized</a>.
+<code class="docutils literal notranslate"><span class="pre">json_extract</span></code> has been rewritten in Presto C++ to always return canonical JSON.</p>
+<h3 id="regex-functions">Regex Functions<a class="headerlink" href="#regex-functions" title="Link to this heading">¶</a></h3>
+<h4 id="unsupported-cases">Unsupported Cases<a class="headerlink" href="#unsupported-cases" title="Link to this heading">¶</a></h4>
+<p>Presto C++ uses <a class="reference external" href="https://github.com/google/re2">RE2</a>, a widely adopted modern regular
+expression parsing library.</p>
+<p>Presto uses <a class="reference external" href="https://github.com/jruby/joni">JONI</a>, a deprecated port of Oniguruma (ONIG).</p>
+<p>While both frameworks support almost all regular expression syntaxes, RE2 differs from
+JONI and PCRE in certain cases. The following are not supported in Presto C++ but are supported in Presto:</p>
+<ul class="simple">
+<li><p>before text matching (?=re)</p></li>
+<li><p>before text not matching (?!re)</p></li>
+<li><p>after text matching (?&lt;=re)</p></li>
+<li><p>after text not matching (?&lt;!re)</p></li>
+</ul>
+<p>Presto queries using these, and
+unsupported regular expressions listed in <a class="reference external" href="https://github.com/google/re2/wiki/syntax">Syntax</a>,
+must be rewritten to run in Presto C++. See <a class="reference external" href="https://github.com/google/re2/wiki/syntax">Syntax</a>
+for a full list of unsupported regular expressions in RE2 and
+<a class="reference external" href="https://swtch.com/~rsc/regexp/regexp3.html#caveats">Caveats</a> for an explanation of
+why RE2 skips certain syntax in Perl.</p>
+<h4 id="regex-compilation-limit-in-velox">Regex Compilation Limit in Velox<a class="headerlink" href="#regex-compilation-limit-in-velox" title="Link to this heading">¶</a></h4>
+<p>Because Regex compilation is CPU intensive, unbounded compilation can cause problems.
+The number of regular expressions that can be dynamically compiled for a query is limited
+to 250 to keep the overall shared cluster environment healthy.</p>
+<p>If this limit is reached, rewrite the query to use fewer compiled regular expressions.</p>
+<p>In this example the regex can change based on the <code class="docutils literal notranslate"><span class="pre">test_name</span></code> column value, which could exceed the 250 limit:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">code_location_path</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">test_name</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;%&#39;</span>
+</code></pre></div>
+</div>
+<p>Revise the query as follows to avoid this limit:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">strpos</span><span class="p">(</span><span class="n">code_location</span><span class="p">,</span><span class="w"> </span><span class="n">test_name</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div>
+</div>
+<h3 id="time-and-time-with-time-zone">Time and Time with Time Zone<a class="headerlink" href="#time-and-time-with-time-zone" title="Link to this heading">¶</a></h3>
+<h4 id="iana-named-timezones-support">IANA Named Timezones Support<a class="headerlink" href="#iana-named-timezones-support" title="Link to this heading">¶</a></h4>
+<p>Support for IANA named time zones - for example, <cite>Europe/London</cite>, <cite>UTC</cite>, <cite>America/New_York</cite>,
+<cite>Asia/Kolkata</cite> - in <code class="docutils literal notranslate"><span class="pre">TIME</span></code> and <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code> was removed from Presto C++
+to align with the SQL standard. Only fixed-offset time zones such as <cite>+02:00</cite> are
+now supported for these types.</p>
+<p>Named time zones may still work when the Presto coordinator handles the query.</p>
+<p>To run queries involving <code class="docutils literal notranslate"><span class="pre">TIME</span></code> and <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code>, migrate to fixed-offset
+time zones as soon as possible.</p>
+<p>These queries will fail in Presto C++, but may still work in Presto:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">cast</span><span class="p">(</span><span class="s1">&#39;14:00:01 UTC&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">)</span>
+<span class="k">cast</span><span class="p">(</span><span class="s1">&#39;14:00:01 Europe/Paris&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">)</span>
+<span class="k">cast</span><span class="p">(</span><span class="s1">&#39;14:00:01 America/New_York&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">)</span>
+<span class="k">cast</span><span class="p">(</span><span class="s1">&#39;14:00:01 Asia/Kolkata&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<p>These queries using fixed offsets will run successfully in Presto C++:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">cast</span><span class="p">(</span><span class="s1">&#39;14:00:01 +00:00&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">)</span>
+<span class="k">cast</span><span class="p">(</span><span class="s1">&#39;14:00:01 +05:30&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h4 id="casting-from-timestamp-to-time">Casting from TIMESTAMP to TIME<a class="headerlink" href="#casting-from-timestamp-to-time" title="Link to this heading">¶</a></h4>
+<p>In Presto, the result of CAST(TIMESTAMP AS TIME) or CAST(TIMESTAMP AS TIME WITH TIME ZONE)
+would change based on the session property <code class="docutils literal notranslate"><span class="pre">legacy_timestamp</span></code> (true by default) when
+applied to the user’s time zone. In Presto C++ for <code class="docutils literal notranslate"><span class="pre">TIME</span></code> and <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code>,
+the behavior is equivalent to the property being <cite>false</cite>.</p>
+<p>Note: <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> behavior in Presto and Presto C++ is unchanged.</p>
+<p>For example, consider the following queries and their responses when run in Presto:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="w">  </span><span class="c1">-- Default behavior with legacy_timestamp=true:</span>
+<span class="w">  </span><span class="c1">-- Session Timezone - America/Los_Angeles</span>
+
+<span class="w">  </span><span class="c1">-- DST Active Dates</span>
+<span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-08-05 10:15:00.000&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">-- Returns: 09:15:00.000</span>
+<span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-08-05 10:15:00.000&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">-- Returns: 09:15:00.000 America/Los_Angeles</span>
+<span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-08-05 10:15:00.000 America/Los_Angeles&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="p">);</span>
+<span class="w"> </span><span class="c1">-- Returns: 09:15:00.000</span>
+<span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-08-05 10:15:00.000 America/Los_Angeles&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">);</span>
+<span class="w"> </span><span class="c1">-- Returns: 09:15:00.000</span>
+
+<span class="w"> </span><span class="c1">-- DST Inactive Dates</span>
+<span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-12-05 10:15:00.000&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="p">);</span>
+<span class="w"> </span><span class="c1">-- Returns: 10:15:00.000</span>
+<span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-12-05 10:15:00.000&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">);</span>
+<span class="w"> </span><span class="c1">-- Returns: 10:15:00.000 America/Los_Angeles</span>
+<span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-08-05 10:15:00.000 America/Los_Angeles&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="p">);</span>
+<span class="w"> </span><span class="c1">-- Returns: 10:15:00.000</span>
+<span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-12-05 10:15:00.000 America/Los_Angeles&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">);</span>
+<span class="c1">-- 10:15:00.000 America/Los_Angeles</span>
+</code></pre></div>
+</div>
+<p>Consider the following queries and their responses when run in Presto C++ (Velox):</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="c1">-- New Expected behavior similar to what currently exists if legacy_timestamp=false:</span>
+<span class="c1">-- Session Timezone - America/Los_Angeles</span>
+
+
+<span class="c1">-- DST Active Dates</span>
+<span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-08-05 10:15:00.000&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="p">);</span>
+<span class="c1">-- Returns: 10:15:00.000</span>
+<span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-08-05 10:15:00.000&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">);</span>
+<span class="c1">-- Returns: 10:15:00.000 -07:00</span>
+<span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-08-05 10:15:00.000 America/Los_Angeles&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="p">);</span>
+<span class="c1">-- Returns: 10:15:00.000</span>
+<span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-08-05 10:15:00.000 America/Los_Angeles&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">);</span>
+<span class="c1">-- Returns: 10:15:00.000 -07:00</span>
+
+<span class="c1">-- DST Inactive Dates</span>
+<span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-12-05 10:15:00.000&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="p">);</span>
+<span class="c1">-- Returns: 10:15:00.000</span>
+<span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-12-05 10:15:00.000&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">);</span>
+<span class="c1">-- Returns: 10:15:00.000 -08:00</span>
+<span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-08-05 10:15:00.000 America/Los_Angeles&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="p">);</span>
+<span class="c1">-- Returns: 10:15:00.000</span>
+<span class="k">select</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s1">&#39;2023-12-05 10:15:00.000 America/Los_Angeles&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">TIME</span><span class="w"> </span><span class="k">ZONE</span><span class="p">);</span>
+<span class="c1">-- Returns: 10:15:00.000 -08:00</span>
+</code></pre></div>
+</div>
+<p>Note: <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> supports named time zones, unlike <code class="docutils literal notranslate"><span class="pre">TIME</span></code> and <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code>.</p>
+<h4 id="dst-implications">DST Implications<a class="headerlink" href="#dst-implications" title="Link to this heading">¶</a></h4>
+<p>Because IANA zones are not supported for <code class="docutils literal notranslate"><span class="pre">TIME</span></code>, Presto C++ does not manage DST transitions.
+All time interpretation is strictly in the provided offset, not local civil time.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">14:00:00</span> <span class="pre">+02:00</span></code> always means 14:00 at a +02:00 fixed offset, regardless
+of DST changes that might apply under an IANA zone.</p>
+<h4 id="recommendations">Recommendations<a class="headerlink" href="#recommendations" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Use fixed-offset time zones like +02:00 with <code class="docutils literal notranslate"><span class="pre">TIME</span></code> and <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code>.</p></li>
+<li><p>Do not use IANA time zone names for <code class="docutils literal notranslate"><span class="pre">TIME</span></code> and <code class="docutils literal notranslate"><span class="pre">TIME</span> <span class="pre">WITH</span> <span class="pre">TIME</span> <span class="pre">ZONE</span></code>.</p></li>
+<li><p>Confirm that your Presto C++ usage does not depend on legacy timestamp behavior. If your workload
+depends on legacy <code class="docutils literal notranslate"><span class="pre">TIME</span></code> behavior, including support of IANA timezones, handle this outside
+Presto or reach out so that we can discuss alternative solutions.</p></li>
+<li><p>Test: Try your most critical workflows with these settings.</p></li>
+</ul>
+<h3 id="url-functions">URL Functions<a class="headerlink" href="#url-functions" title="Link to this heading">¶</a></h3>
+<p>Presto and Presto C++ implement different URL function specifications which can lead to
+some URL function mismatches. Presto C++ implements <a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc3986">RFC-3986</a> whereas Presto
+implements <a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc2396">RFC-2396</a>. This can lead to subtle differences as presented in
+<a class="reference external" href="https://github.com/facebookincubator/velox/issues/14204">this issue</a>.</p>
+<h3 id="window-functions">Window Functions<a class="headerlink" href="#window-functions" title="Link to this heading">¶</a></h3>
+<p>Aggregate window functions do not support <code class="docutils literal notranslate"><span class="pre">IGNORE</span> <span class="pre">NULLS</span></code>, returning the following error message:</p>
+<p><code class="docutils literal notranslate"><span class="pre">!ignoreNulls</span> <span class="pre">Aggregate</span> <span class="pre">window</span> <span class="pre">functions</span> <span class="pre">do</span> <span class="pre">not</span> <span class="pre">support</span> <span class="pre">IGNORE</span> <span class="pre">NULLS.</span></code></p>
+<p>For Presto C++, remove the <code class="docutils literal notranslate"><span class="pre">IGNORE</span> <span class="pre">NULLS</span></code> clause. This clause is only defined for value functions
+and does not apply to aggregate window functions. In Presto the results obtained with and without
+the clause are similar, Presto C++ includes this clause whereas Presto just warns.</p>
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky", "content.code.copy"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+    
+  </body>
+</html>

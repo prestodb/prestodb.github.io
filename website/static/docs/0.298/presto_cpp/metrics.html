@@ -1,0 +1,4251 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="properties-session.html">
+      
+      
+        <link rel="next" href="federation.html">
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Presto C++ Runtime Metrics - Presto 0.298 Documentation</title>
+      
+    
+    
+      
+        
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.568f84a10346378e3.min.css?v=fed7ac0f" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-K7GB6F0LBZ",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.298 Documentation" class="md-header__button md-logo" aria-label="Presto 0.298 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.298 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Presto C++ Runtime Metrics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.298 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.298 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.298 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clients
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Administration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query Optimizer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Connectors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plugins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Functions and Operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Statement Syntax
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Migration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    REST API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ecosystem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Developer Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../presto-cpp.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Presto C++
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_18" id="__nav_18_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            Presto C++
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="features.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Features
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sidecar.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Sidecar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="limitations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Limitations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Plugins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="properties.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Configuration Properties
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="properties-session.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Session Properties
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Runtime Metrics
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Runtime Metrics
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/presto_cpp/metrics.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/presto_cpp/metrics.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:overview (reference label)">Overview</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#executor-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:executor metrics (reference label)">Executor Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Executor Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-driver-cpu-executor-queue-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.driver_cpu_executor_queue_size`` (reference label)">presto_<wbr>cpp.<wbr>driver_<wbr>cpu_<wbr>executor_<wbr>queue_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-driver-cpu-executor-latency-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.driver_cpu_executor_latency_ms`` (reference label)">presto_<wbr>cpp.<wbr>driver_<wbr>cpu_<wbr>executor_<wbr>latency_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-spiller-executor-queue-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.spiller_executor_queue_size`` (reference label)">presto_<wbr>cpp.<wbr>spiller_<wbr>executor_<wbr>queue_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-spiller-executor-latency-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.spiller_executor_latency_ms`` (reference label)">presto_<wbr>cpp.<wbr>spiller_<wbr>executor_<wbr>latency_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-executor-latency-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http_executor_latency_ms`` (reference label)">presto_<wbr>cpp.<wbr>http_<wbr>executor_<wbr>latency_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#http-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:http metrics (reference label)">HTTP Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-http-request" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_http_request`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>http_<wbr>request</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-http-request-error" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_http_request_error`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>http_<wbr>request_<wbr>error</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-request-latency-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http_request_latency_ms`` (reference label)">presto_<wbr>cpp.<wbr>http_<wbr>request_<wbr>latency_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-request-size-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http_request_size_bytes`` (reference label)">presto_<wbr>cpp.<wbr>http_<wbr>request_<wbr>size_<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#http-client-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:http client metrics (reference label)">HTTP Client Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Client Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-client-num-connections-created" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http.client.num_connections_created`` (reference label)">presto_<wbr>cpp.<wbr>http.<wbr>client.<wbr>num_<wbr>connections_<wbr>created</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-client-connection-first-use" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http.client.connection_first_use`` (reference label)">presto_<wbr>cpp.<wbr>http.<wbr>client.<wbr>connection_<wbr>first_<wbr>use</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-client-connection-reuse" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http.client.connection_reuse`` (reference label)">presto_<wbr>cpp.<wbr>http.<wbr>client.<wbr>connection_<wbr>reuse</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-client-transaction-create-delay-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http.client.transaction_create_delay_ms`` (reference label)">presto_<wbr>cpp.<wbr>http.<wbr>client.<wbr>transaction_<wbr>create_<wbr>delay_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#exchange-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:exchange metrics (reference label)">Exchange Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exchange Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-source-peak-queued-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange_source_peak_queued_bytes`` (reference label)">presto_<wbr>cpp.<wbr>exchange_<wbr>source_<wbr>peak_<wbr>queued_<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-request-duration" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange.request.duration`` (reference label)">presto_<wbr>cpp.<wbr>exchange.<wbr>request.<wbr>duration</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-request-num-tries" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange.request.num_tries`` (reference label)">presto_<wbr>cpp.<wbr>exchange.<wbr>request.<wbr>num_<wbr>tries</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-request-page-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange.request.page_size`` (reference label)">presto_<wbr>cpp.<wbr>exchange.<wbr>request.<wbr>page_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-get-data-size-duration" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange.get_data_size.duration`` (reference label)">presto_<wbr>cpp.<wbr>exchange.<wbr>get_<wbr>data_<wbr>size.<wbr>duration</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-get-data-size-num-tries" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange.get_data_size.num_tries`` (reference label)">presto_<wbr>cpp.<wbr>exchange.<wbr>get_<wbr>data_<wbr>size.<wbr>num_<wbr>tries</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#query-context-and-memory-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:query context and memory metrics (reference label)">Query Context and Memory Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Query Context and Memory Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-query-contexts" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_query_contexts`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>query_<wbr>contexts</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-memory-manager-total-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.memory_manager_total_bytes`` (reference label)">presto_<wbr>cpp.<wbr>memory_<wbr>manager_<wbr>total_<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#task-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:task metrics (reference label)">Task Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-counts" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:task counts (reference label)">Task Counts</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Counts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-bytes-processed" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_bytes_processed`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>bytes_<wbr>processed</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-running" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_running`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>running</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-finished" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_finished`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>finished</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-cancelled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_cancelled`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>cancelled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-aborted" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_aborted`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>aborted</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-failed" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_failed`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>failed</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-planned" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_planned`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>planned</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-queued" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_queued`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>queued</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-health-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:task health metrics (reference label)">Task Health Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Health Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-zombie-velox-tasks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_zombie_velox_tasks`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>zombie_<wbr>velox_<wbr>tasks</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-zombie-presto-tasks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_zombie_presto_tasks`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>zombie_<wbr>presto_<wbr>tasks</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-with-stuck-operator" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_with_stuck_operator`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>with_<wbr>stuck_<wbr>operator</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-cancelled-tasks-by-stuck-driver" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_cancelled_tasks_by_stuck_driver`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>cancelled_<wbr>tasks_<wbr>by_<wbr>stuck_<wbr>driver</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-deadlock" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_deadlock`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>deadlock</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-manager-lock-timeout" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_manager_lock_timeout`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>manager_<wbr>lock_<wbr>timeout</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#driver-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:driver metrics (reference label)">Driver Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Driver Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#driver-states" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:driver states (reference label)">Driver States</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Driver States">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-queued-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_queued_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>queued_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-on-thread-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_on_thread_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>on_<wbr>thread_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-suspended-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_suspended_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>suspended_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#driver-blocking-reasons" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:driver blocking reasons (reference label)">Driver Blocking Reasons</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Driver Blocking Reasons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-consumer-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_consumer_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>consumer_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-split-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_split_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>split_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-producer-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_producer_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>producer_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-join-build-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_join_build_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>join_<wbr>build_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-join-probe-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_join_probe_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>join_<wbr>probe_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-merge-join-right-side-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_merge_join_right_side_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>merge_<wbr>join_<wbr>right_<wbr>side_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-memory-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_memory_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>memory_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-connector-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_connector_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>connector_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-yield-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_yield_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>yield_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-stuck-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_stuck_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>stuck_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-driver-threads" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_driver_threads`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>driver_<wbr>threads</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#worker-overload-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:worker overload metrics (reference label)">Worker Overload Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Worker Overload Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-overloaded-mem" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.overloaded_mem`` (reference label)">presto_<wbr>cpp.<wbr>overloaded_<wbr>mem</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-overloaded-cpu" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.overloaded_cpu`` (reference label)">presto_<wbr>cpp.<wbr>overloaded_<wbr>cpu</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-overloaded" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.overloaded`` (reference label)">presto_<wbr>cpp.<wbr>overloaded</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-task-planned-time-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.task_planned_time_ms`` (reference label)">presto_<wbr>cpp.<wbr>task_<wbr>planned_<wbr>time_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-overloaded-duration-sec" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.overloaded_duration_sec`` (reference label)">presto_<wbr>cpp.<wbr>overloaded_<wbr>duration_<wbr>sec</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#output-buffer-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:output buffer metrics (reference label)">Output Buffer Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Buffer Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-partitioned-output-buffer" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_partitioned_output_buffer`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>partitioned_<wbr>output_<wbr>buffer</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-partitioned-output-buffer-get-data-latency-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.partitioned_output_buffer_get_data_latency_ms`` (reference label)">presto_<wbr>cpp.<wbr>partitioned_<wbr>output_<wbr>buffer_<wbr>get_<wbr>data_<wbr>latency_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#worker-runtime-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:worker runtime metrics (reference label)">Worker Runtime Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Worker Runtime Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-worker-runtime-uptime-secs" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.worker_runtime_uptime_secs`` (reference label)">presto_<wbr>cpp.<wbr>worker_<wbr>runtime_<wbr>uptime_<wbr>secs</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#operating-system-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:operating system metrics (reference label)">Operating System Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operating System Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpu-time-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:cpu time metrics (reference label)">CPU Time Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CPU Time Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-os-user-cpu-time-micros" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.os_user_cpu_time_micros`` (reference label)">presto_<wbr>cpp.<wbr>os_<wbr>user_<wbr>cpu_<wbr>time_<wbr>micros</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-os-system-cpu-time-micros" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.os_system_cpu_time_micros`` (reference label)">presto_<wbr>cpp.<wbr>os_<wbr>system_<wbr>cpu_<wbr>time_<wbr>micros</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page-fault-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:page fault metrics (reference label)">Page Fault Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Page Fault Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-os-num-soft-page-faults" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.os_num_soft_page_faults`` (reference label)">presto_<wbr>cpp.<wbr>os_<wbr>num_<wbr>soft_<wbr>page_<wbr>faults</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-os-num-hard-page-faults" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.os_num_hard_page_faults`` (reference label)">presto_<wbr>cpp.<wbr>os_<wbr>num_<wbr>hard_<wbr>page_<wbr>faults</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-switch-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:context switch metrics (reference label)">Context Switch Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context Switch Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-os-num-voluntary-context-switches" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.os_num_voluntary_context_switches`` (reference label)">presto_<wbr>cpp.<wbr>os_<wbr>num_<wbr>voluntary_<wbr>context_<wbr>switches</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-os-num-forced-context-switches" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.os_num_forced_context_switches`` (reference label)">presto_<wbr>cpp.<wbr>os_<wbr>num_<wbr>forced_<wbr>context_<wbr>switches</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#hive-connector-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:hive connector metrics (reference label)">Hive Connector Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hive Connector Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-handle-cache-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:file handle cache metrics (reference label)">File Handle Cache Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Handle Cache Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-num-elements" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_num_elements`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>num_<wbr>elements</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-pinned-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_pinned_size`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>pinned_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-cur-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_cur_size`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>cur_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-num-accumulative-hits" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_num_accumulative_hits`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>num_<wbr>accumulative_<wbr>hits</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-num-accumulative-lookups" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_num_accumulative_lookups`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>num_<wbr>accumulative_<wbr>lookups</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-num-hits" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_num_hits`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>num_<wbr>hits</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-num-lookups" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_num_lookups`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>num_<wbr>lookups</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#thread-pool-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:thread pool metrics (reference label)">Thread Pool Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Thread Pool Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-pool-num-threads" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{pool}.num_threads`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{pool}.<wbr>num_<wbr>threads</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-pool-num-active-threads" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{pool}.num_active_threads`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{pool}.<wbr>num_<wbr>active_<wbr>threads</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-pool-num-pending-tasks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{pool}.num_pending_tasks`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{pool}.<wbr>num_<wbr>pending_<wbr>tasks</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-pool-num-total-tasks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{pool}.num_total_tasks`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{pool}.<wbr>num_<wbr>total_<wbr>tasks</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-pool-max-idle-time-ns" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{pool}.max_idle_time_ns`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{pool}.<wbr>max_<wbr>idle_<wbr>time_<wbr>ns</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#eventbase-violation-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:eventbase violation metrics (reference label)">Event<wbr>Base Violation Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EventBase Violation Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-io-evb-violation-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange_io_evb_violation_count`` (reference label)">presto_<wbr>cpp.<wbr>exchange_<wbr>io_<wbr>evb_<wbr>violation_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-server-io-evb-violation-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http_server_io_evb_violation_count`` (reference label)">presto_<wbr>cpp.<wbr>http_<wbr>server_<wbr>io_<wbr>evb_<wbr>violation_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#memory-pushback-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:memory pushback metrics (reference label)">Memory Pushback Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory Pushback Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-memory-pushback-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.memory_pushback_count`` (reference label)">presto_<wbr>cpp.<wbr>memory_<wbr>pushback_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-memory-pushback-latency-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.memory_pushback_latency_ms`` (reference label)">presto_<wbr>cpp.<wbr>memory_<wbr>pushback_<wbr>latency_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-memory-pushback-reduction-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.memory_pushback_reduction_bytes`` (reference label)">presto_<wbr>cpp.<wbr>memory_<wbr>pushback_<wbr>reduction_<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-memory-pushback-expected-reduction-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.memory_pushback_expected_reduction_bytes`` (reference label)">presto_<wbr>cpp.<wbr>memory_<wbr>pushback_<wbr>expected_<wbr>reduction_<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#additional-runtime-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:additional runtime metrics (reference label)">Additional Runtime Metrics</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#accessing-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:accessing metrics (reference label)">Accessing Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessing Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-output" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:example output (reference label)">Example Output</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:see also (reference label)">See Also</span>
+    </span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="federation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Connector Federation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshoot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/presto_cpp/metrics.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/presto_cpp/metrics.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:overview (reference label)">Overview</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#executor-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:executor metrics (reference label)">Executor Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Executor Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-driver-cpu-executor-queue-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.driver_cpu_executor_queue_size`` (reference label)">presto_<wbr>cpp.<wbr>driver_<wbr>cpu_<wbr>executor_<wbr>queue_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-driver-cpu-executor-latency-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.driver_cpu_executor_latency_ms`` (reference label)">presto_<wbr>cpp.<wbr>driver_<wbr>cpu_<wbr>executor_<wbr>latency_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-spiller-executor-queue-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.spiller_executor_queue_size`` (reference label)">presto_<wbr>cpp.<wbr>spiller_<wbr>executor_<wbr>queue_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-spiller-executor-latency-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.spiller_executor_latency_ms`` (reference label)">presto_<wbr>cpp.<wbr>spiller_<wbr>executor_<wbr>latency_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-executor-latency-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http_executor_latency_ms`` (reference label)">presto_<wbr>cpp.<wbr>http_<wbr>executor_<wbr>latency_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#http-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:http metrics (reference label)">HTTP Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-http-request" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_http_request`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>http_<wbr>request</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-http-request-error" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_http_request_error`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>http_<wbr>request_<wbr>error</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-request-latency-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http_request_latency_ms`` (reference label)">presto_<wbr>cpp.<wbr>http_<wbr>request_<wbr>latency_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-request-size-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http_request_size_bytes`` (reference label)">presto_<wbr>cpp.<wbr>http_<wbr>request_<wbr>size_<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#http-client-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:http client metrics (reference label)">HTTP Client Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="HTTP Client Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-client-num-connections-created" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http.client.num_connections_created`` (reference label)">presto_<wbr>cpp.<wbr>http.<wbr>client.<wbr>num_<wbr>connections_<wbr>created</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-client-connection-first-use" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http.client.connection_first_use`` (reference label)">presto_<wbr>cpp.<wbr>http.<wbr>client.<wbr>connection_<wbr>first_<wbr>use</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-client-connection-reuse" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http.client.connection_reuse`` (reference label)">presto_<wbr>cpp.<wbr>http.<wbr>client.<wbr>connection_<wbr>reuse</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-client-transaction-create-delay-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http.client.transaction_create_delay_ms`` (reference label)">presto_<wbr>cpp.<wbr>http.<wbr>client.<wbr>transaction_<wbr>create_<wbr>delay_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#exchange-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:exchange metrics (reference label)">Exchange Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exchange Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-source-peak-queued-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange_source_peak_queued_bytes`` (reference label)">presto_<wbr>cpp.<wbr>exchange_<wbr>source_<wbr>peak_<wbr>queued_<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-request-duration" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange.request.duration`` (reference label)">presto_<wbr>cpp.<wbr>exchange.<wbr>request.<wbr>duration</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-request-num-tries" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange.request.num_tries`` (reference label)">presto_<wbr>cpp.<wbr>exchange.<wbr>request.<wbr>num_<wbr>tries</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-request-page-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange.request.page_size`` (reference label)">presto_<wbr>cpp.<wbr>exchange.<wbr>request.<wbr>page_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-get-data-size-duration" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange.get_data_size.duration`` (reference label)">presto_<wbr>cpp.<wbr>exchange.<wbr>get_<wbr>data_<wbr>size.<wbr>duration</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-get-data-size-num-tries" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange.get_data_size.num_tries`` (reference label)">presto_<wbr>cpp.<wbr>exchange.<wbr>get_<wbr>data_<wbr>size.<wbr>num_<wbr>tries</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#query-context-and-memory-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:query context and memory metrics (reference label)">Query Context and Memory Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Query Context and Memory Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-query-contexts" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_query_contexts`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>query_<wbr>contexts</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-memory-manager-total-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.memory_manager_total_bytes`` (reference label)">presto_<wbr>cpp.<wbr>memory_<wbr>manager_<wbr>total_<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#task-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:task metrics (reference label)">Task Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-counts" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:task counts (reference label)">Task Counts</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Counts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-bytes-processed" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_bytes_processed`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>bytes_<wbr>processed</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-running" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_running`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>running</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-finished" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_finished`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>finished</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-cancelled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_cancelled`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>cancelled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-aborted" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_aborted`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>aborted</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-failed" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_failed`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>failed</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-planned" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_planned`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>planned</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-queued" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_queued`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>queued</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-health-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:task health metrics (reference label)">Task Health Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Health Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-zombie-velox-tasks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_zombie_velox_tasks`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>zombie_<wbr>velox_<wbr>tasks</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-zombie-presto-tasks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_zombie_presto_tasks`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>zombie_<wbr>presto_<wbr>tasks</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-with-stuck-operator" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_with_stuck_operator`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>with_<wbr>stuck_<wbr>operator</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-cancelled-tasks-by-stuck-driver" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_cancelled_tasks_by_stuck_driver`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>cancelled_<wbr>tasks_<wbr>by_<wbr>stuck_<wbr>driver</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-deadlock" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_deadlock`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>deadlock</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-tasks-manager-lock-timeout" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_tasks_manager_lock_timeout`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>tasks_<wbr>manager_<wbr>lock_<wbr>timeout</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#driver-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:driver metrics (reference label)">Driver Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Driver Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#driver-states" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:driver states (reference label)">Driver States</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Driver States">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-queued-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_queued_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>queued_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-on-thread-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_on_thread_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>on_<wbr>thread_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-suspended-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_suspended_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>suspended_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#driver-blocking-reasons" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:driver blocking reasons (reference label)">Driver Blocking Reasons</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Driver Blocking Reasons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-consumer-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_consumer_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>consumer_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-split-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_split_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>split_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-producer-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_producer_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>producer_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-join-build-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_join_build_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>join_<wbr>build_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-join-probe-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_join_probe_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>join_<wbr>probe_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-merge-join-right-side-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_merge_join_right_side_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>merge_<wbr>join_<wbr>right_<wbr>side_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-memory-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_memory_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>memory_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-wait-for-connector-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_wait_for_connector_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>wait_<wbr>for_<wbr>connector_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-blocked-yield-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_blocked_yield_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>blocked_<wbr>yield_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-stuck-drivers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_stuck_drivers`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>stuck_<wbr>drivers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-driver-threads" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_driver_threads`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>driver_<wbr>threads</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#worker-overload-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:worker overload metrics (reference label)">Worker Overload Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Worker Overload Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-overloaded-mem" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.overloaded_mem`` (reference label)">presto_<wbr>cpp.<wbr>overloaded_<wbr>mem</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-overloaded-cpu" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.overloaded_cpu`` (reference label)">presto_<wbr>cpp.<wbr>overloaded_<wbr>cpu</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-overloaded" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.overloaded`` (reference label)">presto_<wbr>cpp.<wbr>overloaded</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-task-planned-time-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.task_planned_time_ms`` (reference label)">presto_<wbr>cpp.<wbr>task_<wbr>planned_<wbr>time_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-overloaded-duration-sec" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.overloaded_duration_sec`` (reference label)">presto_<wbr>cpp.<wbr>overloaded_<wbr>duration_<wbr>sec</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#output-buffer-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:output buffer metrics (reference label)">Output Buffer Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Buffer Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-num-partitioned-output-buffer" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.num_partitioned_output_buffer`` (reference label)">presto_<wbr>cpp.<wbr>num_<wbr>partitioned_<wbr>output_<wbr>buffer</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-partitioned-output-buffer-get-data-latency-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.partitioned_output_buffer_get_data_latency_ms`` (reference label)">presto_<wbr>cpp.<wbr>partitioned_<wbr>output_<wbr>buffer_<wbr>get_<wbr>data_<wbr>latency_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#worker-runtime-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:worker runtime metrics (reference label)">Worker Runtime Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Worker Runtime Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-worker-runtime-uptime-secs" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.worker_runtime_uptime_secs`` (reference label)">presto_<wbr>cpp.<wbr>worker_<wbr>runtime_<wbr>uptime_<wbr>secs</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#operating-system-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:operating system metrics (reference label)">Operating System Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operating System Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpu-time-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:cpu time metrics (reference label)">CPU Time Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CPU Time Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-os-user-cpu-time-micros" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.os_user_cpu_time_micros`` (reference label)">presto_<wbr>cpp.<wbr>os_<wbr>user_<wbr>cpu_<wbr>time_<wbr>micros</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-os-system-cpu-time-micros" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.os_system_cpu_time_micros`` (reference label)">presto_<wbr>cpp.<wbr>os_<wbr>system_<wbr>cpu_<wbr>time_<wbr>micros</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page-fault-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:page fault metrics (reference label)">Page Fault Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Page Fault Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-os-num-soft-page-faults" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.os_num_soft_page_faults`` (reference label)">presto_<wbr>cpp.<wbr>os_<wbr>num_<wbr>soft_<wbr>page_<wbr>faults</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-os-num-hard-page-faults" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.os_num_hard_page_faults`` (reference label)">presto_<wbr>cpp.<wbr>os_<wbr>num_<wbr>hard_<wbr>page_<wbr>faults</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-switch-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:context switch metrics (reference label)">Context Switch Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context Switch Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-os-num-voluntary-context-switches" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.os_num_voluntary_context_switches`` (reference label)">presto_<wbr>cpp.<wbr>os_<wbr>num_<wbr>voluntary_<wbr>context_<wbr>switches</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-os-num-forced-context-switches" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.os_num_forced_context_switches`` (reference label)">presto_<wbr>cpp.<wbr>os_<wbr>num_<wbr>forced_<wbr>context_<wbr>switches</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#hive-connector-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:hive connector metrics (reference label)">Hive Connector Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hive Connector Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-handle-cache-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:file handle cache metrics (reference label)">File Handle Cache Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Handle Cache Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-num-elements" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_num_elements`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>num_<wbr>elements</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-pinned-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_pinned_size`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>pinned_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-cur-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_cur_size`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>cur_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-num-accumulative-hits" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_num_accumulative_hits`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>num_<wbr>accumulative_<wbr>hits</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-num-accumulative-lookups" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_num_accumulative_lookups`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>num_<wbr>accumulative_<wbr>lookups</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-num-hits" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_num_hits`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>num_<wbr>hits</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-connector-hive-file-handle-cache-num-lookups" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{connector}.hive_file_handle_cache_num_lookups`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{connector}.<wbr>hive_<wbr>file_<wbr>handle_<wbr>cache_<wbr>num_<wbr>lookups</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#thread-pool-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:thread pool metrics (reference label)">Thread Pool Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Thread Pool Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-pool-num-threads" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{pool}.num_threads`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{pool}.<wbr>num_<wbr>threads</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-pool-num-active-threads" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{pool}.num_active_threads`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{pool}.<wbr>num_<wbr>active_<wbr>threads</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-pool-num-pending-tasks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{pool}.num_pending_tasks`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{pool}.<wbr>num_<wbr>pending_<wbr>tasks</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-pool-num-total-tasks" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{pool}.num_total_tasks`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{pool}.<wbr>num_<wbr>total_<wbr>tasks</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-pool-max-idle-time-ns" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.{pool}.max_idle_time_ns`` (reference label)">presto_<wbr>cpp.<wbr><wbr>{pool}.<wbr>max_<wbr>idle_<wbr>time_<wbr>ns</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#eventbase-violation-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:eventbase violation metrics (reference label)">Event<wbr>Base Violation Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EventBase Violation Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-exchange-io-evb-violation-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.exchange_io_evb_violation_count`` (reference label)">presto_<wbr>cpp.<wbr>exchange_<wbr>io_<wbr>evb_<wbr>violation_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-http-server-io-evb-violation-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.http_server_io_evb_violation_count`` (reference label)">presto_<wbr>cpp.<wbr>http_<wbr>server_<wbr>io_<wbr>evb_<wbr>violation_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#memory-pushback-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:memory pushback metrics (reference label)">Memory Pushback Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory Pushback Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-memory-pushback-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.memory_pushback_count`` (reference label)">presto_<wbr>cpp.<wbr>memory_<wbr>pushback_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-memory-pushback-latency-ms" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.memory_pushback_latency_ms`` (reference label)">presto_<wbr>cpp.<wbr>memory_<wbr>pushback_<wbr>latency_<wbr>ms</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-memory-pushback-reduction-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.memory_pushback_reduction_bytes`` (reference label)">presto_<wbr>cpp.<wbr>memory_<wbr>pushback_<wbr>reduction_<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presto-cpp-memory-pushback-expected-reduction-bytes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:``presto_cpp.memory_pushback_expected_reduction_bytes`` (reference label)">presto_<wbr>cpp.<wbr>memory_<wbr>pushback_<wbr>expected_<wbr>reduction_<wbr>bytes</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#additional-runtime-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:additional runtime metrics (reference label)">Additional Runtime Metrics</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#accessing-metrics" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:accessing metrics (reference label)">Accessing Metrics</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessing Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-output" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:example output (reference label)">Example Output</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/metrics:see also (reference label)">See Also</span>
+    </span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+
+  
+  
+
+<h1 id="presto-c-runtime-metrics">Presto C++ Runtime Metrics<a class="headerlink" href="#presto-c-runtime-metrics" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
+<li><p><a class="reference internal" href="#executor-metrics" id="id3">Executor Metrics</a></p></li>
+<li><p><a class="reference internal" href="#http-metrics" id="id4">HTTP Metrics</a></p></li>
+<li><p><a class="reference internal" href="#http-client-metrics" id="id5">HTTP Client Metrics</a></p></li>
+<li><p><a class="reference internal" href="#exchange-metrics" id="id6">Exchange Metrics</a></p></li>
+<li><p><a class="reference internal" href="#query-context-and-memory-metrics" id="id7">Query Context and Memory Metrics</a></p></li>
+<li><p><a class="reference internal" href="#task-metrics" id="id8">Task Metrics</a></p></li>
+<li><p><a class="reference internal" href="#driver-metrics" id="id9">Driver Metrics</a></p></li>
+<li><p><a class="reference internal" href="#worker-overload-metrics" id="id10">Worker Overload Metrics</a></p></li>
+<li><p><a class="reference internal" href="#output-buffer-metrics" id="id11">Output Buffer Metrics</a></p></li>
+<li><p><a class="reference internal" href="#worker-runtime-metrics" id="id12">Worker Runtime Metrics</a></p></li>
+<li><p><a class="reference internal" href="#operating-system-metrics" id="id13">Operating System Metrics</a></p></li>
+<li><p><a class="reference internal" href="#hive-connector-metrics" id="id14">Hive Connector Metrics</a></p></li>
+<li><p><a class="reference internal" href="#thread-pool-metrics" id="id15">Thread Pool Metrics</a></p></li>
+<li><p><a class="reference internal" href="#eventbase-violation-metrics" id="id16">EventBase Violation Metrics</a></p></li>
+<li><p><a class="reference internal" href="#memory-pushback-metrics" id="id17">Memory Pushback Metrics</a></p></li>
+<li><p><a class="reference internal" href="#additional-runtime-metrics" id="id18">Additional Runtime Metrics</a></p></li>
+<li><p><a class="reference internal" href="#accessing-metrics" id="id19">Accessing Metrics</a></p></li>
+<li><p><a class="reference internal" href="#see-also" id="id20">See Also</a></p></li>
+</ul>
+</nav>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>Presto C++ workers expose various runtime metrics that can be collected and monitored when
+<code class="docutils literal notranslate"><span class="pre">runtime-metrics-collection-enabled</span></code> is set to true. These metrics are available through the
+<code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/v1/info/metrics</span></code> endpoint in Prometheus data format.</p>
+<p>For information on enabling metrics collection, see <a class="reference internal" href="features.html"><span class="doc">Presto C++ Features</span></a>.</p>
+<h2 id="executor-metrics">Executor Metrics<a class="headerlink" href="#executor-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics track the performance and queue sizes of various executors in the Presto C++ worker.</p>
+<h3 id="presto-cpp-driver-cpu-executor-queue-size"><code class="docutils literal notranslate"><span class="pre">presto_cpp.driver_cpu_executor_queue_size</span></code><a class="headerlink" href="#presto-cpp-driver-cpu-executor-queue-size" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of tasks currently queued in the driver CPU executor waiting to be processed.</p></li>
+</ul>
+<h3 id="presto-cpp-driver-cpu-executor-latency-ms"><code class="docutils literal notranslate"><span class="pre">presto_cpp.driver_cpu_executor_latency_ms</span></code><a class="headerlink" href="#presto-cpp-driver-cpu-executor-latency-ms" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Unit:</strong> milliseconds</p></li>
+<li><p><strong>Description:</strong> Latency distribution of tasks in the driver CPU executor, measuring the time from task submission to execution start.</p></li>
+</ul>
+<h3 id="presto-cpp-spiller-executor-queue-size"><code class="docutils literal notranslate"><span class="pre">presto_cpp.spiller_executor_queue_size</span></code><a class="headerlink" href="#presto-cpp-spiller-executor-queue-size" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of spilling tasks currently queued in the spiller executor.</p></li>
+</ul>
+<h3 id="presto-cpp-spiller-executor-latency-ms"><code class="docutils literal notranslate"><span class="pre">presto_cpp.spiller_executor_latency_ms</span></code><a class="headerlink" href="#presto-cpp-spiller-executor-latency-ms" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Unit:</strong> milliseconds</p></li>
+<li><p><strong>Description:</strong> Latency distribution of spilling tasks in the spiller executor.</p></li>
+</ul>
+<h3 id="presto-cpp-http-executor-latency-ms"><code class="docutils literal notranslate"><span class="pre">presto_cpp.http_executor_latency_ms</span></code><a class="headerlink" href="#presto-cpp-http-executor-latency-ms" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Unit:</strong> milliseconds</p></li>
+<li><p><strong>Description:</strong> Latency distribution of HTTP request processing tasks in the HTTP executor.</p></li>
+</ul>
+<h2 id="http-metrics">HTTP Metrics<a class="headerlink" href="#http-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics track HTTP requests and responses in the Presto C++ worker.</p>
+<h3 id="presto-cpp-num-http-request"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_http_request</span></code><a class="headerlink" href="#presto-cpp-num-http-request" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of HTTP requests received by the worker since startup.</p></li>
+</ul>
+<h3 id="presto-cpp-num-http-request-error"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_http_request_error</span></code><a class="headerlink" href="#presto-cpp-num-http-request-error" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of HTTP request errors encountered by the worker since startup.</p></li>
+</ul>
+<h3 id="presto-cpp-http-request-latency-ms"><code class="docutils literal notranslate"><span class="pre">presto_cpp.http_request_latency_ms</span></code><a class="headerlink" href="#presto-cpp-http-request-latency-ms" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Unit:</strong> milliseconds</p></li>
+<li><p><strong>Description:</strong> Latency distribution of HTTP request processing, from receipt to response.</p></li>
+</ul>
+<h3 id="presto-cpp-http-request-size-bytes"><code class="docutils literal notranslate"><span class="pre">presto_cpp.http_request_size_bytes</span></code><a class="headerlink" href="#presto-cpp-http-request-size-bytes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Unit:</strong> bytes</p></li>
+<li><p><strong>Description:</strong> Size distribution of HTTP request payloads.</p></li>
+</ul>
+<h2 id="http-client-metrics">HTTP Client Metrics<a class="headerlink" href="#http-client-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics track HTTP client connection behavior for outbound requests.</p>
+<h3 id="presto-cpp-http-client-num-connections-created"><code class="docutils literal notranslate"><span class="pre">presto_cpp.http.client.num_connections_created</span></code><a class="headerlink" href="#presto-cpp-http-client-num-connections-created" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of HTTP client connections created by the worker.</p></li>
+</ul>
+<h3 id="presto-cpp-http-client-connection-first-use"><code class="docutils literal notranslate"><span class="pre">presto_cpp.http.client.connection_first_use</span></code><a class="headerlink" href="#presto-cpp-http-client-connection-first-use" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Number of HTTP requests that are the first request on a new connection (sequence number == 0).</p></li>
+</ul>
+<h3 id="presto-cpp-http-client-connection-reuse"><code class="docutils literal notranslate"><span class="pre">presto_cpp.http.client.connection_reuse</span></code><a class="headerlink" href="#presto-cpp-http-client-connection-reuse" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Number of HTTP requests sent on reused connections (sequence number &gt; 0).</p></li>
+</ul>
+<h3 id="presto-cpp-http-client-transaction-create-delay-ms"><code class="docutils literal notranslate"><span class="pre">presto_cpp.http.client.transaction_create_delay_ms</span></code><a class="headerlink" href="#presto-cpp-http-client-transaction-create-delay-ms" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Unit:</strong> milliseconds</p></li>
+<li><p><strong>Description:</strong> Delay in creating HTTP client transactions.</p></li>
+</ul>
+<h2 id="exchange-metrics">Exchange Metrics<a class="headerlink" href="#exchange-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics track data exchange operations between workers.</p>
+<h3 id="presto-cpp-exchange-source-peak-queued-bytes"><code class="docutils literal notranslate"><span class="pre">presto_cpp.exchange_source_peak_queued_bytes</span></code><a class="headerlink" href="#presto-cpp-exchange-source-peak-queued-bytes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Unit:</strong> bytes</p></li>
+<li><p><strong>Description:</strong> Peak number of bytes queued in PrestoExchangeSource waiting to be consumed.</p></li>
+</ul>
+<h3 id="presto-cpp-exchange-request-duration"><code class="docutils literal notranslate"><span class="pre">presto_cpp.exchange.request.duration</span></code><a class="headerlink" href="#presto-cpp-exchange-request-duration" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Unit:</strong> milliseconds</p></li>
+<li><p><strong>Description:</strong> Duration distribution of exchange data fetch requests.</p></li>
+</ul>
+<h3 id="presto-cpp-exchange-request-num-tries"><code class="docutils literal notranslate"><span class="pre">presto_cpp.exchange.request.num_tries</span></code><a class="headerlink" href="#presto-cpp-exchange-request-num-tries" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Description:</strong> Number of retry attempts for exchange data fetch requests.</p></li>
+</ul>
+<h3 id="presto-cpp-exchange-request-page-size"><code class="docutils literal notranslate"><span class="pre">presto_cpp.exchange.request.page_size</span></code><a class="headerlink" href="#presto-cpp-exchange-request-page-size" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Unit:</strong> bytes</p></li>
+<li><p><strong>Description:</strong> Size distribution of data pages fetched through exchange requests.</p></li>
+</ul>
+<h3 id="presto-cpp-exchange-get-data-size-duration"><code class="docutils literal notranslate"><span class="pre">presto_cpp.exchange.get_data_size.duration</span></code><a class="headerlink" href="#presto-cpp-exchange-get-data-size-duration" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Unit:</strong> milliseconds</p></li>
+<li><p><strong>Description:</strong> Duration distribution of operations to get the size of exchange data.</p></li>
+</ul>
+<h3 id="presto-cpp-exchange-get-data-size-num-tries"><code class="docutils literal notranslate"><span class="pre">presto_cpp.exchange.get_data_size.num_tries</span></code><a class="headerlink" href="#presto-cpp-exchange-get-data-size-num-tries" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Description:</strong> Number of retry attempts for getting exchange data size.</p></li>
+</ul>
+<h2 id="query-context-and-memory-metrics">Query Context and Memory Metrics<a class="headerlink" href="#query-context-and-memory-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics track query execution contexts and memory usage.</p>
+<h3 id="presto-cpp-num-query-contexts"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_query_contexts</span></code><a class="headerlink" href="#presto-cpp-num-query-contexts" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Current number of active query contexts in the worker.</p></li>
+</ul>
+<h3 id="presto-cpp-memory-manager-total-bytes"><code class="docutils literal notranslate"><span class="pre">presto_cpp.memory_manager_total_bytes</span></code><a class="headerlink" href="#presto-cpp-memory-manager-total-bytes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Unit:</strong> bytes</p></li>
+<li><p><strong>Description:</strong> Total bytes currently used by the memory manager across all queries’ memory pools.</p></li>
+</ul>
+<h2 id="task-metrics">Task Metrics<a class="headerlink" href="#task-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics track task lifecycle and execution states.</p>
+<h3 id="task-counts">Task Counts<a class="headerlink" href="#task-counts" title="Link to this heading">¶</a></h3>
+<h4 id="presto-cpp-num-tasks"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_tasks</span></code><a class="headerlink" href="#presto-cpp-num-tasks" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of tasks created on this worker since startup.</p></li>
+</ul>
+<h4 id="presto-cpp-num-tasks-bytes-processed"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_tasks_bytes_processed</span></code><a class="headerlink" href="#presto-cpp-num-tasks-bytes-processed" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Unit:</strong> bytes</p></li>
+<li><p><strong>Description:</strong> Total bytes processed by all tasks on this worker.</p></li>
+</ul>
+<h4 id="presto-cpp-num-tasks-running"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_tasks_running</span></code><a class="headerlink" href="#presto-cpp-num-tasks-running" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Current number of tasks in running state.</p></li>
+</ul>
+<h4 id="presto-cpp-num-tasks-finished"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_tasks_finished</span></code><a class="headerlink" href="#presto-cpp-num-tasks-finished" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of tasks that completed successfully.</p></li>
+</ul>
+<h4 id="presto-cpp-num-tasks-cancelled"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_tasks_cancelled</span></code><a class="headerlink" href="#presto-cpp-num-tasks-cancelled" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of tasks that were cancelled.</p></li>
+</ul>
+<h4 id="presto-cpp-num-tasks-aborted"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_tasks_aborted</span></code><a class="headerlink" href="#presto-cpp-num-tasks-aborted" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of tasks that were aborted.</p></li>
+</ul>
+<h4 id="presto-cpp-num-tasks-failed"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_tasks_failed</span></code><a class="headerlink" href="#presto-cpp-num-tasks-failed" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of tasks that failed with an error.</p></li>
+</ul>
+<h4 id="presto-cpp-num-tasks-planned"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_tasks_planned</span></code><a class="headerlink" href="#presto-cpp-num-tasks-planned" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of tasks that have been created but not yet started, including queued tasks.</p></li>
+</ul>
+<h4 id="presto-cpp-num-tasks-queued"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_tasks_queued</span></code><a class="headerlink" href="#presto-cpp-num-tasks-queued" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of tasks currently waiting in the task queue.</p></li>
+</ul>
+<h3 id="task-health-metrics">Task Health Metrics<a class="headerlink" href="#task-health-metrics" title="Link to this heading">¶</a></h3>
+<h4 id="presto-cpp-num-zombie-velox-tasks"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_zombie_velox_tasks</span></code><a class="headerlink" href="#presto-cpp-num-zombie-velox-tasks" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of zombie Velox tasks (tasks that are no longer active but not cleaned up).</p></li>
+</ul>
+<h4 id="presto-cpp-num-zombie-presto-tasks"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_zombie_presto_tasks</span></code><a class="headerlink" href="#presto-cpp-num-zombie-presto-tasks" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of zombie Presto tasks (tasks that are no longer active but not cleaned up).</p></li>
+</ul>
+<h4 id="presto-cpp-num-tasks-with-stuck-operator"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_tasks_with_stuck_operator</span></code><a class="headerlink" href="#presto-cpp-num-tasks-with-stuck-operator" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of tasks that have at least one stuck operator.</p></li>
+</ul>
+<h4 id="presto-cpp-num-cancelled-tasks-by-stuck-driver"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_cancelled_tasks_by_stuck_driver</span></code><a class="headerlink" href="#presto-cpp-num-cancelled-tasks-by-stuck-driver" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of tasks cancelled due to stuck drivers.</p></li>
+</ul>
+<h4 id="presto-cpp-num-tasks-deadlock"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_tasks_deadlock</span></code><a class="headerlink" href="#presto-cpp-num-tasks-deadlock" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of tasks that encountered deadlock conditions.</p></li>
+</ul>
+<h4 id="presto-cpp-num-tasks-manager-lock-timeout"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_tasks_manager_lock_timeout</span></code><a class="headerlink" href="#presto-cpp-num-tasks-manager-lock-timeout" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Number of times the task manager lock acquisition timed out.</p></li>
+</ul>
+<h2 id="driver-metrics">Driver Metrics<a class="headerlink" href="#driver-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics track the state and execution of drivers within tasks.</p>
+<h3 id="driver-states">Driver States<a class="headerlink" href="#driver-states" title="Link to this heading">¶</a></h3>
+<h4 id="presto-cpp-num-queued-drivers"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_queued_drivers</span></code><a class="headerlink" href="#presto-cpp-num-queued-drivers" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of drivers currently queued and waiting to execute.</p></li>
+</ul>
+<h4 id="presto-cpp-num-on-thread-drivers"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_on_thread_drivers</span></code><a class="headerlink" href="#presto-cpp-num-on-thread-drivers" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of drivers currently executing on threads.</p></li>
+</ul>
+<h4 id="presto-cpp-num-suspended-drivers"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_suspended_drivers</span></code><a class="headerlink" href="#presto-cpp-num-suspended-drivers" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of drivers that are suspended.</p></li>
+</ul>
+<h3 id="driver-blocking-reasons">Driver Blocking Reasons<a class="headerlink" href="#driver-blocking-reasons" title="Link to this heading">¶</a></h3>
+<h4 id="presto-cpp-num-blocked-wait-for-consumer-drivers"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_blocked_wait_for_consumer_drivers</span></code><a class="headerlink" href="#presto-cpp-num-blocked-wait-for-consumer-drivers" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of drivers blocked waiting for downstream consumers to consume data.</p></li>
+</ul>
+<h4 id="presto-cpp-num-blocked-wait-for-split-drivers"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_blocked_wait_for_split_drivers</span></code><a class="headerlink" href="#presto-cpp-num-blocked-wait-for-split-drivers" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of drivers blocked waiting for new splits to be assigned.</p></li>
+</ul>
+<h4 id="presto-cpp-num-blocked-wait-for-producer-drivers"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_blocked_wait_for_producer_drivers</span></code><a class="headerlink" href="#presto-cpp-num-blocked-wait-for-producer-drivers" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of drivers blocked waiting for upstream producers to provide data.</p></li>
+</ul>
+<h4 id="presto-cpp-num-blocked-wait-for-join-build-drivers"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_blocked_wait_for_join_build_drivers</span></code><a class="headerlink" href="#presto-cpp-num-blocked-wait-for-join-build-drivers" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of drivers blocked waiting for join build side to complete.</p></li>
+</ul>
+<h4 id="presto-cpp-num-blocked-wait-for-join-probe-drivers"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_blocked_wait_for_join_probe_drivers</span></code><a class="headerlink" href="#presto-cpp-num-blocked-wait-for-join-probe-drivers" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of drivers blocked during join probe operations.</p></li>
+</ul>
+<h4 id="presto-cpp-num-blocked-wait-for-merge-join-right-side-drivers"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_blocked_wait_for_merge_join_right_side_drivers</span></code><a class="headerlink" href="#presto-cpp-num-blocked-wait-for-merge-join-right-side-drivers" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of drivers blocked waiting for merge join right side data.</p></li>
+</ul>
+<h4 id="presto-cpp-num-blocked-wait-for-memory-drivers"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_blocked_wait_for_memory_drivers</span></code><a class="headerlink" href="#presto-cpp-num-blocked-wait-for-memory-drivers" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of drivers blocked waiting for memory to become available.</p></li>
+</ul>
+<h4 id="presto-cpp-num-blocked-wait-for-connector-drivers"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_blocked_wait_for_connector_drivers</span></code><a class="headerlink" href="#presto-cpp-num-blocked-wait-for-connector-drivers" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of drivers blocked waiting for connector operations to complete.</p></li>
+</ul>
+<h4 id="presto-cpp-num-blocked-yield-drivers"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_blocked_yield_drivers</span></code><a class="headerlink" href="#presto-cpp-num-blocked-yield-drivers" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of drivers that have yielded execution.</p></li>
+</ul>
+<h4 id="presto-cpp-num-stuck-drivers"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_stuck_drivers</span></code><a class="headerlink" href="#presto-cpp-num-stuck-drivers" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of drivers that appear to be stuck and not making progress.</p></li>
+</ul>
+<h4 id="presto-cpp-num-driver-threads"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_driver_threads</span></code><a class="headerlink" href="#presto-cpp-num-driver-threads" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of driver CPU threads in the executor thread pool.</p></li>
+</ul>
+<h2 id="worker-overload-metrics">Worker Overload Metrics<a class="headerlink" href="#worker-overload-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics indicate when the worker is overloaded and may reject new work.</p>
+<h3 id="presto-cpp-overloaded-mem"><code class="docutils literal notranslate"><span class="pre">presto_cpp.overloaded_mem</span></code><a class="headerlink" href="#presto-cpp-overloaded-mem" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Exports 100 if the worker is overloaded in terms of memory usage, 0 otherwise.</p></li>
+</ul>
+<h3 id="presto-cpp-overloaded-cpu"><code class="docutils literal notranslate"><span class="pre">presto_cpp.overloaded_cpu</span></code><a class="headerlink" href="#presto-cpp-overloaded-cpu" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Exports 100 if the worker is overloaded in terms of CPU usage, 0 otherwise.</p></li>
+</ul>
+<h3 id="presto-cpp-overloaded"><code class="docutils literal notranslate"><span class="pre">presto_cpp.overloaded</span></code><a class="headerlink" href="#presto-cpp-overloaded" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Exports 100 if the worker is overloaded in terms of either memory or CPU, 0 otherwise.</p></li>
+</ul>
+<h3 id="presto-cpp-task-planned-time-ms"><code class="docutils literal notranslate"><span class="pre">presto_cpp.task_planned_time_ms</span></code><a class="headerlink" href="#presto-cpp-task-planned-time-ms" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Unit:</strong> milliseconds</p></li>
+<li><p><strong>Description:</strong> Average time tasks spend in the planned state (queued) before starting execution.</p></li>
+</ul>
+<h3 id="presto-cpp-overloaded-duration-sec"><code class="docutils literal notranslate"><span class="pre">presto_cpp.overloaded_duration_sec</span></code><a class="headerlink" href="#presto-cpp-overloaded-duration-sec" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Unit:</strong> seconds</p></li>
+<li><p><strong>Description:</strong> Duration in seconds that the worker has been continuously overloaded, or 0 if not currently overloaded.</p></li>
+</ul>
+<h2 id="output-buffer-metrics">Output Buffer Metrics<a class="headerlink" href="#output-buffer-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics track the partitioned output buffers used for shuffling data.</p>
+<h3 id="presto-cpp-num-partitioned-output-buffer"><code class="docutils literal notranslate"><span class="pre">presto_cpp.num_partitioned_output_buffer</span></code><a class="headerlink" href="#presto-cpp-num-partitioned-output-buffer" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Total number of output buffers currently managed by all OutputBufferManagers.</p></li>
+</ul>
+<h3 id="presto-cpp-partitioned-output-buffer-get-data-latency-ms"><code class="docutils literal notranslate"><span class="pre">presto_cpp.partitioned_output_buffer_get_data_latency_ms</span></code><a class="headerlink" href="#presto-cpp-partitioned-output-buffer-get-data-latency-ms" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Unit:</strong> milliseconds</p></li>
+<li><p><strong>Description:</strong> Latency distribution of getData() calls on OutputBufferManager instances.</p></li>
+</ul>
+<h2 id="worker-runtime-metrics">Worker Runtime Metrics<a class="headerlink" href="#worker-runtime-metrics" title="Link to this heading">¶</a></h2>
+<h3 id="presto-cpp-worker-runtime-uptime-secs"><code class="docutils literal notranslate"><span class="pre">presto_cpp.worker_runtime_uptime_secs</span></code><a class="headerlink" href="#presto-cpp-worker-runtime-uptime-secs" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Unit:</strong> seconds</p></li>
+<li><p><strong>Description:</strong> Worker runtime uptime in seconds after the worker process started. This metric tracks how long the worker has been running.</p></li>
+</ul>
+<h2 id="operating-system-metrics">Operating System Metrics<a class="headerlink" href="#operating-system-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics provide insight into OS-level resource usage by the worker process.</p>
+<h3 id="cpu-time-metrics">CPU Time Metrics<a class="headerlink" href="#cpu-time-metrics" title="Link to this heading">¶</a></h3>
+<h4 id="presto-cpp-os-user-cpu-time-micros"><code class="docutils literal notranslate"><span class="pre">presto_cpp.os_user_cpu_time_micros</span></code><a class="headerlink" href="#presto-cpp-os-user-cpu-time-micros" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Unit:</strong> microseconds</p></li>
+<li><p><strong>Description:</strong> User CPU time consumed by the presto_server process since the process started.</p></li>
+</ul>
+<h4 id="presto-cpp-os-system-cpu-time-micros"><code class="docutils literal notranslate"><span class="pre">presto_cpp.os_system_cpu_time_micros</span></code><a class="headerlink" href="#presto-cpp-os-system-cpu-time-micros" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Unit:</strong> microseconds</p></li>
+<li><p><strong>Description:</strong> System CPU time consumed by the presto_server process since the process started.</p></li>
+</ul>
+<h3 id="page-fault-metrics">Page Fault Metrics<a class="headerlink" href="#page-fault-metrics" title="Link to this heading">¶</a></h3>
+<h4 id="presto-cpp-os-num-soft-page-faults"><code class="docutils literal notranslate"><span class="pre">presto_cpp.os_num_soft_page_faults</span></code><a class="headerlink" href="#presto-cpp-os-num-soft-page-faults" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of soft page faults (page faults that can be resolved without disk I/O) encountered by the presto_server process since startup.</p></li>
+</ul>
+<h4 id="presto-cpp-os-num-hard-page-faults"><code class="docutils literal notranslate"><span class="pre">presto_cpp.os_num_hard_page_faults</span></code><a class="headerlink" href="#presto-cpp-os-num-hard-page-faults" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of hard page faults (page faults requiring disk I/O) encountered by the presto_server process since startup.</p></li>
+</ul>
+<h3 id="context-switch-metrics">Context Switch Metrics<a class="headerlink" href="#context-switch-metrics" title="Link to this heading">¶</a></h3>
+<h4 id="presto-cpp-os-num-voluntary-context-switches"><code class="docutils literal notranslate"><span class="pre">presto_cpp.os_num_voluntary_context_switches</span></code><a class="headerlink" href="#presto-cpp-os-num-voluntary-context-switches" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of voluntary context switches in the presto_server process (when the process yields the CPU voluntarily).</p></li>
+</ul>
+<h4 id="presto-cpp-os-num-forced-context-switches"><code class="docutils literal notranslate"><span class="pre">presto_cpp.os_num_forced_context_switches</span></code><a class="headerlink" href="#presto-cpp-os-num-forced-context-switches" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of involuntary context switches in the presto_server process (when the process is preempted by the OS).</p></li>
+</ul>
+<h2 id="hive-connector-metrics">Hive Connector Metrics<a class="headerlink" href="#hive-connector-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics track the performance of the Hive connector’s file handle cache. The metrics include
+a placeholder <code class="docutils literal notranslate"><span class="pre">{}</span></code> in their name which is replaced with the connector name at runtime.</p>
+<h3 id="file-handle-cache-metrics">File Handle Cache Metrics<a class="headerlink" href="#file-handle-cache-metrics" title="Link to this heading">¶</a></h3>
+<h4 id="presto-cpp-connector-hive-file-handle-cache-num-elements"><code class="docutils literal notranslate"><span class="pre">presto_cpp.{connector}.hive_file_handle_cache_num_elements</span></code><a class="headerlink" href="#presto-cpp-connector-hive-file-handle-cache-num-elements" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of elements currently in the Hive file handle cache.</p></li>
+</ul>
+<h4 id="presto-cpp-connector-hive-file-handle-cache-pinned-size"><code class="docutils literal notranslate"><span class="pre">presto_cpp.{connector}.hive_file_handle_cache_pinned_size</span></code><a class="headerlink" href="#presto-cpp-connector-hive-file-handle-cache-pinned-size" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Unit:</strong> bytes</p></li>
+<li><p><strong>Description:</strong> Total size of pinned (in-use) entries in the Hive file handle cache.</p></li>
+</ul>
+<h4 id="presto-cpp-connector-hive-file-handle-cache-cur-size"><code class="docutils literal notranslate"><span class="pre">presto_cpp.{connector}.hive_file_handle_cache_cur_size</span></code><a class="headerlink" href="#presto-cpp-connector-hive-file-handle-cache-cur-size" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Unit:</strong> bytes</p></li>
+<li><p><strong>Description:</strong> Current total size of the Hive file handle cache.</p></li>
+</ul>
+<h4 id="presto-cpp-connector-hive-file-handle-cache-num-accumulative-hits"><code class="docutils literal notranslate"><span class="pre">presto_cpp.{connector}.hive_file_handle_cache_num_accumulative_hits</span></code><a class="headerlink" href="#presto-cpp-connector-hive-file-handle-cache-num-accumulative-hits" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Cumulative number of cache hits in the Hive file handle cache since startup.</p></li>
+</ul>
+<h4 id="presto-cpp-connector-hive-file-handle-cache-num-accumulative-lookups"><code class="docutils literal notranslate"><span class="pre">presto_cpp.{connector}.hive_file_handle_cache_num_accumulative_lookups</span></code><a class="headerlink" href="#presto-cpp-connector-hive-file-handle-cache-num-accumulative-lookups" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Cumulative number of cache lookups in the Hive file handle cache since startup.</p></li>
+</ul>
+<h4 id="presto-cpp-connector-hive-file-handle-cache-num-hits"><code class="docutils literal notranslate"><span class="pre">presto_cpp.{connector}.hive_file_handle_cache_num_hits</span></code><a class="headerlink" href="#presto-cpp-connector-hive-file-handle-cache-num-hits" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Number of cache hits in the Hive file handle cache (recent window).</p></li>
+</ul>
+<h4 id="presto-cpp-connector-hive-file-handle-cache-num-lookups"><code class="docutils literal notranslate"><span class="pre">presto_cpp.{connector}.hive_file_handle_cache_num_lookups</span></code><a class="headerlink" href="#presto-cpp-connector-hive-file-handle-cache-num-lookups" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Number of cache lookups in the Hive file handle cache (recent window).</p></li>
+</ul>
+<h2 id="thread-pool-metrics">Thread Pool Metrics<a class="headerlink" href="#thread-pool-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics track the state of various thread pools. The metrics include a placeholder <code class="docutils literal notranslate"><span class="pre">{}</span></code>
+in their name which is replaced with the thread pool name at runtime.</p>
+<h3 id="presto-cpp-pool-num-threads"><code class="docutils literal notranslate"><span class="pre">presto_cpp.{pool}.num_threads</span></code><a class="headerlink" href="#presto-cpp-pool-num-threads" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Current number of threads in the thread pool.</p></li>
+</ul>
+<h3 id="presto-cpp-pool-num-active-threads"><code class="docutils literal notranslate"><span class="pre">presto_cpp.{pool}.num_active_threads</span></code><a class="headerlink" href="#presto-cpp-pool-num-active-threads" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of threads currently executing tasks in the thread pool.</p></li>
+</ul>
+<h3 id="presto-cpp-pool-num-pending-tasks"><code class="docutils literal notranslate"><span class="pre">presto_cpp.{pool}.num_pending_tasks</span></code><a class="headerlink" href="#presto-cpp-pool-num-pending-tasks" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Description:</strong> Number of tasks waiting to be executed in the thread pool.</p></li>
+</ul>
+<h3 id="presto-cpp-pool-num-total-tasks"><code class="docutils literal notranslate"><span class="pre">presto_cpp.{pool}.num_total_tasks</span></code><a class="headerlink" href="#presto-cpp-pool-num-total-tasks" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Total number of tasks that have been submitted to the thread pool since startup.</p></li>
+</ul>
+<h3 id="presto-cpp-pool-max-idle-time-ns"><code class="docutils literal notranslate"><span class="pre">presto_cpp.{pool}.max_idle_time_ns</span></code><a class="headerlink" href="#presto-cpp-pool-max-idle-time-ns" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> gauge</p></li>
+<li><p><strong>Unit:</strong> nanoseconds</p></li>
+<li><p><strong>Description:</strong> Maximum idle time for threads in the pool before they are terminated.</p></li>
+</ul>
+<h2 id="eventbase-violation-metrics">EventBase Violation Metrics<a class="headerlink" href="#eventbase-violation-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics track violations of the EventBase (event loop) threading model.</p>
+<h3 id="presto-cpp-exchange-io-evb-violation-count"><code class="docutils literal notranslate"><span class="pre">presto_cpp.exchange_io_evb_violation_count</span></code><a class="headerlink" href="#presto-cpp-exchange-io-evb-violation-count" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Number of times the exchange I/O EventBase threading model was violated (operations performed on wrong thread).</p></li>
+</ul>
+<h3 id="presto-cpp-http-server-io-evb-violation-count"><code class="docutils literal notranslate"><span class="pre">presto_cpp.http_server_io_evb_violation_count</span></code><a class="headerlink" href="#presto-cpp-http-server-io-evb-violation-count" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Number of times the HTTP server I/O EventBase threading model was violated.</p></li>
+</ul>
+<h2 id="memory-pushback-metrics">Memory Pushback Metrics<a class="headerlink" href="#memory-pushback-metrics" title="Link to this heading">¶</a></h2>
+<p>These metrics track the memory pushback mechanism that helps prevent out-of-memory conditions.</p>
+<h3 id="presto-cpp-memory-pushback-count"><code class="docutils literal notranslate"><span class="pre">presto_cpp.memory_pushback_count</span></code><a class="headerlink" href="#presto-cpp-memory-pushback-count" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> counter</p></li>
+<li><p><strong>Description:</strong> Number of times the memory pushback mechanism has been triggered.</p></li>
+</ul>
+<h3 id="presto-cpp-memory-pushback-latency-ms"><code class="docutils literal notranslate"><span class="pre">presto_cpp.memory_pushback_latency_ms</span></code><a class="headerlink" href="#presto-cpp-memory-pushback-latency-ms" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Unit:</strong> milliseconds</p></li>
+<li><p><strong>Range:</strong> 0-100,000 ms (0-100 seconds)</p></li>
+<li><p><strong>Percentiles:</strong> P50, P90, P99, P100</p></li>
+<li><p><strong>Description:</strong> Latency distribution of memory pushback operations, measuring how long each pushback attempt takes.</p></li>
+</ul>
+<h3 id="presto-cpp-memory-pushback-reduction-bytes"><code class="docutils literal notranslate"><span class="pre">presto_cpp.memory_pushback_reduction_bytes</span></code><a class="headerlink" href="#presto-cpp-memory-pushback-reduction-bytes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Unit:</strong> bytes</p></li>
+<li><p><strong>Range:</strong> 0-15 GB (150 buckets)</p></li>
+<li><p><strong>Percentiles:</strong> P50, P90, P99, P100</p></li>
+<li><p><strong>Description:</strong> Distribution of actual memory usage reduction achieved by each memory pushback attempt. This metric helps gauge the effectiveness of the memory pushback mechanism.</p></li>
+</ul>
+<h3 id="presto-cpp-memory-pushback-expected-reduction-bytes"><code class="docutils literal notranslate"><span class="pre">presto_cpp.memory_pushback_expected_reduction_bytes</span></code><a class="headerlink" href="#presto-cpp-memory-pushback-expected-reduction-bytes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> histogram</p></li>
+<li><p><strong>Unit:</strong> bytes</p></li>
+<li><p><strong>Range:</strong> 0-15 GB (150 buckets)</p></li>
+<li><p><strong>Percentiles:</strong> P50, P90, P99, P100</p></li>
+<li><p><strong>Description:</strong> Distribution of expected memory usage reduction for each memory pushback attempt. The expected reduction may differ from actual reduction as other threads might allocate memory during the pushback operation.</p></li>
+</ul>
+<h2 id="additional-runtime-metrics">Additional Runtime Metrics<a class="headerlink" href="#additional-runtime-metrics" title="Link to this heading">¶</a></h2>
+<p>For additional runtime metrics related to specific subsystems:</p>
+<ul class="simple">
+<li><p><strong>S3 FileSystem Metrics:</strong> When Presto C++ workers interact with S3, additional runtime metrics are collected. See the <a class="reference external" href="https://facebookincubator.github.io/velox/monitoring/metrics.html#s3-filesystem">Velox S3 FileSystem documentation</a>.</p></li>
+<li><p><strong>Velox Metrics:</strong> Metrics from the underlying Velox execution engine are also available. These are prefixed with <code class="docutils literal notranslate"><span class="pre">velox.</span></code> instead of <code class="docutils literal notranslate"><span class="pre">presto_cpp.</span></code>. See the <a class="reference external" href="https://facebookincubator.github.io/velox/monitoring/metrics.html">Velox metrics documentation</a>.</p></li>
+</ul>
+<h2 id="accessing-metrics">Accessing Metrics<a class="headerlink" href="#accessing-metrics" title="Link to this heading">¶</a></h2>
+<p>To access these metrics:</p>
+<ol class="arabic">
+<li><p>Enable metrics collection by setting <code class="docutils literal notranslate"><span class="pre">runtime-metrics-collection-enabled=true</span></code> in your worker configuration.</p></li>
+<li><p>Query the metrics endpoint:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://worker-host:7777/v1/info/metrics
+</code></pre></div>
+</div>
+</li>
+<li><p>The response will be in Prometheus text format, suitable for scraping by Prometheus or other monitoring systems.</p></li>
+</ol>
+<h3 id="example-output">Example Output<a class="headerlink" href="#example-output" title="Link to this heading">¶</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code># TYPE presto_cpp_worker_runtime_uptime_secs counter
+presto_cpp_worker_runtime_uptime_secs{cluster=&quot;production&quot;,worker=&quot;worker-01&quot;} 3600
+# TYPE presto_cpp_num_tasks_running gauge
+presto_cpp_num_tasks_running{cluster=&quot;production&quot;,worker=&quot;worker-01&quot;} 42
+# TYPE presto_cpp_memory_manager_total_bytes gauge
+presto_cpp_memory_manager_total_bytes{cluster=&quot;production&quot;,worker=&quot;worker-01&quot;} 8589934592
+</code></pre></div>
+</div>
+<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="features.html"><span class="doc">Presto C++ Features</span></a> - For information on enabling metrics collection</p></li>
+<li><p><a class="reference internal" href="properties.html"><span class="doc">Presto C++ Configuration Properties</span></a> - For worker configuration properties</p></li>
+<li><p><a class="reference external" href="https://facebookincubator.github.io/velox/monitoring/metrics.html">Velox Metrics Documentation</a> - For metrics from the Velox execution engine</p></li>
+</ul>
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky", "content.code.copy"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+    
+  </body>
+</html>
