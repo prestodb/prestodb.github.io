@@ -1,0 +1,1795 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../presto-cpp.html">
+      
+      
+        <link rel="next" href="features.html">
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Presto C++ Installation - Presto 0.298 Documentation</title>
+      
+    
+    
+      
+        
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.568f84a10346378e3.min.css?v=fed7ac0f" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-K7GB6F0LBZ",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#prerequisites" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.298 Documentation" class="md-header__button md-logo" aria-label="Presto 0.298 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.298 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Presto C++ Installation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.298 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.298 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.298 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clients
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Administration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query Optimizer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Connectors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plugins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Functions and Operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Statement Syntax
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Migration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    REST API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ecosystem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Developer Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../presto-cpp.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Presto C++
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_18" id="__nav_18_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            Presto C++
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Installation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Installation
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/presto_cpp/installation.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/presto_cpp/installation.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:prerequisites (reference label)">Prerequisites</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#create-a-working-directory" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:create a working directory (reference label)">Create a Working Directory</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#configure-the-presto-java-coordinator" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:configure the presto java coordinator (reference label)">Configure the Presto Java Coordinator</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure the Presto Java Coordinator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-configuration-directory" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:1. create configuration directory (reference label)">1.<wbr> Create Configuration Directory</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-coordinator-configuration-file" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:2. create the coordinator configuration file (reference label)">2.<wbr> Create the Coordinator Configuration File</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-jvm-configuration-file" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:3. create the jvm configuration file (reference label)">3.<wbr> Create the JVM Configuration File</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-node-properties-file" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:4. create the node properties file (reference label)">4.<wbr> Create the Node Properties File</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-tpc-h-catalog-configuration-file" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:5. create the tpc-h catalog configuration file (reference label)">5.<wbr> Create the TPC-<wbr>H Catalog Configuration File</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#configure-the-prestissimo-c-worker" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:configure the prestissimo (c++) worker (reference label)">Configure the Prestissimo <wbr>(C++) Worker</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure the Prestissimo (C++) Worker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-worker-configuration-directory" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:1. create worker configuration directory (reference label)">1.<wbr> Create Worker Configuration Directory</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-worker-1-etc-config-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:2. create ``worker-1/etc/config.properties`` (reference label)">2.<wbr> Create worker-<wbr>1/etc/config.<wbr>properties</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-worker-1-etc-node-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:3. configure ``worker-1/etc/node.properties`` (reference label)">3.<wbr> Configure worker-<wbr>1/etc/node.<wbr>properties</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-tpc-h-catalog-configuration" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:4. add tpc-h catalog configuration (reference label)">4.<wbr> Add TPC-<wbr>H Catalog Configuration</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#create-docker-compose-yml" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="create-docker-compose-yml (reference label)">Create docker-<wbr>compose.<wbr>yml</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#start-the-cluster-and-verify" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:start the cluster and verify (reference label)">Start the Cluster and Verify</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Start the Cluster and Verify">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-the-cluster" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:1. start the cluster (reference label)">1.<wbr> Start the Cluster</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:2. verify (reference label)">2.<wbr> Verify</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="features.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Features
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sidecar.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Sidecar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="limitations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Limitations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Plugins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="properties.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Configuration Properties
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="properties-session.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Session Properties
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="metrics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++ Runtime Metrics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="federation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Connector Federation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshoot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/presto_cpp/installation.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/presto_cpp/installation.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:prerequisites (reference label)">Prerequisites</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#create-a-working-directory" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:create a working directory (reference label)">Create a Working Directory</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#configure-the-presto-java-coordinator" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:configure the presto java coordinator (reference label)">Configure the Presto Java Coordinator</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure the Presto Java Coordinator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-configuration-directory" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:1. create configuration directory (reference label)">1.<wbr> Create Configuration Directory</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-coordinator-configuration-file" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:2. create the coordinator configuration file (reference label)">2.<wbr> Create the Coordinator Configuration File</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-jvm-configuration-file" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:3. create the jvm configuration file (reference label)">3.<wbr> Create the JVM Configuration File</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-node-properties-file" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:4. create the node properties file (reference label)">4.<wbr> Create the Node Properties File</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-the-tpc-h-catalog-configuration-file" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:5. create the tpc-h catalog configuration file (reference label)">5.<wbr> Create the TPC-<wbr>H Catalog Configuration File</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#configure-the-prestissimo-c-worker" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:configure the prestissimo (c++) worker (reference label)">Configure the Prestissimo <wbr>(C++) Worker</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure the Prestissimo (C++) Worker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-worker-configuration-directory" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:1. create worker configuration directory (reference label)">1.<wbr> Create Worker Configuration Directory</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-worker-1-etc-config-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:2. create ``worker-1/etc/config.properties`` (reference label)">2.<wbr> Create worker-<wbr>1/etc/config.<wbr>properties</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-worker-1-etc-node-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:3. configure ``worker-1/etc/node.properties`` (reference label)">3.<wbr> Configure worker-<wbr>1/etc/node.<wbr>properties</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-tpc-h-catalog-configuration" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:4. add tpc-h catalog configuration (reference label)">4.<wbr> Add TPC-<wbr>H Catalog Configuration</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#create-docker-compose-yml" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="create-docker-compose-yml (reference label)">Create docker-<wbr>compose.<wbr>yml</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#start-the-cluster-and-verify" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:start the cluster and verify (reference label)">Start the Cluster and Verify</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Start the Cluster and Verify">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-the-cluster" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:1. start the cluster (reference label)">1.<wbr> Start the Cluster</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="presto_cpp/installation:2. verify (reference label)">2.<wbr> Verify</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+
+  
+  
+
+<h1 id="presto-c-installation">Presto C++ Installation<a class="headerlink" href="#presto-c-installation" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#prerequisites" id="id2">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#create-a-working-directory" id="id3">Create a Working Directory</a></p></li>
+<li><p><a class="reference internal" href="#configure-the-presto-java-coordinator" id="id4">Configure the Presto Java Coordinator</a></p></li>
+<li><p><a class="reference internal" href="#configure-the-prestissimo-c-worker" id="id5">Configure the Prestissimo (C++) Worker</a></p></li>
+<li><p><a class="reference internal" href="#create-docker-compose-yml" id="id6">Create <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code></a></p></li>
+<li><p><a class="reference internal" href="#start-the-cluster-and-verify" id="id7">Start the Cluster and Verify</a></p></li>
+</ul>
+</nav>
+<p>This shows how to install and run a lightweight Presto cluster utilizing a PrestoDB Java Coordinator and Prestissimo (Presto C++) Workers using Docker.</p>
+<p>For more information about Presto C++, see the <a class="reference internal" href="../presto-cpp.html#overview"><span class="std std-ref">Overview</span></a>.</p>
+<p>The setup uses Meta’s high-performance Velox engine for worker-side query execution to configure a cluster and run a test query with the built-in TPC-H connector.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h2>
+<p>To follow this tutorial, you need:</p>
+<ul class="simple">
+<li><p>Docker installed.</p></li>
+<li><p>Basic familiarity with the terminal and shell commands.</p></li>
+</ul>
+<h2 id="create-a-working-directory">Create a Working Directory<a class="headerlink" href="#create-a-working-directory" title="Link to this heading">¶</a></h2>
+<p>The recommended directory structure uses <code class="docutils literal notranslate"><span class="pre">presto-lab</span></code> as the root directory.</p>
+<p>Create a clean root directory to hold all necessary configuration files and the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>~/presto-lab
+<span class="nb">cd</span><span class="w"> </span>~/presto-lab
+</code></pre></div>
+</div>
+<h2 id="configure-the-presto-java-coordinator">Configure the Presto Java Coordinator<a class="headerlink" href="#configure-the-presto-java-coordinator" title="Link to this heading">¶</a></h2>
+<p>The Coordinator requires configuration to define its role, enable the discovery service, and set up a catalog for querying.</p>
+<h3 id="create-configuration-directory">1. Create Configuration Directory<a class="headerlink" href="#create-configuration-directory" title="Link to this heading">¶</a></h3>
+<p>To create the necessary directories for the coordinator and its catalogs, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>coordinator/etc/catalog
+</code></pre></div>
+</div>
+<h3 id="create-the-coordinator-configuration-file">2. Create the Coordinator Configuration File<a class="headerlink" href="#create-the-coordinator-configuration-file" title="Link to this heading">¶</a></h3>
+<p>Create the file <code class="docutils literal notranslate"><span class="pre">coordinator/etc/config.properties</span></code> with the following contents. This file enables the coordinator mode, the discovery server, and sets the HTTP port to <code class="docutils literal notranslate"><span class="pre">8080</span></code>.</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><code><span class="c1"># coordinator/etc/config.properties</span>
+<span class="na">coordinator</span><span class="o">=</span><span class="s">true</span>
+<span class="na">node-scheduler.include-coordinator</span><span class="o">=</span><span class="s">false</span>
+<span class="na">http-server.http.port</span><span class="o">=</span><span class="s">8080</span>
+<span class="na">discovery-server.enabled</span><span class="o">=</span><span class="s">true</span>
+<span class="na">discovery.uri</span><span class="o">=</span><span class="s">http://localhost:8080</span>
+</code></pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">coordinator=true</span></code>: Enables the coordinator mode.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">discovery-server.enabled=true</span></code>: Designates the coordinator as the host for the worker discovery service.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">http-server.http.port=8080S</span></code>: Start the HTTP server on port 8080 for the coordinator (and workers, if enabled).</p></li>
+</ul>
+<h3 id="create-the-jvm-configuration-file">3. Create the JVM Configuration File<a class="headerlink" href="#create-the-jvm-configuration-file" title="Link to this heading">¶</a></h3>
+<p>Create the file <code class="docutils literal notranslate"><span class="pre">coordinator/etc/jvm.config</span></code> with the following content. These are standard Java 17 flags for Presto that ensures compatibility with Java 17’s module system, provides stable garbage collection and memory behavior, and enforces safe failure handling.</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><code><span class="c1"># coordinator/etc/jvm.config</span>
+<span class="na">-server</span>
+<span class="na">-Xmx1G</span>
+<span class="na">-XX</span><span class="o">:</span><span class="s">+UseG1GC</span>
+<span class="na">-XX</span><span class="o">:</span><span class="s">G1HeapRegionSize=32M</span>
+<span class="na">-XX</span><span class="o">:</span><span class="s">+UseGCOverheadLimit</span>
+<span class="na">-XX</span><span class="o">:</span><span class="s">+ExplicitGCInvokesConcurrent</span>
+<span class="na">-XX</span><span class="o">:</span><span class="s">+HeapDumpOnOutOfMemoryError</span>
+<span class="na">-XX</span><span class="o">:</span><span class="s">+ExitOnOutOfMemoryError</span>
+<span class="na">-Djdk.attach.allowAttachSelf</span><span class="o">=</span><span class="s">true</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/java.io=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/java.lang=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/java.lang.ref=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/java.lang.reflect=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/java.net=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/java.nio=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/java.security=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/javax.security.auth=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/javax.security.auth.login=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/java.text=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/java.util=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/java.util.concurrent=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/java.util.concurrent.atomic=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/java.util.regex=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/jdk.internal.loader=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.base/sun.security.action=ALL-UNNAMED</span>
+<span class="na">--add-opens</span><span class="o">=</span><span class="s">java.security.jgss/sun.security.krb5=ALL-UNNAMED</span>
+</code></pre></div>
+</div>
+<h3 id="create-the-node-properties-file">4. Create the Node Properties File<a class="headerlink" href="#create-the-node-properties-file" title="Link to this heading">¶</a></h3>
+<p>Create the file <code class="docutils literal notranslate"><span class="pre">coordinator/etc/node.properties</span></code> with the following content to set the node environment and the data directory.</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><code><span class="c1"># coordinator/etc/node.properties</span>
+<span class="na">node.id</span><span class="o">=</span><span class="s">${ENV:HOSTNAME}</span>
+<span class="na">node.environment</span><span class="o">=</span><span class="s">test</span>
+<span class="na">node.data-dir</span><span class="o">=</span><span class="s">/var/lib/presto/data</span>
+</code></pre></div>
+</div>
+<h3 id="create-the-tpc-h-catalog-configuration-file">5. Create the TPC-H Catalog Configuration File<a class="headerlink" href="#create-the-tpc-h-catalog-configuration-file" title="Link to this heading">¶</a></h3>
+<p>Create the file <code class="docutils literal notranslate"><span class="pre">coordinator/etc/catalog/tpch.properties</span></code> with the following content. The TPC-H catalog enables running test queries against an in-memory dataset.</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><code><span class="c1"># coordinator/etc/catalog/tpch.properties</span>
+<span class="na">connector.name</span><span class="o">=</span><span class="s">tpch</span>
+</code></pre></div>
+</div>
+<h2 id="configure-the-prestissimo-c-worker">Configure the Prestissimo (C++) Worker<a class="headerlink" href="#configure-the-prestissimo-c-worker" title="Link to this heading">¶</a></h2>
+<p>Configure the Worker to locate the Coordinator or Discovery service and identify itself within the network.</p>
+<h3 id="create-worker-configuration-directory">1. Create Worker Configuration Directory<a class="headerlink" href="#create-worker-configuration-directory" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>worker-1/etc/catalog
+</code></pre></div>
+</div>
+<h3 id="create-worker-1-etc-config-properties">2. Create <code class="docutils literal notranslate"><span class="pre">worker-1/etc/config.properties</span></code><a class="headerlink" href="#create-worker-1-etc-config-properties" title="Link to this heading">¶</a></h3>
+<p>Configure the worker to point to the discovery service running on the coordinator.</p>
+<p>Note: You can repeat this step to add more workers, such as <code class="docutils literal notranslate"><span class="pre">worker-2</span></code>.</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><code><span class="c1"># worker-1/etc/config.properties</span>
+<span class="na">discovery.uri</span><span class="o">=</span><span class="s">http://coordinator:8080</span>
+<span class="na">presto.version</span><span class="o">=</span><span class="s">0.288-15f14bb</span>
+<span class="na">http-server.http.port</span><span class="o">=</span><span class="s">7777</span>
+<span class="na">shutdown-onset-sec</span><span class="o">=</span><span class="s">1</span>
+<span class="na">runtime-metrics-collection-enabled</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">discovery.uri=http://coordinator:8080</span></code>: This uses the coordinator service name as defined in the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file for network communication within Docker.</p></li>
+</ul>
+<h3 id="configure-worker-1-etc-node-properties">3. Configure <code class="docutils literal notranslate"><span class="pre">worker-1/etc/node.properties</span></code><a class="headerlink" href="#configure-worker-1-etc-node-properties" title="Link to this heading">¶</a></h3>
+<p>Define the worker’s internal address to ensure reliable registration.</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><code><span class="c1"># worker-1/etc/node.properties</span>
+<span class="na">node.environment</span><span class="o">=</span><span class="s">test</span>
+<span class="na">node.internal-address</span><span class="o">=</span><span class="s">worker-1</span>
+<span class="na">node.location</span><span class="o">=</span><span class="s">docker</span>
+<span class="na">node.id</span><span class="o">=</span><span class="s">worker-1</span>
+</code></pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">node.internal-address=worker-1</span></code>: This setting matches the service name defined in <a class="reference internal" href="#create-docker-compose-yml"><span class="std std-ref">Docker Compose</span></a>.</p></li>
+</ul>
+<h3 id="add-tpc-h-catalog-configuration">4. Add TPC-H Catalog Configuration<a class="headerlink" href="#add-tpc-h-catalog-configuration" title="Link to this heading">¶</a></h3>
+<p>Configure the worker with the same catalog definitions as the coordinator to execute query stages</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><code><span class="c1"># worker-1/etc/catalog/tpch.properties</span>
+<span class="na">connector.name</span><span class="o">=</span><span class="s">tpch</span>
+</code></pre></div>
+</div>
+<h2 id="create-docker-compose-yml"><span id="id1"></span>Create <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code><a class="headerlink" href="#create-docker-compose-yml" title="Link to this heading">¶</a></h2>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file in the <code class="docutils literal notranslate"><span class="pre">~/presto-lab</span></code> directory to orchestrate both the Java Coordinator and the C++ Worker containers.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><code><span class="c1"># docker-compose.yml</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">coordinator</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">public.ecr.aws/oss-presto/presto:latest</span>
+<span class="w">    </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux/amd64</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">presto-coordinator</span>
+<span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coordinator</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080:8080&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./coordinator/etc:/opt/presto-server/etc:ro</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+
+<span class="w">  </span><span class="nt">worker-1</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">public.ecr.aws/oss-presto/presto-native:latest</span>
+<span class="w">    </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux/amd64</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prestissimo-worker-1</span>
+<span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">worker-1</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coordinator</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./worker-1/etc:/opt/presto-server/etc:ro</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+
+<span class="w">  </span><span class="nt">worker-2</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">public.ecr.aws/oss-presto/presto-native:latest</span>
+<span class="w">    </span><span class="nt">platform</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux/amd64</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prestissimo-worker-2</span>
+<span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">worker-2</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coordinator</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./worker-2/etc:/opt/presto-server/etc:ro</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+</code></pre></div>
+</div>
+<ul class="simple">
+<li><p>The coordinator service uses the standard Java Presto image (presto:latest).</p></li>
+<li><p>The worker-1 and worker-2 services use the Prestissimo (C++ Native) image (presto-native:latest).</p></li>
+<li><p>The setting <code class="docutils literal notranslate"><span class="pre">platform:</span> <span class="pre">linux/amd64</span></code> is essential for users running on Apple Silicon Macs.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">volumes</span></code> section mounts your local configuration directories (<code class="docutils literal notranslate"><span class="pre">./coordinator/etc</span></code>, <code class="docutils literal notranslate"><span class="pre">./worker-1/etc</span></code>) into the container’s expected path (<code class="docutils literal notranslate"><span class="pre">/opt/presto-server/etc</span></code>).</p></li>
+</ul>
+<h2 id="start-the-cluster-and-verify">Start the Cluster and Verify<a class="headerlink" href="#start-the-cluster-and-verify" title="Link to this heading">¶</a></h2>
+<h3 id="start-the-cluster">1. Start the Cluster<a class="headerlink" href="#start-the-cluster" title="Link to this heading">¶</a></h3>
+<p>Use Docker Compose to start the cluster in detached mode (<code class="docutils literal notranslate"><span class="pre">-d</span></code>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<h3 id="verify">2. Verify<a class="headerlink" href="#verify" title="Link to this heading">¶</a></h3>
+<ol class="arabic">
+<li><p><strong>Check the Web UI:</strong> Open the Presto Web UI at <a class="reference external" href="http://localhost:8080">http://localhost:8080</a>.</p>
+<ul class="simple">
+<li><p>You should see the UI displaying 3 Active Workers (1 Coordinator and 2 Workers).</p></li>
+</ul>
+</li>
+<li><p><strong>Check Detailed Node Status</strong> : Run the following SQL query to check the detailed status and metadata about every node (Coordinator and Workers).</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">system</span><span class="p">.</span><span class="n">runtime</span><span class="p">.</span><span class="n">nodes</span><span class="p">;</span>
+</code></pre></div>
+</div>
+<p>This confirms the cluster nodes are registered and active.</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky", "content.code.copy"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+    
+  </body>
+</html>
