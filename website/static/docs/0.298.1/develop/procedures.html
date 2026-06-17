@@ -1,0 +1,2213 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="table-functions.html">
+      
+      
+        <link rel="next" href="system-access-control.html">
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Procedures - Presto 0.298.1 Documentation</title>
+      
+    
+    
+      
+        
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.568f84a10346378e3.min.css?v=fed7ac0f" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-K7GB6F0LBZ",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#normal-procedure" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.298.1 Documentation" class="md-header__button md-logo" aria-label="Presto 0.298.1 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.298.1 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Procedures
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.298.1 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.298.1 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.298.1 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clients
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Administration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query Optimizer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Connectors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plugins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Functions and Operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Statement Syntax
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Migration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    REST API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ecosystem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../develop.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Developer Guide
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_17" id="__nav_17_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            Developer Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="spi-overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SPI Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="connectors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Connectors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="example-http.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Example HTTP Connector
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="delete-and-update.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supporting DELETE and UPDATE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="types.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="table-functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Procedures
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procedures
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/develop/procedures.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/develop/procedures.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#normal-procedure" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:normal procedure (reference label)">Normal Procedure</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Normal Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#procedure-provider-class" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      1.<wbr> Procedure Provider Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation-of-a-procedure-instance" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:2. creation of a procedure instance (reference label)">2.<wbr> Creation of a Procedure Instance</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exposing-the-procedure-provider-to-prestodb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:3. exposing the procedure provider to prestodb (reference label)">3.<wbr> Exposing the Procedure Provider to Presto<wbr>DB</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#distributed-procedure" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:distributed procedure (reference label)">Distributed Procedure</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distributed Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extending-a-distributedprocedure-subtype" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:extending a distributedprocedure subtype (reference label)">Extending a Distributed<wbr>Procedure Subtype</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extending a DistributedProcedure Subtype">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-distributedproceduretype-enum-value" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:1. adding a distributedproceduretype enum value (reference label)">1.<wbr> Adding a Distributed<wbr>Procedure<wbr>Type Enum Value</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-subclass-of-distributedprocedure" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:2. creating a subclass of distributedprocedure (reference label)">2.<wbr> Creating a subclass of Distributed<wbr>Procedure</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-of-subtypes-in-the-analysis-phase" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:3. processing of subtypes in the analysis phase (reference label)">3.<wbr> Processing of Subtypes in the Analysis Phase</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-of-subtypes-in-the-planning-phase" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:4. processing of subtypes in the planning phase (reference label)">4.<wbr> Processing of Subtypes in the Planning Phase</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementing-a-concrete-distributed-procedure-in-a-specific-connector" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:implementing a concrete distributed procedure in a specific connector (reference label)">Implementing a Concrete Distributed Procedure in a Specific Connector</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing a Concrete Distributed Procedure in a Specific Connector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id1" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:1. procedure provider class (reference label)">1.<wbr> Procedure Provider Class</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation-of-a-distributedprocedure-instance" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:2. creation of a distributedprocedure instance (reference label)">2.<wbr> Creation of a Distributed<wbr>Procedure Instance</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exposing-the-distributedprocedure-provider-to-prestodb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:3. exposing the distributedprocedure provider to prestodb (reference label)">3.<wbr> Exposing the Distributed<wbr>Procedure Provider to Presto<wbr>DB</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="system-access-control.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Access Control
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="password-authenticator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Password Authenticator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="event-listener.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Event Listener
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="openlineage-event-listener.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Open<wbr>Lineage Event Listener
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="client-protocol.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto Client REST API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="worker-protocol.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto Worker REST API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="serialized-page.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Serialized<wbr>Page Wire Format
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="presto-console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto Console
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="presto-authenticator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Custom Presto Authenticator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="client-request-filter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Client Request Filter
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-process.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Process
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presto-cpp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshoot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/develop/procedures.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/develop/procedures.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#normal-procedure" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:normal procedure (reference label)">Normal Procedure</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Normal Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#procedure-provider-class" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      1.<wbr> Procedure Provider Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation-of-a-procedure-instance" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:2. creation of a procedure instance (reference label)">2.<wbr> Creation of a Procedure Instance</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exposing-the-procedure-provider-to-prestodb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:3. exposing the procedure provider to prestodb (reference label)">3.<wbr> Exposing the Procedure Provider to Presto<wbr>DB</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#distributed-procedure" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:distributed procedure (reference label)">Distributed Procedure</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Distributed Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extending-a-distributedprocedure-subtype" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:extending a distributedprocedure subtype (reference label)">Extending a Distributed<wbr>Procedure Subtype</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extending a DistributedProcedure Subtype">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-distributedproceduretype-enum-value" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:1. adding a distributedproceduretype enum value (reference label)">1.<wbr> Adding a Distributed<wbr>Procedure<wbr>Type Enum Value</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-subclass-of-distributedprocedure" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:2. creating a subclass of distributedprocedure (reference label)">2.<wbr> Creating a subclass of Distributed<wbr>Procedure</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-of-subtypes-in-the-analysis-phase" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:3. processing of subtypes in the analysis phase (reference label)">3.<wbr> Processing of Subtypes in the Analysis Phase</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-of-subtypes-in-the-planning-phase" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:4. processing of subtypes in the planning phase (reference label)">4.<wbr> Processing of Subtypes in the Planning Phase</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementing-a-concrete-distributed-procedure-in-a-specific-connector" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:implementing a concrete distributed procedure in a specific connector (reference label)">Implementing a Concrete Distributed Procedure in a Specific Connector</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing a Concrete Distributed Procedure in a Specific Connector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id1" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:1. procedure provider class (reference label)">1.<wbr> Procedure Provider Class</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creation-of-a-distributedprocedure-instance" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:2. creation of a distributedprocedure instance (reference label)">2.<wbr> Creation of a Distributed<wbr>Procedure Instance</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exposing-the-distributedprocedure-provider-to-prestodb" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="develop/procedures:3. exposing the distributedprocedure provider to prestodb (reference label)">3.<wbr> Exposing the Distributed<wbr>Procedure Provider to Presto<wbr>DB</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+
+  
+  
+
+<h1 id="procedures">Procedures<a class="headerlink" href="#procedures" title="Link to this heading">¶</a></h1>
+<p>PrestoDB’s procedures allow users to perform data manipulation and management tasks. Unlike traditional databases where procedural objects are
+defined by users by using SQL, the procedures in PrestoDB are a set of system routines provided by developers through Connectors. The overall type hierarchy
+is illustrated in the diagram below:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code>«abstract» BaseProcedure
+    |-- Procedure // (Normal) Procedure
+    |-- «abstract» DistributedProcedure
+        |-- TableDataRewriteDistributedProcedure
+        |-- ...... // Other future subtypes
+</code></pre></div>
+</div>
+<p>PrestoDB supports two categories of procedures:</p>
+<ul class="simple">
+<li><p><strong>Normal Procedure</strong></p></li>
+</ul>
+<p>These procedures are executed directly on the Coordinator node, and PrestoDB does not build distributed execution plans for them.
+They are designed mainly for administrative tasks involving table or system metadata and cache management, such as <code class="docutils literal notranslate"><span class="pre">sync_partition_metadata</span></code>
+and <code class="docutils literal notranslate"><span class="pre">invalidate_directory_list_cache</span></code> in Hive Connector, or <code class="docutils literal notranslate"><span class="pre">expire_snapshots</span></code> and <code class="docutils literal notranslate"><span class="pre">invalidate_statistics_file_cache</span></code> in Iceberg Connector.</p>
+<ul class="simple">
+<li><p><strong>Distributed Procedure</strong></p></li>
+</ul>
+<p>Procedures of this type are executed with a distributed execution plan constructed by PrestoDB, which utilizes the entire cluster of Worker nodes
+for distributed computation. They are suitable for operations involving table data—such as data optimization, re-partitioning, sorting,
+and pre-processing—as well as for administrative tasks that need to be executed across the Worker nodes, for instance, clearing caches on specific workers.</p>
+<p>The type hierarchy for Distributed Procedures is designed to be extensible. Different distributed tasks can have different invocation parameters and
+are planned into differently shaped execution plans; as such, they can be implemented as distinct subtypes of <code class="docutils literal notranslate"><span class="pre">DistributedProcedure</span></code>.</p>
+<p>For example, for table data rewrite tasks, PrestoDB provides the <code class="docutils literal notranslate"><span class="pre">TableDataRewriteDistributedProcedure</span></code> subtype.
+Connector developers can leverage this subtype to implement specific data-rewrite distributed procedures—such as table data optimization, compression,
+repartitioning, or sorting—for their connectors. Within the PrestoDB engine, tasks of this subtype are uniformly planned into an execution plan tree with the
+following shape:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><code>TableScanNode → FilterNode → CallDistributedProcedureNode → TableFinishNode → OutputNode
+</code></pre></div>
+</div>
+<p>In addition, developers can implement other kinds of distributed procedures by extending the type hierarchy—defining new subtypes that are mapped to
+execution plans of varying shapes.</p>
+<p>For further design details, see <a class="reference external" href="https://github.com/prestodb/rfcs/blob/main/RFC-0021-support-distributed-procedure.md">RFC-0021 for Presto</a>.</p>
+<h2 id="normal-procedure">Normal Procedure<a class="headerlink" href="#normal-procedure" title="Link to this heading">¶</a></h2>
+<p>To make a procedure callable, a connector must first expose it to the PrestoDB engine. PrestoDB leverages the <a class="reference external" href="https://github.com/google/guice">Guice dependency injection framework</a>
+to manage procedure registration and lifecycle. A specific procedure is implemented and bound as a <code class="docutils literal notranslate"><span class="pre">Provider&lt;Procedure&gt;</span></code>,
+thus creating an instance only when it is actually needed for execution, enabling on-demand instantiation. The following steps will guide you on how to
+implement and provide a procedure in a connector.</p>
+<h3 id="procedure-provider-class">1. Procedure Provider Class<a class="headerlink" href="#procedure-provider-class" title="Link to this heading">¶</a></h3>
+<p>An implementation class must implement the <code class="docutils literal notranslate"><span class="pre">Provider&lt;Procedure&gt;</span></code> interface. Its constructor can use <code class="docutils literal notranslate"><span class="pre">&#64;Inject</span></code> to receive any required dependencies
+that are managed by Guice. The class must then implement the <code class="docutils literal notranslate"><span class="pre">get()</span></code> method from the Provider interface, which is responsible for constructing and
+returning a new Procedure instance.</p>
+<h3 id="creation-of-a-procedure-instance">2. Creation of a Procedure Instance<a class="headerlink" href="#creation-of-a-procedure-instance" title="Link to this heading">¶</a></h3>
+<p>A Procedure object requires the following parameters upon creation:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">schema</span></code> - The schema namespace to which this procedure belongs (typically <code class="docutils literal notranslate"><span class="pre">system</span></code> in PrestoDB).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">name</span></code> - The name of this procedure, for example, <code class="docutils literal notranslate"><span class="pre">expire_snapshots</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">List&lt;Argument&gt;</span> <span class="pre">arguments</span></code> - The parameter declarations list for this procedure.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MethodHandle</span> <span class="pre">methodHandle</span></code> - PrestoDB abstracts procedure execution through <code class="docutils literal notranslate"><span class="pre">MethodHandle</span></code>. A procedure provider implements the core logic in
+a dedicated method and exposes it as a <code class="docutils literal notranslate"><span class="pre">MethodHandle</span></code> that is injected into the procedure instance.</p></li>
+</ul>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The Java method corresponding to the <code class="docutils literal notranslate"><span class="pre">MethodHandle</span></code> have a correspondence with the procedure parameters.</p>
+<ul>
+<li><p>Its first parameter must be a session object of type <code class="docutils literal notranslate"><span class="pre">ConnectorSession.class</span></code>.</p></li>
+<li><p>The subsequent parameters must have a strict one-to-one correspondence in both type and order with the
+procedure parameters declared in the arguments list.</p></li>
+</ul>
+</li>
+<li><p>The method implementation for the <code class="docutils literal notranslate"><span class="pre">MethodHandle</span></code> must account for classloader isolation. Since PrestoDB employs a plugin isolation mechanism where each
+connector has its own ClassLoader, the engine must temporarily switch to the connector’s specific ClassLoader when invoking its procedure logic. This context
+switch is critical to prevent <code class="docutils literal notranslate"><span class="pre">ClassNotFoundException</span></code> or <code class="docutils literal notranslate"><span class="pre">NoClassDefFoundError</span></code> issues.</p></li>
+</ul>
+</div>
+<p>As an example, the following is the <code class="docutils literal notranslate"><span class="pre">expire_snapshots</span></code> procedure implemented in the Iceberg connector:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ExpireSnapshotsProcedure</span>
+<span class="w">        </span><span class="kd">implements</span><span class="w"> </span><span class="n">Provider</span><span class="o">&lt;</span><span class="n">Procedure</span><span class="o">&gt;</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">MethodHandle</span><span class="w"> </span><span class="n">EXPIRE_SNAPSHOTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">methodHandle</span><span class="p">(</span>
+<span class="w">            </span><span class="n">ExpireSnapshotsProcedure</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+<span class="w">            </span><span class="s">&quot;expireSnapshots&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">ConnectorSession</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+<span class="w">            </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+<span class="w">            </span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+<span class="w">            </span><span class="n">SqlTimestamp</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+<span class="w">            </span><span class="n">Integer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+<span class="w">            </span><span class="n">List</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">IcebergMetadataFactory</span><span class="w"> </span><span class="n">metadataFactory</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Inject</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">ExpireSnapshotsProcedure</span><span class="p">(</span><span class="n">IcebergMetadataFactory</span><span class="w"> </span><span class="n">metadataFactory</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">metadataFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requireNonNull</span><span class="p">(</span><span class="n">metadataFactory</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;metadataFactory is null&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Procedure</span><span class="w"> </span><span class="nf">get</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Procedure</span><span class="p">(</span>
+<span class="w">                </span><span class="s">&quot;system&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;expire_snapshots&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">ImmutableList</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="n">Argument</span><span class="p">(</span><span class="s">&quot;schema&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">VARCHAR</span><span class="p">),</span>
+<span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="n">Argument</span><span class="p">(</span><span class="s">&quot;table_name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">VARCHAR</span><span class="p">),</span>
+<span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="n">Argument</span><span class="p">(</span><span class="s">&quot;older_than&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">),</span>
+<span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="n">Argument</span><span class="p">(</span><span class="s">&quot;retain_last&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">INTEGER</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">),</span>
+<span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="n">Argument</span><span class="p">(</span><span class="s">&quot;snapshot_ids&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;array(bigint)&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">)),</span>
+<span class="w">                </span><span class="n">EXPIRE_SNAPSHOTS</span><span class="p">.</span><span class="na">bindTo</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">expireSnapshots</span><span class="p">(</span><span class="n">ConnectorSession</span><span class="w"> </span><span class="n">clientSession</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">schema</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">tableName</span><span class="p">,</span><span class="w"> </span><span class="n">SqlTimestamp</span><span class="w"> </span><span class="n">olderThan</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">retainLast</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">snapshotIds</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">ThreadContextClassLoader</span><span class="w"> </span><span class="n">ignored</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThreadContextClassLoader</span><span class="p">(</span><span class="n">getClass</span><span class="p">().</span><span class="na">getClassLoader</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">doExpireSnapshots</span><span class="p">(</span><span class="n">clientSession</span><span class="p">,</span><span class="w"> </span><span class="n">schema</span><span class="p">,</span><span class="w"> </span><span class="n">tableName</span><span class="p">,</span><span class="w"> </span><span class="n">olderThan</span><span class="p">,</span><span class="w"> </span><span class="n">retainLast</span><span class="p">,</span><span class="w"> </span><span class="n">snapshotIds</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doExpireSnapshots</span><span class="p">(</span><span class="n">ConnectorSession</span><span class="w"> </span><span class="n">clientSession</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">schema</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">tableName</span><span class="p">,</span><span class="w"> </span><span class="n">SqlTimestamp</span><span class="w"> </span><span class="n">olderThan</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">retainLast</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">snapshotIds</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Execute the snapshot expiration for the target table using the Iceberg interface</span>
+<span class="w">        </span><span class="c1">// ......</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<h3 id="exposing-the-procedure-provider-to-prestodb">3. Exposing the Procedure Provider to PrestoDB<a class="headerlink" href="#exposing-the-procedure-provider-to-prestodb" title="Link to this heading">¶</a></h3>
+<p>In the Guice binding module of your target connector, add a binding for the procedure provider class defined above:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><code><span class="p">......</span>
+<span class="n">Multibinder</span><span class="o">&lt;</span><span class="n">BaseProcedure</span><span class="o">&lt;?&gt;&gt;</span><span class="w"> </span><span class="n">procedures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newSetBinder</span><span class="p">(</span><span class="n">binder</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TypeLiteral</span><span class="o">&lt;</span><span class="n">BaseProcedure</span><span class="o">&lt;?&gt;&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{});</span>
+<span class="n">procedures</span><span class="p">.</span><span class="na">addBinding</span><span class="p">().</span><span class="na">toProvider</span><span class="p">(</span><span class="n">ExpireSnapshotsProcedure</span><span class="p">.</span><span class="na">class</span><span class="p">).</span><span class="na">in</span><span class="p">(</span><span class="n">Scopes</span><span class="p">.</span><span class="na">SINGLETON</span><span class="p">);</span>
+<span class="p">......</span>
+</code></pre></div>
+</div>
+<p>During startup, the PrestoDB engine collects the procedure providers exposed by all connectors and maintains them within their
+respective namespaces (for example, <code class="docutils literal notranslate"><span class="pre">hive.system</span></code> or <code class="docutils literal notranslate"><span class="pre">iceberg.system</span></code>). Once startup is complete, users can invoke these procedures by specifying
+the corresponding connector namespace, for example:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">call</span><span class="w"> </span><span class="n">iceberg</span><span class="p">.</span><span class="k">system</span><span class="p">.</span><span class="n">expire_snapshots</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test_table&#39;</span><span class="p">);</span>
+<span class="k">call</span><span class="w"> </span><span class="n">hive</span><span class="p">.</span><span class="k">system</span><span class="p">.</span><span class="n">invalidate_directory_list_cache</span><span class="p">();</span>
+<span class="p">......</span>
+</code></pre></div>
+</div>
+<h2 id="distributed-procedure">Distributed Procedure<a class="headerlink" href="#distributed-procedure" title="Link to this heading">¶</a></h2>
+<p>PrestoDB supports building distributed execution plans for certain types of procedures, enabling them to leverage the calculation resources of
+the entire cluster. Since different kinds of distributed procedures may correspond to distinct execution plan shapes, extending and implementing them
+should be approached at two levels:</p>
+<ul class="simple">
+<li><p>For a category of procedures that share the same execution plan shape, extend a subtype of <code class="docutils literal notranslate"><span class="pre">DistributedProcedure</span></code>. The currently supported
+<code class="docutils literal notranslate"><span class="pre">TableDataRewriteDistributedProcedure</span></code> subtype is designed for table data rewrite operations.</p></li>
+<li><p>Implement a concrete distributed procedure in a connector by building upon a specific <code class="docutils literal notranslate"><span class="pre">DistributedProcedure</span></code> subtype. For instance,
+<code class="docutils literal notranslate"><span class="pre">rewrite_data_files</span></code> in the Iceberg connector is built upon the <code class="docutils literal notranslate"><span class="pre">TableDataRewriteDistributedProcedure</span></code> subtype.</p></li>
+</ul>
+<div class="important tip admonition">
+<p class="admonition-title">Important</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">DistributedProcedure</span></code> class is abstract. Connector developers cannot implement it directly.
+You must build your concrete distributed procedure upon a specific <strong>subtype</strong> (like <code class="docutils literal notranslate"><span class="pre">TableDataRewriteDistributedProcedure</span></code>)
+that the PrestoDB engine already knows how to analyze and plan.</p>
+</div>
+<h3 id="extending-a-distributedprocedure-subtype">Extending a DistributedProcedure Subtype<a class="headerlink" href="#extending-a-distributedprocedure-subtype" title="Link to this heading">¶</a></h3>
+<h4 id="adding-a-distributedproceduretype-enum-value">1. Adding a DistributedProcedureType Enum Value<a class="headerlink" href="#adding-a-distributedproceduretype-enum-value" title="Link to this heading">¶</a></h4>
+<p>Add a new value to the <code class="docutils literal notranslate"><span class="pre">DistributedProcedure.DistributedProcedureType</span></code> enum, for example: <code class="docutils literal notranslate"><span class="pre">TABLE_DATA_REWRITE</span></code>.</p>
+<p>This enum value is important, as it is used during both the analysis and planning phases to distinguish between different <code class="docutils literal notranslate"><span class="pre">DistributedProcedure</span></code> subtypes
+and execute the corresponding branch logic.</p>
+<h4 id="creating-a-subclass-of-distributedprocedure">2. Creating a subclass of DistributedProcedure<a class="headerlink" href="#creating-a-subclass-of-distributedprocedure" title="Link to this heading">¶</a></h4>
+<p>Create a new subclass of <code class="docutils literal notranslate"><span class="pre">DistributedProcedure</span></code>, such as:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TableDataRewriteDistributedProcedure</span>
+<span class="w">        </span><span class="kd">extends</span><span class="w"> </span><span class="n">DistributedProcedure</span>
+</code></pre></div>
+</div>
+<ul class="simple">
+<li><p>In the constructor, pass the corresponding <code class="docutils literal notranslate"><span class="pre">DistributedProcedureType</span></code> enum value such as <code class="docutils literal notranslate"><span class="pre">TABLE_DATA_REWRITE</span></code> to the <code class="docutils literal notranslate"><span class="pre">super(...)</span></code> method.</p></li>
+<li><p>In addition to the base parameters required by <code class="docutils literal notranslate"><span class="pre">BaseProcedure</span></code> (schema, name, and arguments, which are consistent with those in <code class="docutils literal notranslate"><span class="pre">Procedure</span></code>),
+a subtype can define and is responsible for processing and validating any additional parameters it requires.</p></li>
+</ul>
+<p>Additionally, the following three abstract methods defined by the base class <code class="docutils literal notranslate"><span class="pre">DistributedProcedure</span></code> should be implemented:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * Creates a connector-specific, or even a distributed procedure subtype-specific context object.</span>
+<span class="cm"> * For connectors that support distributed procedures, this method is invoked at the start of a distributed procedure&#39;s execution.</span>
+<span class="cm"> * The generated procedure context is then bound to the current ConnectorMetadata, maintaining all contextual information</span>
+<span class="cm"> * throughout the execution. This context would be accessed during calls to the procedure&#39;s {@link #begin} and {@link #finish} methods.</span>
+<span class="cm"> */</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">ConnectorProcedureContext</span><span class="w"> </span><span class="nf">createContext</span><span class="p">(</span><span class="n">Object</span><span class="p">...</span><span class="w"> </span><span class="n">arguments</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Performs the preparatory work required when starting the execution of this distributed procedure.</span>
+<span class="cm"> * */</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="n">ConnectorDistributedProcedureHandle</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="n">ConnectorSession</span><span class="w"> </span><span class="n">session</span><span class="p">,</span>
+<span class="w">                                                        </span><span class="n">ConnectorProcedureContext</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span>
+<span class="w">                                                        </span><span class="n">ConnectorTableLayoutHandle</span><span class="w"> </span><span class="n">tableLayoutHandle</span><span class="p">,</span>
+<span class="w">                                                        </span><span class="n">Object</span><span class="o">[]</span><span class="w"> </span><span class="n">arguments</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Performs the work required for the final centralized commit, after all distributed execution tasks have completed.</span>
+<span class="cm"> * */</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="n">ConnectorSession</span><span class="w"> </span><span class="n">session</span><span class="p">,</span>
+<span class="w">                          </span><span class="n">ConnectorProcedureContext</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span>
+<span class="w">                          </span><span class="n">ConnectorDistributedProcedureHandle</span><span class="w"> </span><span class="n">procedureHandle</span><span class="p">,</span>
+<span class="w">                          </span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Slice</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fragments</span><span class="p">);</span>
+</code></pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>At this architectural level, distributed procedure subtypes are designed to be decoupled from specific connectors. When implementing
+the three aforementioned abstract methods, it is recommended to focus solely on the common logic of the subtype. Connector-specific functionality
+should be abstracted into method interfaces and delegated to the final, concrete distributed procedure implementations.</p>
+</div>
+<p>As an illustration, the <code class="docutils literal notranslate"><span class="pre">TableDataRewriteDistributedProcedure</span></code> subtype, which handles table data rewrite operations, is defined as follows:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TableDataRewriteDistributedProcedure</span>
+<span class="w">        </span><span class="kd">extends</span><span class="w"> </span><span class="n">DistributedProcedure</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">BeginCallDistributedProcedure</span><span class="w"> </span><span class="n">beginCallDistributedProcedure</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">FinishCallDistributedProcedure</span><span class="w"> </span><span class="n">finishCallDistributedProcedure</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">[]</span><span class="p">,</span><span class="w"> </span><span class="n">ConnectorProcedureContext</span><span class="o">&gt;</span><span class="w"> </span><span class="n">contextProvider</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">TableDataRewriteDistributedProcedure</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">schema</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+<span class="w">                                                </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Argument</span><span class="o">&gt;</span><span class="w"> </span><span class="n">arguments</span><span class="p">,</span>
+<span class="w">                                                </span><span class="n">BeginCallDistributedProcedure</span><span class="w"> </span><span class="n">beginCallDistributedProcedure</span><span class="p">,</span>
+<span class="w">                                                </span><span class="n">FinishCallDistributedProcedure</span><span class="w"> </span><span class="n">finishCallDistributedProcedure</span><span class="p">,</span>
+<span class="w">                                                </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">[]</span><span class="p">,</span><span class="w"> </span><span class="n">ConnectorProcedureContext</span><span class="o">&gt;</span><span class="w"> </span><span class="n">contextProvider</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">TABLE_DATA_REWRITE</span><span class="p">,</span><span class="w"> </span><span class="n">schema</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">arguments</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">beginCallDistributedProcedure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requireNonNull</span><span class="p">(</span><span class="n">beginCallDistributedProcedure</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beginCallDistributedProcedure is null&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">finishCallDistributedProcedure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requireNonNull</span><span class="p">(</span><span class="n">finishCallDistributedProcedure</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;finishCallDistributedProcedure is null&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">contextProvider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requireNonNull</span><span class="p">(</span><span class="n">contextProvider</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;contextProvider is null&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Performs subtype-specific validation and processing logic on the parameters</span>
+<span class="w">        </span><span class="p">......</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ConnectorDistributedProcedureHandle</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="n">ConnectorSession</span><span class="w"> </span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">ConnectorProcedureContext</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span><span class="w"> </span><span class="n">ConnectorTableLayoutHandle</span><span class="w"> </span><span class="n">tableLayoutHandle</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="w"> </span><span class="n">arguments</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">beginCallDistributedProcedure</span><span class="p">.</span><span class="na">begin</span><span class="p">(</span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span><span class="w"> </span><span class="n">tableLayoutHandle</span><span class="p">,</span><span class="w"> </span><span class="n">arguments</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="n">ConnectorSession</span><span class="w"> </span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">ConnectorProcedureContext</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span><span class="w"> </span><span class="n">ConnectorDistributedProcedureHandle</span><span class="w"> </span><span class="n">procedureHandle</span><span class="p">,</span><span class="w"> </span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Slice</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fragments</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">finishCallDistributedProcedure</span><span class="p">.</span><span class="na">finish</span><span class="p">(</span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span><span class="w"> </span><span class="n">procedureHandle</span><span class="p">,</span><span class="w"> </span><span class="n">fragments</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ConnectorProcedureContext</span><span class="w"> </span><span class="nf">createContext</span><span class="p">(</span><span class="n">Object</span><span class="p">...</span><span class="w"> </span><span class="n">arguments</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">contextProvider</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="n">arguments</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@FunctionalInterface</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">BeginCallDistributedProcedure</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ConnectorDistributedProcedureHandle</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="n">ConnectorSession</span><span class="w"> </span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">ConnectorProcedureContext</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span><span class="w"> </span><span class="n">ConnectorTableLayoutHandle</span><span class="w"> </span><span class="n">tableLayoutHandle</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="w"> </span><span class="n">arguments</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@FunctionalInterface</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">FinishCallDistributedProcedure</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="n">ConnectorSession</span><span class="w"> </span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">ConnectorProcedureContext</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span><span class="w"> </span><span class="n">ConnectorDistributedProcedureHandle</span><span class="w"> </span><span class="n">procedureHandle</span><span class="p">,</span><span class="w"> </span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Slice</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fragments</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<h4 id="processing-of-subtypes-in-the-analysis-phase">3. Processing of Subtypes in the Analysis Phase<a class="headerlink" href="#processing-of-subtypes-in-the-analysis-phase" title="Link to this heading">¶</a></h4>
+<p>In the <code class="docutils literal notranslate"><span class="pre">visitCall(...)</span></code> method of <code class="docutils literal notranslate"><span class="pre">StatementAnalyzer</span></code>, add a branch to handle the newly defined subtypes, such as <code class="docutils literal notranslate"><span class="pre">TABLE_DATA_REWRITE</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><code><span class="nd">@Override</span>
+<span class="kd">protected</span><span class="w"> </span><span class="n">Scope</span><span class="w"> </span><span class="nf">visitCall</span><span class="p">(</span><span class="n">Call</span><span class="w"> </span><span class="n">call</span><span class="p">,</span><span class="w"> </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Scope</span><span class="o">&gt;</span><span class="w"> </span><span class="n">scope</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">QualifiedObjectName</span><span class="w"> </span><span class="n">procedureName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analysis</span><span class="p">.</span><span class="na">getProcedureName</span><span class="p">()</span>
+<span class="w">            </span><span class="p">.</span><span class="na">orElse</span><span class="p">(</span><span class="n">createQualifiedObjectName</span><span class="p">(</span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">call</span><span class="p">,</span><span class="w"> </span><span class="n">call</span><span class="p">.</span><span class="na">getName</span><span class="p">(),</span><span class="w"> </span><span class="n">metadata</span><span class="p">));</span>
+<span class="w">    </span><span class="n">ConnectorId</span><span class="w"> </span><span class="n">connectorId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="na">getCatalogHandle</span><span class="p">(</span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">procedureName</span><span class="p">.</span><span class="na">getCatalogName</span><span class="p">())</span>
+<span class="w">            </span><span class="p">.</span><span class="na">orElseThrow</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SemanticException</span><span class="p">(</span><span class="n">MISSING_CATALOG</span><span class="p">,</span><span class="w"> </span><span class="n">call</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Catalog %s does not exist&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">procedureName</span><span class="p">.</span><span class="na">getCatalogName</span><span class="p">()));</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">metadata</span><span class="p">.</span><span class="na">getProcedureRegistry</span><span class="p">().</span><span class="na">isDistributedProcedure</span><span class="p">(</span><span class="n">connectorId</span><span class="p">,</span><span class="w"> </span><span class="n">toSchemaTableName</span><span class="p">(</span><span class="n">procedureName</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SemanticException</span><span class="p">(</span><span class="n">PROCEDURE_NOT_FOUND</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Distributed procedure not registered: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">procedureName</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">DistributedProcedure</span><span class="w"> </span><span class="n">procedure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">metadata</span><span class="p">.</span><span class="na">getProcedureRegistry</span><span class="p">().</span><span class="na">resolveDistributed</span><span class="p">(</span><span class="n">connectorId</span><span class="p">,</span><span class="w"> </span><span class="n">toSchemaTableName</span><span class="p">(</span><span class="n">procedureName</span><span class="p">));</span>
+<span class="w">    </span><span class="n">Object</span><span class="o">[]</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">extractParameterValuesInOrder</span><span class="p">(</span><span class="n">call</span><span class="p">,</span><span class="w"> </span><span class="n">procedure</span><span class="p">,</span><span class="w"> </span><span class="n">metadata</span><span class="p">,</span><span class="w"> </span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">analysis</span><span class="p">.</span><span class="na">getParameters</span><span class="p">());</span>
+
+<span class="w">    </span><span class="n">analysis</span><span class="p">.</span><span class="na">setUpdateInfo</span><span class="p">(</span><span class="n">call</span><span class="p">.</span><span class="na">getUpdateInfo</span><span class="p">());</span>
+<span class="w">    </span><span class="n">analysis</span><span class="p">.</span><span class="na">setDistributedProcedureType</span><span class="p">(</span><span class="n">Optional</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">procedure</span><span class="p">.</span><span class="na">getType</span><span class="p">()));</span>
+<span class="w">    </span><span class="n">analysis</span><span class="p">.</span><span class="na">setProcedureArguments</span><span class="p">(</span><span class="n">Optional</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">values</span><span class="p">));</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">procedure</span><span class="p">.</span><span class="na">getType</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="n">TABLE_DATA_REWRITE</span><span class="p">:</span>
+<span class="w">            </span><span class="n">TableDataRewriteDistributedProcedure</span><span class="w"> </span><span class="n">tableDataRewriteDistributedProcedure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">TableDataRewriteDistributedProcedure</span><span class="p">)</span><span class="w"> </span><span class="n">procedure</span><span class="p">;</span>
+
+<span class="w">            </span><span class="c1">// Performs analysis on the tableDataRewriteDistributedProcedure</span>
+<span class="w">            </span><span class="p">......</span>
+
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">default</span><span class="p">:</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PrestoException</span><span class="p">(</span><span class="n">StandardErrorCode</span><span class="p">.</span><span class="na">NOT_SUPPORTED</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Unsupported distributed procedure type: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">procedure</span><span class="p">.</span><span class="na">getType</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">createAndAssignScope</span><span class="p">(</span><span class="n">call</span><span class="p">,</span><span class="w"> </span><span class="n">scope</span><span class="p">,</span><span class="w"> </span><span class="n">Field</span><span class="p">.</span><span class="na">newUnqualified</span><span class="p">(</span><span class="n">Optional</span><span class="p">.</span><span class="na">empty</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;rows&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">BIGINT</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<h4 id="processing-of-subtypes-in-the-planning-phase">4. Processing of Subtypes in the Planning Phase<a class="headerlink" href="#processing-of-subtypes-in-the-planning-phase" title="Link to this heading">¶</a></h4>
+<p>In the <code class="docutils literal notranslate"><span class="pre">planStatementWithoutOutput(...)</span></code> method of <code class="docutils literal notranslate"><span class="pre">LogicalPlanner</span></code>, when the statement type is Call, add a branch to handle newly defined subtypes
+such as <code class="docutils literal notranslate"><span class="pre">TABLE_DATA_REWRITE</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="n">RelationPlan</span><span class="w"> </span><span class="nf">planStatementWithoutOutput</span><span class="p">(</span><span class="n">Analysis</span><span class="w"> </span><span class="n">analysis</span><span class="p">,</span><span class="w"> </span><span class="n">Statement</span><span class="w"> </span><span class="n">statement</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="p">......</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">statement</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Call</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">checkState</span><span class="p">(</span><span class="n">analysis</span><span class="p">.</span><span class="na">getDistributedProcedureType</span><span class="p">().</span><span class="na">isPresent</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Call distributed procedure analysis is missing&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">analysis</span><span class="p">.</span><span class="na">getDistributedProcedureType</span><span class="p">().</span><span class="na">get</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="n">TABLE_DATA_REWRITE</span><span class="p">:</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">createCallDistributedProcedurePlanForTableDataRewrite</span><span class="p">(</span><span class="n">analysis</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">Call</span><span class="p">)</span><span class="w"> </span><span class="n">statement</span><span class="p">);</span>
+<span class="w">            </span><span class="k">default</span><span class="p">:</span>
+<span class="w">                </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PrestoException</span><span class="p">(</span><span class="n">NOT_SUPPORTED</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Unsupported distributed procedure type: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">analysis</span><span class="p">.</span><span class="na">getDistributedProcedureType</span><span class="p">().</span><span class="na">get</span><span class="p">());</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PrestoException</span><span class="p">(</span><span class="n">NOT_SUPPORTED</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Unsupported statement type &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">statement</span><span class="p">.</span><span class="na">getClass</span><span class="p">().</span><span class="na">getSimpleName</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">private</span><span class="w"> </span><span class="n">RelationPlan</span><span class="w"> </span><span class="nf">createCallDistributedProcedurePlanForTableDataRewrite</span><span class="p">(</span><span class="n">Analysis</span><span class="w"> </span><span class="n">analysis</span><span class="p">,</span><span class="w"> </span><span class="n">Call</span><span class="w"> </span><span class="n">statement</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// Builds the logical plan for the table data rewrite procedure subtype from the analysis results:</span>
+<span class="w">    </span><span class="c1">// TableScanNode → FilterNode → CallDistributedProcedureNode → TableFinishNode → OutputNode</span>
+<span class="w">    </span><span class="p">......</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>If a custom plan node is required, it must subsequently be handled in the plan visitors, the optimizers, and the local execution planner. If a custom
+local execution operator ultimately needs to be generated, it must be implemented within PrestoDB as well. (This part is beyond the scope of this document
+and will not be elaborated further)</p>
+</div>
+<h3 id="implementing-a-concrete-distributed-procedure-in-a-specific-connector">Implementing a Concrete Distributed Procedure in a Specific Connector<a class="headerlink" href="#implementing-a-concrete-distributed-procedure-in-a-specific-connector" title="Link to this heading">¶</a></h3>
+<p>Similar to normal procedures, PrestoDB uses the Guice dependency injection framework to manage the registration and lifecycle of distributed procedures,
+enabling connectors to dynamically provide these callable distributed procedures to the engine. A concrete distributed procedure is implemented and bound
+as a <code class="docutils literal notranslate"><span class="pre">Provider&lt;DistributedProcedure&gt;</span></code>, which ensures an instance is created on-demand when a procedure needs to be executed. The following steps will
+guide you through implementing and supplying a distributed procedure in your connector.</p>
+<h4 id="id1">1. Procedure Provider Class<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h4>
+<p>An implementation class must implement the <code class="docutils literal notranslate"><span class="pre">Provider&lt;DistributedProcedure&gt;</span></code> interface. In its constructor, it can use &#64;Inject to receive any Guice-managed
+dependencies. The class is required to implement the <code class="docutils literal notranslate"><span class="pre">get()</span></code> method from the Provider interface, which is responsible for constructing and returning a
+specific subclass instance of <code class="docutils literal notranslate"><span class="pre">DistributedProcedure</span></code>.</p>
+<h4 id="creation-of-a-distributedprocedure-instance">2. Creation of a DistributedProcedure Instance<a class="headerlink" href="#creation-of-a-distributedprocedure-instance" title="Link to this heading">¶</a></h4>
+<p>The parameters required to create a <code class="docutils literal notranslate"><span class="pre">DistributedProcedure</span></code> subclass differ, but the following common parameters are mandatory and consistent with those
+described in the normal <code class="docutils literal notranslate"><span class="pre">Procedure</span></code> above.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">schema</span></code> - The schema namespace to which this procedure belongs (typically <code class="docutils literal notranslate"><span class="pre">system</span></code> in PrestoDB)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">name</span></code> - The name of this procedure, for example, <code class="docutils literal notranslate"><span class="pre">rewrite_data_files</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">List&lt;Argument&gt;</span> <span class="pre">arguments</span></code> - The parameter declarations list for this procedure</p></li>
+</ul>
+<p>The following code demonstrates how to implement <code class="docutils literal notranslate"><span class="pre">rewrite_data_files</span></code> for the Iceberg connector, based on the <code class="docutils literal notranslate"><span class="pre">TableDataRewriteDistributedProcedure</span></code> class:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RewriteDataFilesProcedure</span>
+<span class="w">        </span><span class="kd">implements</span><span class="w"> </span><span class="n">Provider</span><span class="o">&lt;</span><span class="n">DistributedProcedure</span><span class="o">&gt;</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">TypeManager</span><span class="w"> </span><span class="n">typeManager</span><span class="p">;</span>
+<span class="w">    </span><span class="n">JsonCodec</span><span class="o">&lt;</span><span class="n">CommitTaskData</span><span class="o">&gt;</span><span class="w"> </span><span class="n">commitTaskCodec</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Inject</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">RewriteDataFilesProcedure</span><span class="p">(</span>
+<span class="w">            </span><span class="n">TypeManager</span><span class="w"> </span><span class="n">typeManager</span><span class="p">,</span>
+<span class="w">            </span><span class="n">JsonCodec</span><span class="o">&lt;</span><span class="n">CommitTaskData</span><span class="o">&gt;</span><span class="w"> </span><span class="n">commitTaskCodec</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">typeManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requireNonNull</span><span class="p">(</span><span class="n">typeManager</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;typeManager is null&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">commitTaskCodec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">requireNonNull</span><span class="p">(</span><span class="n">commitTaskCodec</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;commitTaskCodec is null&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DistributedProcedure</span><span class="w"> </span><span class="nf">get</span><span class="p">()</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TableDataRewriteDistributedProcedure</span><span class="p">(</span>
+<span class="w">                </span><span class="s">&quot;system&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s">&quot;rewrite_data_files&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="n">ImmutableList</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+<span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="n">Argument</span><span class="p">(</span><span class="n">SCHEMA</span><span class="p">,</span><span class="w"> </span><span class="n">VARCHAR</span><span class="p">),</span>
+<span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="n">Argument</span><span class="p">(</span><span class="n">TABLE_NAME</span><span class="p">,</span><span class="w"> </span><span class="n">VARCHAR</span><span class="p">),</span>
+<span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="n">Argument</span><span class="p">(</span><span class="s">&quot;filter&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">VARCHAR</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TRUE&quot;</span><span class="p">),</span>
+<span class="w">                        </span><span class="k">new</span><span class="w"> </span><span class="n">Argument</span><span class="p">(</span><span class="s">&quot;options&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;map(varchar, varchar)&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">)),</span>
+<span class="w">                </span><span class="p">(</span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span><span class="w"> </span><span class="n">tableLayoutHandle</span><span class="p">,</span><span class="w"> </span><span class="n">arguments</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">beginCallDistributedProcedure</span><span class="p">(</span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">IcebergProcedureContext</span><span class="p">)</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">IcebergTableLayoutHandle</span><span class="p">)</span><span class="w"> </span><span class="n">tableLayoutHandle</span><span class="p">,</span><span class="w"> </span><span class="n">arguments</span><span class="p">),</span>
+<span class="w">                </span><span class="p">((</span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span><span class="w"> </span><span class="n">tableHandle</span><span class="p">,</span><span class="w"> </span><span class="n">fragments</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">finishCallDistributedProcedure</span><span class="p">(</span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">IcebergProcedureContext</span><span class="p">)</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span><span class="w"> </span><span class="n">tableHandle</span><span class="p">,</span><span class="w"> </span><span class="n">fragments</span><span class="p">)),</span>
+<span class="w">                </span><span class="n">arguments</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">checkArgument</span><span class="p">(</span><span class="n">arguments</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="s">&quot;invalid number of arguments: %s (should have %s)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">arguments</span><span class="p">.</span><span class="na">length</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span>
+<span class="w">                    </span><span class="n">checkArgument</span><span class="p">(</span><span class="n">arguments</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Table</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">arguments</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Transaction</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Invalid arguments, required: [Table, Transaction]&quot;</span><span class="p">);</span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IcebergProcedureContext</span><span class="p">((</span><span class="n">Table</span><span class="p">)</span><span class="w"> </span><span class="n">arguments</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">Transaction</span><span class="p">)</span><span class="w"> </span><span class="n">arguments</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">);</span>
+<span class="w">                </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">ConnectorDistributedProcedureHandle</span><span class="w"> </span><span class="nf">beginCallDistributedProcedure</span><span class="p">(</span><span class="n">ConnectorSession</span><span class="w"> </span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">IcebergProcedureContext</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span><span class="w"> </span><span class="n">IcebergTableLayoutHandle</span><span class="w"> </span><span class="n">layoutHandle</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">[]</span><span class="w"> </span><span class="n">arguments</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">ThreadContextClassLoader</span><span class="w"> </span><span class="n">ignored</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThreadContextClassLoader</span><span class="p">(</span><span class="n">getClass</span><span class="p">().</span><span class="na">getClassLoader</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Table</span><span class="w"> </span><span class="n">icebergTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">.</span><span class="na">getTable</span><span class="p">().</span><span class="na">orElseThrow</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VerifyException</span><span class="p">(</span><span class="s">&quot;No partition data for partitioned table&quot;</span><span class="p">));</span>
+<span class="w">            </span><span class="n">IcebergTableHandle</span><span class="w"> </span><span class="n">tableHandle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layoutHandle</span><span class="p">.</span><span class="na">getTable</span><span class="p">();</span>
+
+<span class="w">            </span><span class="c1">// Performs the preparatory work required when starting the execution of ``rewrite_data_files``,</span>
+<span class="w">            </span><span class="c1">// and encapsulates the necessary information and handling logic within the ``procedureContext``</span>
+<span class="w">            </span><span class="p">......</span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IcebergDistributedProcedureHandle</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">tableHandle</span><span class="p">.</span><span class="na">getSchemaName</span><span class="p">(),</span>
+<span class="w">                    </span><span class="n">tableHandle</span><span class="p">.</span><span class="na">getIcebergTableName</span><span class="p">(),</span>
+<span class="w">                    </span><span class="n">toPrestoSchema</span><span class="p">(</span><span class="n">icebergTable</span><span class="p">.</span><span class="na">schema</span><span class="p">(),</span><span class="w"> </span><span class="n">typeManager</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">toPrestoPartitionSpec</span><span class="p">(</span><span class="n">icebergTable</span><span class="p">.</span><span class="na">spec</span><span class="p">(),</span><span class="w"> </span><span class="n">typeManager</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">getColumns</span><span class="p">(</span><span class="n">icebergTable</span><span class="p">.</span><span class="na">schema</span><span class="p">(),</span><span class="w"> </span><span class="n">icebergTable</span><span class="p">.</span><span class="na">spec</span><span class="p">(),</span><span class="w"> </span><span class="n">typeManager</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">icebergTable</span><span class="p">.</span><span class="na">location</span><span class="p">(),</span>
+<span class="w">                    </span><span class="n">getFileFormat</span><span class="p">(</span><span class="n">icebergTable</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">getCompressionCodec</span><span class="p">(</span><span class="n">session</span><span class="p">),</span>
+<span class="w">                    </span><span class="n">icebergTable</span><span class="p">.</span><span class="na">properties</span><span class="p">());</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">finishCallDistributedProcedure</span><span class="p">(</span><span class="n">ConnectorSession</span><span class="w"> </span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">IcebergProcedureContext</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">,</span><span class="w"> </span><span class="n">ConnectorDistributedProcedureHandle</span><span class="w"> </span><span class="n">procedureHandle</span><span class="p">,</span><span class="w"> </span><span class="n">Collection</span><span class="o">&lt;</span><span class="n">Slice</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fragments</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fragments</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">                </span><span class="n">procedureContext</span><span class="p">.</span><span class="na">getScannedDataFiles</span><span class="p">().</span><span class="na">isEmpty</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">                </span><span class="n">procedureContext</span><span class="p">.</span><span class="na">getFullyAppliedDeleteFiles</span><span class="p">().</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">ThreadContextClassLoader</span><span class="w"> </span><span class="n">ignored</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThreadContextClassLoader</span><span class="p">(</span><span class="n">getClass</span><span class="p">().</span><span class="na">getClassLoader</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">IcebergDistributedProcedureHandle</span><span class="w"> </span><span class="n">handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">IcebergDistributedProcedureHandle</span><span class="p">)</span><span class="w"> </span><span class="n">procedureHandle</span><span class="p">;</span>
+<span class="w">            </span><span class="n">Table</span><span class="w"> </span><span class="n">icebergTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">table</span><span class="p">();</span>
+
+<span class="w">            </span><span class="c1">// Performs the final atomic commit by leveraging Iceberg&#39;s `RewriteFiles` API.</span>
+<span class="w">            </span><span class="c1">// This integrates the commit information from the distributed tasks (in `commitTasks`)</span>
+<span class="w">            </span><span class="c1">// with the file change tracking (for example, `scannedDataFiles`, `fullyAppliedDeleteFiles`, `newFiles`)</span>
+<span class="w">            </span><span class="c1">// maintained within the `procedureContext`.</span>
+<span class="w">            </span><span class="n">List</span><span class="o">&lt;</span><span class="n">CommitTaskData</span><span class="o">&gt;</span><span class="w"> </span><span class="n">commitTasks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fragments</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">slice</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">commitTaskCodec</span><span class="p">.</span><span class="na">fromJson</span><span class="p">(</span><span class="n">slice</span><span class="p">.</span><span class="na">getBytes</span><span class="p">()))</span>
+<span class="w">                    </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">toImmutableList</span><span class="p">());</span>
+<span class="w">            </span><span class="p">......</span>
+
+<span class="w">            </span><span class="n">RewriteFiles</span><span class="w"> </span><span class="n">rewriteFiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">().</span><span class="na">newRewrite</span><span class="p">();</span>
+<span class="w">            </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">DataFile</span><span class="o">&gt;</span><span class="w"> </span><span class="n">scannedDataFiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">.</span><span class="na">getScannedDataFiles</span><span class="p">();</span>
+<span class="w">            </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">DeleteFile</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fullyAppliedDeleteFiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">procedureContext</span><span class="p">.</span><span class="na">getFullyAppliedDeleteFiles</span><span class="p">();</span>
+<span class="w">            </span><span class="n">rewriteFiles</span><span class="p">.</span><span class="na">rewriteFiles</span><span class="p">(</span><span class="n">scannedDataFiles</span><span class="p">,</span><span class="w"> </span><span class="n">fullyAppliedDeleteFiles</span><span class="p">,</span><span class="w"> </span><span class="n">newFiles</span><span class="p">,</span><span class="w"> </span><span class="n">ImmutableSet</span><span class="p">.</span><span class="na">of</span><span class="p">());</span>
+
+<span class="w">            </span><span class="p">......</span>
+<span class="w">            </span><span class="n">rewriteFiles</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<h4 id="exposing-the-distributedprocedure-provider-to-prestodb">3. Exposing the DistributedProcedure Provider to PrestoDB<a class="headerlink" href="#exposing-the-distributedprocedure-provider-to-prestodb" title="Link to this heading">¶</a></h4>
+<p>In the Guice binding module of your target connector, add a binding for the distributed procedure provider class defined above:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><code><span class="n">Multibinder</span><span class="o">&lt;</span><span class="n">BaseProcedure</span><span class="o">&lt;?&gt;&gt;</span><span class="w"> </span><span class="n">procedures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newSetBinder</span><span class="p">(</span><span class="n">binder</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TypeLiteral</span><span class="o">&lt;</span><span class="n">BaseProcedure</span><span class="o">&lt;?&gt;&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{});</span>
+<span class="n">procedures</span><span class="p">.</span><span class="na">addBinding</span><span class="p">().</span><span class="na">toProvider</span><span class="p">(</span><span class="n">RewriteDataFilesProcedure</span><span class="p">.</span><span class="na">class</span><span class="p">).</span><span class="na">in</span><span class="p">(</span><span class="n">Scopes</span><span class="p">.</span><span class="na">SINGLETON</span><span class="p">);</span>
+<span class="p">......</span>
+</code></pre></div>
+</div>
+<p>During startup, the PrestoDB engine collects the distributed procedure providers the same way as normal procedure providers exposed by
+all connectors and maintains them within their respective namespaces (for example, <code class="docutils literal notranslate"><span class="pre">hive.system</span></code> or <code class="docutils literal notranslate"><span class="pre">iceberg.system</span></code>). Once startup is complete, users
+can invoke these distributed procedures by specifying the corresponding connector namespace, for example:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">call</span><span class="w"> </span><span class="n">iceberg</span><span class="p">.</span><span class="k">system</span><span class="p">.</span><span class="n">rewrite_data_files</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test_table&#39;</span><span class="p">);</span>
+<span class="k">call</span><span class="w"> </span><span class="n">iceberg</span><span class="p">.</span><span class="k">system</span><span class="p">.</span><span class="n">rewrite_data_files</span><span class="p">(</span><span class="k">table_name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;test_table&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">schema</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;default&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">filter</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;c1 &gt; 3&#39;</span><span class="p">);</span>
+</code></pre></div>
+</div>
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky", "content.code.copy"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,3926 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="properties.html">
+      
+      
+        <link rel="next" href="spill.html">
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Presto Session Properties - Presto 0.298.1 Documentation</title>
+      
+    
+    
+      
+        
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.568f84a10346378e3.min.css?v=fed7ac0f" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-K7GB6F0LBZ",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#general-properties" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.298.1 Documentation" class="md-header__button md-logo" aria-label="Presto 0.298.1 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.298.1 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Presto Session Properties
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.298.1 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.298.1 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.298.1 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clients
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../admin.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Administration
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Administration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="web-interface.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="tuning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tuning Presto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="benchmark-driver.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Benchmark Driver
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="properties.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto Configuration Properties
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Presto Session Properties
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto Session Properties
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/admin/properties-session.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/admin/properties-session.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#general-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:general properties (reference label)">General Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#join-distribution-type" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``join_distribution_type`` (reference label)">join_<wbr>distribution_<wbr>type</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redistribute-writes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``redistribute_writes`` (reference label)">redistribute_<wbr>writes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scale-writers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``scale_writers`` (reference label)">scale_<wbr>writers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-writer-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      task_<wbr>writer_<wbr>count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-partitioned-writer-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``task_partitioned_writer_count`` (reference label)">task_<wbr>partitioned_<wbr>writer_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-node-execution-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``single_node_execution_enabled`` (reference label)">single_<wbr>node_<wbr>execution_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offset-clause-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``offset_clause_enabled`` (reference label)">offset_<wbr>clause_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-access-control-on-utilized-columns-only" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``check_access_control_on_utilized_columns_only`` (reference label)">check_<wbr>access_<wbr>control_<wbr>on_<wbr>utilized_<wbr>columns_<wbr>only</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#always-analyze-create-table-query-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``always_analyze_create_table_query_enabled`` (reference label)">always_<wbr>analyze_<wbr>create_<wbr>table_<wbr>query_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-serializable-object-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``max_serializable_object_size`` (reference label)">max_<wbr>serializable_<wbr>object_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-prefixes-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``max_prefixes_count`` (reference label)">max_<wbr>prefixes_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#try-function-catchable-errors" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``try_function_catchable_errors`` (reference label)">try_<wbr>function_<wbr>catchable_<wbr>errors</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-names-in-json-cast-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``field_names_in_json_cast_enabled`` (reference label)">field_<wbr>names_<wbr>in_<wbr>json_<wbr>cast_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#spilling-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:spilling properties (reference label)">Spilling Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spilling Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``spill_enabled`` (reference label)">spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``join_spill_enabled`` (reference label)">join_<wbr>spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``aggregation_spill_enabled`` (reference label)">aggregation_<wbr>spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distinct-aggregation-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``distinct_aggregation_spill_enabled`` (reference label)">distinct_<wbr>aggregation_<wbr>spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order-by-aggregation-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``order_by_aggregation_spill_enabled`` (reference label)">order_<wbr>by_<wbr>aggregation_<wbr>spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``window_spill_enabled`` (reference label)">window_<wbr>spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order-by-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``order_by_spill_enabled`` (reference label)">order_<wbr>by_<wbr>spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation-operator-unspill-memory-limit" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``aggregation_operator_unspill_memory_limit`` (reference label)">aggregation_<wbr>operator_<wbr>unspill_<wbr>memory_<wbr>limit</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#task-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:task properties (reference label)">Task Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-concurrency" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``task_concurrency`` (reference label)">task_<wbr>concurrency</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id1" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``task_writer_count`` (reference label)">task_<wbr>writer_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#optimizer-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:optimizer properties (reference label)">Optimizer Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimizer Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dictionary-aggregation" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``dictionary_aggregation`` (reference label)">dictionary_<wbr>aggregation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimize-hash-generation" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimize_hash_generation`` (reference label)">optimize_<wbr>hash_<wbr>generation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-aggregate-before-grouping-sets" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``pre_aggregate_before_grouping_sets`` (reference label)">pre_<wbr>aggregate_<wbr>before_<wbr>grouping_<wbr>sets</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-aggregation-through-join" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_aggregation_through_join`` (reference label)">push_<wbr>aggregation_<wbr>through_<wbr>join</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-partial-aggregation-through-join" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_partial_aggregation_through_join`` (reference label)">push_<wbr>partial_<wbr>aggregation_<wbr>through_<wbr>join</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-semi-join-through-union" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_semi_join_through_union`` (reference label)">push_<wbr>semi_<wbr>join_<wbr>through_<wbr>union</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-projection-through-cross-join" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_projection_through_cross_join`` (reference label)">push_<wbr>projection_<wbr>through_<wbr>cross_<wbr>join</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-table-write-through-union" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_table_write_through_union`` (reference label)">push_<wbr>table_<wbr>write_<wbr>through_<wbr>union</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-aggregation-through-disjoint-union" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_aggregation_through_disjoint_union`` (reference label)">push_<wbr>aggregation_<wbr>through_<wbr>disjoint_<wbr>union</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-reordering-strategy" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``join_reordering_strategy`` (reference label)">join_<wbr>reordering_<wbr>strategy</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confidence-based-broadcast" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``confidence_based_broadcast`` (reference label)">confidence_<wbr>based_<wbr>broadcast</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#treat-low-confidence-zero-estimation-as-unknown" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``treat-low-confidence-zero-estimation-as-unknown`` (reference label)">treat-<wbr>low-<wbr>confidence-<wbr>zero-<wbr>estimation-<wbr>as-<wbr>unknown</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retry-query-with-history-based-optimization" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``retry-query-with-history-based-optimization`` (reference label)">retry-<wbr>query-<wbr>with-<wbr>history-<wbr>based-<wbr>optimization</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizer-inner-join-pushdown-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimizer_inner_join_pushdown_enabled`` (reference label)">optimizer_<wbr>inner_<wbr>join_<wbr>pushdown_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizer-inequality-join-pushdown-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimizer_inequality_join_pushdown_enabled`` (reference label)">optimizer_<wbr>inequality_<wbr>join_<wbr>pushdown_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rewrite-bucketed-semi-join-to-join" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``rewrite_bucketed_semi_join_to_join`` (reference label)">rewrite_<wbr>bucketed_<wbr>semi_<wbr>join_<wbr>to_<wbr>join</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplify-aggregations-over-constant" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``simplify_aggregations_over_constant`` (reference label)">simplify_<wbr>aggregations_<wbr>over_<wbr>constant</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplify-coalesce-over-join-keys" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``simplify_coalesce_over_join_keys`` (reference label)">simplify_<wbr>coalesce_<wbr>over_<wbr>join_<wbr>keys</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verbose-optimizer-info-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``verbose_optimizer_info_enabled`` (reference label)">verbose_<wbr>optimizer_<wbr>info_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizers-to-enable-verbose-runtime-stats" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimizers_to_enable_verbose_runtime_stats`` (reference label)">optimizers_<wbr>to_<wbr>enable_<wbr>verbose_<wbr>runtime_<wbr>stats</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushdown-subfields-for-map-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``pushdown_subfields_for_map_functions`` (reference label)">pushdown_<wbr>subfields_<wbr>for_<wbr>map_<wbr>functions</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushdown-subfields-for-cardinality" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``pushdown_subfields_for_cardinality`` (reference label)">pushdown_<wbr>subfields_<wbr>for_<wbr>cardinality</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schedule-splits-based-on-task-load" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``schedule_splits_based_on_task_load`` (reference label)">schedule_<wbr>splits_<wbr>based_<wbr>on_<wbr>task_<wbr>load</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-scan-shuffle-parallelism-threshold" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``table_scan_shuffle_parallelism_threshold`` (reference label)">table_<wbr>scan_<wbr>shuffle_<wbr>parallelism_<wbr>threshold</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-scan-shuffle-strategy" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``table_scan_shuffle_strategy`` (reference label)">table_<wbr>scan_<wbr>shuffle_<wbr>strategy</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-names-for-fixed-parallelism" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``remote_function_names_for_fixed_parallelism`` (reference label)">remote_<wbr>function_<wbr>names_<wbr>for_<wbr>fixed_<wbr>parallelism</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-fixed-parallelism-task-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``remote_function_fixed_parallelism_task_count`` (reference label)">remote_<wbr>function_<wbr>fixed_<wbr>parallelism_<wbr>task_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skip-pushdown-through-exchange-for-remote-projection" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``skip_pushdown_through_exchange_for_remote_projection`` (reference label)">skip_<wbr>pushdown_<wbr>through_<wbr>exchange_<wbr>for_<wbr>remote_<wbr>projection</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-exchange-parent-preference-strategy" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``local_exchange_parent_preference_strategy`` (reference label)">local_<wbr>exchange_<wbr>parent_<wbr>preference_<wbr>strategy</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-prefilter-build-side-with-complex-probe-side" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``join_prefilter_build_side_with_complex_probe_side`` (reference label)">join_<wbr>prefilter_<wbr>build_<wbr>side_<wbr>with_<wbr>complex_<wbr>probe_<wbr>side</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-filter-through-selecting-aggregation" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_filter_through_selecting_aggregation`` (reference label)">push_<wbr>filter_<wbr>through_<wbr>selecting_<wbr>aggregation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimize-row-in-predicate" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimize_row_in_predicate`` (reference label)">optimize_<wbr>row_<wbr>in_<wbr>predicate</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#jdbc-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:jdbc properties (reference label)">JDBC Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JDBC Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usejdbcmetadatacache" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``usejdbcmetadatacache`` (reference label)">use<wbr>Jdbc<wbr>Metadata<wbr>Cache</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allowdroptable" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``allowdroptable`` (reference label)">allow<wbr>Drop<wbr>Table</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadatacachettl" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``metadatacachettl`` (reference label)">metadata<wbr>Cache<wbr>Ttl</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadatacacherefreshinterval" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``metadatacacherefreshinterval`` (reference label)">metadata<wbr>Cache<wbr>Refresh<wbr>Interval</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadatacachemaximumsize" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``metadatacachemaximumsize`` (reference label)">metadata<wbr>Cache<wbr>Maximum<wbr>Size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadatacachethreadpoolsize" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``metadatacachethreadpoolsize`` (reference label)">metadata<wbr>Cache<wbr>Thread<wbr>Pool<wbr>Size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validateconnection" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``validateconnection`` (reference label)">validate<wbr>Connection</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#query-manager-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:query manager properties (reference label)">Query Manager Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Query Manager Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-client-timeout" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``query_client_timeout`` (reference label)">query_<wbr>client_<wbr>timeout</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-priority" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``query_priority`` (reference label)">query_<wbr>priority</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-max-queued-time" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``query_max_queued_time`` (reference label)">query_<wbr>max_<wbr>queued_<wbr>time</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#view-and-materialized-view-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:view and materialized view properties (reference label)">View and Materialized View Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="View and Materialized View Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-view-security-mode" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``default_view_security_mode`` (reference label)">default_<wbr>view_<wbr>security_<wbr>mode</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legacy-materialized-views" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``legacy_materialized_views`` (reference label)">legacy_<wbr>materialized_<wbr>views</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#materialized-view-query-rewrite-cost-based-selection-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``materialized_view_query_rewrite_cost_based_selection_enabled`` (reference label)">materialized_<wbr>view_<wbr>query_<wbr>rewrite_<wbr>cost_<wbr>based_<wbr>selection_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#materialized-view-stale-read-behavior" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``materialized_view_stale_read_behavior`` (reference label)">materialized_<wbr>view_<wbr>stale_<wbr>read_<wbr>behavior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#materialized-view-default-refresh-type" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``materialized_view_default_refresh_type`` (reference label)">materialized_<wbr>view_<wbr>default_<wbr>refresh_<wbr>type</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizer-optimize-multiple-approx-distinct-on-same-type" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimizer.optimize_multiple_approx_distinct_on_same_type`` (reference label)">optimizer.<wbr>optimize_<wbr>multiple_<wbr>approx_<wbr>distinct_<wbr>on_<wbr>same_<wbr>type</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizer-merge-max-by-and-min-by-aggregations" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimizer.merge_max_by_and_min_by_aggregations`` (reference label)">optimizer.<wbr>merge_<wbr>max_<wbr>by_<wbr>and_<wbr>min_<wbr>by_<wbr>aggregations</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grouped-execution" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``grouped_execution`` (reference label)">grouped_<wbr>execution</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partition-aware-grouped-execution" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``partition_aware_grouped_execution`` (reference label)">partition_<wbr>aware_<wbr>grouped_<wbr>execution</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="spill.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spill to Disk
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exchange-materialization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exchange Materialization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cte-materialization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CTE Materialization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="materialized-views.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Materialized Views
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="resource-groups.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resource Groups
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session-property-managers.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Session Property Managers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="function-namespace-managers.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Function Namespace Managers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dist-sort.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Distributed sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="spark.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto on Spark
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verifier.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto Verifier
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="grafana-cloud.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Grafana Cloud
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="version-support.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Version Support
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="jmx-metrics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JMX Metrics Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query Optimizer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Connectors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plugins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Functions and Operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Statement Syntax
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Migration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    REST API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ecosystem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Developer Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presto-cpp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshoot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/admin/properties-session.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/admin/properties-session.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#general-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:general properties (reference label)">General Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#join-distribution-type" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``join_distribution_type`` (reference label)">join_<wbr>distribution_<wbr>type</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redistribute-writes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``redistribute_writes`` (reference label)">redistribute_<wbr>writes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scale-writers" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``scale_writers`` (reference label)">scale_<wbr>writers</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-writer-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      task_<wbr>writer_<wbr>count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-partitioned-writer-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``task_partitioned_writer_count`` (reference label)">task_<wbr>partitioned_<wbr>writer_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-node-execution-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``single_node_execution_enabled`` (reference label)">single_<wbr>node_<wbr>execution_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offset-clause-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``offset_clause_enabled`` (reference label)">offset_<wbr>clause_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-access-control-on-utilized-columns-only" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``check_access_control_on_utilized_columns_only`` (reference label)">check_<wbr>access_<wbr>control_<wbr>on_<wbr>utilized_<wbr>columns_<wbr>only</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#always-analyze-create-table-query-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``always_analyze_create_table_query_enabled`` (reference label)">always_<wbr>analyze_<wbr>create_<wbr>table_<wbr>query_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-serializable-object-size" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``max_serializable_object_size`` (reference label)">max_<wbr>serializable_<wbr>object_<wbr>size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-prefixes-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``max_prefixes_count`` (reference label)">max_<wbr>prefixes_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#try-function-catchable-errors" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``try_function_catchable_errors`` (reference label)">try_<wbr>function_<wbr>catchable_<wbr>errors</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-names-in-json-cast-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``field_names_in_json_cast_enabled`` (reference label)">field_<wbr>names_<wbr>in_<wbr>json_<wbr>cast_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#spilling-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:spilling properties (reference label)">Spilling Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spilling Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``spill_enabled`` (reference label)">spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``join_spill_enabled`` (reference label)">join_<wbr>spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``aggregation_spill_enabled`` (reference label)">aggregation_<wbr>spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distinct-aggregation-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``distinct_aggregation_spill_enabled`` (reference label)">distinct_<wbr>aggregation_<wbr>spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order-by-aggregation-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``order_by_aggregation_spill_enabled`` (reference label)">order_<wbr>by_<wbr>aggregation_<wbr>spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``window_spill_enabled`` (reference label)">window_<wbr>spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order-by-spill-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``order_by_spill_enabled`` (reference label)">order_<wbr>by_<wbr>spill_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation-operator-unspill-memory-limit" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``aggregation_operator_unspill_memory_limit`` (reference label)">aggregation_<wbr>operator_<wbr>unspill_<wbr>memory_<wbr>limit</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#task-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:task properties (reference label)">Task Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-concurrency" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``task_concurrency`` (reference label)">task_<wbr>concurrency</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id1" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``task_writer_count`` (reference label)">task_<wbr>writer_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#optimizer-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:optimizer properties (reference label)">Optimizer Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimizer Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dictionary-aggregation" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``dictionary_aggregation`` (reference label)">dictionary_<wbr>aggregation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimize-hash-generation" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimize_hash_generation`` (reference label)">optimize_<wbr>hash_<wbr>generation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-aggregate-before-grouping-sets" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``pre_aggregate_before_grouping_sets`` (reference label)">pre_<wbr>aggregate_<wbr>before_<wbr>grouping_<wbr>sets</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-aggregation-through-join" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_aggregation_through_join`` (reference label)">push_<wbr>aggregation_<wbr>through_<wbr>join</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-partial-aggregation-through-join" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_partial_aggregation_through_join`` (reference label)">push_<wbr>partial_<wbr>aggregation_<wbr>through_<wbr>join</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-semi-join-through-union" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_semi_join_through_union`` (reference label)">push_<wbr>semi_<wbr>join_<wbr>through_<wbr>union</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-projection-through-cross-join" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_projection_through_cross_join`` (reference label)">push_<wbr>projection_<wbr>through_<wbr>cross_<wbr>join</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-table-write-through-union" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_table_write_through_union`` (reference label)">push_<wbr>table_<wbr>write_<wbr>through_<wbr>union</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-aggregation-through-disjoint-union" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_aggregation_through_disjoint_union`` (reference label)">push_<wbr>aggregation_<wbr>through_<wbr>disjoint_<wbr>union</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-reordering-strategy" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``join_reordering_strategy`` (reference label)">join_<wbr>reordering_<wbr>strategy</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confidence-based-broadcast" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``confidence_based_broadcast`` (reference label)">confidence_<wbr>based_<wbr>broadcast</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#treat-low-confidence-zero-estimation-as-unknown" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``treat-low-confidence-zero-estimation-as-unknown`` (reference label)">treat-<wbr>low-<wbr>confidence-<wbr>zero-<wbr>estimation-<wbr>as-<wbr>unknown</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retry-query-with-history-based-optimization" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``retry-query-with-history-based-optimization`` (reference label)">retry-<wbr>query-<wbr>with-<wbr>history-<wbr>based-<wbr>optimization</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizer-inner-join-pushdown-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimizer_inner_join_pushdown_enabled`` (reference label)">optimizer_<wbr>inner_<wbr>join_<wbr>pushdown_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizer-inequality-join-pushdown-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimizer_inequality_join_pushdown_enabled`` (reference label)">optimizer_<wbr>inequality_<wbr>join_<wbr>pushdown_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rewrite-bucketed-semi-join-to-join" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``rewrite_bucketed_semi_join_to_join`` (reference label)">rewrite_<wbr>bucketed_<wbr>semi_<wbr>join_<wbr>to_<wbr>join</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplify-aggregations-over-constant" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``simplify_aggregations_over_constant`` (reference label)">simplify_<wbr>aggregations_<wbr>over_<wbr>constant</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simplify-coalesce-over-join-keys" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``simplify_coalesce_over_join_keys`` (reference label)">simplify_<wbr>coalesce_<wbr>over_<wbr>join_<wbr>keys</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verbose-optimizer-info-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``verbose_optimizer_info_enabled`` (reference label)">verbose_<wbr>optimizer_<wbr>info_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizers-to-enable-verbose-runtime-stats" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimizers_to_enable_verbose_runtime_stats`` (reference label)">optimizers_<wbr>to_<wbr>enable_<wbr>verbose_<wbr>runtime_<wbr>stats</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushdown-subfields-for-map-functions" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``pushdown_subfields_for_map_functions`` (reference label)">pushdown_<wbr>subfields_<wbr>for_<wbr>map_<wbr>functions</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pushdown-subfields-for-cardinality" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``pushdown_subfields_for_cardinality`` (reference label)">pushdown_<wbr>subfields_<wbr>for_<wbr>cardinality</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schedule-splits-based-on-task-load" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``schedule_splits_based_on_task_load`` (reference label)">schedule_<wbr>splits_<wbr>based_<wbr>on_<wbr>task_<wbr>load</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-scan-shuffle-parallelism-threshold" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``table_scan_shuffle_parallelism_threshold`` (reference label)">table_<wbr>scan_<wbr>shuffle_<wbr>parallelism_<wbr>threshold</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-scan-shuffle-strategy" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``table_scan_shuffle_strategy`` (reference label)">table_<wbr>scan_<wbr>shuffle_<wbr>strategy</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-names-for-fixed-parallelism" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``remote_function_names_for_fixed_parallelism`` (reference label)">remote_<wbr>function_<wbr>names_<wbr>for_<wbr>fixed_<wbr>parallelism</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-function-fixed-parallelism-task-count" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``remote_function_fixed_parallelism_task_count`` (reference label)">remote_<wbr>function_<wbr>fixed_<wbr>parallelism_<wbr>task_<wbr>count</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skip-pushdown-through-exchange-for-remote-projection" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``skip_pushdown_through_exchange_for_remote_projection`` (reference label)">skip_<wbr>pushdown_<wbr>through_<wbr>exchange_<wbr>for_<wbr>remote_<wbr>projection</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-exchange-parent-preference-strategy" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``local_exchange_parent_preference_strategy`` (reference label)">local_<wbr>exchange_<wbr>parent_<wbr>preference_<wbr>strategy</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-prefilter-build-side-with-complex-probe-side" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``join_prefilter_build_side_with_complex_probe_side`` (reference label)">join_<wbr>prefilter_<wbr>build_<wbr>side_<wbr>with_<wbr>complex_<wbr>probe_<wbr>side</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-filter-through-selecting-aggregation" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``push_filter_through_selecting_aggregation`` (reference label)">push_<wbr>filter_<wbr>through_<wbr>selecting_<wbr>aggregation</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimize-row-in-predicate" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimize_row_in_predicate`` (reference label)">optimize_<wbr>row_<wbr>in_<wbr>predicate</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#jdbc-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:jdbc properties (reference label)">JDBC Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JDBC Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usejdbcmetadatacache" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``usejdbcmetadatacache`` (reference label)">use<wbr>Jdbc<wbr>Metadata<wbr>Cache</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allowdroptable" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``allowdroptable`` (reference label)">allow<wbr>Drop<wbr>Table</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadatacachettl" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``metadatacachettl`` (reference label)">metadata<wbr>Cache<wbr>Ttl</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadatacacherefreshinterval" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``metadatacacherefreshinterval`` (reference label)">metadata<wbr>Cache<wbr>Refresh<wbr>Interval</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadatacachemaximumsize" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``metadatacachemaximumsize`` (reference label)">metadata<wbr>Cache<wbr>Maximum<wbr>Size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadatacachethreadpoolsize" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``metadatacachethreadpoolsize`` (reference label)">metadata<wbr>Cache<wbr>Thread<wbr>Pool<wbr>Size</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validateconnection" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``validateconnection`` (reference label)">validate<wbr>Connection</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#query-manager-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:query manager properties (reference label)">Query Manager Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Query Manager Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-client-timeout" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``query_client_timeout`` (reference label)">query_<wbr>client_<wbr>timeout</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-priority" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``query_priority`` (reference label)">query_<wbr>priority</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-max-queued-time" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``query_max_queued_time`` (reference label)">query_<wbr>max_<wbr>queued_<wbr>time</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#view-and-materialized-view-properties" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:view and materialized view properties (reference label)">View and Materialized View Properties</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="View and Materialized View Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-view-security-mode" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``default_view_security_mode`` (reference label)">default_<wbr>view_<wbr>security_<wbr>mode</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legacy-materialized-views" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``legacy_materialized_views`` (reference label)">legacy_<wbr>materialized_<wbr>views</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#materialized-view-query-rewrite-cost-based-selection-enabled" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``materialized_view_query_rewrite_cost_based_selection_enabled`` (reference label)">materialized_<wbr>view_<wbr>query_<wbr>rewrite_<wbr>cost_<wbr>based_<wbr>selection_<wbr>enabled</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#materialized-view-stale-read-behavior" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``materialized_view_stale_read_behavior`` (reference label)">materialized_<wbr>view_<wbr>stale_<wbr>read_<wbr>behavior</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#materialized-view-default-refresh-type" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``materialized_view_default_refresh_type`` (reference label)">materialized_<wbr>view_<wbr>default_<wbr>refresh_<wbr>type</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizer-optimize-multiple-approx-distinct-on-same-type" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimizer.optimize_multiple_approx_distinct_on_same_type`` (reference label)">optimizer.<wbr>optimize_<wbr>multiple_<wbr>approx_<wbr>distinct_<wbr>on_<wbr>same_<wbr>type</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimizer-merge-max-by-and-min-by-aggregations" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``optimizer.merge_max_by_and_min_by_aggregations`` (reference label)">optimizer.<wbr>merge_<wbr>max_<wbr>by_<wbr>and_<wbr>min_<wbr>by_<wbr>aggregations</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grouped-execution" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``grouped_execution`` (reference label)">grouped_<wbr>execution</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partition-aware-grouped-execution" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="admin/properties-session:``partition_aware_grouped_execution`` (reference label)">partition_<wbr>aware_<wbr>grouped_<wbr>execution</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+
+  
+  
+
+<h1 id="presto-session-properties">Presto Session Properties<a class="headerlink" href="#presto-session-properties" title="Link to this heading">¶</a></h1>
+<p>This section describes session properties that may be used to tune
+Presto or alter its behavior when required.</p>
+<p>The following is not a complete list of all session properties
+available in Presto, and does not include any connector-specific
+catalog properties.</p>
+<p>For information on catalog properties, see the <a class="reference internal" href="../connector.html"><span class="doc">connector documentation</span></a>.</p>
+<p>For information on configuration properties, see <a class="reference internal" href="properties.html"><span class="doc">Presto Configuration Properties</span></a>.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#general-properties" id="id2">General Properties</a></p></li>
+<li><p><a class="reference internal" href="#spilling-properties" id="id3">Spilling Properties</a></p></li>
+<li><p><a class="reference internal" href="#task-properties" id="id4">Task Properties</a></p></li>
+<li><p><a class="reference internal" href="#optimizer-properties" id="id5">Optimizer Properties</a></p></li>
+<li><p><a class="reference internal" href="#jdbc-properties" id="id6">JDBC Properties</a></p></li>
+<li><p><a class="reference internal" href="#query-manager-properties" id="id7">Query Manager Properties</a></p></li>
+<li><p><a class="reference internal" href="#view-and-materialized-view-properties" id="id8">View and Materialized View Properties</a></p></li>
+</ul>
+</nav>
+<h2 id="general-properties">General Properties<a class="headerlink" href="#general-properties" title="Link to this heading">¶</a></h2>
+<h3 id="join-distribution-type"><code class="docutils literal notranslate"><span class="pre">join_distribution_type</span></code><a class="headerlink" href="#join-distribution-type" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Allowed values:</strong> <code class="docutils literal notranslate"><span class="pre">AUTOMATIC</span></code>, <code class="docutils literal notranslate"><span class="pre">PARTITIONED</span></code>, <code class="docutils literal notranslate"><span class="pre">BROADCAST</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">AUTOMATIC</span></code></p></li>
+</ul>
+<p>The type of distributed join to use.  When set to <code class="docutils literal notranslate"><span class="pre">PARTITIONED</span></code>, presto will
+use hash distributed joins.  When set to <code class="docutils literal notranslate"><span class="pre">BROADCAST</span></code>, it will broadcast the
+right table to all nodes in the cluster that have data from the left table.
+Partitioned joins require redistributing both tables using a hash of the join key.
+This can be slower (sometimes substantially) than broadcast joins, but allows much
+larger joins. In particular broadcast joins will be faster if the right table is
+much smaller than the left.  However, broadcast joins require that the tables on the right
+side of the join after filtering fit in memory on each node, whereas distributed joins
+only need to fit in distributed memory across all nodes. When set to <code class="docutils literal notranslate"><span class="pre">AUTOMATIC</span></code>,
+Presto will make a cost based decision as to which distribution type is optimal.
+It will also consider switching the left and right inputs to the join.  In <code class="docutils literal notranslate"><span class="pre">AUTOMATIC</span></code>
+mode, Presto will default to hash distributed joins if no cost could be computed, such as if
+the tables do not have statistics.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#join-distribution-type"><span class="std std-ref">join-distribution-type</span></a>.</p>
+<h3 id="redistribute-writes"><code class="docutils literal notranslate"><span class="pre">redistribute_writes</span></code><a class="headerlink" href="#redistribute-writes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>This property enables redistribution of data before writing. This can
+eliminate the performance impact of data skew when writing by hashing it
+across nodes in the cluster. It can be disabled when it is known that the
+output data set is not skewed in order to avoid the overhead of hashing and
+redistributing all the data across the network.</p>
+<p>When both <code class="docutils literal notranslate"><span class="pre">scale_writers</span></code> and <code class="docutils literal notranslate"><span class="pre">redistribute_writes</span></code> are set to <code class="docutils literal notranslate"><span class="pre">true</span></code>,
+<code class="docutils literal notranslate"><span class="pre">scale_writers</span></code> takes precedence.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#redistribute-writes"><span class="std std-ref">redistribute-writes</span></a>.</p>
+<h3 id="scale-writers"><code class="docutils literal notranslate"><span class="pre">scale_writers</span></code><a class="headerlink" href="#scale-writers" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>This property enables dynamic scaling of writer tasks based on throughput. When enabled,
+Presto automatically adjusts the number of writer tasks to use the minimum necessary
+for optimal performance. This can improve resource utilization by scaling out writers
+only when needed based on data throughput.</p>
+<p>When both <code class="docutils literal notranslate"><span class="pre">scale_writers</span></code> and <code class="docutils literal notranslate"><span class="pre">redistribute_writes</span></code> are set to <code class="docutils literal notranslate"><span class="pre">true</span></code>,
+<code class="docutils literal notranslate"><span class="pre">scale_writers</span></code> takes precedence.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#scale-writers"><span class="std std-ref">scale-writers</span></a>.</p>
+<h3 id="task-writer-count"><code class="docutils literal notranslate"><span class="pre">task_writer_count</span></code><a class="headerlink" href="#task-writer-count" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+</ul>
+<p>Default number of local parallel table writer threads per worker. It is required
+to be a power of two for a Java query engine.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#task-writer-count"><span class="std std-ref">task.writer-count</span></a>.</p>
+<h3 id="task-partitioned-writer-count"><code class="docutils literal notranslate"><span class="pre">task_partitioned_writer_count</span></code><a class="headerlink" href="#task-partitioned-writer-count" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">task_writer_count</span></code></p></li>
+</ul>
+<p>Number of local parallel table writer threads per worker for partitioned writes. If not
+set, the number set by <code class="docutils literal notranslate"><span class="pre">task_writer_count</span></code> will be used. It is required to be a power
+of two for a Java query engine.</p>
+<h3 id="single-node-execution-enabled"><code class="docutils literal notranslate"><span class="pre">single_node_execution_enabled</span></code><a class="headerlink" href="#single-node-execution-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>This property ensures that queries scheduled in this cluster use only a single
+node for execution, which may improve performance for small queries which can
+be executed within a single node.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#single-node-execution-enabled"><span class="std std-ref">single-node-execution-enabled</span></a>.</p>
+<h3 id="offset-clause-enabled"><code class="docutils literal notranslate"><span class="pre">offset_clause_enabled</span></code><a class="headerlink" href="#offset-clause-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>To enable the <code class="docutils literal notranslate"><span class="pre">OFFSET</span></code> clause in SQL query expressions, set this property to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#offset-clause-enabled"><span class="std std-ref">offset-clause-enabled</span></a>.</p>
+<h3 id="check-access-control-on-utilized-columns-only"><code class="docutils literal notranslate"><span class="pre">check_access_control_on_utilized_columns_only</span></code><a class="headerlink" href="#check-access-control-on-utilized-columns-only" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>Apply access control rules on only those columns that are required to produce the query output.</p>
+<p>Note: Setting this property to true with the following kinds of queries:</p>
+<ul class="simple">
+<li><p>queries that have <code class="docutils literal notranslate"><span class="pre">USING</span></code> in a join condition</p></li>
+<li><p>queries that have duplicate named common table expressions (CTE)</p></li>
+</ul>
+<p>causes the query to be evaluated as if the property is set to false and checks the access control for all columns.</p>
+<p>To avoid these problems:</p>
+<ul class="simple">
+<li><p>replace all <code class="docutils literal notranslate"><span class="pre">USING</span></code> join conditions in a query with <code class="docutils literal notranslate"><span class="pre">ON</span></code> join conditions</p></li>
+<li><p>set unique names for all CTEs in a query</p></li>
+</ul>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#check-access-control-on-utilized-columns-only"><span class="std std-ref">check-access-control-on-utilized-columns-only</span></a>.</p>
+<h3 id="always-analyze-create-table-query-enabled"><code class="docutils literal notranslate"><span class="pre">always_analyze_create_table_query_enabled</span></code><a class="headerlink" href="#always-analyze-create-table-query-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>When enabled, <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">AS</span> <span class="pre">SELECT</span> <span class="pre">IF</span> <span class="pre">NOT</span> <span class="pre">EXISTS</span></code> statements that target an existing table will still
+analyze the inner <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#always-analyze-create-table-query-enabled"><span class="std std-ref">always-analyze-create-table-query-enabled</span></a>.</p>
+<h3 id="max-serializable-object-size"><code class="docutils literal notranslate"><span class="pre">max_serializable_object_size</span></code><a class="headerlink" href="#max-serializable-object-size" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">long</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">1000</span></code></p></li>
+</ul>
+<p>Maximum object size in bytes that can be considered serializable in a function call by the coordinator.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#max-serializable-object-size"><span class="std std-ref">max-serializable-object-size</span></a>.</p>
+<h3 id="max-prefixes-count"><code class="docutils literal notranslate"><span class="pre">max_prefixes_count</span></code><a class="headerlink" href="#max-prefixes-count" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Minimum value:</strong> <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">100</span></code></p></li>
+</ul>
+<p>Maximum number of prefixes (catalog/schema/table scopes used to narrow metadata lookups) that Presto generates when querying information_schema.
+If the number of computed prefixes exceeds this limit, Presto falls back to a single broader prefix (catalog only).
+If it’s below the limit, the generated prefixes are used.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#max-prefixes-count"><span class="std std-ref">max-prefixes-count</span></a>.</p>
+<h3 id="try-function-catchable-errors"><code class="docutils literal notranslate"><span class="pre">try_function_catchable_errors</span></code><a class="headerlink" href="#try-function-catchable-errors" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> (empty string)</p></li>
+</ul>
+<p>A comma-separated list of error code names that the <code class="docutils literal notranslate"><span class="pre">TRY()</span></code> function should catch
+and return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> for, in addition to the default catchable errors (such as
+<code class="docutils literal notranslate"><span class="pre">DIVISION_BY_ZERO</span></code>, <code class="docutils literal notranslate"><span class="pre">INVALID_CAST_ARGUMENT</span></code>, <code class="docutils literal notranslate"><span class="pre">INVALID_FUNCTION_ARGUMENT</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">NUMERIC_VALUE_OUT_OF_RANGE</span></code>).</p>
+<p>This allows users to specify exactly which additional errors <code class="docutils literal notranslate"><span class="pre">TRY()</span></code> should suppress.
+Error codes are matched by their name (such as <code class="docutils literal notranslate"><span class="pre">GENERIC_INTERNAL_ERROR</span></code>, <code class="docutils literal notranslate"><span class="pre">INVALID_ARGUMENTS</span></code>).</p>
+<p>Example usage:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">try_function_catchable_errors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;GENERIC_INTERNAL_ERROR,INVALID_ARGUMENTS&#39;</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">TRY</span><span class="p">(</span><span class="n">my_function</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">table</span><span class="p">;</span>
+</code></pre></div>
+</div>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#try-function-catchable-errors"><span class="std std-ref">try-function-catchable-errors</span></a>.</p>
+<h3 id="field-names-in-json-cast-enabled"><code class="docutils literal notranslate"><span class="pre">field_names_in_json_cast_enabled</span></code><a class="headerlink" href="#field-names-in-json-cast-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>When enabled, JSON objects are cast to ROW types by matching fields by name instead of position, preventing incorrect results when JSON field order differs.</p>
+<p>For more information and examples, see <a class="reference internal" href="../functions/json.html#cast-to-json"><span class="std std-ref">Cast to JSON</span></a>.</p>
+<h2 id="spilling-properties">Spilling Properties<a class="headerlink" href="#spilling-properties" title="Link to this heading">¶</a></h2>
+<h3 id="spill-enabled"><code class="docutils literal notranslate"><span class="pre">spill_enabled</span></code><a class="headerlink" href="#spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Try spilling memory to disk to avoid exceeding memory limits for the query.</p>
+<p>Spilling works by offloading memory to disk. This process can allow a query with a large memory
+footprint to pass at the cost of slower execution times. See <a class="reference internal" href="spill.html#spill-operations"><span class="std std-ref">Supported Operations</span></a>
+for a list of operations that support spilling.</p>
+<p>Be aware that this is an experimental feature and should be used with care.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#experimental-spill-enabled"><span class="std std-ref">experimental.spill-enabled</span></a>.</p>
+<h3 id="join-spill-enabled"><code class="docutils literal notranslate"><span class="pre">join_spill_enabled</span></code><a class="headerlink" href="#join-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>When <code class="docutils literal notranslate"><span class="pre">spill_enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, this determines whether Presto will try spilling memory to disk for joins to
+avoid exceeding memory limits for the query.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#experimental-join-spill-enabled"><span class="std std-ref">experimental.join-spill-enabled</span></a>.</p>
+<h3 id="aggregation-spill-enabled"><code class="docutils literal notranslate"><span class="pre">aggregation_spill_enabled</span></code><a class="headerlink" href="#aggregation-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>When <code class="docutils literal notranslate"><span class="pre">spill_enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, this determines whether Presto will try spilling memory to disk for aggregations to
+avoid exceeding memory limits for the query.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#experimental-aggregation-spill-enabled"><span class="std std-ref">experimental.aggregation-spill-enabled</span></a>.</p>
+<h3 id="distinct-aggregation-spill-enabled"><code class="docutils literal notranslate"><span class="pre">distinct_aggregation_spill_enabled</span></code><a class="headerlink" href="#distinct-aggregation-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>When <code class="docutils literal notranslate"><span class="pre">aggregation_spill_enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, this determines whether Presto will try spilling memory to disk for distinct
+aggregations to avoid exceeding memory limits for the query.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#experimental-distinct-aggregation-spill-enabled"><span class="std std-ref">experimental.distinct-aggregation-spill-enabled</span></a>.</p>
+<h3 id="order-by-aggregation-spill-enabled"><code class="docutils literal notranslate"><span class="pre">order_by_aggregation_spill_enabled</span></code><a class="headerlink" href="#order-by-aggregation-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>When <code class="docutils literal notranslate"><span class="pre">aggregation_spill_enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, this determines whether Presto will try spilling memory to disk for order by
+aggregations to avoid exceeding memory limits for the query.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#experimental-order-by-aggregation-spill-enabled"><span class="std std-ref">experimental.order-by-aggregation-spill-enabled</span></a>.</p>
+<h3 id="window-spill-enabled"><code class="docutils literal notranslate"><span class="pre">window_spill_enabled</span></code><a class="headerlink" href="#window-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>When <code class="docutils literal notranslate"><span class="pre">spill_enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, this determines whether Presto will try spilling memory to disk for window functions to
+avoid exceeding memory limits for the query.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#experimental-window-spill-enabled"><span class="std std-ref">experimental.window-spill-enabled</span></a>.</p>
+<h3 id="order-by-spill-enabled"><code class="docutils literal notranslate"><span class="pre">order_by_spill_enabled</span></code><a class="headerlink" href="#order-by-spill-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>When <code class="docutils literal notranslate"><span class="pre">spill_enabled</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, this determines whether Presto will try spilling memory to disk for order by to
+avoid exceeding memory limits for the query.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#experimental-order-by-spill-enabled"><span class="std std-ref">experimental.order-by-spill-enabled</span></a>.</p>
+<h3 id="aggregation-operator-unspill-memory-limit"><code class="docutils literal notranslate"><span class="pre">aggregation_operator_unspill_memory_limit</span></code><a class="headerlink" href="#aggregation-operator-unspill-memory-limit" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">size</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">MB</span></code></p></li>
+</ul>
+<p>Limit for memory used for unspilling a single aggregation operator instance.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#experimental-aggregation-operator-unspill-memory-limit"><span class="std std-ref">experimental.aggregation-operator-unspill-memory-limit</span></a>.</p>
+<h2 id="task-properties">Task Properties<a class="headerlink" href="#task-properties" title="Link to this heading">¶</a></h2>
+<h3 id="task-concurrency"><code class="docutils literal notranslate"><span class="pre">task_concurrency</span></code><a class="headerlink" href="#task-concurrency" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Restrictions:</strong> must be a power of two</p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">16</span></code></p></li>
+</ul>
+<p>Default local concurrency for parallel operators such as joins and aggregations.
+This value should be adjusted up or down based on the query concurrency and worker
+resource utilization. Lower values are better for clusters that run many queries
+concurrently because the cluster will already be utilized by all the running
+queries, so adding more concurrency will result in slow downs due to context
+switching and other overhead. Higher values are better for clusters that only run
+one or a few queries at a time.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#task-concurrency"><span class="std std-ref">task.concurrency</span></a>.</p>
+<h3 id="id1"><code class="docutils literal notranslate"><span class="pre">task_writer_count</span></code><a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Restrictions:</strong> must be a power of two</p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+</ul>
+<p>The number of concurrent writer threads per worker per query. Increasing this value may
+increase write speed, especially when a query is not I/O bound and can take advantage
+of additional CPU for parallel writes (some connectors can be bottlenecked on CPU when
+writing due to compression or other factors). Setting this too high may cause the cluster
+to become overloaded due to excessive resource utilization.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#task-writer-count"><span class="std std-ref">task.writer-count</span></a>.</p>
+<h2 id="optimizer-properties">Optimizer Properties<a class="headerlink" href="#optimizer-properties" title="Link to this heading">¶</a></h2>
+<h3 id="dictionary-aggregation"><code class="docutils literal notranslate"><span class="pre">dictionary_aggregation</span></code><a class="headerlink" href="#dictionary-aggregation" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Enables optimization for aggregations on dictionaries.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-dictionary-aggregation"><span class="std std-ref">optimizer.dictionary-aggregation</span></a>.</p>
+<h3 id="optimize-hash-generation"><code class="docutils literal notranslate"><span class="pre">optimize_hash_generation</span></code><a class="headerlink" href="#optimize-hash-generation" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>Compute hash codes for distribution, joins, and aggregations early during execution,
+allowing result to be shared between operations later in the query. This can reduce
+CPU usage by avoiding computing the same hash multiple times, but at the cost of
+additional network transfer for the hashes. In most cases it will decrease overall
+query processing time.</p>
+<p>It is often helpful to disable this property when using <a class="reference internal" href="../sql/explain.html"><span class="doc">EXPLAIN</span></a> in order
+to make the query plan easier to read.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-optimize-hash-generation"><span class="std std-ref">optimizer.optimize-hash-generation</span></a>.</p>
+<h3 id="pre-aggregate-before-grouping-sets"><code class="docutils literal notranslate"><span class="pre">pre_aggregate_before_grouping_sets</span></code><a class="headerlink" href="#pre-aggregate-before-grouping-sets" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>When enabled, inserts a partial aggregation below the <code class="docutils literal notranslate"><span class="pre">GroupId</span></code> node in grouping sets
+queries to reduce the number of rows that <code class="docutils literal notranslate"><span class="pre">GroupId</span></code> multiplies across grouping sets.
+The partial aggregation groups by the union of all grouping set columns (the finest
+granularity needed), which can drastically reduce the input to <code class="docutils literal notranslate"><span class="pre">GroupId</span></code>. This is
+most effective when the data has high cardinality on the grouping columns, as the
+pre-aggregation can significantly reduce the row count before multiplication.</p>
+<p>Only applies to decomposable aggregation functions such as <code class="docutils literal notranslate"><span class="pre">SUM</span></code>, <code class="docutils literal notranslate"><span class="pre">COUNT</span></code>, <code class="docutils literal notranslate"><span class="pre">MIN</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">MAX</span></code> that support partial/intermediate/final splitting.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-pre-aggregate-before-grouping-sets"><span class="std std-ref">optimizer.pre-aggregate-before-grouping-sets</span></a>.</p>
+<h3 id="push-aggregation-through-join"><code class="docutils literal notranslate"><span class="pre">push_aggregation_through_join</span></code><a class="headerlink" href="#push-aggregation-through-join" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>When an aggregation is above an outer join and all columns from the outer side of the join
+are in the grouping clause, the aggregation is pushed below the outer join. This optimization
+is particularly useful for correlated scalar subqueries, which get rewritten to an aggregation
+over an outer join. For example:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="n">i</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">i_current_price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">j</span><span class="p">.</span><span class="n">i_current_price</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="n">j</span>
+<span class="w">            </span><span class="k">WHERE</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">i_category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="n">i_category</span><span class="p">);</span>
+</code></pre></div>
+</div>
+<p>Enabling this optimization can substantially speed up queries by reducing
+the amount of data that needs to be processed by the join.  However, it may slow down some
+queries that have very selective joins.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-push-aggregation-through-join"><span class="std std-ref">optimizer.push-aggregation-through-join</span></a>.</p>
+<h3 id="push-partial-aggregation-through-join"><code class="docutils literal notranslate"><span class="pre">push_partial_aggregation_through_join</span></code><a class="headerlink" href="#push-partial-aggregation-through-join" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>When a partial aggregation is above an inner join and all aggregation inputs come from
+only one side of the join, the partial aggregation is pushed below the join to that side.
+This reduces the amount of data flowing into the join operator, which can improve
+performance by allowing the aggregation to pre-reduce data before the join is performed.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-push-partial-aggregation-through-join"><span class="std std-ref">optimizer.push-partial-aggregation-through-join</span></a>.</p>
+<h3 id="push-semi-join-through-union"><code class="docutils literal notranslate"><span class="pre">push_semi_join_through_union</span></code><a class="headerlink" href="#push-semi-join-through-union" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>When enabled, pushes semi-joins through <code class="docutils literal notranslate"><span class="pre">UNION</span></code> sources so that each union
+branch performs the semi-join independently. This can improve performance for
+<code class="docutils literal notranslate"><span class="pre">IN</span></code> and <code class="docutils literal notranslate"><span class="pre">EXISTS</span></code> queries where the semi-join probe side is a <code class="docutils literal notranslate"><span class="pre">UNION</span></code>.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-push-semi-join-through-union"><span class="std std-ref">optimizer.push-semi-join-through-union</span></a>.</p>
+<h3 id="push-projection-through-cross-join"><code class="docutils literal notranslate"><span class="pre">push_projection_through_cross_join</span></code><a class="headerlink" href="#push-projection-through-cross-join" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>When enabled, pushes projection expressions through cross join nodes so that each
+expression is evaluated only on the side of the cross join that provides its input
+variables. This reduces the number of columns flowing through the cross join and
+avoids recomputing expressions on the multiplied output rows.</p>
+<p>Only deterministic expressions are pushed. Expressions that reference variables from
+both sides of the cross join, or constant expressions, remain above the join.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-push-projection-through-cross-join"><span class="std std-ref">optimizer.push-projection-through-cross-join</span></a>.</p>
+<h3 id="push-table-write-through-union"><code class="docutils literal notranslate"><span class="pre">push_table_write_through_union</span></code><a class="headerlink" href="#push-table-write-through-union" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>Parallelize writes when using <code class="docutils literal notranslate"><span class="pre">UNION</span> <span class="pre">ALL</span></code> in queries that write data. This improves the
+speed of writing output tables in <code class="docutils literal notranslate"><span class="pre">UNION</span> <span class="pre">ALL</span></code> queries because these writes do not require
+additional synchronization when collecting results. Enabling this optimization can improve
+<code class="docutils literal notranslate"><span class="pre">UNION</span> <span class="pre">ALL</span></code> speed when write speed is not yet saturated. However, it may slow down queries
+in an already heavily loaded system.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-push-table-write-through-union"><span class="std std-ref">optimizer.push-table-write-through-union</span></a>.</p>
+<h3 id="push-aggregation-through-disjoint-union"><code class="docutils literal notranslate"><span class="pre">push_aggregation_through_disjoint_union</span></code><a class="headerlink" href="#push-aggregation-through-disjoint-union" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>When enabled, pushes a <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> aggregation completely below a <code class="docutils literal notranslate"><span class="pre">UNION</span> <span class="pre">ALL</span></code> whenever at
+least one grouping key has a constant value within each branch and those constant values are
+distinct across branches. Because every group is then fully contained in a single branch, the
+top-level aggregation can be eliminated entirely; each branch computes its own <code class="docutils literal notranslate"><span class="pre">SINGLE</span></code>-step
+aggregation and the results are simply re-unioned.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">count(*),</span> <span class="pre">x</span> <span class="pre">FROM</span> <span class="pre">(SELECT</span> <span class="pre">1</span> <span class="pre">x</span> <span class="pre">UNION</span> <span class="pre">ALL</span> <span class="pre">SELECT</span> <span class="pre">2</span> <span class="pre">x)</span> <span class="pre">GROUP</span> <span class="pre">BY</span> <span class="pre">x</span></code> is
+rewritten so that the <code class="docutils literal notranslate"><span class="pre">count</span></code> is computed independently inside each branch and the two
+already-aggregated rows are unioned, with no final aggregation on top.</p>
+<p>Only fires for single-grouping-set aggregations with deterministic arguments and at least two
+union branches. <code class="docutils literal notranslate"><span class="pre">GROUPING</span> <span class="pre">SETS</span></code>, <code class="docutils literal notranslate"><span class="pre">ROLLUP</span></code>, <code class="docutils literal notranslate"><span class="pre">CUBE</span></code>, and global (no-<code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>)
+aggregations are not pushed.</p>
+<p>The corresponding configuration property is <span class="xref std std-ref">admin/properties:``optimizer.push-aggregation-through-disjoint-union``</span>.</p>
+<h3 id="join-reordering-strategy"><code class="docutils literal notranslate"><span class="pre">join_reordering_strategy</span></code><a class="headerlink" href="#join-reordering-strategy" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Allowed values:</strong> <code class="docutils literal notranslate"><span class="pre">AUTOMATIC</span></code>, <code class="docutils literal notranslate"><span class="pre">ELIMINATE_CROSS_JOINS</span></code>, <code class="docutils literal notranslate"><span class="pre">NONE</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">AUTOMATIC</span></code></p></li>
+</ul>
+<p>The join reordering strategy to use.  <code class="docutils literal notranslate"><span class="pre">NONE</span></code> maintains the order the tables are listed in the
+query.  <code class="docutils literal notranslate"><span class="pre">ELIMINATE_CROSS_JOINS</span></code> reorders joins to eliminate cross joins where possible and
+otherwise maintains the original query order. When reordering joins it also strives to maintain the
+original table order as much as possible. <code class="docutils literal notranslate"><span class="pre">AUTOMATIC</span></code> enumerates possible orders and uses
+statistics-based cost estimation to determine the least cost order. If stats are not available or if
+for any reason a cost could not be computed, the <code class="docutils literal notranslate"><span class="pre">ELIMINATE_CROSS_JOINS</span></code> strategy is used.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-join-reordering-strategy"><span class="std std-ref">optimizer.join-reordering-strategy</span></a>.</p>
+<h3 id="confidence-based-broadcast"><code class="docutils literal notranslate"><span class="pre">confidence_based_broadcast</span></code><a class="headerlink" href="#confidence-based-broadcast" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Enable broadcasting based on the confidence of the statistics that are being used, by
+broadcasting the side of a joinNode which has the highest (<code class="docutils literal notranslate"><span class="pre">HIGH</span></code> or <code class="docutils literal notranslate"><span class="pre">FACT</span></code>) confidence statistics.
+If both sides have the same confidence statistics, then the original behavior will be followed.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-confidence-based-broadcast"><span class="std std-ref">optimizer.confidence-based-broadcast</span></a>.</p>
+<h3 id="treat-low-confidence-zero-estimation-as-unknown"><code class="docutils literal notranslate"><span class="pre">treat-low-confidence-zero-estimation-as-unknown</span></code><a class="headerlink" href="#treat-low-confidence-zero-estimation-as-unknown" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Enable treating <code class="docutils literal notranslate"><span class="pre">LOW</span></code> confidence, zero estimations as <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> during joins.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-treat-low-confidence-zero-estimation-as-unknown"><span class="std std-ref">optimizer.treat-low-confidence-zero-estimation-as-unknown</span></a>.</p>
+<h3 id="retry-query-with-history-based-optimization"><code class="docutils literal notranslate"><span class="pre">retry-query-with-history-based-optimization</span></code><a class="headerlink" href="#retry-query-with-history-based-optimization" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Enable retry for failed queries who can potentially be helped by HBO.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-retry-query-with-history-based-optimization"><span class="std std-ref">optimizer.retry-query-with-history-based-optimization</span></a>.</p>
+<h3 id="optimizer-inner-join-pushdown-enabled"><code class="docutils literal notranslate"><span class="pre">optimizer_inner_join_pushdown_enabled</span></code><a class="headerlink" href="#optimizer-inner-join-pushdown-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Enable push down inner join predicates to database. Only allows equality joins to be pushed down.
+Use <a class="reference internal" href="#optimizer-inequality-join-pushdown-enabled"><span class="std std-ref">optimizer_inequality_join_pushdown_enabled</span></a> along with this configuration to push down inequality join predicates.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-inner-join-pushdown-enabled"><span class="std std-ref">optimizer.inner-join-pushdown-enabled</span></a>.</p>
+<h3 id="optimizer-inequality-join-pushdown-enabled"><code class="docutils literal notranslate"><span class="pre">optimizer_inequality_join_pushdown_enabled</span></code><a class="headerlink" href="#optimizer-inequality-join-pushdown-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Enable push down inner join inequality predicates to database. For this configuration to be enabled, <a class="reference internal" href="#optimizer-inner-join-pushdown-enabled"><span class="std std-ref">optimizer_inner_join_pushdown_enabled</span></a> should be set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.
+The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-inequality-join-pushdown-enabled"><span class="std std-ref">optimizer.inequality-join-pushdown-enabled</span></a>.</p>
+<h3 id="rewrite-bucketed-semi-join-to-join"><code class="docutils literal notranslate"><span class="pre">rewrite_bucketed_semi_join_to_join</span></code><a class="headerlink" href="#rewrite-bucketed-semi-join-to-join" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>When both sides of a semi-join are backed by tables bucketed on the semi-join key,
+rewrite the <code class="docutils literal notranslate"><span class="pre">SemiJoinNode</span></code> to a colocated <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code> with a <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code> on the
+right side. This avoids data shuffle since both sides are already co-partitioned by
+the join key.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-rewrite-bucketed-semi-join-to-join"><span class="std std-ref">optimizer.rewrite-bucketed-semi-join-to-join</span></a>.</p>
+<h3 id="simplify-aggregations-over-constant"><code class="docutils literal notranslate"><span class="pre">simplify_aggregations_over_constant</span></code><a class="headerlink" href="#simplify-aggregations-over-constant" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>When enabled, replaces supported aggregation functions over constant arguments
+with constant expressions. This can improve performance for queries that apply
+aggregations such as <code class="docutils literal notranslate"><span class="pre">MIN</span></code>, <code class="docutils literal notranslate"><span class="pre">MAX</span></code>, <code class="docutils literal notranslate"><span class="pre">ARBITRARY</span></code>, or <code class="docutils literal notranslate"><span class="pre">APPROX_DISTINCT</span></code> to
+constant inputs.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-simplify-aggregations-over-constant"><span class="std std-ref">optimizer.simplify-aggregations-over-constant</span></a>.</p>
+<h3 id="simplify-coalesce-over-join-keys"><code class="docutils literal notranslate"><span class="pre">simplify_coalesce_over_join_keys</span></code><a class="headerlink" href="#simplify-coalesce-over-join-keys" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>When enabled, simplifies redundant <code class="docutils literal notranslate"><span class="pre">COALESCE</span></code> expressions over equi-join keys
+based on join type. This can produce simpler plans and enable additional join
+optimizations, including bucketed join optimizations.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-simplify-coalesce-over-join-keys"><span class="std std-ref">optimizer.simplify-coalesce-over-join-keys</span></a>.</p>
+<h3 id="verbose-optimizer-info-enabled"><code class="docutils literal notranslate"><span class="pre">verbose_optimizer_info_enabled</span></code><a class="headerlink" href="#verbose-optimizer-info-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Use this and <code class="docutils literal notranslate"><span class="pre">optimizers_to_enable_verbose_runtime_stats</span></code> in development to collect valuable debugging information about the optimizer.</p>
+<p>Set to <code class="docutils literal notranslate"><span class="pre">true</span></code> to use as shown in this example:</p>
+<p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">SESSION</span> <span class="pre">verbose_optimizer_info_enabled=true;</span></code></p>
+<h3 id="optimizers-to-enable-verbose-runtime-stats"><code class="docutils literal notranslate"><span class="pre">optimizers_to_enable_verbose_runtime_stats</span></code><a class="headerlink" href="#optimizers-to-enable-verbose-runtime-stats" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Allowed values:</strong> <code class="docutils literal notranslate"><span class="pre">ALL</span></code>, an optimizer rule name, or multiple comma-separated optimization rule names</p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">none</span></code></p></li>
+</ul>
+<p>Use this and <code class="docutils literal notranslate"><span class="pre">verbose_optimizer_info_enabled</span></code> in development to collect valuable debugging information about the optimizer.</p>
+<p>Run the following command to use <code class="docutils literal notranslate"><span class="pre">optimizers_to_enable_verbose_runtime_stats</span></code>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">SESSION</span> <span class="pre">optimizers_to_enable_verbose_runtime_stats=ALL;</span></code></p>
+<h3 id="pushdown-subfields-for-map-functions"><code class="docutils literal notranslate"><span class="pre">pushdown_subfields_for_map_functions</span></code><a class="headerlink" href="#pushdown-subfields-for-map-functions" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>Use this to optimize the <code class="docutils literal notranslate"><span class="pre">map_filter()</span></code> and <code class="docutils literal notranslate"><span class="pre">map_subset()</span></code> function.</p>
+<p>It controls if subfields access is executed at the data source or not.</p>
+<h3 id="pushdown-subfields-for-cardinality"><code class="docutils literal notranslate"><span class="pre">pushdown_subfields_for_cardinality</span></code><a class="headerlink" href="#pushdown-subfields-for-cardinality" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Enable subfield pruning for the <code class="docutils literal notranslate"><span class="pre">cardinality()</span></code> function to skip reading keys and values.</p>
+<p>When enabled, the query optimizer can push down subfield pruning for cardinality operations,
+allowing the data source to skip reading the actual keys and values when only the cardinality
+(count of elements) is needed.</p>
+<h3 id="schedule-splits-based-on-task-load"><code class="docutils literal notranslate"><span class="pre">schedule_splits_based_on_task_load</span></code><a class="headerlink" href="#schedule-splits-based-on-task-load" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>If true then splits are scheduled to the tasks based on task load, rather than on the node load.
+This is particularly useful for the native worker as it runs splits for tasks differently than the java worker.
+The corresponding configuration property is <a class="reference internal" href="properties.html#node-scheduler-max-splits-per-task"><span class="std std-ref">node-scheduler.max-splits-per-task</span></a>.</p>
+<p>Set to <code class="docutils literal notranslate"><span class="pre">true</span></code> to use as shown in this example:</p>
+<p><code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">SESSION</span> <span class="pre">schedule_splits_based_on_task_load=true;</span></code></p>
+<h3 id="table-scan-shuffle-parallelism-threshold"><code class="docutils literal notranslate"><span class="pre">table_scan_shuffle_parallelism_threshold</span></code><a class="headerlink" href="#table-scan-shuffle-parallelism-threshold" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">double</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0.1</span></code></p></li>
+</ul>
+<p>Parallelism threshold for adding a shuffle above table scan. When the table’s parallelism factor
+is below this threshold (0.0-1.0) and <code class="docutils literal notranslate"><span class="pre">table_scan_shuffle_strategy</span></code> is <code class="docutils literal notranslate"><span class="pre">COST_BASED</span></code>,
+a round-robin shuffle exchange is added above the table scan to redistribute data.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-table-scan-shuffle-parallelism-threshold"><span class="std std-ref">optimizer.table-scan-shuffle-parallelism-threshold</span></a>.</p>
+<h3 id="table-scan-shuffle-strategy"><code class="docutils literal notranslate"><span class="pre">table_scan_shuffle_strategy</span></code><a class="headerlink" href="#table-scan-shuffle-strategy" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Allowed values:</strong> <code class="docutils literal notranslate"><span class="pre">DISABLED</span></code>, <code class="docutils literal notranslate"><span class="pre">ALWAYS_ENABLED</span></code>, <code class="docutils literal notranslate"><span class="pre">COST_BASED</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">DISABLED</span></code></p></li>
+</ul>
+<p>Strategy for adding shuffle above table scan to redistribute data. When set to <code class="docutils literal notranslate"><span class="pre">DISABLED</span></code>,
+no shuffle is added. When set to <code class="docutils literal notranslate"><span class="pre">ALWAYS_ENABLED</span></code>, a round-robin shuffle exchange is always
+added above table scans. When set to <code class="docutils literal notranslate"><span class="pre">COST_BASED</span></code>, a shuffle is added only when the table’s
+parallelism factor is below the <code class="docutils literal notranslate"><span class="pre">table_scan_shuffle_parallelism_threshold</span></code>.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-table-scan-shuffle-strategy"><span class="std std-ref">optimizer.table-scan-shuffle-strategy</span></a>.</p>
+<h3 id="remote-function-names-for-fixed-parallelism"><code class="docutils literal notranslate"><span class="pre">remote_function_names_for_fixed_parallelism</span></code><a class="headerlink" href="#remote-function-names-for-fixed-parallelism" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> (empty string, disabled)</p></li>
+</ul>
+<p>A regular expression pattern to match fully qualified remote function names, such as <code class="docutils literal notranslate"><span class="pre">catalog.schema.function_name</span></code>,
+that should use fixed parallelism. When a remote function matches this pattern, the optimizer inserts
+round-robin shuffle exchanges before and after the projection containing the remote function call.
+This ensures that the remote function executes with a fixed degree of parallelism, which can be useful
+for controlling resource usage when calling external services.</p>
+<p>This property only applies to external/remote functions (functions where <code class="docutils literal notranslate"><span class="pre">isExternalExecution()</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code>,
+such as functions using THRIFT, GRPC, or REST implementation types).</p>
+<p>Example patterns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">myschema.myfunction</span></code> - matches an exact function name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">catalog.schema.remote_.*</span></code> - matches all functions starting with <code class="docutils literal notranslate"><span class="pre">remote_</span></code> in the specified catalog and schema</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.*remote.*</span></code> - matches any function containing <code class="docutils literal notranslate"><span class="pre">remote</span></code> in its fully qualified name</p></li>
+</ul>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-remote-function-names-for-fixed-parallelism"><span class="std std-ref">optimizer.remote-function-names-for-fixed-parallelism</span></a>.</p>
+<h3 id="remote-function-fixed-parallelism-task-count"><code class="docutils literal notranslate"><span class="pre">remote_function_fixed_parallelism_task_count</span></code><a class="headerlink" href="#remote-function-fixed-parallelism-task-count" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">null</span></code> (uses the default hash partition count)</p></li>
+</ul>
+<p>The number of tasks to use for remote functions matching the <code class="docutils literal notranslate"><span class="pre">remote_function_names_for_fixed_parallelism</span></code> pattern.
+When set, this value determines the degree of parallelism for the round-robin shuffle exchanges inserted
+around matching remote function projections. If not set, the default hash partition count will be used.</p>
+<p>This property is only effective when <code class="docutils literal notranslate"><span class="pre">remote_function_names_for_fixed_parallelism</span></code> is set to a non-empty pattern.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-remote-function-fixed-parallelism-task-count"><span class="std std-ref">optimizer.remote-function-fixed-parallelism-task-count</span></a>.</p>
+<h3 id="skip-pushdown-through-exchange-for-remote-projection"><code class="docutils literal notranslate"><span class="pre">skip_pushdown_through_exchange_for_remote_projection</span></code><a class="headerlink" href="#skip-pushdown-through-exchange-for-remote-projection" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>When enabled, skips pushing remote projections through exchange nodes. This can
+preserve exchanges around projections that call external functions, where fixed
+parallelism or exchange placement is needed to control execution.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-skip-pushdown-through-exchange-for-remote-projection"><span class="std std-ref">optimizer.skip-pushdown-through-exchange-for-remote-projection</span></a>.</p>
+<h3 id="local-exchange-parent-preference-strategy"><code class="docutils literal notranslate"><span class="pre">local_exchange_parent_preference_strategy</span></code><a class="headerlink" href="#local-exchange-parent-preference-strategy" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Allowed values:</strong> <code class="docutils literal notranslate"><span class="pre">ALWAYS</span></code>, <code class="docutils literal notranslate"><span class="pre">NEVER</span></code>, <code class="docutils literal notranslate"><span class="pre">AUTOMATIC</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">ALWAYS</span></code></p></li>
+</ul>
+<p>Strategy to consider parent preferences when adding local exchange partitioning for aggregations.
+When set to <code class="docutils literal notranslate"><span class="pre">ALWAYS</span></code>, the optimizer always uses parent preferences for local exchange partitioning.
+When set to <code class="docutils literal notranslate"><span class="pre">NEVER</span></code>, it never uses parent preferences and instead uses the aggregation’s own
+grouping keys. When set to <code class="docutils literal notranslate"><span class="pre">AUTOMATIC</span></code>, the optimizer makes a cost-based decision, using parent
+preferences only when the estimated partition cardinality is greater than or equal to the task
+concurrency.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#optimizer-local-exchange-parent-preference-strategy"><span class="std std-ref">optimizer.local-exchange-parent-preference-strategy</span></a>.</p>
+<h3 id="join-prefilter-build-side-with-complex-probe-side"><code class="docutils literal notranslate"><span class="pre">join_prefilter_build_side_with_complex_probe_side</span></code><a class="headerlink" href="#join-prefilter-build-side-with-complex-probe-side" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Extends the <code class="docutils literal notranslate"><span class="pre">join_prefilter_build_side</span></code> optimization to clone more complex probe-side
+patterns (<code class="docutils literal notranslate"><span class="pre">UNION</span> <span class="pre">ALL</span></code>, cross join, <code class="docutils literal notranslate"><span class="pre">UNNEST</span></code>, aggregation) when building the prefilter,
+and to push the prefilter <code class="docutils literal notranslate"><span class="pre">SemiJoin</span></code> below right-side aggregations so the build side is
+filtered before grouping. Only takes effect when <code class="docutils literal notranslate"><span class="pre">join_prefilter_build_side</span></code> is also
+enabled. Disabled by default because cloning additional probe-side work adds planning
+and runtime overhead, which only pays off when the build side is large enough to dominate
+the join cost.</p>
+<p>The corresponding configuration property is <span class="xref std std-ref">admin/properties:``optimizer.join-prefilter-build-side-with-complex-probe-side``</span>.</p>
+<h3 id="push-filter-through-selecting-aggregation"><code class="docutils literal notranslate"><span class="pre">push_filter_through_selecting_aggregation</span></code><a class="headerlink" href="#push-filter-through-selecting-aggregation" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Pushes HAVING-style filters on the output of single-value-selecting aggregates (<code class="docutils literal notranslate"><span class="pre">MAX</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MIN</span></code>) below the aggregation when the predicate direction matches the aggregate’s
+selection semantics. For example, <code class="docutils literal notranslate"><span class="pre">HAVING</span> <span class="pre">max(x)</span> <span class="pre">&gt;=</span> <span class="pre">1.0</span></code> becomes <code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">x</span> <span class="pre">&gt;=</span> <span class="pre">1.0</span></code>.
+Only fires when the aggregation has a single aggregate (so filtering rows below the
+aggregation does not change the row set seen by other aggregates), the aggregate
+argument is a direct column reference (no expressions, <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code>, <code class="docutils literal notranslate"><span class="pre">FILTER</span></code>,
+<code class="docutils literal notranslate"><span class="pre">MASK</span></code>, or <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>), and the non-aggregate side of the comparison is evaluable
+below the aggregation (literals, grouping keys, raw source columns).</p>
+<p>Strict-direction predicates are pushed in REPLACE form: <code class="docutils literal notranslate"><span class="pre">MAX</span></code> with <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> / <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> and
+<code class="docutils literal notranslate"><span class="pre">MIN</span></code> with <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> / <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code>.</p>
+<p>Equality on <code class="docutils literal notranslate"><span class="pre">MAX</span></code> / <code class="docutils literal notranslate"><span class="pre">MIN</span></code> is pushed in ADD-pre-filter + KEEP-HAVING form:
+<code class="docutils literal notranslate"><span class="pre">HAVING</span> <span class="pre">max(x)</span> <span class="pre">=</span> <span class="pre">c</span></code> becomes <code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">x</span> <span class="pre">&gt;=</span> <span class="pre">c</span></code> below the aggregation while keeping
+<code class="docutils literal notranslate"><span class="pre">HAVING</span> <span class="pre">max(x)</span> <span class="pre">=</span> <span class="pre">c</span></code> above; symmetric for <code class="docutils literal notranslate"><span class="pre">MIN</span></code> (<code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">x</span> <span class="pre">&lt;=</span> <span class="pre">c</span></code>). The relaxed
+pre-filter is implied by the original predicate, and the kept HAVING still rejects
+groups that would have failed it originally.</p>
+<h3 id="optimize-row-in-predicate"><code class="docutils literal notranslate"><span class="pre">optimize_row_in_predicate</span></code><a class="headerlink" href="#optimize-row-in-predicate" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Rewrites <code class="docutils literal notranslate"><span class="pre">ROW(c1,</span> <span class="pre">c2,</span> <span class="pre">...)</span> <span class="pre">IN</span> <span class="pre">(ROW(v1_1,</span> <span class="pre">v1_2,</span> <span class="pre">...),</span> <span class="pre">ROW(v2_1,</span> <span class="pre">v2_2,</span> <span class="pre">...),</span> <span class="pre">...)</span></code> to add per-column
+<code class="docutils literal notranslate"><span class="pre">IN</span></code> predicates (<code class="docutils literal notranslate"><span class="pre">c1</span> <span class="pre">IN</span> <span class="pre">(v1_1,</span> <span class="pre">v2_1,</span> <span class="pre">...)</span> <span class="pre">AND</span> <span class="pre">c2</span> <span class="pre">IN</span> <span class="pre">(v1_2,</span> <span class="pre">v2_2,</span> <span class="pre">...)</span> <span class="pre">AND</span> <span class="pre">...</span></code>) alongside the original
+disjunctive OR of AND clauses expansion. <code class="docutils literal notranslate"><span class="pre">ROW</span> <span class="pre">NOT</span> <span class="pre">IN</span></code> is rewritten symmetrically with per-column <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">IN</span></code>
+disjuncts plus the original <code class="docutils literal notranslate"><span class="pre">ROW</span> <span class="pre">NOT</span> <span class="pre">IN</span></code> as a safety net. The added simple predicates help the domain
+translator extract per-column constraints for optimization. Only fires when the filter sits on a table scan
+(optionally through projections), and runs once before table layout selection. This optimization is
+flag-controlled and adds a small overhead from the extra predicates.</p>
+<h2 id="jdbc-properties">JDBC Properties<a class="headerlink" href="#jdbc-properties" title="Link to this heading">¶</a></h2>
+<h3 id="usejdbcmetadatacache"><code class="docutils literal notranslate"><span class="pre">useJdbcMetadataCache</span></code><a class="headerlink" href="#usejdbcmetadatacache" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Cache the result of the JDBC queries that fetch metadata about tables and columns.</p>
+<h3 id="allowdroptable"><code class="docutils literal notranslate"><span class="pre">allowDropTable</span></code><a class="headerlink" href="#allowdroptable" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Allow connector to drop tables.</p>
+<h3 id="metadatacachettl"><code class="docutils literal notranslate"><span class="pre">metadataCacheTtl</span></code><a class="headerlink" href="#metadatacachettl" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">Duration</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+</ul>
+<p>Setting a duration controls how long to cache data.</p>
+<h3 id="metadatacacherefreshinterval"><code class="docutils literal notranslate"><span class="pre">metadataCacheRefreshInterval</span></code><a class="headerlink" href="#metadatacacherefreshinterval" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">Duration</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+</ul>
+<h3 id="metadatacachemaximumsize"><code class="docutils literal notranslate"><span class="pre">metadataCacheMaximumSize</span></code><a class="headerlink" href="#metadatacachemaximumsize" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">long</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+</ul>
+<h3 id="metadatacachethreadpoolsize"><code class="docutils literal notranslate"><span class="pre">metadataCacheThreadPoolSize</span></code><a class="headerlink" href="#metadatacachethreadpoolsize" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">int</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+</ul>
+<p>The value represents the max background fetch threads for refreshing metadata.</p>
+<h3 id="validateconnection"><code class="docutils literal notranslate"><span class="pre">validateConnection</span></code><a class="headerlink" href="#validateconnection" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>When enabled, the JDBC driver executes a validation query (<code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">1</span></code>) immediately
+after establishing a connection to ensure it is working properly before returning it
+to the application. This is useful for applications using connection pooling or
+experiencing intermittent connectivity issues, as it allows early detection of failed
+connections rather than discovering connection problems during the first query execution.</p>
+<p>To enable connection validation, add <code class="docutils literal notranslate"><span class="pre">validateConnection=true</span></code> to the JDBC connection URL:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">jdbc</span><span class="p">:</span><span class="n">presto</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">?</span><span class="n">validateConnection</span><span class="o">=</span><span class="k">true</span>
+</code></pre></div>
+</div>
+<p>Or set it by using connection properties:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="n">Properties</span><span class="w"> </span><span class="n">properties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Properties</span><span class="p">();</span>
+<span class="n">properties</span><span class="p">.</span><span class="n">setProperty</span><span class="p">(</span><span class="ss">&quot;user&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;test&quot;</span><span class="p">);</span>
+<span class="n">properties</span><span class="p">.</span><span class="n">setProperty</span><span class="p">(</span><span class="ss">&quot;validateConnection&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;true&quot;</span><span class="p">);</span>
+<span class="k">Connection</span><span class="w"> </span><span class="k">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="n">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">properties</span><span class="p">);</span>
+</code></pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>Enabling connection validation adds a small overhead during connection establishment
+due to the execution of the validation query. This is typically negligible but should
+be considered in high-frequency connection scenarios.</p>
+</div>
+<h2 id="query-manager-properties">Query Manager Properties<a class="headerlink" href="#query-manager-properties" title="Link to this heading">¶</a></h2>
+<h3 id="query-client-timeout"><code class="docutils literal notranslate"><span class="pre">query_client_timeout</span></code><a class="headerlink" href="#query-client-timeout" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">Duration</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">5m</span></code></p></li>
+</ul>
+<p>This property can be used to configure how long a query runs without contact
+from the client application, such as the CLI, before it’s abandoned.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#query-client-timeout"><span class="std std-ref">query.client.timeout</span></a>.</p>
+<h3 id="query-priority"><code class="docutils literal notranslate"><span class="pre">query_priority</span></code><a class="headerlink" href="#query-priority" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">int</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+</ul>
+<p>This property defines the priority of queries for execution and plays an important role in query admission.
+Queries with higher priority are scheduled first than the ones with lower priority. Higher number indicates higher priority.</p>
+<h3 id="query-max-queued-time"><code class="docutils literal notranslate"><span class="pre">query_max_queued_time</span></code><a class="headerlink" href="#query-max-queued-time" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">Duration</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">100d</span></code></p></li>
+</ul>
+<p>Use to configure how long a query can be queued before it is terminated.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#query-max-queued-time"><span class="std std-ref">query.max-queued-time</span></a>.</p>
+<h2 id="view-and-materialized-view-properties">View and Materialized View Properties<a class="headerlink" href="#view-and-materialized-view-properties" title="Link to this heading">¶</a></h2>
+<h3 id="default-view-security-mode"><code class="docutils literal notranslate"><span class="pre">default_view_security_mode</span></code><a class="headerlink" href="#default-view-security-mode" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Allowed values:</strong> <code class="docutils literal notranslate"><span class="pre">DEFINER</span></code>, <code class="docutils literal notranslate"><span class="pre">INVOKER</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">DEFINER</span></code></p></li>
+</ul>
+<p>Sets the default security mode for views and materialized views when the <code class="docutils literal notranslate"><span class="pre">SECURITY</span></code>
+clause is not explicitly specified in <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">VIEW</span></code> or <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">MATERIALIZED</span> <span class="pre">VIEW</span></code>
+statements.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DEFINER</span></code>: Views execute with the permissions of the user who created them</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INVOKER</span></code>: Views execute with the permissions of the user querying them</p></li>
+</ul>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#default-view-security-mode"><span class="std std-ref">default-view-security-mode</span></a>.</p>
+<h3 id="legacy-materialized-views"><code class="docutils literal notranslate"><span class="pre">legacy_materialized_views</span></code><a class="headerlink" href="#legacy-materialized-views" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>Use legacy materialized views implementation. Set to <code class="docutils literal notranslate"><span class="pre">false</span></code> to enable the new materialized
+views implementation with security modes (DEFINER and INVOKER), automatic query rewriting, and
+freshness tracking.</p>
+<p>By default, this session property is locked to the server configuration value and cannot be
+changed. To allow runtime toggling of this property (for testing/migration purposes only),
+set <a class="reference internal" href="properties.html#experimental-allow-legacy-materialized-views-toggle"><span class="std std-ref">experimental.allow-legacy-materialized-views-toggle</span></a> = <code class="docutils literal notranslate"><span class="pre">true</span></code>
+in the server configuration.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#experimental-legacy-materialized-views"><span class="std std-ref">experimental.legacy-materialized-views</span></a>.</p>
+<h3 id="materialized-view-query-rewrite-cost-based-selection-enabled"><code class="docutils literal notranslate"><span class="pre">materialized_view_query_rewrite_cost_based_selection_enabled</span></code><a class="headerlink" href="#materialized-view-query-rewrite-cost-based-selection-enabled" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Enable cost-based selection when multiple materialized views are available for query
+rewriting. When enabled, the optimizer evaluates all compatible materialized view rewrites
+and selects the plan with the lowest estimated cost, instead of using the first compatible
+view.</p>
+<p>The corresponding configuration property is
+<a class="reference internal" href="properties.html#materialized-view-query-rewrite-cost-based-selection-enabled"><span class="std std-ref">materialized-view-query-rewrite-cost-based-selection-enabled</span></a>.</p>
+<h3 id="materialized-view-stale-read-behavior"><code class="docutils literal notranslate"><span class="pre">materialized_view_stale_read_behavior</span></code><a class="headerlink" href="#materialized-view-stale-read-behavior" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">USE_VIEW_QUERY</span></code></p></li>
+</ul>
+<p>Controls behavior when a materialized view is stale and no per-view staleness config is set.
+Valid values are <code class="docutils literal notranslate"><span class="pre">FAIL</span></code> (throw an error) or <code class="docutils literal notranslate"><span class="pre">USE_VIEW_QUERY</span></code> (query base tables instead).</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#materialized-view-stale-read-behavior"><span class="std std-ref">materialized-view-stale-read-behavior</span></a>.</p>
+<h3 id="materialized-view-default-refresh-type"><code class="docutils literal notranslate"><span class="pre">materialized_view_default_refresh_type</span></code><a class="headerlink" href="#materialized-view-default-refresh-type" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">FULL</span></code></p></li>
+</ul>
+<p>Controls the default refresh strategy for materialized views when not specified on the view itself.
+Valid values are <code class="docutils literal notranslate"><span class="pre">FULL</span></code> (recompute entire view) or <code class="docutils literal notranslate"><span class="pre">INCREMENTAL</span></code> (only refresh stale partitions).</p>
+<p>Incremental refresh requires a partition-aligned materialized view with identity-transformed
+partition columns. See <a class="reference internal" href="../connector/iceberg.html#iceberg-incremental-refresh"><span class="std std-ref">Incremental Refresh</span></a> for connector-specific requirements.</p>
+<div class="warning admonition">
+<p class="admonition-title">Warning</p>
+<p>Materialized views are experimental. The SPI and behavior may change in future releases.</p>
+</div>
+<h3 id="optimizer-optimize-multiple-approx-distinct-on-same-type"><code class="docutils literal notranslate"><span class="pre">optimizer.optimize_multiple_approx_distinct_on_same_type</span></code><a class="headerlink" href="#optimizer-optimize-multiple-approx-distinct-on-same-type" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Enable optimization to combine multiple <code class="xref js js-func docutils literal notranslate"><span class="pre">approx_distinct()</span></code> function calls on expressions
+of the same type into a single aggregation using <code class="docutils literal notranslate"><span class="pre">set_agg</span></code> with array operations (<code class="docutils literal notranslate"><span class="pre">array_constructor</span></code>, <code class="docutils literal notranslate"><span class="pre">array_transpose</span></code>).</p>
+<h3 id="optimizer-merge-max-by-and-min-by-aggregations"><code class="docutils literal notranslate"><span class="pre">optimizer.merge_max_by_and_min_by_aggregations</span></code><a class="headerlink" href="#optimizer-merge-max-by-and-min-by-aggregations" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>Enable optimization to merge multiple <code class="docutils literal notranslate"><span class="pre">max_by</span></code> or <code class="docutils literal notranslate"><span class="pre">min_by</span></code> aggregations that share the same
+comparison key into a single aggregation with a <code class="docutils literal notranslate"><span class="pre">ROW</span></code> argument. This reduces computational
+overhead by performing only one comparison operation per row instead of N comparisons, and
+improves memory efficiency by maintaining a single aggregation state instead of N separate states.</p>
+<p>For example, when enabled, the following query:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">max_by</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">),</span><span class="w"> </span><span class="n">max_by</span><span class="p">(</span><span class="n">v2</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">),</span><span class="w"> </span><span class="n">max_by</span><span class="p">(</span><span class="n">v3</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">table</span>
+</code></pre></div>
+</div>
+<p>is internally optimized to use a single <code class="docutils literal notranslate"><span class="pre">max_by(ROW(v1,</span> <span class="pre">v2,</span> <span class="pre">v3),</span> <span class="pre">k)</span></code> call with field extraction,
+reducing both CPU and memory usage.</p>
+<h3 id="grouped-execution"><code class="docutils literal notranslate"><span class="pre">grouped_execution</span></code><a class="headerlink" href="#grouped-execution" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+<p>Use grouped execution when possible. Grouped execution schedules bucketed table operations
+in lifespans (one per bucket), reducing memory usage by processing a subset of data at a time.
+This is required for queries on bucketed tables that use join, aggregation, or window functions
+with compatible bucket layouts.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#grouped-execution-enabled"><span class="std std-ref">grouped-execution-enabled</span></a>.</p>
+<h3 id="partition-aware-grouped-execution"><code class="docutils literal notranslate"><span class="pre">partition_aware_grouped_execution</span></code><a class="headerlink" href="#partition-aware-grouped-execution" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Type:</strong> <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+<li><p><strong>Default value:</strong> <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+<p>When enabled alongside <code class="docutils literal notranslate"><span class="pre">grouped_execution</span></code>, schedules each (bucket, partition-values) pair as
+a separate lifespan instead of processing all partitions per bucket in a single lifespan. This
+reduces per-lifespan hash table size for joins and aggregations on bucketed + partitioned tables.</p>
+<p>For example, with 8 buckets and 3 <code class="docutils literal notranslate"><span class="pre">ds</span></code> partitions, standard grouped execution creates 8 lifespans
+(one per bucket, each processing all 3 partitions). Partition-aware grouped execution creates 24
+lifespans (8 buckets x 3 partitions), each processing one bucket for one partition value.</p>
+<p>The feature activates when:</p>
+<ul class="simple">
+<li><p>The table is both bucketed and partitioned</p></li>
+<li><p>Partition columns appear as equi-join keys (for example, <code class="docutils literal notranslate"><span class="pre">t1.ds</span> <span class="pre">=</span> <span class="pre">t2.ds</span></code>) or GROUP BY keys</p></li>
+<li><p>At least 2 distinct partition values exist (single partition provides no benefit)</p></li>
+</ul>
+<p>When partition-aware execution is not applicable (for example: non-partitioned tables, no partition
+columns in join conditions), the query falls back to standard grouped execution automatically.</p>
+<p>The corresponding configuration property is <a class="reference internal" href="properties.html#partition-aware-grouped-execution-enabled"><span class="std std-ref">partition-aware-grouped-execution-enabled</span></a>.</p>
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky", "content.code.copy"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+    
+  </body>
+</html>
