@@ -1,0 +1,8376 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../release.html">
+      
+      
+        <link rel="next" href="release-0.298.html">
+      
+      
+      <link rel="icon" href="../_static/favicon.ico">
+    
+    
+      
+        <title>Release 0.299 - Presto 0.299 Documentation</title>
+      
+    
+    
+      
+        
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.568f84a10346378e3.min.css?v=fed7ac0f" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-K7GB6F0LBZ"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-K7GB6F0LBZ",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-K7GB6F0LBZ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#breaking-changes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Presto 0.299 Documentation" class="md-header__button md-logo" aria-label="Presto 0.299 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Presto 0.299 Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Release 0.299
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Presto 0.299 Documentation" class="md-nav__button md-logo" aria-label="Presto 0.299 Documentation" data-md-component="logo">
+      <img src="../_static/logo.png" alt="logo">
+    </a>
+    Presto 0.299 Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/prestodb/presto" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Presto
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clients.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clients
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Administration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cache
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimizer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Query Optimizer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connector.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Connectors
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plugins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Functions and Operators
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Language
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL Statement Syntax
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Migration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    REST API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecosystem.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ecosystem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Router
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../develop.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Developer Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presto-cpp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Presto C++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshoot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../release.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Release Notes
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_20" id="__nav_20_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            Release Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>299 <wbr>[2026-<wbr>08-<wbr>07]
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>299 <wbr>[2026-<wbr>08-<wbr>07]
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/release/release-0.299.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/release/release-0.299.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:**breaking changes** (reference label)">Breaking Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#highlights" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:**highlights** (reference label)">Highlights</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#details" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:**details** (reference label)">Details</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:general changes (reference label)">General Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prestissimo-native-execution-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:prestissimo (native execution) changes (reference label)">Prestissimo <wbr>(Native Execution) Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:security changes (reference label)">Security Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cassandra-connector-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:cassandra connector changes (reference label)">Cassandra Connector Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delta-lake-connector-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:delta lake connector changes (reference label)">Delta Lake Connector Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hive-connector-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:hive connector changes (reference label)">Hive Connector Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iceberg-connector-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:iceberg connector changes (reference label)">Iceberg Connector Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lance-connector-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:lance connector changes (reference label)">Lance Connector Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oracle-connector-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:oracle connector changes (reference label)">Oracle Connector Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spi-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:spi changes (reference label)">SPI Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:**credits** (reference label)">Credits</span>
+    </span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.298.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>298 <wbr>[2026-<wbr>05-<wbr>29]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.297.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>297 <wbr>[2026-<wbr>04-<wbr>01]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.296.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>296 <wbr>[2025-<wbr>12-<wbr>01]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.295.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>295 <wbr>[2025-<wbr>10-<wbr>01]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.294.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>294 <wbr>[2025-<wbr>07-<wbr>28]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.293.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>293 <wbr>[2025-<wbr>05-<wbr>29]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.292.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>292 <wbr>[2025-<wbr>03-<wbr>28]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.291.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>291 <wbr>[2025-<wbr>01-<wbr>27]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.290.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>290 <wbr>[2024-<wbr>11-<wbr>01]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.289.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>289 <wbr>[2024-<wbr>08-<wbr>23]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.288.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>288.<wbr>1 <wbr>[2024-<wbr>08-<wbr>12]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.288.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>288 <wbr>[2024-<wbr>06-<wbr>13]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.287.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>287 <wbr>[2024-<wbr>04-<wbr>16]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.286.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>286 <wbr>[2024-<wbr>02-<wbr>12]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.285.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>285.<wbr>1 <wbr>[2023-<wbr>12-<wbr>30]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.285.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>285 <wbr>[2023-<wbr>12-<wbr>08]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.284.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>284 <wbr>[2023-<wbr>10-<wbr>11]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.283.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release-<wbr>0.<wbr>283 <wbr>[2023-<wbr>08-<wbr>08]
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.282.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>282
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.281.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>281
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.280.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>280
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.279.2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>279.<wbr>2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.279.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>279
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.278.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>278.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.278.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>278
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.277.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>277
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.276.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>276.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.276.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>276
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.275.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>275
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.274.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>274
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.273.3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>273.<wbr>3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.273.2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>273.<wbr>2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.273.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>273
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.272.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>272
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.271.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>271
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.270.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>270
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.269.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>269
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.268.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>268
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.267.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>267
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.266.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>266
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.265.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>265
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.264.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>264.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.264.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>264
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.263.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>263.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.263.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>263
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.262.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>262
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.261.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>261
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.260.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>260.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.260.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>260
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.259.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>259.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.259.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>259
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.258.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>258
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.257.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>257
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.256.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>256
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.255.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>255
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.254.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>254.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.254.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>254
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.253.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>253.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.253.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>253
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.252.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>252
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.251.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>251.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.251.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>251
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.250.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>250
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.249.2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>249.<wbr>2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.249.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>249.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.249.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>249
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.248.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>248.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.248.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>248
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.247.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>247
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.246.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>246
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.245.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>245.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.245.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>245
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.244.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>244.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.244.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>244
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.243.4.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>243.<wbr>4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.243.3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>243.<wbr>3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.243.2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>243.<wbr>2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.243.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>243.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.243.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>243
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.242.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>242.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.242.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>242
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.241.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>241
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.240.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>240
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.239.2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>239.<wbr>2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.239.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>239.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.239.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>239
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.238.3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>238.<wbr>3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.238.2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>238.<wbr>2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.238.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>238
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.237.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>237
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.236.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>236
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.235.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>235.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.235.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>235
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.234.3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>234.<wbr>3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.234.2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>234.<wbr>2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.234.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>234.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.234.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>234
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.233.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>233.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.233.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>233
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.232.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>232
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.231.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>231
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.230.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>230
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.229.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>229
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.228.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>228
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.227.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>227
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.226.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>226
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.225.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>225
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.224.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>224
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.223.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>223
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.222.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>222
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.221.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>221
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.220.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>220
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.219.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>219
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.218.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>218
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.217.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>217
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.216.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>216
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.215.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>215
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.214.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>214
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.213.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>213
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.212.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>212
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.211.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>211
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.210.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>210
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.209.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>209
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.208.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>208
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.207.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>207
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.206.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>206
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.205.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>205
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.204.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>204
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.203.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>203
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.202.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>202
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.201.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>201
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.200.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>200
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.199.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>199
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.198.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>198
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.197.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>197
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.196.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>196
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.195.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>195
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.194.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>194
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.193.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>193
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.192.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>192
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.191.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>191
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.190.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>190
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.189.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>189
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.188.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>188
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.187.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>187
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.186.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>186
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.185.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>185
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.184.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>184
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.183.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>183
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.182.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>182
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.181.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>181
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.180.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>180
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.179.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>179
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.178.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>178
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.177.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>177
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.176.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>176
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.175.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>175
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.174.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>174
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.173.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>173
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.172.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>172
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.171.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>171
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.170.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>170
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.169.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>169
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.168.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>168
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.167.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>167
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.166.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>166
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.165.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>165
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.164.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>164
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.163.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>163
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.162.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>162
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.161.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>161
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.160.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>160
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.159.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>159
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.158.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>158
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.157.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>157.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.157.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>157
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.156.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>156
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.155.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>155
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.154.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>154
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.153.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>153
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.152.3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>152.<wbr>3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.152.2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>152.<wbr>2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.152.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>152.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.152.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>152
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.151.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>151
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.150.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>150
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.149.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>149
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.148.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>148
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.147.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>147
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.146.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>146
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.145.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>145
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.144.7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>144.<wbr>7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.144.6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>144.<wbr>6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.144.5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>144.<wbr>5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.144.4.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>144.<wbr>4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.144.3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>144.<wbr>3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.144.2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>144.<wbr>2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.144.1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>144.<wbr>1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.144.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>144
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.143.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>143
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.142.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>142
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.141.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>141
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.140.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>140
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.139.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>139
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.138.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>138
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.137.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>137
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.136.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>136
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.135.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>135
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.134.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>134
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.133.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>133
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.132.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>132
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.131.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>131
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.130.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>130
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.129.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>129
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.128.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>128
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.127.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>127
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.126.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>126
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.125.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>125
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.124.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>124
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.123.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>123
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.122.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>122
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.121.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>121
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.120.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>120
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.119.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>119
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.118.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>118
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.117.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>117
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.116.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>116
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.115.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>115
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.114.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>114
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.113.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>113
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.112.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>112
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.111.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>111
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.110.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>110
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.109.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>109
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.108.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>108
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.107.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>107
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.106.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>106
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.105.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>105
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.104.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>104
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.103.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>103
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.102.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>102
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.101.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>101
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.100.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>100
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.99.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>99
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.98.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>98
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.97.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>97
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.96.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>96
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>95
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.94.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>94
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.93.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>93
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.92.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>92
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.91.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>91
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.90.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>90
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.89.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>89
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>88
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.87.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>87
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.86.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>86
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.85.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>85
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.84.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>84
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.83.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>83
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.82.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>82
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.81.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>81
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>80
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.79.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>79
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.78.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>78
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.77.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>77
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.76.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>76
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.75.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>75
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.74.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>74
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.73.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>73
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.72.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>72
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.71.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>71
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.70.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>70
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.69.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>69
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.68.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>68
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.67.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>67
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.66.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>66
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.65.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>65
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.64.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>64
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.63.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>63
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.62.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>62
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.61.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>61
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.60.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>60
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.59.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>59
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.58.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>58
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.57.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>57
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.56.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>56
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.55.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>55
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-0.54.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Release 0.<wbr>54
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/blob/master/presto-docs/src/main/sphinx/release/release-0.299.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+                </span>
+                View Page Source
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/edit/master/presto-docs/src/main/sphinx/release/release-0.299.rst" class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg>
+                </span>
+                Edit this page
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new?title=Documentation&labels=docs"
+                class="">
+                <span class="md-source__icon md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create docs issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://github.com/prestodb/presto/issues/new" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M40 48c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24zm152 16c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32h288c17.7 0 32-14.3 32-32s-14.3-32-32-32zM16 232v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24m24 136c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h48c13.3 0 24-10.7 24-24v-48c0-13.3-10.7-24-24-24z"/></svg>
+                </span>
+                Create project issue
+            </a>
+        </li>
+        <li class="md-nav__item">
+            <a href="https://communityinviter.com/apps/prestodb/prestodb" class="">
+                <span class="md-source__icon  md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1s21.16-47.06 47.06-47.06h47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06S448 171 448 196.9s-21.16 47.06-47.06 47.06h-47.06zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06S309 480 283.1 480s-47.06-21.16-47.06-47.06v-47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06s21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06z"/></svg>
+                </span>
+                Join PrestoDB on Slack
+            </a>
+        </li>
+    </ul>
+    <hr>
+    
+    
+    
+    <label class="md-nav__title" for="__toc">
+        <span class="md-nav__icon md-icon"></span>
+        Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:**breaking changes** (reference label)">Breaking Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#highlights" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:**highlights** (reference label)">Highlights</span>
+    </span>
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#details" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:**details** (reference label)">Details</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:general changes (reference label)">General Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prestissimo-native-execution-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:prestissimo (native execution) changes (reference label)">Prestissimo <wbr>(Native Execution) Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:security changes (reference label)">Security Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cassandra-connector-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:cassandra connector changes (reference label)">Cassandra Connector Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delta-lake-connector-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:delta lake connector changes (reference label)">Delta Lake Connector Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hive-connector-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:hive connector changes (reference label)">Hive Connector Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iceberg-connector-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:iceberg connector changes (reference label)">Iceberg Connector Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lance-connector-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:lance connector changes (reference label)">Lance Connector Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oracle-connector-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:oracle connector changes (reference label)">Oracle Connector Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spi-changes" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:spi changes (reference label)">SPI Changes</span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span title="release/release-0.299:**credits** (reference label)">Credits</span>
+    </span>
+  </a>
+  
+</li>
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                  
+
+
+
+  
+  
+
+<h1 id="release-0-299">Release 0.299<a class="headerlink" href="#release-0-299" title="Link to this heading">¶</a></h1>
+<h2 id="breaking-changes"><strong>Breaking Changes</strong><a class="headerlink" href="#breaking-changes" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Fix partition filter cache metrics association. BREAKING: Metric names changed from <cite>partitionnamescache*</cite> to <cite>partitionfiltercache*</cite>. Users monitoring these JMX metrics must update their dashboards, alerts, and scripts to use the new metric names. The old metrics tracked the partition filter cache (filtered partition queries), not the partition names cache, as the name suggested. <a class="reference external" href="https://github.com/prestodb/presto/pull/27960">#27960</a></p></li>
+<li><p>Add explicit strategy parameter to <code class="docutils literal notranslate"><span class="pre">rewrite_data_files</span></code> procedure with binpack and sort strategies. Breaking change: Default behavior changed from sort to binpack for faster rewrites. Existing queries that rely on data ordering must add strategy =&gt; ‘sort’ to maintain previous behavior. Queries using sorted_by must now explicitly specify strategy =&gt; ‘sort’. <a class="reference external" href="https://github.com/prestodb/presto/pull/28092">#28092</a></p></li>
+<li><p>Replace the <code class="docutils literal notranslate"><span class="pre">lance.root-url</span></code> configuration property with <code class="docutils literal notranslate"><span class="pre">lance.root</span></code>. This is a breaking change: catalogs that set <code class="docutils literal notranslate"><span class="pre">lance.root-url</span></code> must be updated to <code class="docutils literal notranslate"><span class="pre">lance.root</span></code> before upgrading. See <a class="reference internal" href="../connector/lance.html#configuration-properties"><span class="std std-ref">Configuration Properties</span></a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/27481">#27481</a></p></li>
+<li><p>Upgrade minimum Elasticsearch version from 6 to 9 (breaking) in response to CVE-2024-52980. <a class="reference external" href="https://github.com/prestodb/presto/pull/25320">#25320</a></p></li>
+</ul>
+<h2 id="highlights"><strong>Highlights</strong><a class="headerlink" href="#highlights" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Add multi-arch (amd64 + arm64) support for presto-native and presto-native-dependency release Docker images, with the arm64 build using a portable -march=armv8-a+crc+crypto baseline for broad ARM CPU compatibility. <a class="reference external" href="https://github.com/prestodb/presto/pull/28046">#28046</a></p></li>
+<li><p>Add an Arrow federation connector to run federated queries. <a class="reference external" href="https://github.com/prestodb/presto/pull/26404">#26404</a></p></li>
+<li><p>Fix timestamp operations to match the SQL specification. The value of a <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> type is not affected by the session time zone. <a class="reference external" href="https://github.com/prestodb/presto/pull/24571">#24571</a></p></li>
+<li><p>Add comprehensive cache metrics for all metastore caches. See <a class="reference internal" href="../connector/hive.html#metastore-cache-metrics"><span class="std std-ref">Metastore Cache Metrics</span></a>.  <a class="reference external" href="https://github.com/prestodb/presto/pull/27960">#27960</a></p></li>
+<li><p>Add support for AWS Glue Table and Column Statistics. <a class="reference external" href="https://github.com/prestodb/presto/pull/27112">#27112</a></p></li>
+<li><p>Upgrade to Hive 4.0.1. <a class="reference external" href="https://github.com/prestodb/presto/pull/24571">#24571</a></p></li>
+</ul>
+<h2 id="details"><strong>Details</strong><a class="headerlink" href="#details" title="Link to this heading">¶</a></h2>
+<h3 id="general-changes">General Changes<a class="headerlink" href="#general-changes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix BATCH-mode RPC dispatch dropping and under-batching rows by gathering RPC input to a single driver in the local plan. <a class="reference external" href="https://github.com/prestodb/presto/pull/28230">#28230</a></p></li>
+<li><p>Fix incorrect epoch-second and nanosecond decomposition for pre-1970 (negative) timestamps in TimestampType; getEpochSecond and getNanos now use floor division instead of truncation toward zero. <a class="reference external" href="https://github.com/prestodb/presto/pull/27935">#27935</a></p></li>
+<li><p>Fix the <code class="docutils literal notranslate"><span class="pre">optimize_row_in_predicate</span></code> optimization so it applies to constant-folded <code class="docutils literal notranslate"><span class="pre">ROW(...)</span> <span class="pre">IN</span> <span class="pre">(...)</span></code> predicates, enabling per-column predicate derivation and partition pruning that previously did not occur. <a class="reference external" href="https://github.com/prestodb/presto/pull/27942">#27942</a></p></li>
+<li><p>Fix timestamp operations to match the SQL specification. The value of a <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> type is not affected by the session time zone. <a class="reference external" href="https://github.com/prestodb/presto/pull/24571">#24571</a></p></li>
+<li><p>Fix incorrect results when reading from a partially materialized view, where partitions recomputed from the base tables could also be read from the view and counted twice. <a class="reference external" href="https://github.com/prestodb/presto/pull/27944">#27944</a></p></li>
+<li><p>Fix a query failure (Field not found) when multiple remote function calls wrapped in <code class="docutils literal notranslate"><span class="pre">TRY()</span></code> appear in the same <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>. <a class="reference external" href="https://github.com/prestodb/presto/pull/28232">#28232</a></p></li>
+<li><p>Improve outer joins on skewed <code class="docutils literal notranslate"><span class="pre">NULL</span></code> join keys by spreading the null keys across partitions in their native type. This is controlled by the existing <code class="docutils literal notranslate"><span class="pre">randomize_outer_join_null_key</span></code> session property. <a class="reference external" href="https://github.com/prestodb/presto/pull/28153">#28153</a></p></li>
+<li><p>Improve the <code class="docutils literal notranslate"><span class="pre">optimize_cascading_filters_and_projections</span></code> optimization to avoid duplicating multiply-referenced non-trivial expressions when coalescing cascading projections. <a class="reference external" href="https://github.com/prestodb/presto/pull/28216">#28216</a></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> support to the materialized view query optimizer. Queries that join a base table covered by a materialized view with another table can now be rewritten to scan the materialized view in place of the base table, subject to safety guards (matching <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, no aggregates over non-swapped tables, supported join types). <a class="reference external" href="https://github.com/prestodb/presto/pull/27733">#27733</a></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">scanRawInputDataSizeInBytes</span></code> to task statistics, reporting the raw input data size read by table scan operators. <a class="reference external" href="https://github.com/prestodb/presto/pull/28222">#28222</a></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">scanRawInputDataSize</span></code> to basic query statistics. <a class="reference external" href="https://github.com/prestodb/presto/pull/28222">#28222</a></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">native_exchange_materialization_enabled</span></code> session property (Presto on Spark native codepath only) to control whether Velox native workers use MaterializedOutput/MaterializedExchange operators. When set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, enables materialized exchange; when <code class="docutils literal notranslate"><span class="pre">false</span></code> (default), falls back to PartitionAndSerialize + ShuffleWrite. <a class="reference external" href="https://github.com/prestodb/presto/pull/27881">#27881</a></p></li>
+<li><p>Add a driver-side metadata sidecar that registers native-only Velox functions into the Java planner at driver bootstrap. See <a class="reference internal" href="../admin/properties.html#built-in-sidecar-functions-enabled"><span class="std std-ref">built-in-sidecar-functions-enabled</span></a> and related properties. <a class="reference external" href="https://github.com/prestodb/presto/pull/27698">#27698</a></p></li>
+<li><p>Add column-level lineage for derived expression and aggregation columns in materialized view definitions, and emit a warning when a materialized view column has no base-table lineage. <a class="reference external" href="https://github.com/prestodb/presto/pull/28176">#28176</a></p></li>
+<li><p>Add configuration and session properties for legacy <code class="docutils literal notranslate"><span class="pre">ST_Equals</span></code> behavior. <a class="reference external" href="https://github.com/prestodb/presto/pull/27015">#27015</a></p></li>
+<li><p>Add configuration property <a class="reference internal" href="../admin/properties.html#server-startup-complete-required-for-active"><span class="std std-ref">server.startup-complete-required-for-active</span></a> to report a node as not ready (<code class="docutils literal notranslate"><span class="pre">/v1/info</span></code> <code class="docutils literal notranslate"><span class="pre">starting</span></code> and <code class="docutils literal notranslate"><span class="pre">/v1/info/state</span></code>) until server startup has fully completed. Defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>. <a class="reference external" href="https://github.com/prestodb/presto/pull/28193">#28193</a></p></li>
+<li><p>Add createTimestampType(int precision) factory supporting <code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code> precisions p=0–12, with instance interning and semantic helpers toEpochMillis, toEpochMicros, and fromEpochComponents. Part of parameterized <code class="docutils literal notranslate"><span class="pre">TIMESTAMP(p)</span></code> support in <a class="reference external" href="https://github.com/prestodb/presto/pull/27934">#27934</a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/27935">#27935</a></p></li>
+<li><p>Add indirect column lineage (<code class="docutils literal notranslate"><span class="pre">JOIN</span></code>, <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>/<code class="docutils literal notranslate"><span class="pre">HAVING</span></code>, <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>, window, and conditional expressions from <a class="reference external" href="https://github.com/prestodb/presto/pull/27695">#27695</a>) to the OpenLineage event listener’s <code class="docutils literal notranslate"><span class="pre">columnLineage</span></code> dataset facet, exposing it through <code class="docutils literal notranslate"><span class="pre">InputField.transformations</span></code>. Direct-lineage emission is unchanged. See <a class="reference internal" href="../develop/openlineage-event-listener.html"><span class="doc">OpenLineage Event Listener</span></a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/27994">#27994</a></p></li>
+<li><p>Add indirect column lineage tracking (<code class="docutils literal notranslate"><span class="pre">JOIN</span></code>, <code class="docutils literal notranslate"><span class="pre">FILTER</span></code>, <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>, <code class="docutils literal notranslate"><span class="pre">CONDITIONAL</span></code>) to query analysis, building on the direct column lineage added in #25913. Indirect relationships are exposed to event listeners with a new relationship-metadata field on <code class="docutils literal notranslate"><span class="pre">OutputColumnMetadata</span></code>; existing direct-lineage consumers are unaffected. See <a class="reference internal" href="../develop/openlineage-event-listener.html"><span class="doc">OpenLineage Event Listener</span></a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/27695">#27695</a></p></li>
+<li><p>Add multi-arch (amd64 + arm64) support for presto-native and presto-native-dependency release Docker images, with the arm64 build using a portable -march=armv8-a+crc+crypto baseline for broad ARM CPU compatibility. <a class="reference external" href="https://github.com/prestodb/presto/pull/28046">#28046</a></p></li>
+<li><p>Add session property <code class="docutils literal notranslate"><span class="pre">grouped_execution_when_capable</span></code> (default disabled) that, together with <code class="docutils literal notranslate"><span class="pre">grouped_execution</span></code>, runs grouped execution for any bucketed grouped-execution-capable fragment even when no downstream operator makes grouping individually beneficial (for example a bucketed scan feeding a shuffle, or a bucketed-to-bucketed table write). This avoids re-partitioning already-bucketed data and bounds per-lifespan memory to a single bucket. <a class="reference external" href="https://github.com/prestodb/presto/pull/28097">#28097</a></p></li>
+<li><p>Add session property <a class="reference internal" href="../admin/properties-session.html#pull-constant-projection-above-exchange"><span class="std std-ref">pull_constant_projection_above_exchange</span></a> (disabled by default) that pulls constant projection assignments above remote exchanges, avoiding serialization and shuffling of constant values across the network. <a class="reference external" href="https://github.com/prestodb/presto/pull/27499">#27499</a></p></li>
+<li><p>Add session property <a class="reference internal" href="../admin/properties-session.html#pull-row-local-chain-above-exchange-strategy"><span class="std std-ref">pull_row_local_chain_above_exchange_strategy</span></a> (default <code class="docutils literal notranslate"><span class="pre">DISABLED</span></code>) that pulls a chain of row-local operators (<code class="docutils literal notranslate"><span class="pre">UNNEST</span></code> and deterministic projections) above a repartitioning remote exchange so the exchange shuffles the smaller pre-expansion input, reducing network shuffle. <a class="reference external" href="https://github.com/prestodb/presto/pull/28079">#28079</a></p></li>
+<li><p>Add support for ANSI SQL syntax in trim function. <a class="reference external" href="https://github.com/prestodb/presto/pull/28190">#28190</a></p></li>
+<li><p>Add support for additional predicates on <code class="docutils literal notranslate"><span class="pre">WHEN</span></code> clauses in <code class="docutils literal notranslate"><span class="pre">MERGE</span></code> (<code class="docutils literal notranslate"><span class="pre">WHEN</span> <span class="pre">MATCHED</span> <span class="pre">AND</span> <span class="pre">&lt;condition&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">WHEN</span> <span class="pre">NOT</span> <span class="pre">MATCHED</span> <span class="pre">AND</span> <span class="pre">&lt;condition&gt;</span></code>). <a class="reference external" href="https://github.com/prestodb/presto/pull/27855">#27855</a></p></li>
+<li><p>Add support for an any-typed variadic tail in JSON-file-based function definitions. <a class="reference external" href="https://github.com/prestodb/presto/pull/28207">#28207</a></p></li>
+<li><p>Add support for hyphenated struct field names in nested ROW type columns. <a class="reference external" href="https://github.com/prestodb/presto/pull/27470">#27470</a></p></li>
+<li><p>Add support for publishing release Docker images to GitHub Container Registry (GHCR) via the REGISTRY repository variable. <a class="reference external" href="https://github.com/prestodb/presto/pull/28010">#28010</a></p></li>
+<li><p>Add the <a class="reference internal" href="../admin/properties-session.html#optimize-cascading-filters-and-projections"><span class="std std-ref">optimize_cascading_filters_and_projections</span></a> session property (config property <a class="reference internal" href="../admin/properties.html#optimizer-optimize-cascading-filters-and-projections"><span class="std std-ref">optimizer.optimize-cascading-filters-and-projections</span></a>, default disabled). When enabled, the optimizer coalesces cascading projections by fully inlining deterministic child expressions and merges adjacent filter/projection nodes, co-locating shared subexpressions within a single operator so the native (Velox) backend’s common-subexpression elimination can deduplicate them. <a class="reference external" href="https://github.com/prestodb/presto/pull/28016">#28016</a></p></li>
+<li><p>Add the <a class="reference internal" href="../admin/properties-session.html#optimize-join-fan-out"><span class="std std-ref">optimize_join_fan_out</span></a> session property (config property <code class="docutils literal notranslate"><span class="pre">optimizer.optimize-join-fan-out</span></code>, default disabled). When enabled, the optimizer collapses a fan-out equi-join whose preserved side is an aggregation grouped by a strict superset of the join keys: it packs the non-key columns with <code class="docutils literal notranslate"><span class="pre">array_agg(row(...))</span></code> so the join becomes unique on the join key, then re-expands them with a local <code class="docutils literal notranslate"><span class="pre">UNNEST</span></code> above the join, reducing the rows shuffled through the distributed join. <a class="reference external" href="https://github.com/prestodb/presto/pull/27970">#27970</a></p></li>
+<li><p>Add the materialized view query optimizer to the inner query of <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">AS</span></code> and <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> statements, not just bare <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>. <a class="reference external" href="https://github.com/prestodb/presto/pull/27917">#27917</a></p></li>
+<li><p>Add validation to reject non-deterministic and session-time functions in <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">MATERIALIZED</span> <span class="pre">VIEW</span></code> definitions. <a class="reference external" href="https://github.com/prestodb/presto/pull/28220">#28220</a></p></li>
+<li><p>Add optimizer rule <a class="reference internal" href="../admin/properties-session.html#parallelize-chained-aggregation"><span class="std std-ref">parallelize_chained_aggregation</span></a> (default: false) that inserts a local round-robin exchange to parallelize the outer PARTIAL in chained aggregations. <a class="reference external" href="https://github.com/prestodb/presto/pull/27884">#27884</a></p></li>
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">AUTOMATIC</span></code> value for the <code class="docutils literal notranslate"><span class="pre">rpc_streaming_mode</span></code> session property, the <code class="docutils literal notranslate"><span class="pre">rpc_batch_min_rows</span></code> session property, and a pluggable <code class="docutils literal notranslate"><span class="pre">RpcExecutionPolicy</span></code> so deployments can resolve per-row versus batch RPC dispatch from the estimated input stats. <a class="reference external" href="https://github.com/prestodb/presto/pull/27984">#27984</a></p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">ST_Equals</span></code> function for empty geometries to return true regardless of geometry types. <a class="reference external" href="https://github.com/prestodb/presto/pull/27015">#27015</a></p></li>
+<li><p>Update default value of <code class="docutils literal notranslate"><span class="pre">deprecated.legacy-timestamp</span></code> to false. <a class="reference external" href="https://github.com/prestodb/presto/pull/24571">#24571</a></p></li>
+<li><p>Update the driver-side metadata sidecar registration of worker functions into the Airlift bootstrap. <a class="reference external" href="https://github.com/prestodb/presto/pull/27699">#27699</a></p></li>
+</ul>
+<h3 id="prestissimo-native-execution-changes">Prestissimo (Native Execution) Changes<a class="headerlink" href="#prestissimo-native-execution-changes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix runtime type-mismatch crashes at exchange operators in Prestissimo when aggregation variable names sort differently from their Java allocation order. <a class="reference external" href="https://github.com/prestodb/presto/pull/27903">#27903</a></p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">LIKE</span></code>, regexp, and json_extract queries applied to the result of a remote function (for example <code class="docutils literal notranslate"><span class="pre">meta.ai.*</span></code> outputs), which previously failed native query plan conversion. <a class="reference external" href="https://github.com/prestodb/presto/pull/28118">#28118</a></p></li>
+<li><p>Add an Arrow federation connector to run federated queries. <a class="reference external" href="https://github.com/prestodb/presto/pull/26404">#26404</a></p></li>
+<li><p>Add registration for Presto-specific cuDF functions when cuDF is enabled in Presto native. <a class="reference external" href="https://github.com/prestodb/presto/pull/28093">#28093</a></p></li>
+<li><p>Add support for setting gflags through <code class="docutils literal notranslate"><span class="pre">config.properties</span></code> using the <code class="docutils literal notranslate"><span class="pre">gflag.</span></code> prefix. Property names use hyphens in place of underscores, such as <code class="docutils literal notranslate"><span class="pre">gflag.velox-memory-num-shared-leaf-pools=64</span></code>. Command-line flags take precedence over config values. See <a class="reference internal" href="../presto_cpp/properties.html"><span class="doc">Presto C++ Configuration Properties</span></a> for the full list of supported gflag properties. <a class="reference external" href="https://github.com/prestodb/presto/pull/28127">#28127</a></p></li>
+<li><p>Add session properties to tune the adaptive RPC rate limiter and congestion window (<a class="reference internal" href="../presto_cpp/properties-session.html#native-rpc-ratelimiter-adaptive-enabled"><span class="std std-ref">native_rpc_ratelimiter_adaptive_enabled</span></a>, <a class="reference internal" href="../presto_cpp/properties-session.html#native-rpc-ratelimiter-min-limit"><span class="std std-ref">native_rpc_ratelimiter_min_limit</span></a>, <a class="reference internal" href="../presto_cpp/properties-session.html#native-rpc-ratelimiter-decrease-factor"><span class="std std-ref">native_rpc_ratelimiter_decrease_factor</span></a>, <a class="reference internal" href="../presto_cpp/properties-session.html#native-rpc-ratelimiter-max-limit"><span class="std std-ref">native_rpc_ratelimiter_max_limit</span></a>, <a class="reference internal" href="../presto_cpp/properties-session.html#native-rpc-congestion-max-window"><span class="std std-ref">native_rpc_congestion_max_window</span></a>). <a class="reference external" href="https://github.com/prestodb/presto/pull/28115">#28115</a></p></li>
+<li><p>Add a two-phase memory reclaim for MaterializedOutputBuffer, integrated with the Velox memory arbitrator. <a class="reference external" href="https://github.com/prestodb/presto/pull/27875">#27875</a></p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">native_exchange_materialization_enabled</span></code> session property default to <code class="docutils literal notranslate"><span class="pre">true</span></code> to enable MaterializedOutput and MaterializedExchange operators in Velox by default. <a class="reference external" href="https://github.com/prestodb/presto/pull/27980">#27980</a></p></li>
+</ul>
+<h3 id="security-changes">Security Changes<a class="headerlink" href="#security-changes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Update Elasticsearch client dependencies to version 9 in response to <a class="reference external" href="https://github.com/advisories/GHSA-ghfh-p92w-j4mg">CVE-2024-52980</a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/25320">#25320</a></p></li>
+<li><p>Upgrade Netty to 4.2.16.Final to address <a class="reference external" href="https://github.com/advisories/GHSA-vhch-2wf3-m8rp">CVE-2026-44891</a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/28169">#28169</a></p></li>
+<li><p>Upgrade async-http-client to 3.0.11 in response to <a class="reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2026-55688">CVE-2026-55688</a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/28168">#28168</a></p></li>
+<li><p>Upgrade calcite version to 1.42.0 to address <a class="reference external" href="https://github.com/advisories/GHSA-c2rv-hwqm-wjpg">CVE-2026-46718</a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/28039">#28039</a></p></li>
+<li><p>Upgrade fast-uri version to 3.1.4 to address <a class="reference external" href="https://nvd.nist.gov/vuln/detail/CVE-2026-13676">CVE-2026-13676</a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/28202">#28202</a></p></li>
+<li><p>Upgrade highlight version to 10.4.1 to address <a class="reference external" href="https://github.com/OSWeekends/miniestaciones/issues/9">WS-2020-0208</a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/27956">#27956</a></p></li>
+<li><p>Upgrade jersey-bom version  to 2.41  in response to the use of an outdated version. <a class="reference external" href="https://github.com/prestodb/presto/pull/25807">#25807</a></p></li>
+<li><p>Upgrade lz4-java to 1.11.1 to address <a class="reference external" href="https://github.com/advisories/GHSA-xx22-p4ch-683r">CVE-2026-59949</a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/28244">#28244</a></p></li>
+<li><p>Upgrade minimum Elasticsearch version from 6 to 9 (breaking) in response to <a class="reference external" href="https://github.com/advisories/GHSA-ghfh-p92w-j4mg">CVE-2024-52980</a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/25320">#25320</a></p></li>
+<li><p>Upgrade org.apache.logging.log4j to 2.25.5  to address <a class="reference external" href="https://github.com/advisories/GHSA-qv9r-c865-cp47">CVE-2026-49844</a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/28186">#28186</a></p></li>
+<li><p>Upgrade async-http-client to 3.0.10 in response to <a class="reference external" href="https://github.com/advisories/GHSA-fmxf-pm6p-7xgm">CVE-2026-45300</a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/27863">#27863</a></p></li>
+<li><p>Upgrade commons-configuration2 in response to <a class="reference external" href="https://github.com/advisories/GHSA-337m-mw94-2v6g">CVE-2026-45205</a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/27862">#27862</a></p></li>
+</ul>
+<h3 id="cassandra-connector-changes">Cassandra Connector Changes<a class="headerlink" href="#cassandra-connector-changes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Upgrade to Cassandra Java Driver <cite>4.x</cite>. <a class="reference external" href="https://github.com/prestodb/presto/pull/27029">#27029</a></p></li>
+</ul>
+<h3 id="delta-lake-connector-changes">Delta Lake Connector Changes<a class="headerlink" href="#delta-lake-connector-changes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add support for reading Variant data as JSON. <a class="reference external" href="https://github.com/prestodb/presto/pull/27552">#27552</a></p></li>
+</ul>
+<h3 id="hive-connector-changes">Hive Connector Changes<a class="headerlink" href="#hive-connector-changes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix Parquet RLE and PLAIN dictionary decoding for decimals backed by byte arrays. <a class="reference external" href="https://github.com/prestodb/presto/pull/28086">#28086</a></p></li>
+<li><p>Fix partition filter cache metrics association. <strong>BREAKING</strong>: Metric names changed from <cite>partitionnamescache*</cite> to <cite>partitionfiltercache*</cite>. Users monitoring these JMX metrics must update their dashboards, alerts, and scripts to use the new metric names. The old metrics tracked the partition filter cache (filtered partition queries), not the partition names cache, as the name suggested. <a class="reference external" href="https://github.com/prestodb/presto/pull/27960">#27960</a></p></li>
+<li><p>Fix to allow creating partitioned tables using AVRO format and <code class="docutils literal notranslate"><span class="pre">avro_schema_url</span></code> property. <a class="reference external" href="https://github.com/prestodb/presto/pull/27490">#27490</a></p></li>
+<li><p>Add Azure filesystem impl registration for ABFSS and WASB/S schemes. <a class="reference external" href="https://github.com/prestodb/presto/pull/28054">#28054</a></p></li>
+<li><p>Add comprehensive cache metrics for all metastore caches. See <a class="reference internal" href="../connector/hive.html#metastore-cache-metrics"><span class="std std-ref">Metastore Cache Metrics</span></a>.  <a class="reference external" href="https://github.com/prestodb/presto/pull/27960">#27960</a></p></li>
+<li><p>Add support for AWS Glue Table and Column Statistics. <a class="reference external" href="https://github.com/prestodb/presto/pull/27112">#27112</a></p></li>
+<li><p>Add support for reading and writing per-column type attributes in DWRF files. <a class="reference external" href="https://github.com/prestodb/presto/pull/27940">#27940</a></p></li>
+<li><p>Upgrade to Hive 4.0.1. <a class="reference external" href="https://github.com/prestodb/presto/pull/24571">#24571</a></p></li>
+</ul>
+<h3 id="iceberg-connector-changes">Iceberg Connector Changes<a class="headerlink" href="#iceberg-connector-changes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">DROP</span> <span class="pre">TABLE</span></code> for Hive-backed Iceberg tables to properly delete all data and metadata files on S3 using Iceberg’s CatalogUtil instead of relying on Hive metastore directory deletion. <a class="reference external" href="https://github.com/prestodb/presto/pull/27938">#27938</a></p></li>
+<li><p>Fix timestamp-to-micros conversion and legacy-timezone adjustment in IcebergPageSink for pre-epoch timestamps, using the corrected TimestampType epoch helpers. <a class="reference external" href="https://github.com/prestodb/presto/pull/27935">#27935</a></p></li>
+<li><p>Improve Iceberg table statistics computation by using snapshot-level total record counts instead of re-scanning manifests. <a class="reference external" href="https://github.com/prestodb/presto/pull/28248">#28248</a></p></li>
+<li><p>Add Iceberg version validation to prevent silent data loss. <a class="reference external" href="https://github.com/prestodb/presto/pull/27655">#27655</a></p></li>
+<li><p>Add configuration property <code class="docutils literal notranslate"><span class="pre">iceberg.commit-number-retries</span></code> to specify the default number of commit retries for newly created tables. <a class="reference external" href="https://github.com/prestodb/presto/pull/28055">#28055</a></p></li>
+<li><p>Add explicit strategy parameter to <code class="docutils literal notranslate"><span class="pre">rewrite_data_files</span></code> procedure with binpack and sort strategies. Breaking change: Default behavior changed from sort to binpack for faster rewrites. Existing queries that rely on data ordering must add strategy =&gt; ‘sort’ to maintain previous behavior. Queries using sorted_by must now explicitly specify strategy =&gt; ‘sort’. <a class="reference external" href="https://github.com/prestodb/presto/pull/28092">#28092</a></p></li>
+<li><p>Add optional <code class="docutils literal notranslate"><span class="pre">delete_data_on_drop</span></code> parameter to the <code class="docutils literal notranslate"><span class="pre">register_table</span></code> procedure to control whether underlying Iceberg data is deleted when the registered table is dropped. <a class="reference external" href="https://github.com/prestodb/presto/pull/27938">#27938</a></p></li>
+<li><p>Add proxy support for Iceberg REST catalogs. See <a class="reference internal" href="../connector/iceberg.html#rest-catalog"><span class="std std-ref">REST catalog</span></a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/28217">#28217</a></p></li>
+<li><p>Add support for Basic Auth against the REST catalog server. See <a class="reference internal" href="../connector/iceberg.html#rest-catalog"><span class="std std-ref">REST catalog</span></a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/28103">#28103</a></p></li>
+<li><p>Add support for iceberg write-default. <a class="reference external" href="https://github.com/prestodb/presto/pull/27912">#27912</a></p></li>
+<li><p>Add support to enable TLS for REST catalog communication. See <a class="reference internal" href="../connector/iceberg.html#rest-catalog"><span class="std std-ref">REST catalog</span></a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/28103">#28103</a></p></li>
+<li><p>Add read support for row lineage columns as per Iceberg V3 spec. <a class="reference external" href="https://github.com/prestodb/presto/pull/27743">#27743</a></p></li>
+<li><p>Add support for Iceberg V3 field-id protocol in Presto Native. <a class="reference external" href="https://github.com/prestodb/presto/pull/28116">#28116</a></p></li>
+<li><p>Add support for Iceberg V3 deletion vectors and <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> / <code class="docutils literal notranslate"><span class="pre">MERGE</span></code> statements in Presto Native. <a class="reference external" href="https://github.com/prestodb/presto/pull/28058">#28058</a></p></li>
+</ul>
+<h3 id="lance-connector-changes">Lance Connector Changes<a class="headerlink" href="#lance-connector-changes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix catalog-wide table listing returning no tables for multi-level Lance catalogs (<code class="docutils literal notranslate"><span class="pre">lance.single-level-ns=false</span></code>). This affected <code class="docutils literal notranslate"><span class="pre">information_schema.tables</span></code> scans. <a class="reference external" href="https://github.com/prestodb/presto/pull/28268">#28268</a></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">LIMIT</span></code> pushdown for Lance table scans to reduce rows read by Lance for simple limit queries. <a class="reference external" href="https://github.com/prestodb/presto/pull/28049">#28049</a></p></li>
+<li><p>Add pluggable namespace support to the Lance connector using the lance-namespace API, enabling directory, REST, and custom namespace implementations. <a class="reference external" href="https://github.com/prestodb/presto/pull/27481">#27481</a></p></li>
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">lance.parent</span></code> configuration property to select a parent namespace prefix for namespaces with three or more levels. See <a class="reference internal" href="../connector/lance.html#configuration-properties"><span class="std std-ref">Configuration Properties</span></a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/27481">#27481</a></p></li>
+<li><p>Replace the <code class="docutils literal notranslate"><span class="pre">lance.root-url</span></code> configuration property with <code class="docutils literal notranslate"><span class="pre">lance.root</span></code>. This is a breaking change: catalogs that set <code class="docutils literal notranslate"><span class="pre">lance.root-url</span></code> must be updated to <code class="docutils literal notranslate"><span class="pre">lance.root</span></code> before upgrading. See <a class="reference internal" href="../connector/lance.html#configuration-properties"><span class="std std-ref">Configuration Properties</span></a>. <a class="reference external" href="https://github.com/prestodb/presto/pull/27481">#27481</a></p></li>
+</ul>
+<h3 id="oracle-connector-changes">Oracle Connector Changes<a class="headerlink" href="#oracle-connector-changes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add support for <code class="docutils literal notranslate"><span class="pre">REAL</span></code> datatype insert. <a class="reference external" href="https://github.com/prestodb/presto/pull/28059">#28059</a></p></li>
+</ul>
+<h3 id="spi-changes">SPI Changes<a class="headerlink" href="#spi-changes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">OutputColumnMetadata.getColumnLineage()</span></code> returning a unified <code class="docutils literal notranslate"><span class="pre">Set&lt;ColumnLineageEntry&gt;</span></code> that covers both DIRECT and INDIRECT lineage from <a class="reference external" href="https://github.com/prestodb/presto/pull/27695">#27695</a>, with direct entries carrying <code class="docutils literal notranslate"><span class="pre">IDENTITY</span></code>, <code class="docutils literal notranslate"><span class="pre">TRANSFORMATION</span></code>, or <code class="docutils literal notranslate"><span class="pre">AGGREGATION</span></code> subtypes derived from the SELECT-list expression. <code class="docutils literal notranslate"><span class="pre">getSourceColumns()</span></code> and <code class="docutils literal notranslate"><span class="pre">getIndirectSourceColumns()</span></code> are retained as derived views and marked <code class="docutils literal notranslate"><span class="pre">&#64;Deprecated</span></code>; existing event listeners and JSON consumers are unaffected. <a class="reference external" href="https://github.com/prestodb/presto/pull/27995">#27995</a></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">getScanRawInputBytes</span></code> to <code class="docutils literal notranslate"><span class="pre">QueryStatistics</span></code>. Note: this adds a required constructor argument; plugins that construct <code class="docutils literal notranslate"><span class="pre">QueryStatistics</span></code> directly must be updated. <a class="reference external" href="https://github.com/prestodb/presto/pull/28222">#28222</a></p></li>
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">ConnectorMetadata.beginRefreshMaterializedView`</span></code> overload that carries the materialized view refresh predicate (refresh scope) to connectors. <a class="reference external" href="https://github.com/prestodb/presto/pull/27949">#27949</a></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">getMaterializedViewRewrittenQuery</span></code> to <code class="docutils literal notranslate"><span class="pre">QueryCompletedEvent</span></code>, exposing the query produced when a materialized view rewrite is applied. <a class="reference external" href="https://github.com/prestodb/presto/pull/27919">#27919</a></p></li>
+</ul>
+<h2 id="credits"><strong>Credits</strong><a class="headerlink" href="#credits" title="Link to this heading">¶</a></h2>
+<p>Aditi Pandit, Ajay Kharat, Allen Shen, Amit Dutta, Andrii Rosa, Apurva Kumar, Auden Woolfson, Ayasaz, Bryan Cutler, Chandrakant Vankayalapati, ChenXing Yang, Christian Zentgraf, Deepak Majeti, Deepak Mehra, Denis Krivenko, Denodo Research Labs, Dilli Babu Godari, Dong Wang, Henry Dikeman, Hongtao Yang, Jack Luo, Jalpreet Singh Nanda, Jianjian Xie, Joe Abraham, Kevin Tang, Madhavan, Maria Basmanova, Matt Gara, Miguel Blanco Godón, Natasha Sehgal, Neerad Somanchi, Nidhin Varghese, Nishitha K Bhaskaran, Nivin C S, Patrick Sullivan, Pramod Satya, Pratik Joseph Dabre, Reetika Agrawal, Sayari Mukherjee, Shahim Sharafudeen, Shakyan Kushwaha, Shreya, Shrinidhi Joshi, Sreeni Viswanadha, Steve Burnett, Timothy Meehan, Tirumala Saiteja Goruganthu, Vyacheslav Andreykiv, Yihong Wang, Ying, Zac, Zac Blanco, bcam-meta, bibith4, deepthibose01, dependabot[bot], feilong-liu, jkhaliqi, mohsaka, sumi-mathew, zhichenxu-meta</p>
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright The Presto Foundation. All rights reserved. Presto is a registered trademark of LF Projects, LLC.
+        
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/prestodb/presto" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.sticky", "content.code.copy"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+    
+  </body>
+</html>
