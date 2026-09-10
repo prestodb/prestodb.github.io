@@ -1,5 +1,66 @@
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
+
+function updateRepoLinksInChangedFiles() {
+    let changedFiles = [];
+    try {
+        const gitRoot = execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim();
+        let stdout = '';
+        try {
+            stdout = execSync('git diff --cached --name-only --diff-filter=d', { encoding: 'utf8' });
+        } catch (e) {}
+
+        if (!stdout.trim()) {
+            try {
+                stdout = execSync('git diff HEAD --name-only --diff-filter=d', { encoding: 'utf8' });
+            } catch (e) {}
+        }
+
+        changedFiles = stdout
+            .split('\n')
+            .map(s => s.trim())
+            .filter(Boolean)
+            .map(f => (path.isAbsolute(f) ? f : path.resolve(gitRoot, f)))
+            .filter(f => f.endsWith('.html') || f.endsWith('.htm'));
+    } catch (err) {
+        console.error('Error finding changed files for link updates:', err.message);
+        return;
+    }
+
+    if (changedFiles.length === 0) {
+        return;
+    }
+
+    const aTagRegex = /<a\b[^>]*href=["'][^"']*repo1\.maven\.org[^"']*["'][^>]*>/gi;
+
+    for (const filePath of changedFiles) {
+        if (!fs.existsSync(filePath)) continue;
+        const originalContent = fs.readFileSync(filePath, 'utf8');
+        const updatedContent = originalContent.replace(aTagRegex, tag => {
+            const relMatch = /rel=["']([^"']*)["']/i.exec(tag);
+            if (relMatch) {
+                const currentRel = relMatch[1];
+                const tokens = currentRel.split(/\s+/).filter(Boolean);
+                if (!tokens.includes('noopener')) tokens.push('noopener');
+                if (!tokens.includes('noreferrer')) tokens.push('noreferrer');
+                const newRel = tokens.join(' ');
+                if (newRel === currentRel) return tag;
+                return tag.replace(/rel=["'][^"']*["']/i, `rel="${newRel}"`);
+            } else {
+                return tag.replace(/<a\b/i, '<a rel="noopener noreferrer"');
+            }
+        });
+
+        if (updatedContent !== originalContent) {
+            fs.writeFileSync(filePath, updatedContent);
+            console.log(`Updated repo1.maven.org links in: ${filePath}`);
+            try {
+                execSync(`git add "${filePath}"`);
+            } catch (e) {}
+        }
+    }
+}
 
 async function updateSphinxThemeFiles() {
     const siteConfigPath = path.join(__dirname, './siteConfig.js');
@@ -65,5 +126,10 @@ async function updateSphinxThemeFiles() {
     process.exit(0);
 }
 
-updateSphinxThemeFiles().catch(console.error);
+async function main() {
+    updateRepoLinksInChangedFiles();
+    await updateSphinxThemeFiles();
+}
+
+main().catch(console.error);
 
