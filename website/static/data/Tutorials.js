@@ -148,7 +148,7 @@ export const Items = [
 {
 "link":"https://olake.io/blog/building-open-data-lakehouse-with-olake-presto/",
 "thumbnail":"https://olake.io/img/olake-logo.svg",
-"title":"Building an Open Data Lakehouse with OLake and Presto",
-"description":"End-to-end guide to replicating MySQL data into Apache Iceberg tables via CDC with OLake and querying them with Presto using a REST catalog, MinIO, and Docker Compose."
+"title":"Building an Open Data Lakehouse with OLake Go and Presto",
+"description":"End-to-end guide to replicating MySQL data into Apache Iceberg tables via CDC with OLake Go and querying them with Presto using a REST catalog, MinIO, and Docker Compose."
 },
 ];
